@@ -1,0 +1,6 @@
+{
+  "schemaVersion": 1,
+  "brands": [
+    { "id": "hager", "name": "Hager", "file": "hager.json" }
+  ]
+}

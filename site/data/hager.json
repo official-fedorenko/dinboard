@@ -1,0 +1,1176 @@
+{
+  "schemaVersion": 1,
+  "brand": {
+    "id": "hager",
+    "name": "Hager"
+  },
+  "enclosures": [
+    {
+      "id": "hager-va12b",
+      "brand": "hager",
+      "series": "Volta",
+      "article": "VA12B",
+      "mounting": "surface",
+      "rows": 1,
+      "modulesPerRow": 12,
+      "material": "plastic",
+      "door": "none",
+      "ipRating": 30,
+      "dimensionsMm": {
+        "width": 305,
+        "height": 245,
+        "depth": 96.5
+      },
+      "verified": true,
+      "source": "https://hager.com/pl/katalog/produkt/va12b-volta-rozdzielnica-n-t-1r-12m-ii-kl-ip30",
+      "notes": "Поставляется без дверцы; непрозрачная стальная дверца — VA12T (заказывается отдельно). Код для PL/ЕС; в DE аналог VA12CN."
+    },
+    {
+      "id": "hager-va24b",
+      "brand": "hager",
+      "series": "Volta",
+      "article": "VA24B",
+      "mounting": "surface",
+      "rows": 2,
+      "modulesPerRow": 12,
+      "material": "plastic",
+      "door": "none",
+      "ipRating": 30,
+      "dimensionsMm": {
+        "width": 305,
+        "height": 370,
+        "depth": 96.5
+      },
+      "verified": true,
+      "source": "https://hager.com/pl/katalog/?artnr=VA24B",
+      "notes": "Поставляется без дверцы; непрозрачная стальная дверца — VA24T (заказывается отдельно). Код для PL/ЕС; в DE аналог VA24CN."
+    },
+    {
+      "id": "hager-va36b",
+      "brand": "hager",
+      "series": "Volta",
+      "article": "VA36B",
+      "mounting": "surface",
+      "rows": 3,
+      "modulesPerRow": 12,
+      "material": "plastic",
+      "door": "none",
+      "ipRating": 30,
+      "dimensionsMm": {
+        "width": 305,
+        "height": 515,
+        "depth": 96.5
+      },
+      "verified": true,
+      "source": "https://hager.com/pl/katalog/?artnr=VA36B",
+      "notes": "Поставляется без дверцы; непрозрачная стальная дверца — VA36T (заказывается отдельно). Код для PL/ЕС; в DE аналог VA36CN."
+    },
+    {
+      "id": "hager-va48b",
+      "brand": "hager",
+      "series": "Volta",
+      "article": "VA48B",
+      "mounting": "surface",
+      "rows": 4,
+      "modulesPerRow": 12,
+      "material": "plastic",
+      "door": "none",
+      "ipRating": 30,
+      "dimensionsMm": {
+        "width": 305,
+        "height": 640,
+        "depth": 96.5
+      },
+      "verified": true,
+      "source": "https://hager.com/pl/katalog/?artnr=VA48B",
+      "notes": "Поставляется без дверцы; непрозрачная стальная дверца — VA48T (заказывается отдельно). Код для PL/ЕС; в DE аналог VA48CN."
+    },
+    {
+      "id": "hager-vu12ne",
+      "brand": "hager",
+      "series": "Volta",
+      "article": "VU12NE",
+      "mounting": "flush",
+      "rows": 1,
+      "modulesPerRow": 12,
+      "material": "plastic",
+      "door": "opaque",
+      "ipRating": 30,
+      "dimensionsMm": {
+        "width": 348,
+        "height": 356.5,
+        "depth": 94.5
+      },
+      "verified": true,
+      "source": "https://hager.com/pl/katalog/?artnr=VU12NE",
+      "notes": "Пластиковый корпус с плоской стальной дверцей RAL 9010."
+    },
+    {
+      "id": "hager-vu24ne",
+      "brand": "hager",
+      "series": "Volta",
+      "article": "VU24NE",
+      "mounting": "flush",
+      "rows": 2,
+      "modulesPerRow": 12,
+      "material": "plastic",
+      "door": "opaque",
+      "ipRating": 30,
+      "dimensionsMm": {
+        "width": 348,
+        "height": 505.5,
+        "depth": 94.5
+      },
+      "verified": true,
+      "source": "https://hager.com/pl/katalog/?artnr=VU24NE",
+      "notes": "Пластиковый корпус с плоской стальной дверцей RAL 9010."
+    },
+    {
+      "id": "hager-vu36ne",
+      "brand": "hager",
+      "series": "Volta",
+      "article": "VU36NE",
+      "mounting": "flush",
+      "rows": 3,
+      "modulesPerRow": 12,
+      "material": "plastic",
+      "door": "opaque",
+      "ipRating": 30,
+      "dimensionsMm": {
+        "width": 348,
+        "height": 630.5,
+        "depth": 94.5
+      },
+      "verified": true,
+      "source": "https://hager.com/pl/katalog/?artnr=VU36NE",
+      "notes": "Пластиковый корпус с плоской стальной дверцей RAL 9010."
+    },
+    {
+      "id": "hager-vu48ne",
+      "brand": "hager",
+      "series": "Volta",
+      "article": "VU48NE",
+      "mounting": "flush",
+      "rows": 4,
+      "modulesPerRow": 12,
+      "material": "plastic",
+      "door": "opaque",
+      "ipRating": 30,
+      "dimensionsMm": {
+        "width": 348,
+        "height": 755.5,
+        "depth": 94.5
+      },
+      "verified": true,
+      "source": "https://hager.com/pl/katalog/?artnr=VU48NE",
+      "notes": "Пластиковый корпус с плоской стальной дверцей RAL 9010."
+    }
+  ],
+  "devices": [
+    {
+      "id": "hager-mbn106",
+      "brand": "hager",
+      "verified": true,
+      "series": "MBN",
+      "article": "MBN106",
+      "category": "mcb",
+      "modules": 1,
+      "specs": {
+        "poles": "1P",
+        "ratedCurrentA": 6,
+        "curve": "B",
+        "breakingCapacityKa": 6
+      },
+      "source": "https://hager.com/en-tr/catalogue/?artnr=MBN106"
+    },
+    {
+      "id": "hager-mbn110",
+      "brand": "hager",
+      "verified": true,
+      "series": "MBN",
+      "article": "MBN110",
+      "category": "mcb",
+      "modules": 1,
+      "specs": {
+        "poles": "1P",
+        "ratedCurrentA": 10,
+        "curve": "B",
+        "breakingCapacityKa": 6
+      },
+      "source": "https://hager.com/en-tr/catalogue/?artnr=MBN110"
+    },
+    {
+      "id": "hager-mbn113",
+      "brand": "hager",
+      "verified": true,
+      "series": "MBN",
+      "article": "MBN113",
+      "category": "mcb",
+      "modules": 1,
+      "specs": {
+        "poles": "1P",
+        "ratedCurrentA": 13,
+        "curve": "B",
+        "breakingCapacityKa": 6
+      },
+      "source": "https://hager.com/de/katalog/?artnr=MBN113"
+    },
+    {
+      "id": "hager-mbn116",
+      "brand": "hager",
+      "verified": true,
+      "series": "MBN",
+      "article": "MBN116",
+      "category": "mcb",
+      "modules": 1,
+      "specs": {
+        "poles": "1P",
+        "ratedCurrentA": 16,
+        "curve": "B",
+        "breakingCapacityKa": 6
+      },
+      "source": "https://hager.com/en-tr/catalogue/?artnr=MBN116"
+    },
+    {
+      "id": "hager-mbn120",
+      "brand": "hager",
+      "verified": true,
+      "series": "MBN",
+      "article": "MBN120",
+      "category": "mcb",
+      "modules": 1,
+      "specs": {
+        "poles": "1P",
+        "ratedCurrentA": 20,
+        "curve": "B",
+        "breakingCapacityKa": 6
+      },
+      "source": "https://hager.com/en-tr/catalogue/?artnr=MBN120"
+    },
+    {
+      "id": "hager-mbn125",
+      "brand": "hager",
+      "verified": true,
+      "series": "MBN",
+      "article": "MBN125",
+      "category": "mcb",
+      "modules": 1,
+      "specs": {
+        "poles": "1P",
+        "ratedCurrentA": 25,
+        "curve": "B",
+        "breakingCapacityKa": 6
+      },
+      "source": "https://hager.com/en-tr/catalogue/?artnr=MBN125"
+    },
+    {
+      "id": "hager-mbn132",
+      "brand": "hager",
+      "verified": true,
+      "series": "MBN",
+      "article": "MBN132",
+      "category": "mcb",
+      "modules": 1,
+      "specs": {
+        "poles": "1P",
+        "ratedCurrentA": 32,
+        "curve": "B",
+        "breakingCapacityKa": 6
+      },
+      "source": "https://hager.com/en-tr/catalogue/?artnr=MBN132"
+    },
+    {
+      "id": "hager-mbn140",
+      "brand": "hager",
+      "verified": true,
+      "series": "MBN",
+      "article": "MBN140",
+      "category": "mcb",
+      "modules": 1,
+      "specs": {
+        "poles": "1P",
+        "ratedCurrentA": 40,
+        "curve": "B",
+        "breakingCapacityKa": 6
+      },
+      "source": "https://hager.com/en-tr/catalogue/?artnr=MBN140"
+    },
+    {
+      "id": "hager-mcn106",
+      "brand": "hager",
+      "verified": true,
+      "series": "MCN",
+      "article": "MCN106",
+      "category": "mcb",
+      "modules": 1,
+      "specs": {
+        "poles": "1P",
+        "ratedCurrentA": 6,
+        "curve": "C",
+        "breakingCapacityKa": 6
+      },
+      "source": "https://hager.com/en-tr/catalogue/?artnr=MCN106"
+    },
+    {
+      "id": "hager-mcn110",
+      "brand": "hager",
+      "verified": true,
+      "series": "MCN",
+      "article": "MCN110",
+      "category": "mcb",
+      "modules": 1,
+      "specs": {
+        "poles": "1P",
+        "ratedCurrentA": 10,
+        "curve": "C",
+        "breakingCapacityKa": 6
+      },
+      "source": "https://hager.com/en-tr/catalogue/?artnr=MCN110"
+    },
+    {
+      "id": "hager-mcn113",
+      "brand": "hager",
+      "verified": true,
+      "series": "MCN",
+      "article": "MCN113",
+      "category": "mcb",
+      "modules": 1,
+      "specs": {
+        "poles": "1P",
+        "ratedCurrentA": 13,
+        "curve": "C",
+        "breakingCapacityKa": 6
+      },
+      "source": "https://hager.com/de/katalog/?artnr=MCN113"
+    },
+    {
+      "id": "hager-mcn116",
+      "brand": "hager",
+      "verified": true,
+      "series": "MCN",
+      "article": "MCN116",
+      "category": "mcb",
+      "modules": 1,
+      "specs": {
+        "poles": "1P",
+        "ratedCurrentA": 16,
+        "curve": "C",
+        "breakingCapacityKa": 6
+      },
+      "source": "https://hager.com/en-tr/catalogue/?artnr=MCN116"
+    },
+    {
+      "id": "hager-mcn120",
+      "brand": "hager",
+      "verified": true,
+      "series": "MCN",
+      "article": "MCN120",
+      "category": "mcb",
+      "modules": 1,
+      "specs": {
+        "poles": "1P",
+        "ratedCurrentA": 20,
+        "curve": "C",
+        "breakingCapacityKa": 6
+      },
+      "source": "https://hager.com/en-tr/catalogue/?artnr=MCN120"
+    },
+    {
+      "id": "hager-mcn125",
+      "brand": "hager",
+      "verified": true,
+      "series": "MCN",
+      "article": "MCN125",
+      "category": "mcb",
+      "modules": 1,
+      "specs": {
+        "poles": "1P",
+        "ratedCurrentA": 25,
+        "curve": "C",
+        "breakingCapacityKa": 6
+      },
+      "source": "https://hager.com/en-tr/catalogue/?artnr=MCN125"
+    },
+    {
+      "id": "hager-mcn132",
+      "brand": "hager",
+      "verified": true,
+      "series": "MCN",
+      "article": "MCN132",
+      "category": "mcb",
+      "modules": 1,
+      "specs": {
+        "poles": "1P",
+        "ratedCurrentA": 32,
+        "curve": "C",
+        "breakingCapacityKa": 6
+      },
+      "source": "https://hager.com/de/katalog/?artnr=MCN132"
+    },
+    {
+      "id": "hager-mcn140",
+      "brand": "hager",
+      "verified": true,
+      "series": "MCN",
+      "article": "MCN140",
+      "category": "mcb",
+      "modules": 1,
+      "specs": {
+        "poles": "1P",
+        "ratedCurrentA": 40,
+        "curve": "C",
+        "breakingCapacityKa": 6
+      },
+      "source": "https://hager.com/en-tr/catalogue/?artnr=MCN140"
+    },
+    {
+      "id": "hager-mcn316",
+      "brand": "hager",
+      "verified": true,
+      "series": "MCN",
+      "article": "MCN316",
+      "category": "mcb",
+      "modules": 3,
+      "specs": {
+        "poles": "3P",
+        "ratedCurrentA": 16,
+        "curve": "C",
+        "breakingCapacityKa": 6
+      },
+      "source": "https://hager.com/en-tr/catalogue/?artnr=MCN316"
+    },
+    {
+      "id": "hager-mcn320",
+      "brand": "hager",
+      "verified": true,
+      "series": "MCN",
+      "article": "MCN320",
+      "category": "mcb",
+      "modules": 3,
+      "specs": {
+        "poles": "3P",
+        "ratedCurrentA": 20,
+        "curve": "C",
+        "breakingCapacityKa": 6
+      },
+      "source": "https://hager.com/en-tr/catalogue/?artnr=MCN320",
+      "notes": "Icn 6 кА при 400 В, 10 кА при 230 В."
+    },
+    {
+      "id": "hager-mcn325",
+      "brand": "hager",
+      "verified": true,
+      "series": "MCN",
+      "article": "MCN325",
+      "category": "mcb",
+      "modules": 3,
+      "specs": {
+        "poles": "3P",
+        "ratedCurrentA": 25,
+        "curve": "C",
+        "breakingCapacityKa": 6
+      },
+      "source": "https://hager.com/en-tr/catalogue/?artnr=MCN325",
+      "notes": "Icn 6 кА при 400 В, 10 кА при 230 В."
+    },
+    {
+      "id": "hager-mcn332",
+      "brand": "hager",
+      "verified": true,
+      "series": "MCN",
+      "article": "MCN332",
+      "category": "mcb",
+      "modules": 3,
+      "specs": {
+        "poles": "3P",
+        "ratedCurrentA": 32,
+        "curve": "C",
+        "breakingCapacityKa": 6
+      },
+      "source": "https://hager.com/en-tr/catalogue/?artnr=MCN332",
+      "notes": "Icn 6 кА при 400 В, 10 кА при 230 В."
+    },
+    {
+      "id": "hager-mcn340",
+      "brand": "hager",
+      "verified": true,
+      "series": "MCN",
+      "article": "MCN340",
+      "category": "mcb",
+      "modules": 3,
+      "specs": {
+        "poles": "3P",
+        "ratedCurrentA": 40,
+        "curve": "C",
+        "breakingCapacityKa": 6
+      },
+      "source": "https://hager.com/en-tr/catalogue/?artnr=MCN340",
+      "notes": "Icn 6 кА при 400 В, 10 кА при 230 В."
+    },
+    {
+      "id": "hager-mcn350",
+      "brand": "hager",
+      "verified": true,
+      "series": "MCN",
+      "article": "MCN350",
+      "category": "mcb",
+      "modules": 3,
+      "specs": {
+        "poles": "3P",
+        "ratedCurrentA": 50,
+        "curve": "C",
+        "breakingCapacityKa": 6
+      },
+      "source": "https://hager.com/en-tr/catalogue/?artnr=MCN350",
+      "notes": "Icn 6 кА при 400 В, 10 кА при 230 В."
+    },
+    {
+      "id": "hager-mcn363",
+      "brand": "hager",
+      "verified": true,
+      "series": "MCN",
+      "article": "MCN363",
+      "category": "mcb",
+      "modules": 3,
+      "specs": {
+        "poles": "3P",
+        "ratedCurrentA": 63,
+        "curve": "C",
+        "breakingCapacityKa": 6
+      },
+      "source": "https://hager.com/en-tr/catalogue/?artnr=MCN363",
+      "notes": "Icn 6 кА при 400 В, 10 кА при 230 В."
+    },
+    {
+      "id": "hager-cdc225j",
+      "brand": "hager",
+      "verified": true,
+      "series": "CD",
+      "article": "CDC225J",
+      "category": "rcd",
+      "modules": 2,
+      "specs": {
+        "poles": "1P+N",
+        "ratedCurrentA": 25,
+        "sensitivityMa": 30,
+        "rcdType": "AC"
+      },
+      "source": "https://hager.com/pl/katalog/?artnr=CDC225J"
+    },
+    {
+      "id": "hager-cdc240j",
+      "brand": "hager",
+      "verified": true,
+      "series": "CD",
+      "article": "CDC240J",
+      "category": "rcd",
+      "modules": 2,
+      "specs": {
+        "poles": "1P+N",
+        "ratedCurrentA": 40,
+        "sensitivityMa": 30,
+        "rcdType": "AC"
+      },
+      "source": "https://hager.com/pl/katalog/?artnr=CDC240J"
+    },
+    {
+      "id": "hager-cdc263j",
+      "brand": "hager",
+      "verified": true,
+      "series": "CD",
+      "article": "CDC263J",
+      "category": "rcd",
+      "modules": 2,
+      "specs": {
+        "poles": "1P+N",
+        "ratedCurrentA": 63,
+        "sensitivityMa": 30,
+        "rcdType": "AC"
+      },
+      "source": "https://hager.com/pl/katalog/?artnr=CDC263J"
+    },
+    {
+      "id": "hager-cdc425j",
+      "brand": "hager",
+      "verified": true,
+      "series": "CD",
+      "article": "CDC425J",
+      "category": "rcd",
+      "modules": 4,
+      "specs": {
+        "poles": "3P+N",
+        "ratedCurrentA": 25,
+        "sensitivityMa": 30,
+        "rcdType": "AC"
+      },
+      "source": "https://hager.com/pl/katalog/?artnr=CDC425J"
+    },
+    {
+      "id": "hager-cdc440j",
+      "brand": "hager",
+      "verified": true,
+      "series": "CD",
+      "article": "CDC440J",
+      "category": "rcd",
+      "modules": 4,
+      "specs": {
+        "poles": "3P+N",
+        "ratedCurrentA": 40,
+        "sensitivityMa": 30,
+        "rcdType": "AC"
+      },
+      "source": "https://hager.com/pl/katalog/?artnr=CDC440J"
+    },
+    {
+      "id": "hager-cdc463j",
+      "brand": "hager",
+      "verified": true,
+      "series": "CD",
+      "article": "CDC463J",
+      "category": "rcd",
+      "modules": 4,
+      "specs": {
+        "poles": "3P+N",
+        "ratedCurrentA": 63,
+        "sensitivityMa": 30,
+        "rcdType": "AC"
+      },
+      "source": "https://hager.com/pl/katalog/?artnr=CDC463J"
+    },
+    {
+      "id": "hager-cda225j",
+      "brand": "hager",
+      "verified": true,
+      "series": "CD",
+      "article": "CDA225J",
+      "category": "rcd",
+      "modules": 2,
+      "specs": {
+        "poles": "1P+N",
+        "ratedCurrentA": 25,
+        "sensitivityMa": 30,
+        "rcdType": "A"
+      },
+      "source": "https://hager.com/pl/katalog/?artnr=CDA225J"
+    },
+    {
+      "id": "hager-cda240j",
+      "brand": "hager",
+      "verified": true,
+      "series": "CD",
+      "article": "CDA240J",
+      "category": "rcd",
+      "modules": 2,
+      "specs": {
+        "poles": "1P+N",
+        "ratedCurrentA": 40,
+        "sensitivityMa": 30,
+        "rcdType": "A"
+      },
+      "source": "https://hager.com/pl/katalog/?artnr=CDA240J"
+    },
+    {
+      "id": "hager-cda263j",
+      "brand": "hager",
+      "verified": true,
+      "series": "CD",
+      "article": "CDA263J",
+      "category": "rcd",
+      "modules": 2,
+      "specs": {
+        "poles": "1P+N",
+        "ratedCurrentA": 63,
+        "sensitivityMa": 30,
+        "rcdType": "A"
+      },
+      "source": "https://hager.com/pl/katalog/?artnr=CDA263J"
+    },
+    {
+      "id": "hager-cda425j",
+      "brand": "hager",
+      "verified": true,
+      "series": "CD",
+      "article": "CDA425J",
+      "category": "rcd",
+      "modules": 4,
+      "specs": {
+        "poles": "3P+N",
+        "ratedCurrentA": 25,
+        "sensitivityMa": 30,
+        "rcdType": "A"
+      },
+      "source": "https://hager.com/pl/katalog/?artnr=CDA425J"
+    },
+    {
+      "id": "hager-cda440j",
+      "brand": "hager",
+      "verified": true,
+      "series": "CD",
+      "article": "CDA440J",
+      "category": "rcd",
+      "modules": 4,
+      "specs": {
+        "poles": "3P+N",
+        "ratedCurrentA": 40,
+        "sensitivityMa": 30,
+        "rcdType": "A"
+      },
+      "source": "https://hager.com/pl/katalog/?artnr=CDA440J"
+    },
+    {
+      "id": "hager-cda463j",
+      "brand": "hager",
+      "verified": true,
+      "series": "CD",
+      "article": "CDA463J",
+      "category": "rcd",
+      "modules": 4,
+      "specs": {
+        "poles": "3P+N",
+        "ratedCurrentA": 63,
+        "sensitivityMa": 30,
+        "rcdType": "A"
+      },
+      "source": "https://hager.com/pl/katalog/?artnr=CDA463J"
+    },
+    {
+      "id": "hager-ada956d",
+      "brand": "hager",
+      "verified": true,
+      "series": "AD",
+      "article": "ADA956D",
+      "category": "rcbo",
+      "modules": 2,
+      "specs": {
+        "poles": "1P+N",
+        "ratedCurrentA": 6,
+        "curve": "C",
+        "breakingCapacityKa": 6,
+        "sensitivityMa": 30,
+        "rcdType": "A"
+      },
+      "source": "https://hager.com/pl/katalog/?artnr=ADA956D"
+    },
+    {
+      "id": "hager-ada960d",
+      "brand": "hager",
+      "verified": true,
+      "series": "AD",
+      "article": "ADA960D",
+      "category": "rcbo",
+      "modules": 2,
+      "specs": {
+        "poles": "1P+N",
+        "ratedCurrentA": 10,
+        "curve": "C",
+        "breakingCapacityKa": 6,
+        "sensitivityMa": 30,
+        "rcdType": "A"
+      },
+      "source": "https://hager.com/pl/katalog/?artnr=ADA960D"
+    },
+    {
+      "id": "hager-ada963d",
+      "brand": "hager",
+      "verified": false,
+      "series": "AD",
+      "article": "ADA963D",
+      "category": "rcbo",
+      "modules": 2,
+      "specs": {
+        "poles": "1P+N",
+        "ratedCurrentA": 13,
+        "curve": "C",
+        "breakingCapacityKa": 6,
+        "sensitivityMa": 30,
+        "rcdType": "A"
+      },
+      "source": "https://hager.com/de-ch/katalog/produkt/ada963d-fi-ls-1p-n-6ka-c-13a-30ma-typ-a",
+      "notes": "Найден только в результатах поиска по hager.com/de-ch, страница не открыта; на PL и DE нет."
+    },
+    {
+      "id": "hager-ada966d",
+      "brand": "hager",
+      "verified": true,
+      "series": "AD",
+      "article": "ADA966D",
+      "category": "rcbo",
+      "modules": 2,
+      "specs": {
+        "poles": "1P+N",
+        "ratedCurrentA": 16,
+        "curve": "C",
+        "breakingCapacityKa": 6,
+        "sensitivityMa": 30,
+        "rcdType": "A"
+      },
+      "source": "https://hager.com/pl/katalog/?artnr=ADA966D"
+    },
+    {
+      "id": "hager-ada970d",
+      "brand": "hager",
+      "verified": true,
+      "series": "AD",
+      "article": "ADA970D",
+      "category": "rcbo",
+      "modules": 2,
+      "specs": {
+        "poles": "1P+N",
+        "ratedCurrentA": 20,
+        "curve": "C",
+        "breakingCapacityKa": 6,
+        "sensitivityMa": 30,
+        "rcdType": "A"
+      },
+      "source": "https://hager.com/pl/katalog/?artnr=ADA970D"
+    },
+    {
+      "id": "hager-ada975d",
+      "brand": "hager",
+      "verified": true,
+      "series": "AD",
+      "article": "ADA975D",
+      "category": "rcbo",
+      "modules": 2,
+      "specs": {
+        "poles": "1P+N",
+        "ratedCurrentA": 25,
+        "curve": "C",
+        "breakingCapacityKa": 6,
+        "sensitivityMa": 30,
+        "rcdType": "A"
+      },
+      "source": "https://hager.com/pl/katalog/?artnr=ADA975D"
+    },
+    {
+      "id": "hager-ada982d",
+      "brand": "hager",
+      "verified": true,
+      "series": "AD",
+      "article": "ADA982D",
+      "category": "rcbo",
+      "modules": 2,
+      "specs": {
+        "poles": "1P+N",
+        "ratedCurrentA": 32,
+        "curve": "C",
+        "breakingCapacityKa": 6,
+        "sensitivityMa": 30,
+        "rcdType": "A"
+      },
+      "source": "https://hager.com/pl/katalog/?artnr=ADA982D"
+    },
+    {
+      "id": "hager-adc956d",
+      "brand": "hager",
+      "verified": true,
+      "series": "AD",
+      "article": "ADC956D",
+      "category": "rcbo",
+      "modules": 2,
+      "specs": {
+        "poles": "1P+N",
+        "ratedCurrentA": 6,
+        "curve": "C",
+        "breakingCapacityKa": 6,
+        "sensitivityMa": 30,
+        "rcdType": "AC"
+      },
+      "source": "https://hager.com/pl/katalog/?artnr=ADC956D"
+    },
+    {
+      "id": "hager-adc960d",
+      "brand": "hager",
+      "verified": true,
+      "series": "AD",
+      "article": "ADC960D",
+      "category": "rcbo",
+      "modules": 2,
+      "specs": {
+        "poles": "1P+N",
+        "ratedCurrentA": 10,
+        "curve": "C",
+        "breakingCapacityKa": 6,
+        "sensitivityMa": 30,
+        "rcdType": "AC"
+      },
+      "source": "https://hager.com/pl/katalog/?artnr=ADC960D"
+    },
+    {
+      "id": "hager-adc966d",
+      "brand": "hager",
+      "verified": true,
+      "series": "AD",
+      "article": "ADC966D",
+      "category": "rcbo",
+      "modules": 2,
+      "specs": {
+        "poles": "1P+N",
+        "ratedCurrentA": 16,
+        "curve": "C",
+        "breakingCapacityKa": 6,
+        "sensitivityMa": 30,
+        "rcdType": "AC"
+      },
+      "source": "https://hager.com/pl/katalog/?artnr=ADC966D"
+    },
+    {
+      "id": "hager-adc970d",
+      "brand": "hager",
+      "verified": true,
+      "series": "AD",
+      "article": "ADC970D",
+      "category": "rcbo",
+      "modules": 2,
+      "specs": {
+        "poles": "1P+N",
+        "ratedCurrentA": 20,
+        "curve": "C",
+        "breakingCapacityKa": 6,
+        "sensitivityMa": 30,
+        "rcdType": "AC"
+      },
+      "source": "https://hager.com/pl/katalog/?artnr=ADC970D"
+    },
+    {
+      "id": "hager-adc975d",
+      "brand": "hager",
+      "verified": true,
+      "series": "AD",
+      "article": "ADC975D",
+      "category": "rcbo",
+      "modules": 2,
+      "specs": {
+        "poles": "1P+N",
+        "ratedCurrentA": 25,
+        "curve": "C",
+        "breakingCapacityKa": 6,
+        "sensitivityMa": 30,
+        "rcdType": "AC"
+      },
+      "source": "https://hager.com/pl/katalog/?artnr=ADC975D"
+    },
+    {
+      "id": "hager-adc982d",
+      "brand": "hager",
+      "verified": true,
+      "series": "AD",
+      "article": "ADC982D",
+      "category": "rcbo",
+      "modules": 2,
+      "specs": {
+        "poles": "1P+N",
+        "ratedCurrentA": 32,
+        "curve": "C",
+        "breakingCapacityKa": 6,
+        "sensitivityMa": 30,
+        "rcdType": "AC"
+      },
+      "source": "https://hager.com/pl/katalog/?artnr=ADC982D"
+    },
+    {
+      "id": "hager-sbn240",
+      "brand": "hager",
+      "verified": true,
+      "series": "SBN",
+      "article": "SBN240",
+      "category": "switch",
+      "modules": 2,
+      "specs": {
+        "poles": "2P",
+        "ratedCurrentA": 40
+      },
+      "source": "https://hager.com/pl/katalog/?artnr=SBN240"
+    },
+    {
+      "id": "hager-sbn263",
+      "brand": "hager",
+      "verified": true,
+      "series": "SBN",
+      "article": "SBN263",
+      "category": "switch",
+      "modules": 2,
+      "specs": {
+        "poles": "2P",
+        "ratedCurrentA": 63
+      },
+      "source": "https://hager.com/pl/katalog/?artnr=SBN263"
+    },
+    {
+      "id": "hager-sbn340",
+      "brand": "hager",
+      "verified": true,
+      "series": "SBN",
+      "article": "SBN340",
+      "category": "switch",
+      "modules": 3,
+      "specs": {
+        "poles": "3P",
+        "ratedCurrentA": 40
+      },
+      "source": "https://hager.com/pl/katalog/?artnr=SBN340"
+    },
+    {
+      "id": "hager-sbn363",
+      "brand": "hager",
+      "verified": true,
+      "series": "SBN",
+      "article": "SBN363",
+      "category": "switch",
+      "modules": 3,
+      "specs": {
+        "poles": "3P",
+        "ratedCurrentA": 63
+      },
+      "source": "https://hager.com/pl/katalog/?artnr=SBN363"
+    },
+    {
+      "id": "hager-sbn440",
+      "brand": "hager",
+      "verified": true,
+      "series": "SBN",
+      "article": "SBN440",
+      "category": "switch",
+      "modules": 4,
+      "specs": {
+        "poles": "4P",
+        "ratedCurrentA": 40
+      },
+      "source": "https://hager.com/pl/katalog/?artnr=SBN440"
+    },
+    {
+      "id": "hager-sbn463",
+      "brand": "hager",
+      "verified": true,
+      "series": "SBN",
+      "article": "SBN463",
+      "category": "switch",
+      "modules": 4,
+      "specs": {
+        "poles": "4P",
+        "ratedCurrentA": 63
+      },
+      "source": "https://hager.com/pl/katalog/?artnr=SBN463"
+    },
+    {
+      "id": "hager-sbn390",
+      "brand": "hager",
+      "verified": true,
+      "series": "SBN",
+      "article": "SBN390",
+      "category": "switch",
+      "modules": 3,
+      "specs": {
+        "poles": "3P",
+        "ratedCurrentA": 100
+      },
+      "source": "https://hager.com/en-tr/catalogue/?artnr=SBN390",
+      "notes": "Подтверждён только на hager.com/en-tr."
+    },
+    {
+      "id": "hager-sbn490",
+      "brand": "hager",
+      "verified": false,
+      "series": "SBN",
+      "article": "SBN490",
+      "category": "switch",
+      "modules": 4,
+      "specs": {
+        "poles": "4P",
+        "ratedCurrentA": 100
+      },
+      "source": "https://hager.com/intl-en/catalogue/information/sbn490-4p-100a-switch",
+      "notes": "Данные из результатов поиска и паспорта, страница не открыта."
+    },
+    {
+      "id": "hager-spe240",
+      "brand": "hager",
+      "verified": true,
+      "series": "SPE",
+      "article": "SPE240",
+      "category": "spd",
+      "modules": 2,
+      "specs": {
+        "poles": "1P+N",
+        "spdType": "2"
+      },
+      "source": "https://hager.com/de/katalog/?artnr=SPE240",
+      "notes": "TN-S/TT, Uc 275 В, In 20 кА, Imax 40 кА."
+    },
+    {
+      "id": "hager-spe440",
+      "brand": "hager",
+      "verified": true,
+      "series": "SPE",
+      "article": "SPE440",
+      "category": "spd",
+      "modules": 4,
+      "specs": {
+        "poles": "3P+N",
+        "spdType": "2"
+      },
+      "source": "https://hager.com/de/katalog/?artnr=SPE440",
+      "notes": "TN-S/TT, Uc 275 В, In 20 кА, Imax 40 кА."
+    },
+    {
+      "id": "hager-spb215",
+      "brand": "hager",
+      "verified": true,
+      "series": "SPB",
+      "article": "SPB215",
+      "category": "spd",
+      "modules": 2,
+      "specs": {
+        "poles": "1P+N",
+        "spdType": "2"
+      },
+      "source": "https://hager.com/de/katalog/?artnr=SPB215",
+      "notes": "TN-S/TT, In 20 кА, Imax 40 кА, индикатор и дистанционный контакт."
+    },
+    {
+      "id": "hager-spb415",
+      "brand": "hager",
+      "verified": true,
+      "series": "SPB",
+      "article": "SPB415",
+      "category": "spd",
+      "modules": 4,
+      "specs": {
+        "poles": "3P+N",
+        "spdType": "2"
+      },
+      "source": "https://hager.com/de/katalog/?artnr=SPB415",
+      "notes": "TN-S/TT, In 20 кА, Imax 40 кА, индикатор и дистанционный контакт."
+    },
+    {
+      "id": "hager-spa212",
+      "brand": "hager",
+      "verified": true,
+      "series": "SPA",
+      "article": "SPA212",
+      "category": "spd",
+      "modules": 2,
+      "specs": {
+        "poles": "1P+N",
+        "spdType": "1+2+3"
+      },
+      "source": "https://hager.com/de/katalog/?artnr=SPA212",
+      "notes": "TN-S/TT, Iimp 12.5 кА (L-N), дистанционный контакт."
+    },
+    {
+      "id": "hager-spa412",
+      "brand": "hager",
+      "verified": true,
+      "series": "SPA",
+      "article": "SPA412",
+      "category": "spd",
+      "modules": 4,
+      "specs": {
+        "poles": "3P+N",
+        "spdType": "1+2+3"
+      },
+      "source": "https://hager.com/de/katalog/?artnr=SPA412",
+      "notes": "TN-S/TT/TN-C-S, Iimp 12.5 кА (L-N). Up на странице 2.5 кВ, у SPA212 1.5 кВ — сверить с паспортом."
+    }
+  ]
+}
