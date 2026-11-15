@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { readFile, readdir } from 'node:fs/promises';
 import { join } from 'node:path';
 
-import { createTranslator, loadMessages, LANGUAGES } from '../site/js/i18n.js';
+import { createTranslator, loadMessages, LANGUAGES, placeholders, pickLanguage, formatNumber } from '../site/js/i18n.js';
 import { deviceLabel, deviceTitle, enclosureDescription, enclosureSize, enclosureTitle, num } from '../site/js/format.js';
 import { DEVICE_CATEGORIES, MOUNTINGS, DOORS } from '../site/js/catalog.js';
 import { PROJECT_ERROR_CODES } from '../site/js/storage.js';
@@ -51,6 +51,7 @@ describe('ключи переводов', () => {
     ...MOUNTINGS.map((m) => `mounting.${m}`),
     ...DOORS.map((d) => `door.${d}`),
     ...PROJECT_ERROR_CODES.map((c) => `project.error.${c}`),
+    ...LANGUAGES.map((lang) => `language.${lang}`),
   ];
 
   async function staticKeys() {
@@ -80,6 +81,81 @@ describe('ключи переводов', () => {
   test('все значения — непустые строки', () => {
     const bad = Object.entries(ru).filter(([, v]) => typeof v !== 'string' || v.trim() === '');
     assert.deepEqual(bad, []);
+  });
+});
+
+const files = Object.fromEntries(
+  await Promise.all(
+    LANGUAGES.map(async (lang) => [lang, JSON.parse(await readFile(join(SITE_ROOT, 'i18n', `${lang}.json`), 'utf8'))]),
+  ),
+);
+
+describe('все языки', () => {
+  test('у каждого языка тот же набор ключей, что у русского', () => {
+    for (const lang of LANGUAGES) {
+      assert.deepEqual(Object.keys(files[lang]).sort(), Object.keys(ru).sort(), lang);
+    }
+  });
+
+  test('подстановки {…} в каждом переводе те же, что в русском', () => {
+    for (const lang of LANGUAGES) {
+      const wrong = Object.keys(ru).filter((key) => placeholders(files[lang][key]).join() !== placeholders(ru[key]).join());
+      assert.deepEqual(wrong, [], lang);
+    }
+  });
+
+  test('все значения — непустые строки; переводы не совпадают с русским (кроме общих)', () => {
+    const same = new Set(['enclosure.layout', 'device.modules', 'language.ru', 'language.lt', 'language.en', 'summary.enclosure']);
+    for (const lang of ['lt', 'en']) {
+      const bad = Object.entries(files[lang]).filter(([, v]) => typeof v !== 'string' || v.trim() === '');
+      assert.deepEqual(bad, [], lang);
+      const untranslated = Object.keys(ru).filter((k) => !same.has(k) && files[lang][k] === ru[k]);
+      assert.deepEqual(untranslated, [], `${lang}: похоже, не переведено`);
+    }
+  });
+
+  test('в литовском и английском нет кириллицы (кроме названия языка «Русский»)', () => {
+    for (const lang of ['lt', 'en']) {
+      const cyr = Object.entries(files[lang]).filter(([k, v]) => k !== 'language.ru' && /[А-Яа-яЁё]/.test(v));
+      assert.deepEqual(cyr, [], lang);
+    }
+  });
+
+  test('подписи на каждом языке', () => {
+    const mcb = { category: 'mcb', specs: { poles: '1P', ratedCurrentA: 16, curve: 'C', breakingCapacityKa: 6 } };
+    const tr = (lang) => createTranslator(files[lang], ru, lang);
+    assert.equal(deviceTitle(mcb, tr('lt')), 'Automatinis jungiklis C16, 1P');
+    assert.equal(deviceTitle(mcb, tr('en')), 'Circuit breaker C16, 1P');
+    const enc = { mounting: 'flush', rows: 1, modulesPerRow: 12, ipRating: 30, door: 'opaque', dimensionsMm: { width: 348, height: 356.5, depth: 94.5 } };
+    assert.equal(enclosureSize(enc, tr('ru')), '348 × 356,5 × 94,5 мм');
+    assert.equal(enclosureSize(enc, tr('lt')), '348 × 356,5 × 94,5 mm');
+    assert.equal(enclosureSize(enc, tr('en')), '348 × 356.5 × 94.5 mm');
+    assert.equal(enclosureDescription(enc, tr('lt')), 'potinkinis · 1 × 12 mod. · IP30 · nepermatomos durelės');
+  });
+});
+
+describe('язык и числа', () => {
+  test('pickLanguage: сохранённый выбор, затем язык браузера, затем русский', () => {
+    assert.equal(pickLanguage('en', ['lt-LT']), 'en');
+    assert.equal(pickLanguage(null, ['de-DE', 'lt-LT', 'en']), 'lt');
+    assert.equal(pickLanguage('xx', ['EN-gb']), 'en');
+    assert.equal(pickLanguage(undefined, ['de', 'fr']), 'ru');
+    assert.equal(pickLanguage('__proto__', []), 'ru');
+  });
+
+  test('formatNumber по правилам языка, без разделителя тысяч', () => {
+    assert.equal(formatNumber(96.5, 'ru'), '96,5');
+    assert.equal(formatNumber(96.5, 'lt'), '96,5');
+    assert.equal(formatNumber(96.5, 'en'), '96.5');
+    assert.equal(formatNumber(1200, 'ru'), '1200');
+    assert.equal(formatNumber(12, 'lt'), '12');
+    assert.equal(formatNumber(96.5), '96.5', 'без языка — как есть');
+  });
+
+  test('запасной словарь: недостающий ключ берётся из русского', () => {
+    const tr = createTranslator({ a: 'A' }, { b: 'Б' }, 'en');
+    assert.equal(tr('b'), 'Б');
+    assert.equal(tr.lang, 'en');
   });
 });
 

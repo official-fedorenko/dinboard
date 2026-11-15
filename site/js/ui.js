@@ -61,7 +61,9 @@ function compareDevices(a, b) {
  * store — хранилище браузера из storage.js (может быть null); initialBoard — восстановленный щит или null;
  * backupText — прежняя версия сохранения, отложенная при открытии (её можно скачать), или null.
  */
-export function mountApp(root, { catalog, t, store = null, initialBoard = null, initialStatus = '', backupText: initialBackup = null }) {
+export function mountApp(root, { catalog, t: initialT, store = null, initialBoard = null, initialStatus = '', backupText: initialBackup = null }) {
+  let t = initialT; // меняется при переключении языка
+  const fmt = (value) => num(value, t.lang);
   const devices = indexById(catalog.devices);
   const enclosures = indexById(catalog.enclosures);
   const brandNames = new Map(catalog.brands.map((b) => [b.id, b.name]));
@@ -578,7 +580,7 @@ export function mountApp(root, { catalog, t, store = null, initialBoard = null, 
     return h(
       'section',
       { class: 'panel board-panel', 'aria-labelledby': 'h-board' },
-      h('div', { class: 'panel-head' }, heading, h('span', { class: 'muted' }, t('board.total', { used: num(stats.used), capacity: stats.capacity, free: num(stats.free) }))),
+      h('div', { class: 'panel-head' }, heading, h('span', { class: 'muted' }, t('board.total', { used: fmt(stats.used), capacity: stats.capacity, free: fmt(stats.free) }))),
       h('p', { class: 'hint' }, t('board.activeRowHint')),
       h(
         'div',
@@ -590,13 +592,13 @@ export function mountApp(root, { catalog, t, store = null, initialBoard = null, 
               type: 'button',
               class: 'chip row-chip',
               'aria-pressed': String(rowIndex === state.activeRow),
-              'aria-label': `${t('board.selectRow', { n: rowIndex + 1 })}: ${t('board.rowUsage', { used: num(stats.rows[rowIndex].used), capacity: stats.rows[rowIndex].capacity })}`,
+              'aria-label': `${t('board.selectRow', { n: rowIndex + 1 })}: ${t('board.rowUsage', { used: fmt(stats.rows[rowIndex].used), capacity: stats.rows[rowIndex].capacity })}`,
               dataset: { focus: `row-${rowIndex}` },
               onClick: () => update({ activeRow: rowIndex }),
             },
             h('strong', {}, t('board.row', { n: rowIndex + 1 })),
             ' · ',
-            t('board.rowUsage', { used: num(stats.rows[rowIndex].used), capacity: stats.rows[rowIndex].capacity }),
+            t('board.rowUsage', { used: fmt(stats.rows[rowIndex].used), capacity: stats.rows[rowIndex].capacity }),
           ),
         ),
       ),
@@ -639,7 +641,7 @@ export function mountApp(root, { catalog, t, store = null, initialBoard = null, 
               h(
                 'span',
                 { class: 'muted' },
-                `${brandNames.get(d.brand)} ${d.article} · ${t('device.modules', { n: num(d.modules) })}`,
+                `${brandNames.get(d.brand)} ${d.article} · ${t('device.modules', { n: fmt(d.modules) })}`,
                 !d.verified && h('span', { class: 'badge', title: t('device.unverifiedHint') }, t('device.unverified')),
               ),
             ),
@@ -702,7 +704,18 @@ export function mountApp(root, { catalog, t, store = null, initialBoard = null, 
     }
   }
 
+  /** Переключение языка: новый переводчик, перерисовка; щит и выбор сохраняются. */
+  function setTranslator(next) {
+    t = next;
+    update({ status: '' });
+  }
+
   autosave();
   render();
-  return { state, render };
+  /** Сообщение в строке статуса (для действий вне конструктора, например выбора языка). */
+  function setStatus(text) {
+    update({ status: text });
+  }
+
+  return { state, render, setTranslator, setStatus };
 }

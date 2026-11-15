@@ -1,6 +1,12 @@
 {
   "app.error.load": "Не удалось загрузить данные конструктора. Обновите страницу.",
 
+  "language.label": "Язык",
+  "language.ru": "Русский",
+  "language.lt": "Lietuvių",
+  "language.en": "English",
+  "language.loadError": "Не удалось загрузить перевод. Язык не изменён.",
+
   "section.enclosure": "1. Корпус",
   "section.board": "2. Щит",
   "section.devices": "3. Оборудование",
