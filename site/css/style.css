@@ -10,6 +10,22 @@
   --radius: 8px;
   --gutter: 16px;
   --font: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, "Cascadia Mono", Consolas, "Liberation Mono", monospace;
+  --accent-soft: #e3edff;
+  --cabinet: #e9ebef;
+  --rail: #c3c8d0;
+  --slot: #ffffff;
+  --slot-line: #dfe2e7;
+  --device: #fbfbfc;
+  --device-text: #1c1f24;
+  --device-border: #9aa1ad;
+  --warn-bg: #fff4d6;
+  --warn-text: #7a5300;
+  --cat-mcb: #2f6fde;
+  --cat-rcbo: #8a4fd6;
+  --cat-rcd: #d1782a;
+  --cat-switch: #c23b3b;
+  --cat-spd: #2f9a5c;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -20,6 +36,21 @@
     --text-muted: #9aa1ad;
     --border: #2e333b;
     --accent: #4c8dff;
+    --accent-soft: #1b2a45;
+    --cabinet: #23272e;
+    --rail: #4a515c;
+    --slot: #191c21;
+    --slot-line: #2b3038;
+    --device: #e9ebee;
+    --device-text: #15171b;
+    --device-border: #6b7380;
+    --warn-bg: #3b2f12;
+    --warn-text: #f3cf74;
+    --cat-mcb: #5b8ff0;
+    --cat-rcbo: #a77ee6;
+    --cat-rcd: #e39445;
+    --cat-switch: #e06464;
+    --cat-spd: #4cbc7a;
   }
 }
 
@@ -78,7 +109,7 @@ body {
 }
 
 .app-main {
-  max-width: 1200px;
+  max-width: 1280px;
   margin: 0 auto;
   padding: var(--gutter);
 }
@@ -89,4 +120,482 @@ body {
   border: 1px solid var(--border);
   border-radius: var(--radius);
   background: var(--surface);
+}
+
+.load-error {
+  padding: 12px var(--gutter);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--warn-bg);
+  color: var(--warn-text);
+}
+
+/* ---------- Раскладка ---------- */
+
+.layout {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gutter);
+}
+
+/* На узком экране панели идут подряд в порядке разметки: корпус, щит, оборудование, состав.
+   На широком — две колонки: слева корпус и оборудование, справа щит и состав. */
+@media (min-width: 960px) {
+  .layout {
+    display: grid;
+    grid-template-columns: minmax(300px, 380px) minmax(0, 1fr);
+    grid-template-rows: auto auto 1fr;
+    grid-template-areas:
+      "picker board"
+      "palette board"
+      "palette summary";
+    align-items: start;
+  }
+
+  .picker { grid-area: picker; }
+  .board-panel { grid-area: board; }
+  .palette { grid-area: palette; }
+  .summary { grid-area: summary; }
+}
+
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--gutter);
+  min-width: 0;
+}
+
+.panel h2 {
+  margin: 0 0 12px;
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.panel-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 4px 12px;
+  margin-bottom: 4px;
+}
+
+.panel-head h2 {
+  margin: 0;
+}
+
+.muted {
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
+.hint {
+  margin: 0 0 12px;
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+.mono {
+  font-family: var(--font-mono);
+  font-size: 13px;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+}
+
+button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* ---------- Переключатели ---------- */
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.chip {
+  padding: 5px 12px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.chip[aria-pressed="true"] {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+/* ---------- Выбор корпуса ---------- */
+
+.enclosure-list,
+.device-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.enclosure-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  text-align: left;
+  cursor: pointer;
+}
+
+.enclosure-current {
+  margin-bottom: 4px;
+}
+
+.picker .link-button {
+  margin-top: 8px;
+}
+
+.enclosure-card:hover {
+  border-color: var(--accent);
+}
+
+.enclosure-card[aria-pressed="true"] {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  box-shadow: inset 0 0 0 1px var(--accent);
+}
+
+.enclosure-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  font-size: 14px;
+}
+
+/* Значок корпуса: по полоске на ряд */
+.enclosure-icon {
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 3px;
+  width: 34px;
+  height: 42px;
+  padding: 4px;
+  border: 2px solid var(--text-muted);
+  border-radius: 4px;
+}
+
+.enclosure-icon span {
+  height: 4px;
+  border-radius: 1px;
+  background: var(--text-muted);
+}
+
+/* ---------- Щит ---------- */
+
+.cabinet {
+  padding: 12px;
+  border-radius: 10px;
+  background: var(--cabinet);
+  border: 1px solid var(--border);
+}
+
+.cabinet-title {
+  margin-bottom: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.row + .row {
+  margin-top: 10px;
+}
+
+.row-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.row-select {
+  padding: 2px 8px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  background: none;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.row.active .row-select {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+/* Рейка: сетка с шагом в полмодуля, фон показывает модульные места и саму DIN-рейку */
+.rail {
+  --cols: 24;
+  --modules: 12;
+  display: grid;
+  grid-template-columns: repeat(var(--cols), minmax(0, 1fr));
+  min-height: 78px;
+  padding: 4px 0;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background:
+    linear-gradient(to bottom, transparent 46%, var(--rail) 46%, var(--rail) 54%, transparent 54%),
+    repeating-linear-gradient(
+      to right,
+      var(--slot) 0,
+      var(--slot) calc(100% / var(--modules) - 1px),
+      var(--slot-line) calc(100% / var(--modules) - 1px),
+      var(--slot-line) calc(100% / var(--modules))
+    );
+  cursor: pointer;
+}
+
+.row.active .rail {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent);
+}
+
+.rail.drop-target {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.item {
+  --cat: var(--cat-mcb);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  min-width: 0;
+  height: 68px;
+  margin: 0 1px;
+  padding: 2px 1px;
+  border: 1px solid var(--device-border);
+  border-top: 8px solid var(--cat);
+  border-radius: 3px;
+  background: var(--device);
+  color: var(--device-text);
+  overflow: hidden;
+  cursor: grab;
+  line-height: 1.1;
+}
+
+.item[aria-pressed="true"] {
+  outline: 3px solid var(--accent);
+  outline-offset: 1px;
+  position: relative;
+  z-index: 1;
+}
+
+.item-main {
+  max-width: 100%;
+  font-weight: 700;
+  font-size: 13px;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.item-sub {
+  max-width: 100%;
+  font-size: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.cat-mcb { --cat: var(--cat-mcb); }
+.cat-rcbo { --cat: var(--cat-rcbo); }
+.cat-rcd { --cat: var(--cat-rcd); }
+.cat-switch { --cat: var(--cat-switch); }
+.cat-spd { --cat: var(--cat-spd); }
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 12px;
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--accent-soft);
+}
+
+.toolbar-title {
+  min-width: 0;
+  font-size: 14px;
+}
+
+.toolbar-buttons {
+  display: flex;
+  gap: 6px;
+}
+
+.tool {
+  width: 40px;
+  height: 36px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--surface);
+  font-size: 17px;
+  cursor: pointer;
+}
+
+.tool:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.status {
+  min-height: 1.5em;
+  margin: 10px 0 0;
+  font-size: 14px;
+}
+
+.board-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.link-button {
+  padding: 4px 0;
+  border: none;
+  background: none;
+  color: var(--text-muted);
+  font-size: 13px;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* ---------- Оборудование ---------- */
+
+.device-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.device-row[draggable="true"] {
+  cursor: grab;
+}
+
+.swatch {
+  --cat: var(--cat-mcb);
+  flex: none;
+  height: 28px;
+  border: 1px solid var(--device-border);
+  border-top: 6px solid var(--cat);
+  border-radius: 3px;
+  background: var(--device);
+}
+
+.device-text {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  font-size: 14px;
+}
+
+.badge {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 0 6px;
+  border-radius: 999px;
+  background: var(--warn-bg);
+  color: var(--warn-text);
+  font-size: 12px;
+}
+
+.add {
+  flex: none;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--accent);
+  border-radius: 50%;
+  background: var(--surface);
+  color: var(--accent);
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.add:hover:not(:disabled) {
+  background: var(--accent);
+  color: #fff;
+}
+
+.add:disabled {
+  border-color: var(--border);
+  color: var(--text-muted);
+  cursor: default;
+}
+
+/* ---------- Состав щита ---------- */
+
+.summary table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.summary th,
+.summary td {
+  padding: 6px 8px;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  vertical-align: top;
+}
+
+.summary th {
+  color: var(--text-muted);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.summary .num {
+  text-align: right;
+  white-space: nowrap;
+}
+
+@media (max-width: 480px) {
+  .summary th,
+  .summary td {
+    padding: 6px 4px;
+  }
+
+  .item-main {
+    font-size: 11px;
+  }
+
+  .item-sub {
+    display: none;
+  }
 }
