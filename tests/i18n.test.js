@@ -52,6 +52,7 @@ describe('ключи переводов', () => {
     ...DOORS.map((d) => `door.${d}`),
     ...PROJECT_ERROR_CODES.map((c) => `project.error.${c}`),
     ...LANGUAGES.map((lang) => `language.${lang}`),
+    ...['warning', 'info'].map((level) => `check.level.${level}`),
   ];
 
   async function staticKeys() {
@@ -61,7 +62,8 @@ describe('ключи переводов', () => {
       const source = await readFile(join(dir, file), 'utf8');
       // t('ключ' ...), tool('ключ' ...) и button('ключ' ...) — помощники в ui.js,
       // а также { key: 'ключ' } — сообщения из restoreProject (storage.js)
-      for (const m of source.matchAll(/\b(?:t|tool|button)\(\s*'([a-zA-Z0-9_.]+)'/g)) keys.add(m[1]);
+      // warn('ключ' ...) и info('ключ' ...) — подсказки из checks.js
+      for (const m of source.matchAll(/\b(?:t|tool|button|warn|info)\(\s*'([a-zA-Z0-9_.]+)'/g)) keys.add(m[1]);
       for (const m of source.matchAll(/\bkey:\s*'([a-zA-Z0-9_.]+)'/g)) keys.add(m[1]);
     }
     return keys;

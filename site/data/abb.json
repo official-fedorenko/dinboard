@@ -1288,7 +1288,11 @@
       "modules": 2,
       "specs": {
         "poles": "1P+N",
-        "spdType": "2"
+        "spdType": "2",
+        "networks": [
+          "TN-S",
+          "TT"
+        ]
       },
       "verified": true,
       "source": "https://new.abb.com/products/2CTB815704R1400"
@@ -1303,7 +1307,11 @@
       "modules": 4,
       "specs": {
         "poles": "3P+N",
-        "spdType": "2"
+        "spdType": "2",
+        "networks": [
+          "TN-S",
+          "TT"
+        ]
       },
       "verified": true,
       "source": "https://new.abb.com/products/2CTB815704R2000"
@@ -1333,7 +1341,11 @@
       "modules": 4,
       "specs": {
         "poles": "3P+N",
-        "spdType": "2"
+        "spdType": "2",
+        "networks": [
+          "TN-S",
+          "TT"
+        ]
       },
       "verified": true,
       "source": "https://new.abb.com/products/2CTB803973R1100"
@@ -1363,7 +1375,11 @@
       "modules": 4,
       "specs": {
         "poles": "3P+N",
-        "spdType": "1+2"
+        "spdType": "1+2",
+        "networks": [
+          "TN-S",
+          "TT"
+        ]
       },
       "verified": true,
       "source": "https://new.abb.com/products/2CTB815710R1900"

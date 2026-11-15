@@ -12,6 +12,7 @@
 // Любые входящие данные проверяются: структура, лимиты, наличие в каталоге, место в рядах.
 
 import { createBoard, addDevice, BoardError } from './board.js';
+import { EARTHING_SYSTEMS } from './catalog.js';
 
 export const PROJECT_VERSION = 1;
 export const STORAGE_KEY = 'dinboard.project.v1';
@@ -42,9 +43,11 @@ const isObject = (v) => v !== null && typeof v === 'object' && !Array.isArray(v)
 const isId = (v) => typeof v === 'string' && v.length > 0 && v.length <= LIMITS.idLength && /^[a-z0-9-]+$/.test(v);
 const formatError = (reason) => new ProjectError('format', { reason });
 
-/** Проект из щита: { enclosureId, rows: [[deviceId]] }. */
+/** Проект из щита: { enclosureId, rows: [[deviceId]], earthing? }. */
 export function projectFromBoard(board) {
-  return { enclosureId: board.enclosureId, rows: board.rows.map((row) => row.map((item) => item.deviceId)) };
+  const project = { enclosureId: board.enclosureId, rows: board.rows.map((row) => row.map((item) => item.deviceId)) };
+  if (board.earthing) project.earthing = board.earthing;
+  return project;
 }
 
 /** Проверяет общий вид проекта (без каталога). */
@@ -56,6 +59,7 @@ function checkShape(project) {
   for (const row of project.rows) {
     if (!Array.isArray(row) || row.length > LIMITS.itemsPerRow || !row.every(isId)) throw formatError('row');
   }
+  if (project.earthing !== undefined && !EARTHING_SYSTEMS.includes(project.earthing)) throw formatError('earthing');
   return project;
 }
 
@@ -71,7 +75,7 @@ export function buildBoard(project, enclosures, devices) {
   if (!enclosure) throw new ProjectError('enclosure', { enclosureId: project.enclosureId });
   if (project.rows.length > enclosure.rows) throw new ProjectError('no-space', { reason: 'rows' });
 
-  let board = createBoard(enclosure);
+  let board = { ...createBoard(enclosure), earthing: project.earthing ?? null };
   const skipped = [];
   project.rows.forEach((row, rowIndex) => {
     for (const deviceId of row) {
@@ -131,6 +135,7 @@ export function encodeLink(project) {
   const dictionary = [...new Set(project.rows.flat())];
   const index = new Map(dictionary.map((id, i) => [id, i]));
   const compact = { v: PROJECT_VERSION, e: project.enclosureId, d: dictionary, r: project.rows.map((row) => row.map((id) => index.get(id))) };
+  if (project.earthing) compact.g = project.earthing;
   return toBase64Url(JSON.stringify(compact));
 }
 
@@ -149,7 +154,7 @@ export function decodeLink(code) {
       return data.d[i];
     });
   });
-  return checkShape({ enclosureId: data.e, rows });
+  return checkShape({ enclosureId: data.e, rows, ...(data.g === undefined ? {} : { earthing: data.g }) });
 }
 
 /** Код из адреса страницы (location.hash) или null, если ссылки на щит нет. */
@@ -167,6 +172,7 @@ export function projectToFile(project, enclosures, devices, savedAt = new Date()
     version: PROJECT_VERSION,
     savedAt: savedAt.toISOString(),
     enclosure: { id: project.enclosureId, article: enclosures.get(project.enclosureId)?.article ?? '' },
+    ...(project.earthing ? { earthing: project.earthing } : {}),
     rows: project.rows.map((row) => row.map((id) => ({ id, article: devices.get(id)?.article ?? '' }))),
   };
   return JSON.stringify(data, null, 2) + '\n';
@@ -184,7 +190,7 @@ export function projectFromFile(text) {
       return item.id;
     });
   });
-  return checkShape({ enclosureId: data.enclosure.id, rows });
+  return checkShape({ enclosureId: data.enclosure.id, rows, ...(data.earthing === undefined ? {} : { earthing: data.earthing }) });
 }
 
 /** Имя файла: dinboard-<артикул корпуса>-<дата>.json (только безопасные символы). */

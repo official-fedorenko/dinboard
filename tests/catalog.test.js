@@ -181,6 +181,16 @@ describe('validateBrandFile', () => {
     assert.deepEqual(validateBrandFile(brandFile({ devices: [mcb({ verified: false })] })), [], 'без source можно при verified: false');
   });
 
+  test('УЗИП: необязательный список систем заземления networks', () => {
+    const spd = (networks) => mcb({ id: 'acme-spd', category: 'spd', modules: 2, specs: { poles: '1P+N', spdType: '2', ...(networks === undefined ? {} : { networks }) } });
+    assert.deepEqual(validateBrandFile(brandFile({ devices: [spd()] })), [], 'без networks можно');
+    assert.deepEqual(validateBrandFile(brandFile({ devices: [spd(['TN-S', 'TT'])] })), []);
+    for (const bad of [[], ['TN-S', 'TN-S'], ['IT'], 'TT', [1]]) {
+      hasError(validateBrandFile(brandFile({ devices: [spd(bad)] })), 'specs.networks: нужен непустой список');
+    }
+    hasError(validateBrandFile(brandFile({ devices: [mcb({ specs: { ...mcb().specs, networks: ['TT'] } })] })), 'specs.networks: неизвестное поле');
+  });
+
   test('необязательное поле model (тип у производителя)', () => {
     assert.deepEqual(validateBrandFile(brandFile({ devices: [mcb({ model: 'S201-C16' })], enclosures: [enclosure({ model: '41A12X21' })] })), []);
     hasError(validateBrandFile(brandFile({ devices: [mcb({ model: '' })] })), 'devices[0].model: нужна непустая строка');

@@ -11,6 +11,7 @@ import {
   boardStats,
   findItem,
   billOfMaterials,
+  setEarthing,
   BoardError,
 } from '../site/js/board.js';
 
@@ -180,5 +181,18 @@ describe('boardStats и billOfMaterials', () => {
       { deviceId: 'mcb', count: 3 },
       { deviceId: 'rcd2', count: 1 },
     ]);
+  });
+});
+
+describe('система заземления', () => {
+  test('по умолчанию не указана, задаётся и сохраняется при смене корпуса', () => {
+    const e = enc(2);
+    const board = createBoard(e);
+    assert.equal(board.earthing, null);
+    const tt = setEarthing(board, 'TT');
+    assert.equal(tt.earthing, 'TT');
+    assert.equal(board.earthing, null, 'исходный щит не меняется');
+    assert.equal(changeEnclosure(tt, enc(1), devices).board.earthing, 'TT');
+    assert.equal(setEarthing(tt, null).earthing, null);
   });
 });

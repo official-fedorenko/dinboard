@@ -108,5 +108,21 @@
   "summary.name": "Description",
   "summary.qty": "Qty",
   "summary.enclosure": "Enclosure {title}",
-  "summary.empty": "Choose an enclosure first."
+  "summary.empty": "Choose an enclosure first.",
+
+  "check.title": "Checks",
+  "check.ok": "No issues found.",
+  "check.level.warning": "Warning:",
+  "check.level.info": "Tip:",
+  "earthing.label": "Earthing system",
+  "earthing.none": "Not specified",
+  "check.noMain": "No main switch: add a switch-disconnector or a main circuit breaker.",
+  "check.noRcd": "No residual current protection: add an RCCB or RCBOs.",
+  "check.rcdBelowMain": "The {rcd} A RCCB is rated below the {main} A main switch: it may be overloaded. Choose an RCCB rated at least as high as the main switch or protect it with a circuit breaker.",
+  "check.threePhaseOnSingle": "The main switch is single-phase, but the board contains three-phase devices ({n} pcs).",
+  "check.singlePhaseSpdOnThree": "The supply is three-phase, but the surge protector is single-phase: it protects only one phase.",
+  "check.spdEarthing": "{title}: according to the manufacturer it suits {networks}, but the board earthing system is {earthing}.",
+  "check.spdNoEarthing": "Specify the earthing system so the configurator can check the surge protector.",
+  "check.rcdTypeAC": "Type AC RCCBs and RCBOs: {n} pcs. Type A is recommended for modern equipment (inverters, chargers, washing machines).",
+  "check.lowSpare": "Little free space: {free} mod. ({percent} %). It is recommended to keep about 20 % for future expansion."
 }

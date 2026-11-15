@@ -95,6 +95,31 @@ describe('проект и щит', () => {
   });
 });
 
+describe('система заземления в проекте', () => {
+  const withEarthing = { ...project, earthing: 'TT' };
+
+  test('щит → проект → щит, ссылка и файл сохраняют систему заземления', () => {
+    const { board } = buildBoard(withEarthing, enclosures, devices);
+    assert.equal(board.earthing, 'TT');
+    assert.deepEqual(projectFromBoard(board), withEarthing);
+    assert.deepEqual(decodeLink(encodeLink(withEarthing)), withEarthing);
+    assert.deepEqual(projectFromFile(projectToFile(withEarthing, enclosures, devices)), withEarthing);
+  });
+
+  test('без системы заземления — поле отсутствует (старые ссылки и файлы открываются)', () => {
+    const { board } = buildBoard(project, enclosures, devices);
+    assert.equal(board.earthing, null);
+    assert.equal('earthing' in projectFromBoard(board), false);
+    assert.equal('g' in JSON.parse(Buffer.from(encodeLink(project), 'base64url').toString()), false);
+  });
+
+  test('неизвестная система заземления — ошибка format', () => {
+    failsWith(() => buildBoard({ ...project, earthing: 'IT' }, enclosures, devices), 'format', 'earthing');
+    const code = Buffer.from(JSON.stringify({ v: 1, e: 'hager-va24b', d: [], r: [[], []], g: '__proto__' })).toString('base64url');
+    failsWith(() => decodeLink(code), 'format', 'earthing');
+  });
+});
+
 describe('ссылка', () => {
   test('туда и обратно; повторы id сжимаются словарём', () => {
     const code = encodeLink(project);

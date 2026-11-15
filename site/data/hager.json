@@ -1092,7 +1092,11 @@
       "modules": 2,
       "specs": {
         "poles": "1P+N",
-        "spdType": "2"
+        "spdType": "2",
+        "networks": [
+          "TN-S",
+          "TT"
+        ]
       },
       "source": "https://hager.com/de/katalog/?artnr=SPE240",
       "notes": "TN-S/TT, Uc 275 В, In 20 кА, Imax 40 кА."
@@ -1107,7 +1111,11 @@
       "modules": 4,
       "specs": {
         "poles": "3P+N",
-        "spdType": "2"
+        "spdType": "2",
+        "networks": [
+          "TN-S",
+          "TT"
+        ]
       },
       "source": "https://hager.com/de/katalog/?artnr=SPE440",
       "notes": "TN-S/TT, Uc 275 В, In 20 кА, Imax 40 кА."
@@ -1122,7 +1130,11 @@
       "modules": 2,
       "specs": {
         "poles": "1P+N",
-        "spdType": "2"
+        "spdType": "2",
+        "networks": [
+          "TN-S",
+          "TT"
+        ]
       },
       "source": "https://hager.com/de/katalog/?artnr=SPB215",
       "notes": "TN-S/TT, In 20 кА, Imax 40 кА, индикатор и дистанционный контакт."
@@ -1137,7 +1149,11 @@
       "modules": 4,
       "specs": {
         "poles": "3P+N",
-        "spdType": "2"
+        "spdType": "2",
+        "networks": [
+          "TN-S",
+          "TT"
+        ]
       },
       "source": "https://hager.com/de/katalog/?artnr=SPB415",
       "notes": "TN-S/TT, In 20 кА, Imax 40 кА, индикатор и дистанционный контакт."
@@ -1152,7 +1168,11 @@
       "modules": 2,
       "specs": {
         "poles": "1P+N",
-        "spdType": "1+2+3"
+        "spdType": "1+2+3",
+        "networks": [
+          "TN-S",
+          "TT"
+        ]
       },
       "source": "https://hager.com/de/katalog/?artnr=SPA212",
       "notes": "TN-S/TT, Iimp 12.5 кА (L-N), дистанционный контакт."
@@ -1167,7 +1187,12 @@
       "modules": 4,
       "specs": {
         "poles": "3P+N",
-        "spdType": "1+2+3"
+        "spdType": "1+2+3",
+        "networks": [
+          "TN-S",
+          "TN-C-S",
+          "TT"
+        ]
       },
       "source": "https://hager.com/de/katalog/?artnr=SPA412",
       "notes": "TN-S/TT/TN-C-S, Iimp 12.5 кА (L-N). Up на странице 2.5 кВ, у SPA212 1.5 кВ — сверить с паспортом."

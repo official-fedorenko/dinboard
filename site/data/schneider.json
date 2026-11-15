@@ -1051,7 +1051,11 @@
       "modules": 2,
       "specs": {
         "poles": "1P+N",
-        "spdType": "2"
+        "spdType": "2",
+        "networks": [
+          "TN-S",
+          "TT"
+        ]
       },
       "verified": true,
       "source": "https://www.se.com/de/de/product/download-pdf/A9L40500"

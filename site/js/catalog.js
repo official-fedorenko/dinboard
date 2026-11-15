@@ -16,6 +16,8 @@ export const SPD_TYPES = ['1', '1+2', '1+2+3', '2', '2+3', '3'];
 export const MOUNTINGS = ['surface', 'flush'];
 export const MATERIALS = ['plastic', 'metal'];
 export const DOORS = ['transparent', 'opaque', 'none'];
+// Системы заземления, для которых в каталоге указывается применимость УЗИП
+export const EARTHING_SYSTEMS = ['TN-S', 'TN-C-S', 'TT'];
 
 const ID_RE = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 const FILE_RE = /^[a-z0-9-]+\.json$/;
@@ -96,7 +98,18 @@ const DEVICE_FIELDS = {
   notes: [nonEmptyString, false],
 };
 
-/** Характеристики по категориям устройств. Все поля specs обязательны, лишние запрещены. */
+/** Необязательное поле в specs. */
+function optional(check) {
+  return { check, optional: true };
+}
+
+// Непустой список систем заземления без повторов
+const earthingList = (v) =>
+  Array.isArray(v) && v.length > 0 && new Set(v).size === v.length && v.every((x) => EARTHING_SYSTEMS.includes(x))
+    ? null
+    : `нужен непустой список из: ${EARTHING_SYSTEMS.join(', ')}`;
+
+/** Характеристики по категориям устройств. Поля specs обязательны (кроме помеченных optional), лишние запрещены. */
 export const DEVICE_CATEGORIES = {
   // Автоматический выключатель
   mcb: {
@@ -130,6 +143,8 @@ export const DEVICE_CATEGORIES = {
   spd: {
     poles: oneOf(POLES),
     spdType: oneOf(SPD_TYPES),
+    // Для каких систем заземления подходит (если производитель это указывает)
+    networks: optional(earthingList),
   },
 };
 
@@ -179,7 +194,9 @@ function checkDevice(device, path, errors) {
     errors.push(`${path}.specs: нужен объект`);
     return;
   }
-  const specFields = Object.fromEntries(Object.entries(specSchema).map(([k, check]) => [k, [check, true]]));
+  const specFields = Object.fromEntries(
+    Object.entries(specSchema).map(([k, rule]) => [k, typeof rule === 'function' ? [rule, true] : [rule.check, !rule.optional]]),
+  );
   checkFields(device.specs, specFields, `${path}.specs`, errors);
 }
 

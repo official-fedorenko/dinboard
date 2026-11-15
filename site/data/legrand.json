@@ -1483,7 +1483,11 @@
       "modules": 2,
       "specs": {
         "poles": "1P+N",
-        "spdType": "2"
+        "spdType": "2",
+        "networks": [
+          "TN-S",
+          "TT"
+        ]
       },
       "verified": true,
       "source": "https://www.legrand.com/ecatalogue/en/catalog/products/spd-t2-imax-40-kapole-1pn-neutral-on-left-hand-side-412244"
@@ -1497,7 +1501,11 @@
       "modules": 4,
       "specs": {
         "poles": "3P+N",
-        "spdType": "2"
+        "spdType": "2",
+        "networks": [
+          "TN-S",
+          "TT"
+        ]
       },
       "verified": true,
       "source": "https://www.legrand.com/ecatalogue/en/catalog/products/spd-t2-imax-40-kapole-3pn-neutral-on-left-hand-side-412245"

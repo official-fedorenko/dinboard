@@ -12,6 +12,7 @@ import {
   findItem,
   billOfMaterials,
   indexById,
+  setEarthing,
   BoardError,
 } from './board.js';
 import {
@@ -26,6 +27,8 @@ import {
 } from './format.js';
 import { h } from './dom.js';
 import { layoutBoard, hitTest, renderBoardSvg } from './render-svg.js';
+import { checkBoard } from './checks.js';
+import { EARTHING_SYSTEMS } from './catalog.js';
 import {
   projectFromBoard,
   buildBoard,
@@ -277,7 +280,9 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
 
   function clearBoard() {
     if (!window.confirm(t('board.confirmClear'))) return;
-    update({ board: createBoard(enclosure()), selectedUid: null, activeRow: 0, status: t('board.cleared') });
+    // Система заземления — свойство объекта, а не набора устройств: при очистке сохраняется
+    const board = setEarthing(createBoard(enclosure()), state.board.earthing);
+    update({ board, selectedUid: null, activeRow: 0, status: t('board.cleared') });
   }
 
   // ---------- перетаскивание ----------
@@ -548,6 +553,40 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
     return view;
   }
 
+  /** Проверки щита: система заземления и подсказки (не мешают сборке). */
+  function renderChecks(enc) {
+    const list = checkBoard(state.board, enc, devices);
+    const items = list.map((check) => {
+      const params = { ...check.params };
+      if (typeof params.free === 'number') params.free = fmt(params.free);
+      if (check.deviceId) {
+        const d = devices.get(check.deviceId);
+        params.title = `${deviceTitle(d, t)} — ${deviceRef(d, brandNames.get(d.brand))}`;
+      }
+      return h(
+        'li',
+        { class: `check check-${check.level}` },
+        h('span', { class: 'check-icon', 'aria-hidden': 'true' }, check.level === 'warning' ? '!' : 'i'),
+        // Уровень подсказки — текстом для программ чтения с экрана (значок скрыт от них)
+        h('span', { class: 'visually-hidden' }, t(`check.level.${check.level}`)),
+        h('span', {}, t(check.key, params)),
+      );
+    });
+    return h(
+      'section',
+      { class: 'checks', 'aria-labelledby': 'h-checks' },
+      h('h3', { id: 'h-checks' }, t('check.title')),
+      h('p', { class: 'muted checks-label' }, t('earthing.label')),
+      chips(
+        t('earthing.label'),
+        state.board.earthing ?? 'none',
+        [['none', t('earthing.none')], ...EARTHING_SYSTEMS.map((e) => [e, e])],
+        (value) => update({ board: setEarthing(state.board, value === 'none' ? null : value) }),
+      ),
+      items.length ? h('ul', { class: 'check-list' }, items) : h('p', { class: 'check-ok' }, t('check.ok')),
+    );
+  }
+
   /** Кнопки проекта: ссылка, файл, открыть файл; «Очистить щит». */
   function renderProjectActions(hasBoard) {
     const button = (key, focus, action) =>
@@ -612,6 +651,7 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
       renderBoardView(enc),
       renderToolbar(),
       status,
+      renderChecks(enc),
       renderProjectActions(true),
     );
   }

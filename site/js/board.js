@@ -1,7 +1,8 @@
 // Модель щита: корпус, ряды DIN-реек и расставленные в них устройства.
 // Модуль без DOM. Все функции чистые: возвращают новый объект щита, исходный не меняют.
 //
-// Щит: { version, enclosureId, rows: [[{ uid, deviceId }, ...], ...], nextUid }
+// Щит: { version, enclosureId, rows: [[{ uid, deviceId }, ...], ...], nextUid, earthing }
+// earthing — система заземления (TN-S / TN-C-S / TT) или null, если не указана.
 // Устройства в ряду стоят подряд, слева направо, в порядке массива.
 // Ширина устройства и вместимость ряда — в модулях (ширина берётся из каталога).
 
@@ -29,6 +30,7 @@ export function createBoard(enclosure) {
     enclosureId: enclosure.id,
     rows: Array.from({ length: enclosure.rows }, () => []),
     nextUid: 1,
+    earthing: null,
   };
 }
 
@@ -132,7 +134,7 @@ export function moveItem(board, enclosure, devices, uid, toRow, toIndex) {
  * Что не поместилось — в overflow (список { uid, deviceId }), в щит не попадает.
  */
 export function changeEnclosure(board, enclosure, devices) {
-  let next = { ...createBoard(enclosure), nextUid: board.nextUid };
+  let next = { ...createBoard(enclosure), nextUid: board.nextUid, earthing: board.earthing ?? null };
   const overflow = [];
   const place = (item, row) => {
     const rows = next.rows.map((r) => [...r]);
@@ -152,6 +154,11 @@ export function changeEnclosure(board, enclosure, devices) {
     }
   });
   return { board: next, overflow };
+}
+
+/** Система заземления щита (null — не указана). */
+export function setEarthing(board, earthing) {
+  return { ...board, earthing: earthing ?? null };
 }
 
 /** Спецификация: [{ deviceId, count }] в порядке первого появления (слева направо, сверху вниз). */

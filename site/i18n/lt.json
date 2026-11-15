@@ -108,5 +108,21 @@
   "summary.name": "Pavadinimas",
   "summary.qty": "Kiekis",
   "summary.enclosure": "Korpusas {title}",
-  "summary.empty": "Pirmiausia pasirinkite korpusą."
+  "summary.empty": "Pirmiausia pasirinkite korpusą.",
+
+  "check.title": "Patikrinimai",
+  "check.ok": "Pastabų nėra.",
+  "check.level.warning": "Įspėjimas:",
+  "check.level.info": "Patarimas:",
+  "earthing.label": "Įžeminimo sistema",
+  "earthing.none": "Nenurodyta",
+  "check.noMain": "Nėra įvadinio aparato: pridėkite kirtiklį arba įvadinį automatinį jungiklį.",
+  "check.noRcd": "Nėra apsaugos nuo nuotėkio srovių: pridėkite nuotėkio relę arba diferencinius automatinius jungiklius.",
+  "check.rcdBelowMain": "Nuotėkio relė {rcd} A mažesnė už įvadinį aparatą {main} A: relė gali būti perkrauta. Pasirinkite relę ne mažesnei srovei nei įvadinis aparatas arba apsaugokite ją automatiniu jungikliu.",
+  "check.threePhaseOnSingle": "Įvadinis aparatas vienfazis, o skyde yra trifazių prietaisų ({n} vnt.).",
+  "check.singlePhaseSpdOnThree": "Įvadas trifazis, o viršįtampių ribotuvas vienfazis: jis apsaugos tik vieną fazę.",
+  "check.spdEarthing": "{title}: pagal gamintojo duomenis tinka {networks}, o skydo įžeminimo sistema — {earthing}.",
+  "check.spdNoEarthing": "Nurodykite įžeminimo sistemą — tada konfigūratorius patikrins, ar tinka viršįtampių ribotuvas.",
+  "check.rcdTypeAC": "AC tipo nuotėkio relės ir diferenciniai automatiniai jungikliai: {n} vnt. Šiuolaikinei technikai (inverteriams, įkrovikliams, skalbimo mašinoms) rekomenduojamas A tipas.",
+  "check.lowSpare": "Mažai laisvos vietos: {free} mod. ({percent} %). Rekomenduojama palikti apie 20 % plėtrai."
 }

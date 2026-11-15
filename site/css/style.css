@@ -562,6 +562,83 @@ button:focus-visible {
   font-size: 14px;
 }
 
+/* Текст только для программ чтения с экрана */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------- Проверки ---------- */
+
+.checks {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+}
+
+.checks h3 {
+  margin: 0 0 6px;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.checks-label {
+  margin: 0 0 4px;
+}
+
+.check-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.check {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 8px 10px;
+  border-radius: var(--radius);
+  font-size: 14px;
+}
+
+.check-warning {
+  background: var(--warn-bg);
+  color: var(--warn-text);
+}
+
+.check-info {
+  background: var(--accent-soft);
+}
+
+.check-icon {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border: 1.5px solid currentColor;
+  border-radius: 50%;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.check-ok {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
 .project-actions {
   display: flex;
   flex-direction: column;
