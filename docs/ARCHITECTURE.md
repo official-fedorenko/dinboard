@@ -18,6 +18,8 @@
 ## Как устроено
 Сайт работает без сборки: браузер загружает `site/index.html`, а тот подключает `css/style.css` и `js/main.js` как ES-модуль. Все пути относительные, потому что на GitHub Pages сайт открывается из подпапки (`/<repo>/`).
 
+Опубликованный сайт: https://official-fedorenko.github.io/dinboard/ (репозиторий `official-fedorenko/dinboard`, публикует `.github/workflows/pages.yml` при push в `main`).
+
 `tools/serve.js` нужен только для локальной разработки: отдаёт файлы из `site/`, слушает только `127.0.0.1`, не выпускает запросы за пределы `site/`. Функции `resolveRequestPath`, `contentType` и `createSiteServer` экспортируются для тестов.
 
 Модули в `site/js/` делятся на две группы.
