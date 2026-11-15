@@ -25,6 +25,7 @@
   "door.transparent": "permatomos durelės",
   "enclosure.layout": "{rows} × {modules} mod.",
   "enclosure.choose": "Pasirinkite korpusą, kad pradėtumėte surinkimą.",
+  "enclosure.unverifiedHint": "Korpuso duomenys, įskaitant matmenis, nepatvirtinti oficialiu šaltiniu — patikrinkite gamintojo kataloge.",
   "enclosure.change": "Keisti korpusą",
   "enclosure.keep": "Palikti dabartinį korpusą",
   "enclosure.confirmOverflow": "Naujame korpuse netilps prietaisai ({n} vnt.). Jie bus pašalinti iš skydo. Tęsti?",

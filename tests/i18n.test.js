@@ -4,7 +4,7 @@ import { readFile, readdir } from 'node:fs/promises';
 import { join } from 'node:path';
 
 import { createTranslator, loadMessages, LANGUAGES, placeholders, pickLanguage, formatNumber } from '../site/js/i18n.js';
-import { deviceLabel, deviceTitle, enclosureDescription, enclosureSize, enclosureTitle, num } from '../site/js/format.js';
+import { deviceLabel, deviceTitle, deviceRef, enclosureDescription, enclosureSize, enclosureTitle, num } from '../site/js/format.js';
 import { DEVICE_CATEGORIES, MOUNTINGS, DOORS } from '../site/js/catalog.js';
 import { PROJECT_ERROR_CODES } from '../site/js/storage.js';
 import { SITE_ROOT } from '../tools/serve.js';
@@ -200,6 +200,12 @@ describe('format', () => {
     assert.equal(enclosureTitle(enc), 'Volta VA24B');
     assert.equal(enclosureDescription(enc, t), 'накладной · 2 × 12 мод. · IP30 · без дверцы');
     assert.equal(enclosureSize(enc, t), '305 × 370 × 96.5 мм');
+  });
+
+  test('тип производителя в названиях', () => {
+    assert.equal(enclosureTitle({ series: 'Mistral41', article: '1SPE007717F9993', model: '41A12X21' }), 'Mistral41 41A12X21');
+    assert.equal(deviceRef({ model: 'S201-C16' }, 'ABB'), 'ABB S201-C16');
+    assert.equal(deviceRef({}, 'Hager'), 'Hager');
   });
 
   test('num убирает лишние нули', () => {

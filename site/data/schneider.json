@@ -1,0 +1,1165 @@
+{
+  "schemaVersion": 1,
+  "brand": {
+    "id": "schneider",
+    "name": "Schneider Electric"
+  },
+  "enclosures": [
+    {
+      "id": "schneider-r9h13401",
+      "brand": "schneider",
+      "series": "Resi9 CX",
+      "article": "R9H13401",
+      "mounting": "surface",
+      "rows": 1,
+      "modulesPerRow": 13,
+      "material": "plastic",
+      "door": "none",
+      "ipRating": 30,
+      "dimensionsMm": {
+        "width": 252,
+        "height": 250,
+        "depth": 108
+      },
+      "verified": true,
+      "source": "https://www.se.com/fr/fr/product/download-pdf/R9H13401"
+    },
+    {
+      "id": "schneider-r9h13402",
+      "brand": "schneider",
+      "series": "Resi9 CX",
+      "article": "R9H13402",
+      "mounting": "surface",
+      "rows": 2,
+      "modulesPerRow": 13,
+      "material": "plastic",
+      "door": "none",
+      "ipRating": 30,
+      "dimensionsMm": {
+        "width": 252,
+        "height": 375,
+        "depth": 108
+      },
+      "verified": true,
+      "source": "https://www.se.com/fr/fr/product/download-pdf/R9H13402"
+    },
+    {
+      "id": "schneider-r9h13403",
+      "brand": "schneider",
+      "series": "Resi9 CX",
+      "article": "R9H13403",
+      "mounting": "surface",
+      "rows": 3,
+      "modulesPerRow": 13,
+      "material": "plastic",
+      "door": "none",
+      "ipRating": 30,
+      "dimensionsMm": {
+        "width": 252,
+        "height": 500,
+        "depth": 108
+      },
+      "verified": true,
+      "source": "https://www.se.com/fr/fr/product/download-pdf/R9H13403"
+    },
+    {
+      "id": "schneider-r9h13404",
+      "brand": "schneider",
+      "series": "Resi9 CX",
+      "article": "R9H13404",
+      "mounting": "surface",
+      "rows": 4,
+      "modulesPerRow": 13,
+      "material": "plastic",
+      "door": "none",
+      "ipRating": 30,
+      "dimensionsMm": {
+        "width": 252,
+        "height": 625,
+        "depth": 108
+      },
+      "verified": true,
+      "source": "https://www.se.com/fr/fr/product/download-pdf/R9H13404"
+    }
+  ],
+  "devices": [
+    {
+      "id": "schneider-a9f03106",
+      "brand": "schneider",
+      "series": "iC60N",
+      "article": "A9F03106",
+      "model": "iC60N 1P B6",
+      "category": "mcb",
+      "modules": 1,
+      "specs": {
+        "poles": "1P",
+        "ratedCurrentA": 6,
+        "curve": "B",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://www.se.com/de/de/product/download-pdf/A9F03106"
+    },
+    {
+      "id": "schneider-a9f03110",
+      "brand": "schneider",
+      "series": "iC60N",
+      "article": "A9F03110",
+      "model": "iC60N 1P B10",
+      "category": "mcb",
+      "modules": 1,
+      "specs": {
+        "poles": "1P",
+        "ratedCurrentA": 10,
+        "curve": "B",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://www.se.com/de/de/product/download-pdf/A9F03110"
+    },
+    {
+      "id": "schneider-a9f03113",
+      "brand": "schneider",
+      "series": "iC60N",
+      "article": "A9F03113",
+      "model": "iC60N 1P B13",
+      "category": "mcb",
+      "modules": 1,
+      "specs": {
+        "poles": "1P",
+        "ratedCurrentA": 13,
+        "curve": "B",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://www.se.com/de/de/product/download-pdf/A9F03113"
+    },
+    {
+      "id": "schneider-a9f03116",
+      "brand": "schneider",
+      "series": "iC60N",
+      "article": "A9F03116",
+      "model": "iC60N 1P B16",
+      "category": "mcb",
+      "modules": 1,
+      "specs": {
+        "poles": "1P",
+        "ratedCurrentA": 16,
+        "curve": "B",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://www.se.com/de/de/product/download-pdf/A9F03116"
+    },
+    {
+      "id": "schneider-a9f03120",
+      "brand": "schneider",
+      "series": "iC60N",
+      "article": "A9F03120",
+      "model": "iC60N 1P B20",
+      "category": "mcb",
+      "modules": 1,
+      "specs": {
+        "poles": "1P",
+        "ratedCurrentA": 20,
+        "curve": "B",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://www.se.com/de/de/product/download-pdf/A9F03120"
+    },
+    {
+      "id": "schneider-a9f03125",
+      "brand": "schneider",
+      "series": "iC60N",
+      "article": "A9F03125",
+      "model": "iC60N 1P B25",
+      "category": "mcb",
+      "modules": 1,
+      "specs": {
+        "poles": "1P",
+        "ratedCurrentA": 25,
+        "curve": "B",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://www.se.com/de/de/product/download-pdf/A9F03125"
+    },
+    {
+      "id": "schneider-a9f03132",
+      "brand": "schneider",
+      "series": "iC60N",
+      "article": "A9F03132",
+      "model": "iC60N 1P B32",
+      "category": "mcb",
+      "modules": 1,
+      "specs": {
+        "poles": "1P",
+        "ratedCurrentA": 32,
+        "curve": "B",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://www.se.com/de/de/product/download-pdf/A9F03132"
+    },
+    {
+      "id": "schneider-a9f03140",
+      "brand": "schneider",
+      "series": "iC60N",
+      "article": "A9F03140",
+      "model": "iC60N 1P B40",
+      "category": "mcb",
+      "modules": 1,
+      "specs": {
+        "poles": "1P",
+        "ratedCurrentA": 40,
+        "curve": "B",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://www.se.com/de/de/product/download-pdf/A9F03140"
+    },
+    {
+      "id": "schneider-a9f04106",
+      "brand": "schneider",
+      "series": "iC60N",
+      "article": "A9F04106",
+      "model": "iC60N 1P C6",
+      "category": "mcb",
+      "modules": 1,
+      "specs": {
+        "poles": "1P",
+        "ratedCurrentA": 6,
+        "curve": "C",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://www.se.com/de/de/product/download-pdf/A9F04106"
+    },
+    {
+      "id": "schneider-a9f04110",
+      "brand": "schneider",
+      "series": "iC60N",
+      "article": "A9F04110",
+      "model": "iC60N 1P C10",
+      "category": "mcb",
+      "modules": 1,
+      "specs": {
+        "poles": "1P",
+        "ratedCurrentA": 10,
+        "curve": "C",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://www.se.com/de/de/product/download-pdf/A9F04110"
+    },
+    {
+      "id": "schneider-a9f04113",
+      "brand": "schneider",
+      "series": "iC60N",
+      "article": "A9F04113",
+      "model": "iC60N 1P C13",
+      "category": "mcb",
+      "modules": 1,
+      "specs": {
+        "poles": "1P",
+        "ratedCurrentA": 13,
+        "curve": "C",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://www.se.com/de/de/product/download-pdf/A9F04113"
+    },
+    {
+      "id": "schneider-a9f04116",
+      "brand": "schneider",
+      "series": "iC60N",
+      "article": "A9F04116",
+      "model": "iC60N 1P C16",
+      "category": "mcb",
+      "modules": 1,
+      "specs": {
+        "poles": "1P",
+        "ratedCurrentA": 16,
+        "curve": "C",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://www.se.com/de/de/product/download-pdf/A9F04116"
+    },
+    {
+      "id": "schneider-a9f04120",
+      "brand": "schneider",
+      "series": "iC60N",
+      "article": "A9F04120",
+      "model": "iC60N 1P C20",
+      "category": "mcb",
+      "modules": 1,
+      "specs": {
+        "poles": "1P",
+        "ratedCurrentA": 20,
+        "curve": "C",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://www.se.com/de/de/product/download-pdf/A9F04120"
+    },
+    {
+      "id": "schneider-a9f04125",
+      "brand": "schneider",
+      "series": "iC60N",
+      "article": "A9F04125",
+      "model": "iC60N 1P C25",
+      "category": "mcb",
+      "modules": 1,
+      "specs": {
+        "poles": "1P",
+        "ratedCurrentA": 25,
+        "curve": "C",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://www.se.com/de/de/product/download-pdf/A9F04125"
+    },
+    {
+      "id": "schneider-a9f04132",
+      "brand": "schneider",
+      "series": "iC60N",
+      "article": "A9F04132",
+      "model": "iC60N 1P C32",
+      "category": "mcb",
+      "modules": 1,
+      "specs": {
+        "poles": "1P",
+        "ratedCurrentA": 32,
+        "curve": "C",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://www.se.com/de/de/product/download-pdf/A9F04132"
+    },
+    {
+      "id": "schneider-a9f04140",
+      "brand": "schneider",
+      "series": "iC60N",
+      "article": "A9F04140",
+      "model": "iC60N 1P C40",
+      "category": "mcb",
+      "modules": 1,
+      "specs": {
+        "poles": "1P",
+        "ratedCurrentA": 40,
+        "curve": "C",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://www.se.com/de/de/product/download-pdf/A9F04140"
+    },
+    {
+      "id": "schneider-a9f04316",
+      "brand": "schneider",
+      "series": "iC60N",
+      "article": "A9F04316",
+      "model": "iC60N 3P C16",
+      "category": "mcb",
+      "modules": 3,
+      "specs": {
+        "poles": "3P",
+        "ratedCurrentA": 16,
+        "curve": "C",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://www.se.com/de/de/product/download-pdf/A9F04316"
+    },
+    {
+      "id": "schneider-a9f04320",
+      "brand": "schneider",
+      "series": "iC60N",
+      "article": "A9F04320",
+      "model": "iC60N 3P C20",
+      "category": "mcb",
+      "modules": 3,
+      "specs": {
+        "poles": "3P",
+        "ratedCurrentA": 20,
+        "curve": "C",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://www.se.com/de/de/product/download-pdf/A9F04320"
+    },
+    {
+      "id": "schneider-a9f04325",
+      "brand": "schneider",
+      "series": "iC60N",
+      "article": "A9F04325",
+      "model": "iC60N 3P C25",
+      "category": "mcb",
+      "modules": 3,
+      "specs": {
+        "poles": "3P",
+        "ratedCurrentA": 25,
+        "curve": "C",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://www.se.com/de/de/product/download-pdf/A9F04325"
+    },
+    {
+      "id": "schneider-a9f04332",
+      "brand": "schneider",
+      "series": "iC60N",
+      "article": "A9F04332",
+      "model": "iC60N 3P C32",
+      "category": "mcb",
+      "modules": 3,
+      "specs": {
+        "poles": "3P",
+        "ratedCurrentA": 32,
+        "curve": "C",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://www.se.com/de/de/product/download-pdf/A9F04332"
+    },
+    {
+      "id": "schneider-a9f04340",
+      "brand": "schneider",
+      "series": "iC60N",
+      "article": "A9F04340",
+      "model": "iC60N 3P C40",
+      "category": "mcb",
+      "modules": 3,
+      "specs": {
+        "poles": "3P",
+        "ratedCurrentA": 40,
+        "curve": "C",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://www.se.com/de/de/product/download-pdf/A9F04340"
+    },
+    {
+      "id": "schneider-a9f04350",
+      "brand": "schneider",
+      "series": "iC60N",
+      "article": "A9F04350",
+      "model": "iC60N 3P C50",
+      "category": "mcb",
+      "modules": 3,
+      "specs": {
+        "poles": "3P",
+        "ratedCurrentA": 50,
+        "curve": "C",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://www.se.com/de/de/product/download-pdf/A9F04350"
+    },
+    {
+      "id": "schneider-a9f04363",
+      "brand": "schneider",
+      "series": "iC60N",
+      "article": "A9F04363",
+      "model": "iC60N 3P C63",
+      "category": "mcb",
+      "modules": 3,
+      "specs": {
+        "poles": "3P",
+        "ratedCurrentA": 63,
+        "curve": "C",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://www.se.com/de/de/product/download-pdf/A9F04363"
+    },
+    {
+      "id": "schneider-a9z21225",
+      "brand": "schneider",
+      "series": "iID",
+      "article": "A9Z21225",
+      "model": "iID 2P 25A 30mA A",
+      "category": "rcd",
+      "modules": 2,
+      "specs": {
+        "poles": "2P",
+        "ratedCurrentA": 25,
+        "sensitivityMa": 30,
+        "rcdType": "A"
+      },
+      "verified": true,
+      "source": "https://www.se.com/de/de/product/download-pdf/A9Z21225"
+    },
+    {
+      "id": "schneider-a9z21240",
+      "brand": "schneider",
+      "series": "iID",
+      "article": "A9Z21240",
+      "model": "iID 2P 40A 30mA A",
+      "category": "rcd",
+      "modules": 2,
+      "specs": {
+        "poles": "2P",
+        "ratedCurrentA": 40,
+        "sensitivityMa": 30,
+        "rcdType": "A"
+      },
+      "verified": true,
+      "source": "https://www.se.com/de/de/product/download-pdf/A9Z21240"
+    },
+    {
+      "id": "schneider-a9z21263",
+      "brand": "schneider",
+      "series": "iID",
+      "article": "A9Z21263",
+      "model": "iID 2P 63A 30mA A",
+      "category": "rcd",
+      "modules": 2,
+      "specs": {
+        "poles": "2P",
+        "ratedCurrentA": 63,
+        "sensitivityMa": 30,
+        "rcdType": "A"
+      },
+      "verified": true,
+      "source": "https://www.se.com/de/de/product/download-pdf/A9Z21263"
+    },
+    {
+      "id": "schneider-a9z21425",
+      "brand": "schneider",
+      "series": "iID",
+      "article": "A9Z21425",
+      "model": "iID 4P 25A 30mA A",
+      "category": "rcd",
+      "modules": 4,
+      "specs": {
+        "poles": "4P",
+        "ratedCurrentA": 25,
+        "sensitivityMa": 30,
+        "rcdType": "A"
+      },
+      "verified": true,
+      "source": "https://www.se.com/de/de/product/download-pdf/A9Z21425"
+    },
+    {
+      "id": "schneider-a9z21440",
+      "brand": "schneider",
+      "series": "iID",
+      "article": "A9Z21440",
+      "model": "iID 4P 40A 30mA A",
+      "category": "rcd",
+      "modules": 4,
+      "specs": {
+        "poles": "4P",
+        "ratedCurrentA": 40,
+        "sensitivityMa": 30,
+        "rcdType": "A"
+      },
+      "verified": true,
+      "source": "https://www.se.com/de/de/product/download-pdf/A9Z21440"
+    },
+    {
+      "id": "schneider-a9z21463",
+      "brand": "schneider",
+      "series": "iID",
+      "article": "A9Z21463",
+      "model": "iID 4P 63A 30mA A",
+      "category": "rcd",
+      "modules": 4,
+      "specs": {
+        "poles": "4P",
+        "ratedCurrentA": 63,
+        "sensitivityMa": 30,
+        "rcdType": "A"
+      },
+      "verified": true,
+      "source": "https://www.se.com/de/de/product/download-pdf/A9Z21463"
+    },
+    {
+      "id": "schneider-a9r11225",
+      "brand": "schneider",
+      "series": "iID",
+      "article": "A9R11225",
+      "model": "iID 2P 25A 30mA AC",
+      "category": "rcd",
+      "modules": 2,
+      "specs": {
+        "poles": "2P",
+        "ratedCurrentA": 25,
+        "sensitivityMa": 30,
+        "rcdType": "AC"
+      },
+      "verified": true,
+      "source": "https://www.se.com/fr/fr/product/download-pdf/A9R11225"
+    },
+    {
+      "id": "schneider-a9r11240",
+      "brand": "schneider",
+      "series": "iID",
+      "article": "A9R11240",
+      "model": "iID 2P 40A 30mA AC",
+      "category": "rcd",
+      "modules": 2,
+      "specs": {
+        "poles": "2P",
+        "ratedCurrentA": 40,
+        "sensitivityMa": 30,
+        "rcdType": "AC"
+      },
+      "verified": true,
+      "source": "https://www.se.com/fr/fr/product/download-pdf/A9R11240"
+    },
+    {
+      "id": "schneider-a9r11263",
+      "brand": "schneider",
+      "series": "iID",
+      "article": "A9R11263",
+      "model": "iID 2P 63A 30mA AC",
+      "category": "rcd",
+      "modules": 2,
+      "specs": {
+        "poles": "2P",
+        "ratedCurrentA": 63,
+        "sensitivityMa": 30,
+        "rcdType": "AC"
+      },
+      "verified": true,
+      "source": "https://www.se.com/fr/fr/product/download-pdf/A9R11263"
+    },
+    {
+      "id": "schneider-a9r11425",
+      "brand": "schneider",
+      "series": "iID",
+      "article": "A9R11425",
+      "model": "iID 4P 25A 30mA AC",
+      "category": "rcd",
+      "modules": 4,
+      "specs": {
+        "poles": "4P",
+        "ratedCurrentA": 25,
+        "sensitivityMa": 30,
+        "rcdType": "AC"
+      },
+      "verified": true,
+      "source": "https://www.se.com/fr/fr/product/download-pdf/A9R11425"
+    },
+    {
+      "id": "schneider-a9r11440",
+      "brand": "schneider",
+      "series": "iID",
+      "article": "A9R11440",
+      "model": "iID 4P 40A 30mA AC",
+      "category": "rcd",
+      "modules": 4,
+      "specs": {
+        "poles": "4P",
+        "ratedCurrentA": 40,
+        "sensitivityMa": 30,
+        "rcdType": "AC"
+      },
+      "verified": true,
+      "source": "https://www.se.com/fr/fr/product/download-pdf/A9R11440"
+    },
+    {
+      "id": "schneider-a9r11463",
+      "brand": "schneider",
+      "series": "iID",
+      "article": "A9R11463",
+      "model": "iID 4P 63A 30mA AC",
+      "category": "rcd",
+      "modules": 4,
+      "specs": {
+        "poles": "4P",
+        "ratedCurrentA": 63,
+        "sensitivityMa": 30,
+        "rcdType": "AC"
+      },
+      "verified": true,
+      "source": "https://www.se.com/fr/fr/product/download-pdf/A9R11463"
+    },
+    {
+      "id": "schneider-a9dc3606",
+      "brand": "schneider",
+      "series": "iCV40N",
+      "article": "A9DC3606",
+      "model": "iCV40N 1P+N C6 30mA A",
+      "category": "rcbo",
+      "modules": 2,
+      "specs": {
+        "poles": "1P+N",
+        "ratedCurrentA": 6,
+        "curve": "C",
+        "breakingCapacityKa": 6,
+        "sensitivityMa": 30,
+        "rcdType": "A"
+      },
+      "verified": true,
+      "source": "https://www.se.com/nl/nl/product/download-pdf/A9DC3606"
+    },
+    {
+      "id": "schneider-a9dc3610",
+      "brand": "schneider",
+      "series": "iCV40N",
+      "article": "A9DC3610",
+      "model": "iCV40N 1P+N C10 30mA A",
+      "category": "rcbo",
+      "modules": 2,
+      "specs": {
+        "poles": "1P+N",
+        "ratedCurrentA": 10,
+        "curve": "C",
+        "breakingCapacityKa": 6,
+        "sensitivityMa": 30,
+        "rcdType": "A"
+      },
+      "verified": true,
+      "source": "https://www.se.com/nl/nl/product/download-pdf/A9DC3610"
+    },
+    {
+      "id": "schneider-a9dc3616",
+      "brand": "schneider",
+      "series": "iCV40N",
+      "article": "A9DC3616",
+      "model": "iCV40N 1P+N C16 30mA A",
+      "category": "rcbo",
+      "modules": 2,
+      "specs": {
+        "poles": "1P+N",
+        "ratedCurrentA": 16,
+        "curve": "C",
+        "breakingCapacityKa": 6,
+        "sensitivityMa": 30,
+        "rcdType": "A"
+      },
+      "verified": true,
+      "source": "https://www.se.com/nl/nl/product/download-pdf/A9DC3616"
+    },
+    {
+      "id": "schneider-a9dc3620",
+      "brand": "schneider",
+      "series": "iCV40N",
+      "article": "A9DC3620",
+      "model": "iCV40N 1P+N C20 30mA A",
+      "category": "rcbo",
+      "modules": 2,
+      "specs": {
+        "poles": "1P+N",
+        "ratedCurrentA": 20,
+        "curve": "C",
+        "breakingCapacityKa": 6,
+        "sensitivityMa": 30,
+        "rcdType": "A"
+      },
+      "verified": true,
+      "source": "https://www.se.com/nl/nl/product/download-pdf/A9DC3620"
+    },
+    {
+      "id": "schneider-a9dc3625",
+      "brand": "schneider",
+      "series": "iCV40N",
+      "article": "A9DC3625",
+      "model": "iCV40N 1P+N C25 30mA A",
+      "category": "rcbo",
+      "modules": 2,
+      "specs": {
+        "poles": "1P+N",
+        "ratedCurrentA": 25,
+        "curve": "C",
+        "breakingCapacityKa": 6,
+        "sensitivityMa": 30,
+        "rcdType": "A"
+      },
+      "verified": true,
+      "source": "https://www.se.com/nl/nl/product/download-pdf/A9DC3625"
+    },
+    {
+      "id": "schneider-a9dc3632",
+      "brand": "schneider",
+      "series": "iCV40N",
+      "article": "A9DC3632",
+      "model": "iCV40N 1P+N C32 30mA A",
+      "category": "rcbo",
+      "modules": 2,
+      "specs": {
+        "poles": "1P+N",
+        "ratedCurrentA": 32,
+        "curve": "C",
+        "breakingCapacityKa": 6,
+        "sensitivityMa": 30,
+        "rcdType": "A"
+      },
+      "verified": true,
+      "source": "https://www.se.com/nl/nl/product/download-pdf/A9DC3632"
+    },
+    {
+      "id": "schneider-a9de3606",
+      "brand": "schneider",
+      "series": "iCV40N",
+      "article": "A9DE3606",
+      "model": "iCV40N 1P+N C6 30mA AC",
+      "category": "rcbo",
+      "modules": 2,
+      "specs": {
+        "poles": "1P+N",
+        "ratedCurrentA": 6,
+        "curve": "C",
+        "breakingCapacityKa": 6,
+        "sensitivityMa": 30,
+        "rcdType": "AC"
+      },
+      "verified": true,
+      "source": "https://www.se.com/pt/pt/product/download-pdf/A9DE3606"
+    },
+    {
+      "id": "schneider-a9de3610",
+      "brand": "schneider",
+      "series": "iCV40N",
+      "article": "A9DE3610",
+      "model": "iCV40N 1P+N C10 30mA AC",
+      "category": "rcbo",
+      "modules": 2,
+      "specs": {
+        "poles": "1P+N",
+        "ratedCurrentA": 10,
+        "curve": "C",
+        "breakingCapacityKa": 6,
+        "sensitivityMa": 30,
+        "rcdType": "AC"
+      },
+      "verified": true,
+      "source": "https://www.se.com/pt/pt/product/download-pdf/A9DE3610"
+    },
+    {
+      "id": "schneider-a9de3616",
+      "brand": "schneider",
+      "series": "iCV40N",
+      "article": "A9DE3616",
+      "model": "iCV40N 1P+N C16 30mA AC",
+      "category": "rcbo",
+      "modules": 2,
+      "specs": {
+        "poles": "1P+N",
+        "ratedCurrentA": 16,
+        "curve": "C",
+        "breakingCapacityKa": 6,
+        "sensitivityMa": 30,
+        "rcdType": "AC"
+      },
+      "verified": true,
+      "source": "https://www.se.com/pt/pt/product/download-pdf/A9DE3616"
+    },
+    {
+      "id": "schneider-a9de3620",
+      "brand": "schneider",
+      "series": "iCV40N",
+      "article": "A9DE3620",
+      "model": "iCV40N 1P+N C20 30mA AC",
+      "category": "rcbo",
+      "modules": 2,
+      "specs": {
+        "poles": "1P+N",
+        "ratedCurrentA": 20,
+        "curve": "C",
+        "breakingCapacityKa": 6,
+        "sensitivityMa": 30,
+        "rcdType": "AC"
+      },
+      "verified": true,
+      "source": "https://www.se.com/pt/pt/product/download-pdf/A9DE3620"
+    },
+    {
+      "id": "schneider-a9de3625",
+      "brand": "schneider",
+      "series": "iCV40N",
+      "article": "A9DE3625",
+      "model": "iCV40N 1P+N C25 30mA AC",
+      "category": "rcbo",
+      "modules": 2,
+      "specs": {
+        "poles": "1P+N",
+        "ratedCurrentA": 25,
+        "curve": "C",
+        "breakingCapacityKa": 6,
+        "sensitivityMa": 30,
+        "rcdType": "AC"
+      },
+      "verified": true,
+      "source": "https://www.se.com/pt/pt/product/download-pdf/A9DE3625"
+    },
+    {
+      "id": "schneider-a9de3632",
+      "brand": "schneider",
+      "series": "iCV40N",
+      "article": "A9DE3632",
+      "model": "iCV40N 1P+N C32 30mA AC",
+      "category": "rcbo",
+      "modules": 2,
+      "specs": {
+        "poles": "1P+N",
+        "ratedCurrentA": 32,
+        "curve": "C",
+        "breakingCapacityKa": 6,
+        "sensitivityMa": 30,
+        "rcdType": "AC"
+      },
+      "verified": true,
+      "source": "https://www.se.com/pt/pt/product/download-pdf/A9DE3632"
+    },
+    {
+      "id": "schneider-a9s65240",
+      "brand": "schneider",
+      "series": "iSW",
+      "article": "A9S65240",
+      "model": "iSW 2P 40A",
+      "category": "switch",
+      "modules": 2,
+      "specs": {
+        "poles": "2P",
+        "ratedCurrentA": 40
+      },
+      "verified": true,
+      "source": "https://www.se.com/de/de/product/download-pdf/A9S65240"
+    },
+    {
+      "id": "schneider-a9s65263",
+      "brand": "schneider",
+      "series": "iSW",
+      "article": "A9S65263",
+      "model": "iSW 2P 63A",
+      "category": "switch",
+      "modules": 2,
+      "specs": {
+        "poles": "2P",
+        "ratedCurrentA": 63
+      },
+      "verified": true,
+      "source": "https://www.se.com/de/de/product/download-pdf/A9S65263"
+    },
+    {
+      "id": "schneider-a9s65291",
+      "brand": "schneider",
+      "series": "iSW",
+      "article": "A9S65291",
+      "model": "iSW 2P 100A",
+      "category": "switch",
+      "modules": 2,
+      "specs": {
+        "poles": "2P",
+        "ratedCurrentA": 100
+      },
+      "verified": true,
+      "source": "https://www.se.com/de/de/product/download-pdf/A9S65291"
+    },
+    {
+      "id": "schneider-a9s65340",
+      "brand": "schneider",
+      "series": "iSW",
+      "article": "A9S65340",
+      "model": "iSW 3P 40A",
+      "category": "switch",
+      "modules": 3,
+      "specs": {
+        "poles": "3P",
+        "ratedCurrentA": 40
+      },
+      "verified": true,
+      "source": "https://www.se.com/de/de/product/download-pdf/A9S65340"
+    },
+    {
+      "id": "schneider-a9s65363",
+      "brand": "schneider",
+      "series": "iSW",
+      "article": "A9S65363",
+      "model": "iSW 3P 63A",
+      "category": "switch",
+      "modules": 3,
+      "specs": {
+        "poles": "3P",
+        "ratedCurrentA": 63
+      },
+      "verified": true,
+      "source": "https://www.se.com/de/de/product/download-pdf/A9S65363"
+    },
+    {
+      "id": "schneider-a9s65391",
+      "brand": "schneider",
+      "series": "iSW",
+      "article": "A9S65391",
+      "model": "iSW 3P 100A",
+      "category": "switch",
+      "modules": 3,
+      "specs": {
+        "poles": "3P",
+        "ratedCurrentA": 100
+      },
+      "verified": true,
+      "source": "https://www.se.com/de/de/product/download-pdf/A9S65391"
+    },
+    {
+      "id": "schneider-a9s65440",
+      "brand": "schneider",
+      "series": "iSW",
+      "article": "A9S65440",
+      "model": "iSW 4P 40A",
+      "category": "switch",
+      "modules": 4,
+      "specs": {
+        "poles": "4P",
+        "ratedCurrentA": 40
+      },
+      "verified": true,
+      "source": "https://www.se.com/de/de/product/download-pdf/A9S65440"
+    },
+    {
+      "id": "schneider-a9s65463",
+      "brand": "schneider",
+      "series": "iSW",
+      "article": "A9S65463",
+      "model": "iSW 4P 63A",
+      "category": "switch",
+      "modules": 4,
+      "specs": {
+        "poles": "4P",
+        "ratedCurrentA": 63
+      },
+      "verified": true,
+      "source": "https://www.se.com/de/de/product/download-pdf/A9S65463"
+    },
+    {
+      "id": "schneider-a9s65491",
+      "brand": "schneider",
+      "series": "iSW",
+      "article": "A9S65491",
+      "model": "iSW 4P 100A",
+      "category": "switch",
+      "modules": 4,
+      "specs": {
+        "poles": "4P",
+        "ratedCurrentA": 100
+      },
+      "verified": true,
+      "source": "https://www.se.com/de/de/product/download-pdf/A9S65491"
+    },
+    {
+      "id": "schneider-a9l40500",
+      "brand": "schneider",
+      "series": "iPRD",
+      "article": "A9L40500",
+      "model": "iPRD40 1P+N",
+      "category": "spd",
+      "modules": 2,
+      "specs": {
+        "poles": "1P+N",
+        "spdType": "2"
+      },
+      "verified": true,
+      "source": "https://www.se.com/de/de/product/download-pdf/A9L40500"
+    },
+    {
+      "id": "schneider-a9l40501",
+      "brand": "schneider",
+      "series": "iPRD",
+      "article": "A9L40501",
+      "model": "iPRD40r 1P+N",
+      "category": "spd",
+      "modules": 2,
+      "specs": {
+        "poles": "1P+N",
+        "spdType": "2"
+      },
+      "verified": true,
+      "source": "https://www.se.com/de/de/product/download-pdf/A9L40501"
+    },
+    {
+      "id": "schneider-a9l40600",
+      "brand": "schneider",
+      "series": "iPRD",
+      "article": "A9L40600",
+      "model": "iPRD40 3P+N",
+      "category": "spd",
+      "modules": 4,
+      "specs": {
+        "poles": "3P+N",
+        "spdType": "2"
+      },
+      "verified": true,
+      "source": "https://www.se.com/de/de/product/download-pdf/A9L40600"
+    },
+    {
+      "id": "schneider-a9l40601",
+      "brand": "schneider",
+      "series": "iPRD",
+      "article": "A9L40601",
+      "model": "iPRD40r 3P+N",
+      "category": "spd",
+      "modules": 4,
+      "specs": {
+        "poles": "3P+N",
+        "spdType": "2"
+      },
+      "verified": true,
+      "source": "https://www.se.com/de/de/product/download-pdf/A9L40601"
+    },
+    {
+      "id": "schneider-a9l16292",
+      "brand": "schneider",
+      "series": "iQuick PRD",
+      "article": "A9L16292",
+      "model": "iQuick PRD40r 1P+N",
+      "category": "spd",
+      "modules": 4,
+      "specs": {
+        "poles": "1P+N",
+        "spdType": "2"
+      },
+      "verified": true,
+      "source": "https://www.se.com/de/de/product/download-pdf/A9L16292"
+    },
+    {
+      "id": "schneider-a9l16294",
+      "brand": "schneider",
+      "series": "iQuick PRD",
+      "article": "A9L16294",
+      "model": "iQuick PRD40r 3P+N",
+      "category": "spd",
+      "modules": 7.5,
+      "specs": {
+        "poles": "3P+N",
+        "spdType": "2"
+      },
+      "verified": true,
+      "source": "https://www.se.com/de/de/product/download-pdf/A9L16294"
+    },
+    {
+      "id": "schneider-a9l16282",
+      "brand": "schneider",
+      "series": "iPRD1",
+      "article": "A9L16282",
+      "model": "iPRD1 12.5r 1P+N",
+      "category": "spd",
+      "modules": 2,
+      "specs": {
+        "poles": "1P+N",
+        "spdType": "1+2"
+      },
+      "verified": true,
+      "source": "https://www.se.com/de/de/product/download-pdf/A9L16282"
+    },
+    {
+      "id": "schneider-a9l16482",
+      "brand": "schneider",
+      "series": "iPRD1",
+      "article": "A9L16482",
+      "model": "iPRD1 12.5r 3P+N",
+      "category": "spd",
+      "modules": 4,
+      "specs": {
+        "poles": "3P+N",
+        "spdType": "1+2"
+      },
+      "verified": true,
+      "source": "https://www.se.com/de/de/product/download-pdf/A9L16482"
+    }
+  ]
+}

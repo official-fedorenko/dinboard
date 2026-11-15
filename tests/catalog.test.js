@@ -181,6 +181,12 @@ describe('validateBrandFile', () => {
     assert.deepEqual(validateBrandFile(brandFile({ devices: [mcb({ verified: false })] })), [], 'без source можно при verified: false');
   });
 
+  test('необязательное поле model (тип у производителя)', () => {
+    assert.deepEqual(validateBrandFile(brandFile({ devices: [mcb({ model: 'S201-C16' })], enclosures: [enclosure({ model: '41A12X21' })] })), []);
+    hasError(validateBrandFile(brandFile({ devices: [mcb({ model: '' })] })), 'devices[0].model: нужна непустая строка');
+    hasError(validateBrandFile(brandFile({ enclosures: [enclosure({ model: 5 })] })), 'enclosures[0].model: нужна непустая строка');
+  });
+
   test('версия схемы и не-объекты', () => {
     hasError(validateBrandFile(brandFile({ schemaVersion: 2 })), 'schemaVersion: ожидалось 1');
     assert.deepEqual(validateBrandFile(null, 'x.json'), ['x.json: нужен объект']);

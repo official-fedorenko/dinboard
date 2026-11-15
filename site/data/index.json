@@ -1,6 +1,30 @@
 {
   "schemaVersion": 1,
   "brands": [
-    { "id": "hager", "name": "Hager", "file": "hager.json" }
+    {
+      "id": "abb",
+      "name": "ABB",
+      "file": "abb.json"
+    },
+    {
+      "id": "eaton",
+      "name": "Eaton",
+      "file": "eaton.json"
+    },
+    {
+      "id": "hager",
+      "name": "Hager",
+      "file": "hager.json"
+    },
+    {
+      "id": "legrand",
+      "name": "Legrand",
+      "file": "legrand.json"
+    },
+    {
+      "id": "schneider",
+      "name": "Schneider Electric",
+      "file": "schneider.json"
+    }
   ]
 }

@@ -69,6 +69,7 @@ const ENCLOSURE_FIELDS = {
   brand: [id, true],
   series: [nonEmptyString, true],
   article: [nonEmptyString, true],
+  model: [nonEmptyString, false], // обозначение типа у производителя (например, 41A12X21)
   mounting: [oneOf(MOUNTINGS), true],
   rows: [intInRange(1, 12), true],
   modulesPerRow: [intInRange(1, 36), true],
@@ -86,6 +87,7 @@ const DEVICE_FIELDS = {
   brand: [id, true],
   series: [nonEmptyString, true],
   article: [nonEmptyString, true],
+  model: [nonEmptyString, false], // обозначение типа (например, S201-C16), если артикул — цифровой код
   category: [null, true], // проверяется отдельно, вместе со specs
   modules: [moduleWidth, true],
   specs: [null, true],

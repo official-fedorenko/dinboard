@@ -46,9 +46,14 @@ export function categoryName(category, t) {
   return t(`category.${category}`);
 }
 
-/** Название корпуса: «Volta VA24B». */
+/** Название корпуса: «Volta VA24B» (тип, а если его нет — артикул). */
 export function enclosureTitle(enclosure) {
-  return `${enclosure.series} ${enclosure.article}`;
+  return `${enclosure.series} ${enclosure.model ?? enclosure.article}`;
+}
+
+/** Производитель и тип: «ABB S201-C16» или просто «Hager». */
+export function deviceRef(device, brandName) {
+  return device.model ? `${brandName} ${device.model}` : brandName;
 }
 
 /** Описание корпуса: «накладной · 2 × 12 мод. · IP30 · без дверцы». */

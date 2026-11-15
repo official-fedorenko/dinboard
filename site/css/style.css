@@ -641,6 +641,13 @@ button:focus-visible {
   font-size: 14px;
 }
 
+.unverified-note {
+  display: block;
+  margin-top: 2px;
+  color: var(--warn-text);
+  font-size: 12px;
+}
+
 .badge {
   display: inline-block;
   margin-left: 6px;

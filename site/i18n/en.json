@@ -25,6 +25,7 @@
   "door.transparent": "transparent door",
   "enclosure.layout": "{rows} × {modules} mod.",
   "enclosure.choose": "Choose an enclosure to start building.",
+  "enclosure.unverifiedHint": "Enclosure data, including dimensions, is not confirmed by an official source — check the manufacturer’s catalogue.",
   "enclosure.change": "Change enclosure",
   "enclosure.keep": "Keep current enclosure",
   "enclosure.confirmOverflow": "Some devices will not fit into the new enclosure ({n} pcs). They will be removed from the board. Continue?",

@@ -21,6 +21,7 @@ import {
   enclosureTitle,
   enclosureDescription,
   enclosureSize,
+  deviceRef,
   num,
 } from './format.js';
 import { h } from './dom.js';
@@ -73,6 +74,7 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
     activeRow: 0,
     selectedUid: null,
     brand: 'all',
+    deviceBrand: null, // фильтр оборудования по производителю; null — как у выбранного корпуса
     mounting: 'all',
     category: CATEGORY_ORDER.find((c) => catalog.devices.some((d) => d.category === c)) ?? CATEGORY_ORDER[0],
     poles: 'all',
@@ -454,7 +456,12 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
         { class: 'enclosure-text' },
         h('strong', {}, `${brandNames.get(e.brand)} ${enclosureTitle(e)}`),
         h('span', {}, enclosureDescription(e, t)),
-        h('span', { class: 'muted' }, enclosureSize(e, t)),
+        h(
+          'span',
+          { class: 'muted' },
+          enclosureSize(e, t),
+          !e.verified && h('span', { class: 'badge', title: t('enclosure.unverifiedHint') }, t('device.unverified')),
+        ),
       ),
     );
   }
@@ -610,7 +617,9 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
   }
 
   function renderPalette() {
-    const inCategory = catalog.devices.filter((d) => d.category === state.category);
+    const brandFilter = state.deviceBrand ?? enclosure()?.brand ?? 'all';
+    const ofBrand = catalog.devices.filter((d) => brandFilter === 'all' || d.brand === brandFilter);
+    const inCategory = ofBrand.filter((d) => d.category === state.category);
     const poles = POLE_ORDER.filter((p) => inCategory.some((d) => d.specs.poles === p));
     const list = inCategory.filter((d) => state.poles === 'all' || d.specs.poles === state.poles).sort(compareDevices);
     const canAdd = Boolean(state.board);
@@ -618,10 +627,17 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
       'section',
       { class: 'panel palette', 'aria-labelledby': 'h-devices' },
       h('h2', { id: 'h-devices' }, t('section.devices')),
+      catalog.brands.length > 1 &&
+        chips(
+          t('filter.brand'),
+          brandFilter,
+          [['all', t('filter.all')], ...catalog.brands.map((b) => [b.id, b.name])],
+          (deviceBrand) => update({ deviceBrand, poles: 'all' }),
+        ),
       chips(
         t('filter.category'),
         state.category,
-        CATEGORY_ORDER.filter((c) => catalog.devices.some((d) => d.category === c)).map((c) => [c, categoryName(c, t)]),
+        CATEGORY_ORDER.filter((c) => ofBrand.some((d) => d.category === c)).map((c) => [c, categoryName(c, t)]),
         (category) => update({ category, poles: 'all' }),
       ),
       poles.length > 1 && chips(t('filter.poles'), state.poles, [['all', t('filter.all')], ...poles.map((p) => [p, p])], (p) => update({ poles: p })),
@@ -641,7 +657,7 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
               h(
                 'span',
                 { class: 'muted' },
-                `${brandNames.get(d.brand)} ${d.article} · ${t('device.modules', { n: fmt(d.modules) })}`,
+                `${deviceRef(d, brandNames.get(d.brand))} · ${d.article} · ${t('device.modules', { n: fmt(d.modules) })}`,
                 !d.verified && h('span', { class: 'badge', title: t('device.unverifiedHint') }, t('device.unverified')),
               ),
             ),
@@ -669,10 +685,10 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
     const head = h('h2', { id: 'h-summary' }, t('section.summary'));
     if (!enc) return h('section', { class: 'panel summary', 'aria-labelledby': 'h-summary' }, head, h('p', { class: 'hint' }, t('summary.empty')));
     const rows = [
-      [enc.article, t('summary.enclosure', { title: `${enclosureTitle(enc)} (${enclosureDescription(enc, t)})` }), 1],
+      [enc.article, t('summary.enclosure', { title: `${brandNames.get(enc.brand)} ${enclosureTitle(enc)} (${enclosureDescription(enc, t)})` }), 1, !enc.verified && t('enclosure.unverifiedHint')],
       ...billOfMaterials(state.board).map(({ deviceId, count }) => {
         const d = devices.get(deviceId);
-        return [d.article, deviceTitle(d, t), count];
+        return [d.article, `${deviceTitle(d, t)} — ${deviceRef(d, brandNames.get(d.brand))}`, count, !d.verified && t('device.unverifiedHint')];
       }),
     ];
     return h(
@@ -683,7 +699,20 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
         'table',
         {},
         h('thead', {}, h('tr', {}, h('th', { scope: 'col' }, t('summary.article')), h('th', { scope: 'col' }, t('summary.name')), h('th', { scope: 'col', class: 'num' }, t('summary.qty')))),
-        h('tbody', {}, rows.map(([article, name, qty]) => h('tr', {}, h('td', { class: 'mono' }, article), h('td', {}, name), h('td', { class: 'num' }, qty)))),
+        h(
+          'tbody',
+          {},
+          // Непроверенная позиция — пометка с пояснением прямо в строке (видна и при печати)
+          rows.map(([article, name, qty, unverified]) =>
+            h(
+              'tr',
+              {},
+              h('td', { class: 'mono' }, article),
+              h('td', {}, name, unverified && h('span', { class: 'badge', title: unverified }, t('device.unverified')), unverified && h('span', { class: 'unverified-note' }, unverified)),
+              h('td', { class: 'num' }, qty),
+            ),
+          ),
+        ),
       ),
     );
   }
