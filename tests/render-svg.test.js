@@ -28,7 +28,7 @@ const render = (layout, extra = {}) =>
   renderBoardSvg(layout, devices, { t, deviceTitle, deviceLabel, title: 'Щит', ...extra });
 
 describe('layoutBoard', () => {
-  test('рейка по центру корпуса, устройства подряд с реальной шириной', () => {
+  test('рейка по центру корпуса, устройства на своих местах с реальной шириной', () => {
     const layout = layoutBoard(enclosure, sampleBoard(), devices);
     assert.equal(layout.width, 305);
     assert.equal(layout.height, 370);
@@ -44,8 +44,22 @@ describe('layoutBoard', () => {
         ['mcb', 52.5, 17.5],
       ],
     );
-    assert.equal(r0.freeX, r0.x0 + 70);
+    assert.deepEqual(r0.gaps, [{ x: r0.x0 + 70, w: 8 * MODULE_MM }]);
     assert.equal(r1.items[0].w, 70);
+  });
+
+  test('пустые места между устройствами — отдельные заглушки', () => {
+    let board = createBoard(enclosure);
+    ({ board } = addDevice(board, enclosure, devices, 'mcb', { row: 0, pos: 2 }));
+    ({ board } = addDevice(board, enclosure, devices, 'rcd', { row: 0, pos: 7.5 }));
+    const layout = layoutBoard(enclosure, board, devices);
+    const r0 = layout.rows[0];
+    assert.deepEqual(r0.items.map((i) => (i.x - r0.x0) / MODULE_MM), [2, 7.5]);
+    assert.deepEqual(r0.gaps.map((g) => [(g.x - r0.x0) / MODULE_MM, g.w / MODULE_MM]), [[0, 2], [3, 4.5], [9.5, 2.5]]);
+    const svg = render(layout);
+    assert.equal((svg.match(/class="blank"/g) ?? []).length, 4, '3 промежутка в ряду 1 и пустой ряд 2');
+    assert.match(svg, /aria-label="УЗО 40 А, 30 мА, тип A, 1P\+N, ряд 1, модуль 8.5"/);
+    assert.match(render(layout, { formatNumber: (v) => String(v).replace('.', ',') }), /модуль 8,5"/);
   });
 
   test('ряды внутри корпуса, по порядку сверху вниз, не пересекаются', () => {
@@ -77,11 +91,11 @@ describe('hitTest', () => {
     assert.equal(hitTest(layout, r0.x0, layout.height).row, 1, 'нижний край корпуса — последний ряд');
   });
 
-  test('позиция в ряду по серединам устройств', () => {
-    assert.equal(hitTest(layout, r0.x0 + 1, r0.cy).index, 0);
-    assert.equal(hitTest(layout, r0.x0 + 20, r0.cy).index, 1, 'правее середины УЗО (17.5)');
-    assert.equal(hitTest(layout, r0.x0 + 45, r0.cy).index, 2, 'правее середины первого автомата (43.75)');
-    assert.equal(hitTest(layout, r0.x1, r0.cy).index, 3);
+  test('место в ряду — в модулях от левого края рейки', () => {
+    assert.equal(hitTest(layout, r0.x0, r0.cy).offset, 0);
+    assert.equal(hitTest(layout, r0.x0 + 3.5 * MODULE_MM, r0.cy).offset, 3.5);
+    assert.equal(hitTest(layout, r0.x1, r0.cy).offset, 12);
+    assert.ok(hitTest(layout, 1, r0.cy).offset < 0, 'левее рейки, но в корпусе');
   });
 
   test('пустой щит без рядов', () => {
@@ -121,7 +135,7 @@ describe('renderBoardSvg', () => {
 
   test('доступность: устройства — кнопки с подписью и ключом фокуса', () => {
     const svg = render(layout, { selectedUid: 2 });
-    assert.match(svg, /data-uid="2" data-focus="item-2" tabindex="0" role="button" aria-pressed="true" aria-label="Автомат C16, 1P, ряд 1, место 2"/);
+    assert.match(svg, /data-uid="2" data-focus="item-2" tabindex="0" role="button" aria-pressed="true" aria-label="Автомат C16, 1P, ряд 1, модуль 3"/);
     assert.match(svg, /data-uid="1" [^>]*aria-pressed="false"/);
     assert.match(svg, /role="group" aria-label="Щит"/);
   });

@@ -1,17 +1,19 @@
 // Сохранение и загрузка щита: ссылка, файл проекта, хранилище браузера.
 // Модуль без DOM (кроме переданного объекта хранилища): тестируется в Node.
 //
-// Внутренний вид проекта: { enclosureId, rows: [[deviceId, ...], ...] } — без uid,
-// они создаются заново при сборке щита.
+// Внутренний вид проекта: { enclosureId, rows: [[deviceId, ...], ...], positions?: [[pos, ...], ...], earthing? } —
+// без uid, они создаются заново при сборке щита. positions — с какого модуля начинается каждое
+// устройство (по форме как rows). Без positions (старые ссылки и файлы) устройства ставятся подряд.
 //
 // Форматы:
-//   ссылка — #b=<base64url(JSON)>, JSON: { v: 1, e: enclosureId, d: [уникальные deviceId], r: [[индекс в d, ...], ...] };
-//   файл   — JSON: { app: "dinboard", version: 1, savedAt, enclosure: { id, article },
-//                    rows: [[{ id, article }, ...], ...] } (артикулы — для человека, при загрузке не нужны);
+//   ссылка — #b=<base64url(JSON)>, JSON: { v: 1, e: enclosureId, d: [уникальные deviceId], r: [[индекс в d, ...], ...],
+//            p?: [[pos, ...], ...], g?: earthing };
+//   файл   — JSON: { app: "dinboard", version: 1, savedAt, enclosure: { id, article }, earthing?,
+//                    rows: [[{ id, article, pos? }, ...], ...] } (артикулы — для человека, при загрузке не нужны);
 //   хранилище браузера — тот же формат, что у файла.
 // Любые входящие данные проверяются: структура, лимиты, наличие в каталоге, место в рядах.
 
-import { createBoard, addDevice, BoardError } from './board.js';
+import { createBoard, addDevice, BoardError, POS_STEP } from './board.js';
 import { EARTHING_SYSTEMS } from './catalog.js';
 
 export const PROJECT_VERSION = 1;
@@ -24,6 +26,7 @@ export const LIMITS = {
   linkLength: 20_000, // часть ссылки после #b=
   rows: 12,
   itemsPerRow: 72, // 36 модулей по 0.5
+  modulesPerRow: 36, // наибольшая позиция на рейке
   idLength: 100,
 };
 
@@ -42,10 +45,15 @@ export class ProjectError extends Error {
 const isObject = (v) => v !== null && typeof v === 'object' && !Array.isArray(v);
 const isId = (v) => typeof v === 'string' && v.length > 0 && v.length <= LIMITS.idLength && /^[a-z0-9-]+$/.test(v);
 const formatError = (reason) => new ProjectError('format', { reason });
+const isPos = (v) => typeof v === 'number' && Number.isInteger(v / POS_STEP) && v >= 0 && v <= LIMITS.modulesPerRow;
 
-/** Проект из щита: { enclosureId, rows: [[deviceId]], earthing? }. */
+/** Проект из щита: { enclosureId, rows: [[deviceId]], positions: [[pos]], earthing? }. */
 export function projectFromBoard(board) {
-  const project = { enclosureId: board.enclosureId, rows: board.rows.map((row) => row.map((item) => item.deviceId)) };
+  const project = {
+    enclosureId: board.enclosureId,
+    rows: board.rows.map((row) => row.map((item) => item.deviceId)),
+    positions: board.rows.map((row) => row.map((item) => item.pos)),
+  };
   if (board.earthing) project.earthing = board.earthing;
   return project;
 }
@@ -59,6 +67,13 @@ function checkShape(project) {
   for (const row of project.rows) {
     if (!Array.isArray(row) || row.length > LIMITS.itemsPerRow || !row.every(isId)) throw formatError('row');
   }
+  if (project.positions !== undefined) {
+    const { positions, rows } = project;
+    const sameShape = Array.isArray(positions) && positions.length === rows.length;
+    if (!sameShape || !positions.every((row, i) => Array.isArray(row) && row.length === rows[i].length && row.every(isPos))) {
+      throw formatError('positions');
+    }
+  }
   if (project.earthing !== undefined && !EARTHING_SYSTEMS.includes(project.earthing)) throw formatError('earthing');
   return project;
 }
@@ -66,7 +81,10 @@ function checkShape(project) {
 /**
  * Собирает щит из проекта по каталогу.
  * Неизвестный корпус — ProjectError('enclosure'). Устройства, которых нет в каталоге,
- * пропускаются (возвращаются в skipped). Лишние ряды или нехватка места — ProjectError('no-space').
+ * пропускаются (возвращаются в skipped), остальные остаются на своих местах.
+ * Сначала устройства встают на свои позиции; если позиции нет или место не подходит
+ * (например, в каталоге изменилась ширина устройства) — на первое свободное место своего ряда.
+ * Лишние ряды или нехватка места — ProjectError('no-space').
  * Возвращает { board, skipped }.
  */
 export function buildBoard(project, enclosures, devices) {
@@ -77,20 +95,34 @@ export function buildBoard(project, enclosures, devices) {
 
   let board = { ...createBoard(enclosure), earthing: project.earthing ?? null };
   const skipped = [];
+  const rest = []; // без позиции или место не подошло — после всех, кто встал на своё место
   project.rows.forEach((row, rowIndex) => {
-    for (const deviceId of row) {
+    row.forEach((deviceId, i) => {
       if (!devices.has(deviceId)) {
         skipped.push(deviceId);
-        continue;
+        return;
+      }
+      const pos = project.positions?.[rowIndex][i];
+      if (pos === undefined) {
+        rest.push({ deviceId, rowIndex });
+        return;
       }
       try {
-        ({ board } = addDevice(board, enclosure, devices, deviceId, { row: rowIndex }));
+        ({ board } = addDevice(board, enclosure, devices, deviceId, { row: rowIndex, pos }));
       } catch (err) {
-        if (err instanceof BoardError && err.code === 'no-space') throw new ProjectError('no-space', { row: rowIndex });
-        throw err;
+        if (!(err instanceof BoardError) || (err.code !== 'occupied' && err.code !== 'bad-pos')) throw err;
+        rest.push({ deviceId, rowIndex });
       }
-    }
+    });
   });
+  for (const { deviceId, rowIndex } of rest) {
+    try {
+      ({ board } = addDevice(board, enclosure, devices, deviceId, { row: rowIndex }));
+    } catch (err) {
+      if (err instanceof BoardError && err.code === 'no-space') throw new ProjectError('no-space', { row: rowIndex });
+      throw err;
+    }
+  }
   return { board, skipped };
 }
 
@@ -135,6 +167,7 @@ export function encodeLink(project) {
   const dictionary = [...new Set(project.rows.flat())];
   const index = new Map(dictionary.map((id, i) => [id, i]));
   const compact = { v: PROJECT_VERSION, e: project.enclosureId, d: dictionary, r: project.rows.map((row) => row.map((id) => index.get(id))) };
+  if (project.positions) compact.p = project.positions;
   if (project.earthing) compact.g = project.earthing;
   return toBase64Url(JSON.stringify(compact));
 }
@@ -154,7 +187,12 @@ export function decodeLink(code) {
       return data.d[i];
     });
   });
-  return checkShape({ enclosureId: data.e, rows, ...(data.g === undefined ? {} : { earthing: data.g }) });
+  return checkShape({
+    enclosureId: data.e,
+    rows,
+    ...(data.p === undefined ? {} : { positions: data.p }),
+    ...(data.g === undefined ? {} : { earthing: data.g }),
+  });
 }
 
 /** Код из адреса страницы (location.hash) или null, если ссылки на щит нет. */
@@ -173,7 +211,9 @@ export function projectToFile(project, enclosures, devices, savedAt = new Date()
     savedAt: savedAt.toISOString(),
     enclosure: { id: project.enclosureId, article: enclosures.get(project.enclosureId)?.article ?? '' },
     ...(project.earthing ? { earthing: project.earthing } : {}),
-    rows: project.rows.map((row) => row.map((id) => ({ id, article: devices.get(id)?.article ?? '' }))),
+    rows: project.rows.map((row, r) =>
+      row.map((id, i) => ({ id, article: devices.get(id)?.article ?? '', ...(project.positions ? { pos: project.positions[r][i] } : {}) })),
+    ),
   };
   return JSON.stringify(data, null, 2) + '\n';
 }
@@ -183,14 +223,20 @@ export function projectFromFile(text) {
   const data = parseJson(text, LIMITS.textLength);
   if (!isObject(data) || data.app !== 'dinboard' || data.version !== PROJECT_VERSION) throw formatError('file');
   if (!isObject(data.enclosure) || !Array.isArray(data.rows)) throw formatError('file');
-  const rows = data.rows.map((row) => {
+  for (const row of data.rows) {
     if (!Array.isArray(row)) throw formatError('row');
-    return row.map((item) => {
-      if (!isObject(item)) throw formatError('item');
-      return item.id;
-    });
+    if (!row.every(isObject)) throw formatError('item');
+  }
+  // Позиции — у всех устройств или ни у одного (файлы до свободной расстановки — без позиций)
+  const items = data.rows.flat();
+  const withPos = items.filter((item) => item.pos !== undefined).length;
+  if (withPos !== 0 && withPos !== items.length) throw formatError('positions');
+  return checkShape({
+    enclosureId: data.enclosure.id,
+    rows: data.rows.map((row) => row.map((item) => item.id)),
+    ...(withPos ? { positions: data.rows.map((row) => row.map((item) => item.pos)) } : {}),
+    ...(data.earthing === undefined ? {} : { earthing: data.earthing }),
   });
-  return checkShape({ enclosureId: data.enclosure.id, rows, ...(data.earthing === undefined ? {} : { earthing: data.earthing }) });
 }
 
 /** Имя файла: dinboard-<артикул корпуса>-<дата>.json (только безопасные символы). */
@@ -286,20 +332,48 @@ export function restoreProject({ hash, localText, enclosures, devices, confirmLi
     }
   };
 
+  /**
+   * Проект с позициями, как его соберёт buildBoard. Не собирается или собирается с пропусками
+   * (устройств нет в каталоге) — как есть: пропущенные устройства участвуют в сравнении,
+   * чтобы ссылка не заменила такой щит без вопроса.
+   */
+  const asPlaced = (project) => {
+    try {
+      const { board, skipped } = buildBoard(project, enclosures, devices);
+      return skipped.length ? project : projectFromBoard(board);
+    } catch (err) {
+      if (!(err instanceof ProjectError)) throw err;
+      return project;
+    }
+  };
+  /** Своё сохранение при сборке теряет устройства (их нет в каталоге) — его нужно отложить в копию. */
+  const localTrimmed = () => {
+    try {
+      return buildBoard(local, enclosures, devices).skipped.length > 0;
+    } catch (err) {
+      if (!(err instanceof ProjectError)) throw err;
+      return true;
+    }
+  };
+
   const code = linkCodeFromHash(hash);
   if (code === null) return fromLocal();
 
   try {
     const fromLink = decodeLink(code);
-    const replacesLocal = !localBroken && !isEmptyProject(local) && !sameProject(local, fromLink);
+    // Сравниваем щиты так, как их расставит каталог: старая ссылка без позиций (устройства подряд)
+    // на тот же щит, что сохранён, — не замена
+    const replacesLocal = !localBroken && !isEmptyProject(local) && !sameProject(asPlaced(local), asPlaced(fromLink));
     if (replacesLocal && !confirmLink()) return fromLocal();
     const { board, skipped } = buildBoard(fromLink, enclosures, devices);
+    // Свой щит заменяется или в нём есть устройства не из каталога — при перезаписи они пропадут
+    const keepLocal = replacesLocal || (!localBroken && !isEmptyProject(local) && localTrimmed());
     const notices = [];
     if (skipped.length) notices.push({ key: 'project.loadedSkipped', params: { n: skipped.length } });
-    if (replacesLocal) notices.push({ key: 'project.linkOpenedBackup' });
+    if (keepLocal) notices.push({ key: 'project.linkOpenedBackup' });
     else if (!skipped.length) notices.push({ key: 'project.linkOpened' });
     // Свой щит (или испорченное сохранение) будет перезаписан — откладываем его копию
-    return { board, notices, backupText: replacesLocal || localBroken ? localText : null };
+    return { board, notices, backupText: keepLocal || localBroken ? localText : null };
   } catch (err) {
     if (!(err instanceof ProjectError)) throw err;
     const result = fromLocal();

@@ -13,6 +13,8 @@ import {
   billOfMaterials,
   indexById,
   setEarthing,
+  nearestFreePos,
+  snapPos,
   BoardError,
 } from './board.js';
 import {
@@ -26,7 +28,7 @@ import {
   num,
 } from './format.js';
 import { h } from './dom.js';
-import { layoutBoard, hitTest, renderBoardSvg } from './render-svg.js';
+import { layoutBoard, hitTest, renderBoardSvg, MODULE_MM } from './render-svg.js';
 import { checkBoard } from './checks.js';
 import { EARTHING_SYSTEMS } from './catalog.js';
 import {
@@ -71,6 +73,10 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
   const devices = indexById(catalog.devices);
   const enclosures = indexById(catalog.enclosures);
   const brandNames = new Map(catalog.brands.map((b) => [b.id, b.name]));
+  // Значения фильтров корпусов — только те, что есть в каталоге
+  const distinct = (key) => [...new Set(catalog.enclosures.map((e) => e[key]))].sort((a, b) => a - b);
+  const modulesPerRowOptions = distinct('modulesPerRow');
+  const rowsOptions = distinct('rows');
 
   const state = {
     board: initialBoard,
@@ -79,6 +85,8 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
     brand: 'all',
     deviceBrand: null, // фильтр оборудования по производителю; null — как у выбранного корпуса
     mounting: 'all',
+    modulesPerRow: 'all', // фильтр корпусов: модулей в ряду
+    rowsCount: 'all', // фильтр корпусов: число рядов (DIN-реек)
     category: CATEGORY_ORDER.find((c) => catalog.devices.some((d) => d.category === c)) ?? CATEGORY_ORDER[0],
     poles: 'all',
     status: initialStatus,
@@ -195,6 +203,7 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
         ? t('status.noSpaceAny', { title })
         : t('status.noSpace', { row: err.details.row + 1 });
     }
+    if (err.code === 'occupied') return t('status.occupied', { title });
     return t('status.error');
   }
 
@@ -221,14 +230,15 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
     });
   }
 
-  function add(deviceId, row = state.activeRow, index) {
+  /** Добавляет устройство: на место pos ряда row, а без pos — на первое свободное место ряда. */
+  function add(deviceId, row = state.activeRow, pos) {
     const title = deviceTitle(devices.get(deviceId), t);
     try {
-      const result = addDevice(state.board, enclosure(), devices, deviceId, { row, index });
-      update({ board: result.board, selectedUid: result.uid, status: t('status.added', { title }) });
+      const result = addDevice(state.board, enclosure(), devices, deviceId, { row, pos });
+      update({ board: result.board, selectedUid: result.uid, activeRow: row, status: t('status.added', { title }) });
     } catch (err) {
-      // Выбранный ряд заполнен — пробуем любой ряд с местом
-      if (err instanceof BoardError && err.code === 'no-space' && index === undefined) {
+      // В выбранном ряду нет места — пробуем любой ряд с местом (но не при сбросе на конкретное место)
+      if (err instanceof BoardError && err.code === 'no-space' && pos === undefined) {
         try {
           const result = addDevice(state.board, enclosure(), devices, deviceId);
           const to = findItem(result.board, result.uid).row;
@@ -248,20 +258,48 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
     }
   }
 
-  function move(uid, toRow, toIndex) {
-    const item = findItem(state.board, uid);
-    if (!item) return;
-    const title = deviceTitle(devices.get(state.board.rows[item.row][item.index].deviceId), t);
+  /** Устройство по uid: { row, index, item, device } или null. */
+  function locate(uid) {
+    const at = findItem(state.board, uid);
+    if (!at) return null;
+    const item = state.board.rows[at.row][at.index];
+    return { ...at, item, device: devices.get(item.deviceId) };
+  }
+
+  /** Переносит устройство на место toPos ряда toRow (в модулях). Занято — отказ с сообщением. */
+  function move(uid, toRow, toPos) {
+    const at = locate(uid);
+    if (!at) return;
+    const title = deviceTitle(at.device, t);
+    if (toPos === null) {
+      update({ status: t('status.noSpace', { row: toRow + 1 }) });
+      return;
+    }
     try {
-      const board = moveItem(state.board, enclosure(), devices, uid, toRow, toIndex);
-      const to = findItem(board, uid);
+      const board = moveItem(state.board, enclosure(), devices, uid, toRow, toPos);
       update(
-        { board, selectedUid: uid, activeRow: to.row, status: t('status.moved', { title, row: to.row + 1, place: to.index + 1 }) },
+        { board, selectedUid: uid, activeRow: toRow, status: t('status.moved', { title, row: toRow + 1, place: fmt(toPos + 1) }) },
         `item-${uid}`,
       );
     } catch (err) {
       update({ status: reportError(err, title) });
     }
+  }
+
+  /**
+   * Куда сдвинуть кнопкой: ← → — на шаг в сторону или через соседа до ближайшего свободного места;
+   * ↑ ↓ — в соседний ряд, на ближайшее к нынешнему свободное место. null — некуда.
+   */
+  function stepTarget(at, dRow, dPos) {
+    const width = at.device.modules;
+    if (dRow === 0) {
+      return nearestFreePos(state.board, enclosure(), devices, at.row, width, at.item.pos + dPos, {
+        ignoreUid: at.item.uid,
+        direction: dPos,
+        from: at.item.pos,
+      });
+    }
+    return nearestFreePos(state.board, enclosure(), devices, at.row + dRow, width, at.item.pos);
   }
 
   function remove(uid) {
@@ -305,21 +343,24 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
     for (const el of svg.querySelectorAll('.cutout')) el.classList.toggle('drop-target', Number(el.dataset.row) === row);
   }
 
-  /** Переносит устройство uid в точку щита (позиция считается вместе с самим устройством). */
-  function dropExisting(uid, hit) {
-    const from = findItem(state.board, uid);
-    if (!from) return;
+  /**
+   * Переносит устройство uid туда, где его отпустили: ряд — по точке указателя,
+   * место — по сдвигу устройства (dxMm), с притяжением к модулям и краям соседей.
+   */
+  function dropExisting(uid, hit, dxMm) {
+    const at = locate(uid);
+    if (!at) return;
     if (!hit) {
       render(); // отпустили за пределами щита — отмена, устройство возвращается на место
       return;
     }
-    let index = hit.index;
-    if (from.row === hit.row && index > from.index) index -= 1;
-    if (from.row === hit.row && index === from.index) {
+    const raw = at.item.pos + dxMm / MODULE_MM;
+    const pos = snapPos(state.board, enclosure(), devices, hit.row, raw, at.device.modules, uid);
+    if (hit.row === at.row && pos === at.item.pos) {
       render(); // положили на то же место — просто вернуть на место
       return;
     }
-    move(uid, hit.row, index);
+    move(uid, hit.row, pos);
   }
 
   function bindBoardEvents(view, svg, layout) {
@@ -367,7 +408,8 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
         return;
       }
       const p = toBoardPoint(svg, event.clientX, event.clientY);
-      dropExisting(current.uid, p ? hitTest(layout, p.x, p.y) : null);
+      const scale = 1 / (svg.getScreenCTM()?.a || 1);
+      dropExisting(current.uid, p ? hitTest(layout, p.x, p.y) : null, (event.clientX - current.x) * scale);
     };
     view.addEventListener('pointerup', (event) => finish(event, false));
     view.addEventListener('pointercancel', (event) => finish(event, true));
@@ -422,7 +464,12 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
       }
       const p = toBoardPoint(svg, event.clientX, event.clientY);
       const hit = p ? hitTest(layout, p.x, p.y) : null;
-      if (hit && typeof data.deviceId === 'string' && devices.has(data.deviceId)) add(data.deviceId, hit.row, hit.index);
+      if (!hit || typeof data.deviceId !== 'string' || !devices.has(data.deviceId)) return;
+      // Середина устройства — под указателем
+      const width = devices.get(data.deviceId).modules;
+      const pos = snapPos(state.board, enclosure(), devices, hit.row, hit.offset - width / 2, width);
+      if (pos === null) update({ status: t('status.noSpace', { row: hit.row + 1 }) });
+      else add(data.deviceId, hit.row, pos);
     });
   }
 
@@ -488,7 +535,11 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
       );
     }
     const list = catalog.enclosures.filter(
-      (e) => (state.brand === 'all' || e.brand === state.brand) && (state.mounting === 'all' || e.mounting === state.mounting),
+      (e) =>
+        (state.brand === 'all' || e.brand === state.brand) &&
+        (state.mounting === 'all' || e.mounting === state.mounting) &&
+        (state.modulesPerRow === 'all' || e.modulesPerRow === state.modulesPerRow) &&
+        (state.rowsCount === 'all' || e.rows === state.rowsCount),
     );
     return h(
       'section',
@@ -502,7 +553,26 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
         [['all', t('filter.all')], ['surface', t('mounting.surface')], ['flush', t('mounting.flush')]],
         (mounting) => update({ mounting }),
       ),
-      h('ul', { class: 'enclosure-list' }, list.map((e) => h('li', {}, enclosureCard(e)))),
+      // Подписи над числовыми фильтрами: без них «12 13 18» и «1 2 3 4» непонятны
+      modulesPerRowOptions.length > 1 && h('p', { class: 'muted filter-label' }, t('filter.modulesPerRow')),
+      modulesPerRowOptions.length > 1 &&
+        chips(
+          t('filter.modulesPerRow'),
+          state.modulesPerRow,
+          [['all', t('filter.all')], ...modulesPerRowOptions.map((m) => [m, String(m)])],
+          (modulesPerRow) => update({ modulesPerRow }),
+        ),
+      rowsOptions.length > 1 && h('p', { class: 'muted filter-label' }, t('filter.rows')),
+      rowsOptions.length > 1 &&
+        chips(
+          t('filter.rows'),
+          state.rowsCount,
+          [['all', t('filter.all')], ...rowsOptions.map((r) => [r, String(r)])],
+          (rowsCount) => update({ rowsCount }),
+        ),
+      list.length
+        ? h('ul', { class: 'enclosure-list' }, list.map((e) => h('li', {}, enclosureCard(e))))
+        : h('p', { class: 'hint' }, t('enclosure.noneFound')),
       current &&
         h(
           'button',
@@ -513,11 +583,12 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
   }
 
   function renderToolbar() {
-    const at = findItem(state.board, state.selectedUid);
+    const at = locate(state.selectedUid);
     if (!at) return null;
-    const row = state.board.rows[at.row];
-    const device = devices.get(row[at.index].deviceId);
+    const { device } = at;
     const uid = state.selectedUid;
+    const left = stepTarget(at, 0, -1);
+    const right = stepTarget(at, 0, 1);
     const tool = (key, text, disabled, action) =>
       h('button', { type: 'button', class: 'tool', 'aria-label': t(key), title: t(key), disabled, dataset: { focus: `tool-${key}` }, onClick: action }, text);
     return h(
@@ -527,10 +598,11 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
       h(
         'span',
         { class: 'toolbar-buttons' },
-        tool('item.moveLeft', '←', at.index === 0, () => move(uid, at.row, at.index - 1)),
-        tool('item.moveRight', '→', at.index === row.length - 1, () => move(uid, at.row, at.index + 1)),
-        tool('item.moveUp', '↑', at.row === 0, () => move(uid, at.row - 1, at.index)),
-        tool('item.moveDown', '↓', at.row === state.board.rows.length - 1, () => move(uid, at.row + 1, at.index)),
+        tool('item.moveLeft', '←', left === null, () => move(uid, at.row, left)),
+        tool('item.moveRight', '→', right === null, () => move(uid, at.row, right)),
+        // Вверх и вниз доступны всегда (кроме крайних рядов): если места нет — сообщение
+        tool('item.moveUp', '↑', at.row === 0, () => move(uid, at.row - 1, stepTarget(at, -1, 0))),
+        tool('item.moveDown', '↓', at.row === state.board.rows.length - 1, () => move(uid, at.row + 1, stepTarget(at, 1, 0))),
         tool('item.remove', '✕', false, () => remove(uid)),
       ),
     );
@@ -546,6 +618,7 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
         title: `${brandNames.get(enc.brand)} ${enclosureTitle(enc)}`,
         selectedUid: state.selectedUid,
         activeRow: state.activeRow,
+        formatNumber: fmt,
       }),
     );
     const view = h('div', { class: `board-view${state.selectedUid !== null ? ' has-selection' : ''}` }, svg);

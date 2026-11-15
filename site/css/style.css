@@ -258,6 +258,12 @@ button:focus-visible {
 
 /* ---------- Переключатели ---------- */
 
+/* Подпись над группой кнопок-фильтров */
+.filter-label {
+  margin: 0 0 4px;
+  font-size: 0.85rem;
+}
+
 .chips {
   display: flex;
   flex-wrap: wrap;

@@ -29,8 +29,9 @@ function fitFont(text, width, max) {
 }
 
 /**
- * Раскладка щита в миллиметрах.
- * Возвращает { width, height, rows: [{ index, x0, x1, y, h, cy, freeX, items: [{ uid, deviceId, x, w }] }] }.
+ * Раскладка щита в миллиметрах. Устройство стоит с модуля pos (свободная расстановка),
+ * пустые места между устройствами и у краёв — gaps (на схеме их закрывают заглушки).
+ * Возвращает { width, height, rows: [{ index, x0, x1, y, h, cy, gaps: [{ x, w }], items: [{ uid, deviceId, pos, x, w }] }] }.
  */
 export function layoutBoard(enclosure, board, devices) {
   const { width, height } = enclosure.dimensionsMm;
@@ -42,21 +43,29 @@ export function layoutBoard(enclosure, board, devices) {
 
   const rows = board.rows.map((items, index) => {
     const cy = top + pitch * (index + 0.5);
+    const x1 = x0 + railLength;
+    const placed = items.map((item) => ({
+      uid: item.uid,
+      deviceId: item.deviceId,
+      pos: item.pos,
+      x: x0 + item.pos * MODULE_MM,
+      w: devices.get(item.deviceId).modules * MODULE_MM,
+    }));
+    const gaps = [];
     let x = x0;
-    const placed = items.map((item) => {
-      const w = devices.get(item.deviceId).modules * MODULE_MM;
-      const entry = { uid: item.uid, deviceId: item.deviceId, x, w };
-      x += w;
-      return entry;
-    });
-    return { index, x0, x1: x0 + railLength, y: cy - FACE_MM / 2, h: FACE_MM, cy, freeX: x, items: placed };
+    for (const item of placed) {
+      if (item.x - x > 0.01) gaps.push({ x, w: item.x - x });
+      x = Math.max(x, item.x + item.w);
+    }
+    if (x1 - x > 0.01) gaps.push({ x, w: x1 - x });
+    return { index, x0, x1, y: cy - FACE_MM / 2, h: FACE_MM, cy, gaps, items: placed };
   });
   return { width, height, rows };
 }
 
 /**
  * Куда попадает точка (мм) при перетаскивании: ближайший по высоте ряд
- * и позиция в нём — сколько устройств ряда левее точки (по их середине).
+ * и offset — расстояние от левого края рейки в модулях (дробное; может быть вне рейки).
  * Точка за пределами корпуса — null: перетаскивание отменяется.
  */
 export function hitTest(layout, x, y) {
@@ -66,8 +75,7 @@ export function hitTest(layout, x, y) {
   for (const row of layout.rows) {
     if (Math.abs(row.cy - y) < Math.abs(best.cy - y)) best = row;
   }
-  const index = best.items.filter((item) => item.x + item.w / 2 < x).length;
-  return { row: best.index, index };
+  return { row: best.index, offset: (x - best.x0) / MODULE_MM };
 }
 
 // ---------- устройства ----------
@@ -118,11 +126,12 @@ function deviceFace(device, w) {
 
 /**
  * SVG щита.
- * options: { t, deviceTitle, deviceLabel, title, selectedUid, activeRow, dropRow }
- * deviceTitle/deviceLabel — функции из format.js (передаются, чтобы модуль не зависел от переводов).
+ * options: { t, deviceTitle, deviceLabel, title, selectedUid, activeRow, formatNumber }
+ * deviceTitle/deviceLabel — функции из format.js (передаются, чтобы модуль не зависел от переводов);
+ * formatNumber — число по правилам языка (номер модуля может быть дробным: 7,5).
  */
 export function renderBoardSvg(layout, devices, options) {
-  const { t, deviceTitle, deviceLabel, title, selectedUid = null, activeRow = null } = options;
+  const { t, deviceTitle, deviceLabel, title, selectedUid = null, activeRow = null, formatNumber = String } = options;
   const { width, height } = layout;
   const out = [];
   out.push(
@@ -144,18 +153,18 @@ export function renderBoardSvg(layout, devices, options) {
     out.push(
       `<rect class="cutout${active ? ' active' : ''}" data-row="${row.index}" x="${n(cutX)}" y="${n(cutY)}" width="${n(cutW)}" height="${n(FACE_MM + 2 * CUTOUT_GAP)}" rx="1.5"/>`,
     );
-    // Заглушка на свободном месте
-    if (row.x1 - row.freeX > 0.01) {
+    // Заглушки на свободных местах
+    for (const gap of row.gaps) {
       out.push(
-        `<rect class="blank" data-row="${row.index}" x="${n(row.freeX + 0.3)}" y="${n(row.y)}" width="${n(row.x1 - row.freeX - 0.6)}" height="${FACE_MM}" rx="1"/>`,
+        `<rect class="blank" data-row="${row.index}" x="${n(gap.x + 0.3)}" y="${n(row.y)}" width="${n(gap.w - 0.6)}" height="${FACE_MM}" rx="1"/>`,
       );
     }
-    row.items.forEach((item, index) => {
+    row.items.forEach((item) => {
       const device = devices.get(item.deviceId);
       const label = deviceLabel(device, t);
       const name = deviceTitle(device, t);
       const selected = item.uid === selectedUid;
-      const aria = t('item.position', { title: name, row: row.index + 1, place: index + 1 });
+      const aria = t('item.position', { title: name, row: row.index + 1, place: formatNumber(item.pos + 1) });
       // Подписи крупные (до 8 и 5 мм), чтобы читались и на телефоне
       const mainSize = fitFont(label.main, item.w, 8);
       const subSize = fitFont(label.sub, item.w, 5);

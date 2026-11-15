@@ -39,6 +39,9 @@ const project = {
   ],
 };
 
+// Тот же проект, как его возвращает projectFromBoard: устройства подряд
+const placed = { ...project, positions: [[0, 2, 3, 4], [0]] };
+
 const failsWith = (fn, code, reason) =>
   assert.throws(
     fn,
@@ -50,7 +53,7 @@ describe('проект и щит', () => {
   test('щит → проект → щит', () => {
     const { board, skipped } = buildBoard(project, enclosures, devices);
     assert.deepEqual(skipped, []);
-    assert.deepEqual(projectFromBoard(board), project);
+    assert.deepEqual(projectFromBoard(board), placed, 'без позиций (старый формат) — подряд');
     assert.equal(board.nextUid, 6, 'uid созданы заново');
   });
 
@@ -101,7 +104,7 @@ describe('система заземления в проекте', () => {
   test('щит → проект → щит, ссылка и файл сохраняют систему заземления', () => {
     const { board } = buildBoard(withEarthing, enclosures, devices);
     assert.equal(board.earthing, 'TT');
-    assert.deepEqual(projectFromBoard(board), withEarthing);
+    assert.deepEqual(projectFromBoard(board), { ...placed, earthing: 'TT' });
     assert.deepEqual(decodeLink(encodeLink(withEarthing)), withEarthing);
     assert.deepEqual(projectFromFile(projectToFile(withEarthing, enclosures, devices)), withEarthing);
   });
@@ -117,6 +120,70 @@ describe('система заземления в проекте', () => {
     failsWith(() => buildBoard({ ...project, earthing: 'IT' }, enclosures, devices), 'format', 'earthing');
     const code = Buffer.from(JSON.stringify({ v: 1, e: 'hager-va24b', d: [], r: [[], []], g: '__proto__' })).toString('base64url');
     failsWith(() => decodeLink(code), 'format', 'earthing');
+  });
+});
+
+describe('позиции устройств (свободная расстановка)', () => {
+  const spaced = {
+    enclosureId: 'hager-va24b',
+    rows: [['hager-mcn116', 'hager-cda240j'], ['hager-spe440']],
+    positions: [[3, 9.5], [8]],
+  };
+
+  test('щит → проект → щит: пустые места между устройствами сохраняются', () => {
+    const { board } = buildBoard(spaced, enclosures, devices);
+    assert.deepEqual(board.rows.map((r) => r.map((i) => i.pos)), [[3, 9.5], [8]]);
+    assert.deepEqual(projectFromBoard(board), spaced);
+  });
+
+  test('ссылка и файл сохраняют позиции', () => {
+    assert.deepEqual(JSON.parse(Buffer.from(encodeLink(spaced), 'base64url').toString()).p, [[3, 9.5], [8]]);
+    assert.deepEqual(decodeLink(encodeLink(spaced)), spaced);
+    const text = projectToFile(spaced, enclosures, devices);
+    assert.deepEqual(JSON.parse(text).rows[0][1], { id: 'hager-cda240j', article: 'CDA240J', pos: 9.5 });
+    assert.deepEqual(projectFromFile(text), spaced);
+  });
+
+  test('старые ссылки и файлы без позиций открываются — устройства подряд', () => {
+    const oldLink = Buffer.from(JSON.stringify({ v: 1, e: 'hager-va24b', d: ['hager-mcn116'], r: [[0, 0], []] })).toString('base64url');
+    const fromLink = decodeLink(oldLink);
+    assert.equal('positions' in fromLink, false);
+    assert.deepEqual(projectFromBoard(buildBoard(fromLink, enclosures, devices).board).positions, [[0, 1], []]);
+    const oldFile = JSON.stringify({ app: 'dinboard', version: 1, enclosure: { id: 'hager-va12b' }, rows: [[{ id: 'hager-cda240j' }, { id: 'hager-mcn116' }]] });
+    assert.deepEqual(projectFromBoard(buildBoard(projectFromFile(oldFile), enclosures, devices).board).positions, [[0, 2]]);
+  });
+
+  test('неизвестное устройство пропускается, соседи остаются на своих местах', () => {
+    const p = { enclosureId: 'hager-va12b', rows: [['hager-mcn116', 'gone-device', 'hager-mcn116']], positions: [[0, 4, 10]] };
+    const { board, skipped } = buildBoard(p, enclosures, devices);
+    assert.deepEqual(skipped, ['gone-device']);
+    assert.deepEqual(projectFromBoard(board).positions, [[0, 10]]);
+  });
+
+  test('место не подходит (ширина в каталоге изменилась) — на первое свободное место ряда', () => {
+    // УЗО (2 модуля) с 0 задевает автомат с 1: УЗО (первое) на месте, автомат — на первое свободное
+    const p = { enclosureId: 'hager-va12b', rows: [['hager-cda240j', 'hager-mcn116']], positions: [[0, 1]] };
+    const { board } = buildBoard(p, enclosures, devices);
+    assert.deepEqual(board.rows[0].map((i) => `${i.deviceId}@${i.pos}`), ['hager-cda240j@0', 'hager-mcn116@2']);
+    // За краем рейки (12 модулей) — тоже на свободное место
+    const far = buildBoard({ enclosureId: 'hager-va12b', rows: [['hager-spe440']], positions: [[30]] }, enclosures, devices).board;
+    assert.deepEqual(far.rows[0].map((i) => i.pos), [0]);
+  });
+
+  test('испорченные позиции — ошибка format', () => {
+    for (const positions of [[[0, 1]], [[0], []], [[0]], [[-1], [0]], [[0.3], [0]], [['1'], [0]], [[37], [0]], 'x']) {
+      const bad = { enclosureId: 'hager-va24b', rows: [['hager-mcn116'], ['hager-mcn116']], positions };
+      failsWith(() => buildBoard(bad, enclosures, devices), 'format', 'positions');
+    }
+    const mixed = JSON.stringify({
+      app: 'dinboard',
+      version: 1,
+      enclosure: { id: 'hager-va12b' },
+      rows: [[{ id: 'hager-mcn116', pos: 0 }, { id: 'hager-mcn116' }]],
+    });
+    failsWith(() => projectFromFile(mixed), 'format', 'positions');
+    const link = Buffer.from(JSON.stringify({ v: 1, e: 'hager-va12b', d: ['hager-mcn116'], r: [[0]], p: [[0, 1]] })).toString('base64url');
+    failsWith(() => decodeLink(link), 'format', 'positions');
   });
 });
 
@@ -257,6 +324,36 @@ describe('restoreProject: восстановление при открытии �
     return { ...result, asked, rows: result.board ? projectFromBoard(result.board).rows : null };
   };
   const keys = (r) => r.notices.map((n) => n.key);
+
+  test('старая ссылка (без позиций) на тот же щит, что сохранён (с позициями подряд), — без вопроса и копии', () => {
+    const old = { enclosureId: 'hager-va24b', rows: [['hager-cda240j', 'hager-mcn116'], []] };
+    const saved = { ...old, positions: [[0, 2], []] };
+    const r = run({ hash: linkHash(old), localText: fileText(saved) });
+    assert.equal(r.asked, 0);
+    assert.deepEqual(keys(r), ['project.linkOpened']);
+    assert.equal(r.backupText, null);
+    // Тот же набор, но в сохранении устройства с промежутком — это другой щит
+    const spaced = run({ hash: linkHash(old), localText: fileText({ ...old, positions: [[0, 5], []] }) });
+    assert.equal(spaced.asked, 1);
+  });
+
+  test('в сохранении устройство не из каталога, ссылка совпадает с остальным щитом — вопрос и копия', () => {
+    const local = { enclosureId: 'hager-va24b', rows: [['hager-mcn116', 'hager-gone'], []], positions: [[0, 1], []] };
+    const link = { enclosureId: 'hager-va24b', rows: [['hager-mcn116'], []], positions: [[0], []] };
+    const declined = run({ hash: linkHash(link), localText: fileText(local) });
+    assert.equal(declined.asked, 1, 'иначе устройство молча теряется');
+    const accepted = run({ hash: linkHash(link), localText: fileText(local), answer: true });
+    assert.deepEqual(keys(accepted), ['project.linkOpenedBackup']);
+    assert.equal(accepted.backupText, fileText(local));
+  });
+
+  test('одно и то же устройство не из каталога и в сохранении, и в ссылке — без вопроса, но с копией', () => {
+    const same = { enclosureId: 'hager-va24b', rows: [['hager-mcn116', 'hager-gone'], []], positions: [[0, 1], []] };
+    const r = run({ hash: linkHash(same), localText: fileText(same) });
+    assert.equal(r.asked, 0);
+    assert.deepEqual(keys(r), ['project.loadedSkipped', 'project.linkOpenedBackup']);
+    assert.equal(r.backupText, fileText(same));
+  });
 
   test('ничего нет — пустой старт без сообщений', () => {
     const r = run({});
