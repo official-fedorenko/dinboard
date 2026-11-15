@@ -13,9 +13,17 @@
   --font-mono: ui-monospace, "Cascadia Mono", Consolas, "Liberation Mono", monospace;
   --accent-soft: #e3edff;
   --cabinet: #e9ebef;
-  --rail: #c3c8d0;
-  --slot: #ffffff;
-  --slot-line: #dfe2e7;
+  --enc-body: #f7f7f5;
+  --enc-cover: #ffffff;
+  --enc-edge: #b9bec7;
+  --enc-strip: #eceef1;
+  --enc-cutout: #3a3f47;
+  --enc-blank: #f2f3f5;
+  --enc-text: #5b6270;
+  --dev-slot: #60666f;
+  --dev-handle: #e9eaec;
+  --dev-test: #f2c94c;
+  --dev-indicator: #3fae6a;
   --device: #fbfbfc;
   --device-text: #1c1f24;
   --device-border: #9aa1ad;
@@ -38,9 +46,17 @@
     --accent: #4c8dff;
     --accent-soft: #1b2a45;
     --cabinet: #23272e;
-    --rail: #4a515c;
-    --slot: #191c21;
-    --slot-line: #2b3038;
+    --enc-body: #d6d9de;
+    --enc-cover: #e3e6ea;
+    --enc-edge: #8d949f;
+    --enc-strip: #cfd3d9;
+    --enc-cutout: #15171b;
+    --enc-blank: #d9dce1;
+    --enc-text: #4a515c;
+    --dev-slot: #4a515c;
+    --dev-handle: #dfe1e5;
+    --dev-test: #d9b142;
+    --dev-indicator: #3a9c60;
     --device: #e9ebee;
     --device-text: #15171b;
     --device-border: #6b7380;
@@ -308,121 +324,163 @@ button:focus-visible {
 
 /* ---------- Щит ---------- */
 
-.cabinet {
+.row-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.row-chip {
+  font-size: 13px;
+}
+
+.board-view {
+  display: flex;
+  justify-content: center;
   padding: 12px;
   border-radius: 10px;
   background: var(--cabinet);
-  border: 1px solid var(--border);
 }
 
-.cabinet-title {
-  margin-bottom: 8px;
-  font-size: 13px;
+/* Щит в реальных пропорциях: по ширине панели (модуль ≈ 30 px на широком экране).
+   Высокий щит прокручивается вместе со страницей. */
+.board-svg {
+  display: block;
+  width: 100%;
+  max-width: 560px;
+  height: auto;
+  font-family: var(--font);
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.enc-body {
+  fill: var(--enc-body);
+  stroke: var(--enc-edge);
+  stroke-width: 1;
+}
+
+.enc-cover {
+  fill: var(--enc-cover);
+  stroke: var(--enc-edge);
+  stroke-width: 0.6;
+}
+
+.label-strip {
+  fill: var(--enc-strip);
+}
+
+.row-number {
+  fill: var(--enc-text);
+  font-size: 7px;
   font-weight: 600;
-  color: var(--text-muted);
+  text-anchor: end;
 }
 
-.row + .row {
-  margin-top: 10px;
-}
-
-.row-head {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 8px;
-  margin-bottom: 4px;
-}
-
-.row-select {
-  padding: 2px 8px;
-  border: 1px solid transparent;
-  border-radius: 999px;
-  background: none;
-  font-size: 13px;
-  font-weight: 600;
+.cutout {
+  fill: var(--enc-cutout);
+  stroke: var(--enc-edge);
+  stroke-width: 0.5;
   cursor: pointer;
 }
 
-.row.active .row-select {
-  border-color: var(--accent);
-  background: var(--accent-soft);
-  color: var(--accent);
+.cutout.active {
+  stroke: var(--accent);
+  stroke-width: 1.4;
 }
 
-/* Рейка: сетка с шагом в полмодуля, фон показывает модульные места и саму DIN-рейку */
-.rail {
-  --cols: 24;
-  --modules: 12;
-  display: grid;
-  grid-template-columns: repeat(var(--cols), minmax(0, 1fr));
-  min-height: 78px;
-  padding: 4px 0;
-  border: 1px solid var(--border);
-  border-radius: 4px;
-  background:
-    linear-gradient(to bottom, transparent 46%, var(--rail) 46%, var(--rail) 54%, transparent 54%),
-    repeating-linear-gradient(
-      to right,
-      var(--slot) 0,
-      var(--slot) calc(100% / var(--modules) - 1px),
-      var(--slot-line) calc(100% / var(--modules) - 1px),
-      var(--slot-line) calc(100% / var(--modules))
-    );
+.cutout.drop-target {
+  stroke: var(--accent);
+  stroke-width: 2.2;
+  stroke-dasharray: 3 2;
+}
+
+.blank {
+  fill: var(--enc-blank);
+  stroke: var(--enc-edge);
+  stroke-width: 0.3;
   cursor: pointer;
 }
 
-.row.active .rail {
-  border-color: var(--accent);
-  box-shadow: 0 0 0 1px var(--accent);
+/* touch-action у SVG-групп не работает, поэтому задаётся всему рисунку:
+   пока ничего не выбрано, свайп по щиту прокручивает страницу; когда устройство
+   выбрано касанием — щит перехватывает жест и устройство можно тащить пальцем. */
+.board-view.has-selection .board-svg {
+  touch-action: none;
 }
 
-.rail.drop-target {
-  border-color: var(--accent);
-  box-shadow: 0 0 0 3px var(--accent-soft);
-}
-
-.item {
+.dev {
   --cat: var(--cat-mcb);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 2px;
-  min-width: 0;
-  height: 68px;
-  margin: 0 1px;
-  padding: 2px 1px;
-  border: 1px solid var(--device-border);
-  border-top: 8px solid var(--cat);
-  border-radius: 3px;
-  background: var(--device);
-  color: var(--device-text);
-  overflow: hidden;
   cursor: grab;
-  line-height: 1.1;
 }
 
-.item[aria-pressed="true"] {
-  outline: 3px solid var(--accent);
-  outline-offset: 1px;
-  position: relative;
-  z-index: 1;
+.dev:focus {
+  outline: none;
 }
 
-.item-main {
-  max-width: 100%;
+.dev:focus-visible .dev-body {
+  stroke: var(--accent);
+  stroke-width: 1.2;
+}
+
+.dev.dragging {
+  cursor: grabbing;
+  opacity: 0.85;
+}
+
+.dev-body {
+  fill: var(--device);
+  stroke: var(--device-border);
+  stroke-width: 0.4;
+}
+
+.dev-stripe {
+  fill: var(--cat);
+}
+
+.dev-handle-slot {
+  fill: var(--dev-slot);
+}
+
+.dev-handle {
+  fill: var(--dev-handle);
+}
+
+.dev-test {
+  fill: var(--dev-test);
+  stroke: var(--device-border);
+  stroke-width: 0.3;
+}
+
+.dev-test-text {
+  fill: var(--device-text);
+  font-size: 3px;
   font-weight: 700;
-  font-size: 13px;
-  white-space: nowrap;
-  overflow: hidden;
+  text-anchor: middle;
 }
 
-.item-sub {
-  max-width: 100%;
-  font-size: 10px;
-  white-space: nowrap;
-  overflow: hidden;
+.dev-indicator {
+  fill: var(--dev-indicator);
+  stroke: var(--device-border);
+  stroke-width: 0.3;
+}
+
+.dev-main {
+  fill: var(--device-text);
+  font-weight: 700;
+  text-anchor: middle;
+}
+
+.dev-sub {
+  fill: var(--device-text);
+  text-anchor: middle;
+}
+
+.dev-outline {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 1.4;
 }
 
 .cat-mcb { --cat: var(--cat-mcb); }
@@ -591,11 +649,7 @@ button:focus-visible {
     padding: 6px 4px;
   }
 
-  .item-main {
-    font-size: 11px;
-  }
-
-  .item-sub {
-    display: none;
+  .board-view {
+    padding: 6px;
   }
 }

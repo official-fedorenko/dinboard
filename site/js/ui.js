@@ -24,6 +24,7 @@ import {
   num,
 } from './format.js';
 import { h } from './dom.js';
+import { layoutBoard, hitTest, renderBoardSvg } from './render-svg.js';
 
 export const CATEGORY_ORDER = ['mcb', 'rcbo', 'rcd', 'switch', 'spd'];
 const POLE_ORDER = ['1P', '1P+N', '2P', '3P', '3P+N', '4P'];
@@ -169,43 +170,152 @@ export function mountApp(root, { catalog, t }) {
   }
 
   // ---------- перетаскивание ----------
-
-  function dropIndex(rail, clientX) {
-    const items = [...rail.querySelectorAll('.item')];
-    const index = items.findIndex((el) => {
-      const box = el.getBoundingClientRect();
-      return clientX < box.left + box.width / 2;
-    });
-    return index === -1 ? items.length : index;
-  }
-
-  function onDrop(event, row) {
-    const raw = event.dataTransfer.getData(DND_TYPE);
-    if (!raw) return;
-    event.preventDefault();
-    event.currentTarget.classList.remove('drop-target');
-    let data;
-    try {
-      data = JSON.parse(raw);
-    } catch {
-      return;
-    }
-    let index = dropIndex(event.currentTarget, event.clientX);
-    if (typeof data.uid === 'number') {
-      const from = findItem(state.board, data.uid);
-      if (!from) return;
-      // Индекс посчитан вместе с перетаскиваемым устройством — поправка для того же ряда
-      if (from.row === row && index > from.index) index -= 1;
-      move(data.uid, row, index);
-    } else if (typeof data.deviceId === 'string' && devices.has(data.deviceId)) {
-      add(data.deviceId, row, index);
-    }
-  }
+  // Из списка оборудования в щит — HTML5 Drag and Drop (мышь).
+  // Внутри щита — Pointer Events: работает и мышью, и пальцем.
 
   const dragStart = (payload) => (event) => {
     event.dataTransfer.setData(DND_TYPE, JSON.stringify(payload));
-    event.dataTransfer.effectAllowed = 'move';
+    event.dataTransfer.effectAllowed = 'copy';
   };
+
+  /** Точка экрана → координаты щита в мм. */
+  function toBoardPoint(svg, clientX, clientY) {
+    const matrix = svg.getScreenCTM();
+    if (!matrix) return null;
+    return new DOMPoint(clientX, clientY).matrixTransform(matrix.inverse());
+  }
+
+  function markDropRow(svg, row) {
+    for (const el of svg.querySelectorAll('.cutout')) el.classList.toggle('drop-target', Number(el.dataset.row) === row);
+  }
+
+  /** Переносит устройство uid в точку щита (позиция считается вместе с самим устройством). */
+  function dropExisting(uid, hit) {
+    const from = findItem(state.board, uid);
+    if (!from) return;
+    if (!hit) {
+      render(); // отпустили за пределами щита — отмена, устройство возвращается на место
+      return;
+    }
+    let index = hit.index;
+    if (from.row === hit.row && index > from.index) index -= 1;
+    if (from.row === hit.row && index === from.index) {
+      render(); // положили на то же место — просто вернуть на место
+      return;
+    }
+    move(uid, hit.row, index);
+  }
+
+  function bindBoardEvents(view, svg, layout) {
+    let drag = null;
+    let suppressClick = false;
+
+    view.addEventListener('pointerdown', (event) => {
+      const dev = event.target.closest?.('.dev');
+      if (!dev || event.button !== 0) return;
+      drag = { uid: Number(dev.dataset.uid), dev, x: event.clientX, y: event.clientY, id: event.pointerId, moved: false };
+    });
+
+    view.addEventListener('pointermove', (event) => {
+      if (!drag || event.pointerId !== drag.id) return;
+      const dx = event.clientX - drag.x;
+      const dy = event.clientY - drag.y;
+      if (!drag.moved) {
+        if (Math.hypot(dx, dy) < 6) return;
+        drag.moved = true;
+        drag.base = drag.dev.getAttribute('transform');
+        drag.dev.classList.add('dragging');
+        try {
+          // Указатель остаётся «привязан» к устройству, даже если ушёл за пределы щита
+          drag.dev.setPointerCapture(event.pointerId);
+        } catch {
+          // Не критично: события всё равно доходят до контейнера щита
+        }
+      }
+      event.preventDefault();
+      const scale = 1 / (svg.getScreenCTM()?.a || 1);
+      drag.dev.setAttribute('transform', `${drag.base} translate(${dx * scale} ${dy * scale})`);
+      const p = toBoardPoint(svg, event.clientX, event.clientY);
+      if (p) markDropRow(svg, hitTest(layout, p.x, p.y)?.row);
+    });
+
+    const finish = (event, cancelled) => {
+      if (!drag || event.pointerId !== drag.id) return;
+      const current = drag;
+      drag = null;
+      if (!current.moved) return; // это был клик — его обработает click
+      suppressClick = true;
+      setTimeout(() => (suppressClick = false), 0);
+      if (cancelled) {
+        render();
+        return;
+      }
+      const p = toBoardPoint(svg, event.clientX, event.clientY);
+      dropExisting(current.uid, p ? hitTest(layout, p.x, p.y) : null);
+    };
+    view.addEventListener('pointerup', (event) => finish(event, false));
+    view.addEventListener('pointercancel', (event) => finish(event, true));
+
+    view.addEventListener('click', (event) => {
+      if (suppressClick) return;
+      const dev = event.target.closest?.('.dev');
+      if (dev) {
+        const uid = Number(dev.dataset.uid);
+        const at = findItem(state.board, uid);
+        if (at) update({ selectedUid: state.selectedUid === uid ? null : uid, activeRow: at.row });
+        return;
+      }
+      const rowEl = event.target.closest?.('[data-row]');
+      if (rowEl) update({ activeRow: Number(rowEl.dataset.row), selectedUid: null });
+    });
+
+    view.addEventListener('keydown', (event) => {
+      const dev = event.target.closest?.('.dev');
+      if (!dev) return;
+      const uid = Number(dev.dataset.uid);
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        const at = findItem(state.board, uid);
+        if (at) update({ selectedUid: state.selectedUid === uid ? null : uid, activeRow: at.row });
+      } else if (event.key === 'Delete' || event.key === 'Backspace') {
+        event.preventDefault();
+        remove(uid);
+      }
+    });
+
+    // Перетаскивание из списка оборудования
+    view.addEventListener('dragover', (event) => {
+      if (!event.dataTransfer.types.includes(DND_TYPE)) return;
+      event.preventDefault();
+      const p = toBoardPoint(svg, event.clientX, event.clientY);
+      if (p) markDropRow(svg, hitTest(layout, p.x, p.y)?.row);
+    });
+    view.addEventListener('dragleave', (event) => {
+      if (!view.contains(event.relatedTarget)) markDropRow(svg, null);
+    });
+    view.addEventListener('drop', (event) => {
+      const raw = event.dataTransfer.getData(DND_TYPE);
+      if (!raw) return;
+      event.preventDefault();
+      markDropRow(svg, null);
+      let data;
+      try {
+        data = JSON.parse(raw);
+      } catch {
+        return;
+      }
+      const p = toBoardPoint(svg, event.clientX, event.clientY);
+      const hit = p ? hitTest(layout, p.x, p.y) : null;
+      if (hit && typeof data.deviceId === 'string' && devices.has(data.deviceId)) add(data.deviceId, hit.row, hit.index);
+    });
+  }
+
+  /** Вставляет SVG-строку как узлы (через XML-парсер, без innerHTML). */
+  function svgNode(markup) {
+    const doc = new DOMParser().parseFromString(markup, 'image/svg+xml');
+    if (doc.querySelector('parsererror')) throw new Error('SVG parse error');
+    return document.importNode(doc.documentElement, true);
+  }
 
   // ---------- отрисовка ----------
 
@@ -281,39 +391,6 @@ export function mountApp(root, { catalog, t }) {
     );
   }
 
-  function renderItem(item, rowIndex, index) {
-    const device = devices.get(item.deviceId);
-    const label = deviceLabel(device, t);
-    const title = deviceTitle(device, t);
-    const selected = state.selectedUid === item.uid;
-    return h(
-      'button',
-      {
-        type: 'button',
-        class: `item cat-${device.category}`,
-        style: { gridColumn: `span ${device.modules * 2}` },
-        draggable: 'true',
-        title: `${title} · ${device.article}`,
-        'aria-label': t('item.position', { title, row: rowIndex + 1, place: index + 1 }),
-        'aria-pressed': String(selected),
-        dataset: { focus: `item-${item.uid}` },
-        onClick: (event) => {
-          event.stopPropagation();
-          update({ selectedUid: selected ? null : item.uid, activeRow: rowIndex });
-        },
-        onKeydown: (event) => {
-          if (event.key === 'Delete' || event.key === 'Backspace') {
-            event.preventDefault();
-            remove(item.uid);
-          }
-        },
-        onDragstart: dragStart({ uid: item.uid }),
-      },
-      h('span', { class: 'item-main' }, label.main),
-      h('span', { class: 'item-sub' }, label.sub),
-    );
-  }
-
   function renderToolbar() {
     const at = findItem(state.board, state.selectedUid);
     if (!at) return null;
@@ -338,6 +415,23 @@ export function mountApp(root, { catalog, t }) {
     );
   }
 
+  function renderBoardView(enc) {
+    const layout = layoutBoard(enc, state.board, devices);
+    const svg = svgNode(
+      renderBoardSvg(layout, devices, {
+        t,
+        deviceTitle,
+        deviceLabel,
+        title: `${brandNames.get(enc.brand)} ${enclosureTitle(enc)}`,
+        selectedUid: state.selectedUid,
+        activeRow: state.activeRow,
+      }),
+    );
+    const view = h('div', { class: `board-view${state.selectedUid !== null ? ' has-selection' : ''}` }, svg);
+    bindBoardEvents(view, svg, layout);
+    return view;
+  }
+
   function renderBoard() {
     const enc = enclosure();
     const heading = h('h2', { id: 'h-board' }, t('section.board'));
@@ -353,48 +447,25 @@ export function mountApp(root, { catalog, t }) {
       h('p', { class: 'hint' }, t('board.activeRowHint')),
       h(
         'div',
-        { class: 'cabinet' },
-        h('div', { class: 'cabinet-title' }, `${brandNames.get(enc.brand)} ${enclosureTitle(enc)}`),
-        state.board.rows.map((items, rowIndex) =>
+        { class: 'row-chips', role: 'group', 'aria-label': t('board.rows') },
+        state.board.rows.map((_, rowIndex) =>
           h(
-            'div',
-            { class: `row${rowIndex === state.activeRow ? ' active' : ''}` },
-            h(
-              'div',
-              { class: 'row-head' },
-              h(
-                'button',
-                {
-                  type: 'button',
-                  class: 'row-select',
-                  'aria-pressed': String(rowIndex === state.activeRow),
-                  'aria-label': t('board.selectRow', { n: rowIndex + 1 }),
-                  dataset: { focus: `row-${rowIndex}` },
-                  onClick: () => update({ activeRow: rowIndex }),
-                },
-                t('board.row', { n: rowIndex + 1 }),
-              ),
-              h('span', { class: 'muted' }, t('board.rowUsage', { used: num(stats.rows[rowIndex].used), capacity: stats.rows[rowIndex].capacity })),
-            ),
-            h(
-              'div',
-              {
-                class: 'rail',
-                style: { '--cols': enc.modulesPerRow * 2, '--modules': enc.modulesPerRow },
-                onClick: () => update({ activeRow: rowIndex, selectedUid: null }),
-                onDragover: (event) => {
-                  if (!event.dataTransfer.types.includes(DND_TYPE)) return;
-                  event.preventDefault();
-                  event.currentTarget.classList.add('drop-target');
-                },
-                onDragleave: (event) => event.currentTarget.classList.remove('drop-target'),
-                onDrop: (event) => onDrop(event, rowIndex),
-              },
-              items.map((item, index) => renderItem(item, rowIndex, index)),
-            ),
+            'button',
+            {
+              type: 'button',
+              class: 'chip row-chip',
+              'aria-pressed': String(rowIndex === state.activeRow),
+              'aria-label': `${t('board.selectRow', { n: rowIndex + 1 })}: ${t('board.rowUsage', { used: num(stats.rows[rowIndex].used), capacity: stats.rows[rowIndex].capacity })}`,
+              dataset: { focus: `row-${rowIndex}` },
+              onClick: () => update({ activeRow: rowIndex }),
+            },
+            h('strong', {}, t('board.row', { n: rowIndex + 1 })),
+            ' · ',
+            t('board.rowUsage', { used: num(stats.rows[rowIndex].used), capacity: stats.rows[rowIndex].capacity }),
           ),
         ),
       ),
+      renderBoardView(enc),
       renderToolbar(),
       status,
       h('div', { class: 'board-actions' }, h('button', { type: 'button', class: 'link-button', dataset: { focus: 'clear' }, onClick: clearBoard }, t('board.clear'))),
