@@ -1,0 +1,27 @@
+# Секреты и переменные окружения
+.env
+.env.*
+!.env.example
+
+# Зависимости (если когда-нибудь появятся)
+node_modules/
+
+# Логи
+*.log
+logs/
+npm-debug.log*
+
+# Отчёты тестов и покрытия
+coverage/
+.nyc_output/
+
+# Файлы ОС и редакторов
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+.idea/
+
+# Временные файлы
+*.tmp
+tmp/
