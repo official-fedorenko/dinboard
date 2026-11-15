@@ -6,6 +6,7 @@ import { join } from 'node:path';
 import { createTranslator, loadMessages, LANGUAGES } from '../site/js/i18n.js';
 import { deviceLabel, deviceTitle, enclosureDescription, enclosureSize, enclosureTitle, num } from '../site/js/format.js';
 import { DEVICE_CATEGORIES, MOUNTINGS, DOORS } from '../site/js/catalog.js';
+import { PROJECT_ERROR_CODES } from '../site/js/storage.js';
 import { SITE_ROOT } from '../tools/serve.js';
 
 const ru = JSON.parse(await readFile(join(SITE_ROOT, 'i18n', 'ru.json'), 'utf8'));
@@ -49,6 +50,7 @@ describe('ключи переводов', () => {
     ...Object.keys(DEVICE_CATEGORIES).flatMap((c) => [`device.${c}.title`, `category.${c}`]),
     ...MOUNTINGS.map((m) => `mounting.${m}`),
     ...DOORS.map((d) => `door.${d}`),
+    ...PROJECT_ERROR_CODES.map((c) => `project.error.${c}`),
   ];
 
   async function staticKeys() {
@@ -56,8 +58,10 @@ describe('ключи переводов', () => {
     const keys = new Set();
     for (const file of await readdir(dir)) {
       const source = await readFile(join(dir, file), 'utf8');
-      // t('ключ' ...) и tool('ключ' ...) в ui.js
-      for (const m of source.matchAll(/\b(?:t|tool)\(\s*'([a-zA-Z0-9_.]+)'/g)) keys.add(m[1]);
+      // t('ключ' ...), tool('ключ' ...) и button('ключ' ...) — помощники в ui.js,
+      // а также { key: 'ключ' } — сообщения из restoreProject (storage.js)
+      for (const m of source.matchAll(/\b(?:t|tool|button)\(\s*'([a-zA-Z0-9_.]+)'/g)) keys.add(m[1]);
+      for (const m of source.matchAll(/\bkey:\s*'([a-zA-Z0-9_.]+)'/g)) keys.add(m[1]);
     }
     return keys;
   }

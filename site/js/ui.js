@@ -25,6 +25,19 @@ import {
 } from './format.js';
 import { h } from './dom.js';
 import { layoutBoard, hitTest, renderBoardSvg } from './render-svg.js';
+import {
+  projectFromBoard,
+  buildBoard,
+  encodeLink,
+  projectToFile,
+  projectFromFile,
+  projectFileName,
+  isEmptyProject,
+  sameProject,
+  ProjectError,
+  LINK_PREFIX,
+  LIMITS,
+} from './storage.js';
 
 export const CATEGORY_ORDER = ['mcb', 'rcbo', 'rcd', 'switch', 'spd'];
 const POLE_ORDER = ['1P', '1P+N', '2P', '3P', '3P+N', '4P'];
@@ -43,22 +56,31 @@ function compareDevices(a, b) {
   );
 }
 
-export function mountApp(root, { catalog, t }) {
+/**
+ * Запускает конструктор.
+ * store — хранилище браузера из storage.js (может быть null); initialBoard — восстановленный щит или null;
+ * backupText — прежняя версия сохранения, отложенная при открытии (её можно скачать), или null.
+ */
+export function mountApp(root, { catalog, t, store = null, initialBoard = null, initialStatus = '', backupText: initialBackup = null }) {
   const devices = indexById(catalog.devices);
   const enclosures = indexById(catalog.enclosures);
   const brandNames = new Map(catalog.brands.map((b) => [b.id, b.name]));
 
   const state = {
-    board: null,
+    board: initialBoard,
     activeRow: 0,
     selectedUid: null,
     brand: 'all',
     mounting: 'all',
     category: CATEGORY_ORDER.find((c) => catalog.devices.some((d) => d.category === c)) ?? CATEGORY_ORDER[0],
     poles: 'all',
-    status: '',
-    pickerOpen: true, // список корпусов развёрнут; после выбора сворачивается до выбранного
+    status: initialStatus,
+    pickerOpen: !initialBoard, // список корпусов развёрнут; после выбора сворачивается до выбранного
   };
+
+  let savedBoard = null; // последний сохранённый в браузере щит
+  let backupText = initialBackup; // резервная копия прежней версии (или null)
+  let autosaveWarned = false;
 
   const enclosure = () => (state.board ? enclosures.get(state.board.enclosureId) : null);
 
@@ -71,7 +93,92 @@ export function mountApp(root, { catalog, t }) {
    */
   function update(changes, focusFallback) {
     Object.assign(state, changes);
+    autosave();
     render(focusFallback);
+  }
+
+  /** Сохраняет щит в браузере после каждого изменения. Если браузер не даёт — предупреждает один раз. */
+  function autosave() {
+    if (!store || !state.board || state.board === savedBoard) return;
+    savedBoard = state.board;
+    if (!store.save(projectFromBoard(state.board)) && !autosaveWarned) {
+      autosaveWarned = true;
+      state.status = t('project.autosaveOff');
+    }
+  }
+
+  // ---------- проект: ссылка и файл ----------
+
+  function projectError(err) {
+    if (!(err instanceof ProjectError)) throw err;
+    return t(`project.error.${err.code}`);
+  }
+
+  async function copyLink() {
+    const url = `${window.location.origin}${window.location.pathname}${LINK_PREFIX}${encodeLink(projectFromBoard(state.board))}`;
+    try {
+      await navigator.clipboard.writeText(url);
+      update({ status: t('project.linkCopied') });
+    } catch {
+      // Буфер обмена недоступен (нет разрешения или небезопасный адрес) — показываем ссылку для копирования
+      window.prompt(t('project.copyPrompt'), url);
+    }
+  }
+
+  function saveAs(name, text) {
+    const url = URL.createObjectURL(new Blob([text], { type: 'application/json' }));
+    const link = h('a', { href: url, download: name, hidden: true });
+    document.body.append(link);
+    link.click();
+    link.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+    update({ status: t('project.downloaded', { name }) });
+  }
+
+  function downloadFile() {
+    saveAs(projectFileName(enclosure()), projectToFile(projectFromBoard(state.board), enclosures, devices));
+  }
+
+  /** Прежняя версия сохранения — как есть (обычно это файл проекта). */
+  function downloadBackup() {
+    saveAs(`dinboard-backup-${new Date().toISOString().slice(0, 10)}.json`, backupText);
+  }
+
+  function deleteBackup() {
+    if (!window.confirm(t('project.confirmDeleteBackup'))) return;
+    store?.clearBackup();
+    backupText = null;
+    update({ status: t('project.backupDeleted') }, 'project-open');
+  }
+
+  function openFile() {
+    const input = h('input', { type: 'file', accept: '.json,application/json', hidden: true });
+    input.addEventListener('change', async () => {
+      const file = input.files?.[0];
+      input.remove();
+      if (!file) return;
+      try {
+        if (file.size > LIMITS.textLength) throw new ProjectError('format', { reason: 'size' });
+        const project = projectFromFile(await file.text());
+        const { board, skipped } = buildBoard(project, enclosures, devices);
+        const current = state.board ? projectFromBoard(state.board) : null;
+        if (!isEmptyProject(current) && !sameProject(current, projectFromBoard(board)) && !window.confirm(t('project.confirmReplace'))) {
+          return;
+        }
+        update({
+          board,
+          selectedUid: null,
+          activeRow: 0,
+          pickerOpen: false,
+          status: skipped.length ? t('project.loadedSkipped', { n: skipped.length }) : t('project.loaded'),
+        });
+      } catch (err) {
+        update({ status: projectError(err) });
+      }
+    });
+    input.addEventListener('cancel', () => input.remove());
+    document.body.append(input);
+    input.click();
   }
 
   function reportError(err, title) {
@@ -432,12 +539,40 @@ export function mountApp(root, { catalog, t }) {
     return view;
   }
 
+  /** Кнопки проекта: ссылка, файл, открыть файл; «Очистить щит». */
+  function renderProjectActions(hasBoard) {
+    const button = (key, focus, action) =>
+      h('button', { type: 'button', class: 'action', dataset: { focus }, onClick: action }, t(key));
+    return h(
+      'div',
+      { class: 'project-actions' },
+      h(
+        'div',
+        { class: 'action-buttons', role: 'group', 'aria-label': t('project.actions') },
+        hasBoard && button('project.link', 'project-link', copyLink),
+        hasBoard && button('project.download', 'project-download', downloadFile),
+        button('project.open', 'project-open', openFile),
+        backupText !== null && button('project.downloadBackup', 'project-backup', downloadBackup),
+        backupText !== null && button('project.deleteBackup', 'project-backup-delete', deleteBackup),
+      ),
+      hasBoard && h('p', { class: 'muted' }, store ? t('project.autosaveHint') : t('project.autosaveOff')),
+      hasBoard && h('button', { type: 'button', class: 'link-button', dataset: { focus: 'clear' }, onClick: clearBoard }, t('board.clear')),
+    );
+  }
+
   function renderBoard() {
     const enc = enclosure();
     const heading = h('h2', { id: 'h-board' }, t('section.board'));
     const status = h('p', { class: 'status', role: 'status', 'aria-live': 'polite' }, state.status);
     if (!enc) {
-      return h('section', { class: 'panel board-panel', 'aria-labelledby': 'h-board' }, heading, h('p', { class: 'hint' }, t('enclosure.choose')), status);
+      return h(
+        'section',
+        { class: 'panel board-panel', 'aria-labelledby': 'h-board' },
+        heading,
+        h('p', { class: 'hint' }, t('enclosure.choose')),
+        status,
+        renderProjectActions(false),
+      );
     }
     const stats = boardStats(state.board, enc, devices);
     return h(
@@ -468,7 +603,7 @@ export function mountApp(root, { catalog, t }) {
       renderBoardView(enc),
       renderToolbar(),
       status,
-      h('div', { class: 'board-actions' }, h('button', { type: 'button', class: 'link-button', dataset: { focus: 'clear' }, onClick: clearBoard }, t('board.clear'))),
+      renderProjectActions(true),
     );
   }
 
@@ -567,6 +702,7 @@ export function mountApp(root, { catalog, t }) {
     }
   }
 
+  autosave();
   render();
   return { state, render };
 }
