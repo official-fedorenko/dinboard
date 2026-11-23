@@ -166,7 +166,8 @@ export function restoreCarriers(list, carriersById, insertsById, enclosure = {})
  * Лишние ряды или нехватка места — ProjectError('no-space').
  * catalog — { carriersById, insertsById } для держателей клемм N/PE: без него держатели проекта не сверяются
  * с каталогом; без держателей в проекте — как с завода.
- * Возвращает { board, skipped }.
+ * Возвращает { board, skipped, oldTerminals }: oldTerminals — щит этапа 15 с добавленными клеммниками
+ * (addTerminals) и без держателей: клеммники больше не добавляются, клеммы нужно подобрать заново.
  */
 export function buildBoard(project, enclosures, devices, catalog = null) {
   checkShape(project);
@@ -212,7 +213,7 @@ export function buildBoard(project, enclosures, devices, catalog = null) {
       throw err;
     }
   }
-  return { board, skipped };
+  return { board, skipped, oldTerminals: Boolean(project.addTerminals && !project.carriers) };
 }
 
 // ---------- ссылка ----------
@@ -445,11 +446,12 @@ export function restoreProject({ hash, localText, enclosures, devices, confirmLi
     if (localBroken) return { board: null, notices: [{ key: 'project.localLost' }], backupText: localText };
     if (!local) return { board: null, notices: [], backupText: null };
     try {
-      const { board, skipped } = buildBoard(local, enclosures, devices, catalog);
+      const { board, skipped, oldTerminals } = buildBoard(local, enclosures, devices, catalog);
+      const old = oldTerminals ? [{ key: 'project.oldTerminals' }] : [];
       if (skipped.length) {
-        return { board, notices: [{ key: 'project.localSkipped', params: { n: skipped.length } }], backupText: localText };
+        return { board, notices: [{ key: 'project.localSkipped', params: { n: skipped.length } }, ...old], backupText: localText };
       }
-      return { board, notices: [], backupText: null };
+      return { board, notices: old, backupText: null };
     } catch (err) {
       if (!(err instanceof ProjectError)) throw err;
       return { board: null, notices: [{ key: 'project.localLost' }], backupText: localText };
@@ -489,13 +491,14 @@ export function restoreProject({ hash, localText, enclosures, devices, confirmLi
     // на тот же щит, что сохранён, — не замена
     const replacesLocal = !localBroken && !isEmptyProject(local) && !sameProject(asPlaced(local), asPlaced(fromLink));
     if (replacesLocal && !confirmLink()) return fromLocal();
-    const { board, skipped } = buildBoard(fromLink, enclosures, devices, catalog);
+    const { board, skipped, oldTerminals } = buildBoard(fromLink, enclosures, devices, catalog);
     // Свой щит заменяется или в нём есть устройства не из каталога — при перезаписи они пропадут
     const keepLocal = replacesLocal || (!localBroken && !isEmptyProject(local) && localTrimmed());
     const notices = [];
     if (skipped.length) notices.push({ key: 'project.loadedSkipped', params: { n: skipped.length } });
     if (keepLocal) notices.push({ key: 'project.linkOpenedBackup' });
     else if (!skipped.length) notices.push({ key: 'project.linkOpened' });
+    if (oldTerminals) notices.push({ key: 'project.oldTerminals' });
     // Свой щит (или испорченное сохранение) будет перезаписан — откладываем его копию
     return { board, notices, backupText: keepLocal || localBroken ? localText : null };
   } catch (err) {

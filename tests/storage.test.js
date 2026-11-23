@@ -448,6 +448,18 @@ describe('restoreProject: восстановление при открытии �
   };
   const keys = (r) => r.notices.map((n) => n.key);
 
+  test('щит этапа 15 с добавленными клеммниками (addTerminals) — подсказка подобрать клеммы заново', () => {
+    const old = { enclosureId: 'hager-va24b', rows: [['hager-mcn116'], []] };
+    const code = Buffer.from(JSON.stringify({ v: 1, e: old.enclosureId, d: ['hager-mcn116'], r: [[0], []], t: 1 })).toString('base64url');
+    assert.deepEqual(keys(run({ hash: '#b=' + code })), ['project.linkOpened', 'project.oldTerminals']);
+    const file = JSON.stringify({ ...JSON.parse(fileText(old)), addTerminals: true });
+    assert.deepEqual(keys(run({ localText: file })), ['project.oldTerminals']);
+    assert.equal(buildBoard({ ...old, addTerminals: true }, enclosures, devices).oldTerminals, true);
+    // Без флага или уже с держателями (сохранён после этапа 17) — без подсказки
+    assert.deepEqual(keys(run({ localText: fileText(old) })), []);
+    assert.equal(buildBoard({ ...old, addTerminals: true, carriers: [] }, enclosures, devices).oldTerminals, false);
+  });
+
   test('старая ссылка (без позиций) на тот же щит, что сохранён (с позициями подряд), — без вопроса и копии', () => {
     const old = { enclosureId: 'hager-va24b', rows: [['hager-cda240j', 'hager-mcn116'], []] };
     const saved = { ...old, positions: [[0, 2], []] };

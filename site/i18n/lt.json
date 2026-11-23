@@ -112,6 +112,7 @@
   "project.backupDeleted": "Ankstesnė versija ištrinta.",
   "project.downloaded": "Projekto failas išsaugotas: {name}.",
   "project.loaded": "Projektas atidarytas.",
+  "project.oldTerminals": "Skydas išsaugotas prieš atsirandant gnybtų laikikliams: tada pridėti N/PE gnybtynai neperkelti — parinkite gnybtus iš naujo („Parinkti pagal linijų skaičių“ arba langas „N/PE gnybtai“).",
   "project.loadedSkipped": "Projektas atidarytas. Prietaisų, kurių nėra kataloge, praleista: {n} vnt.",
   "project.confirmLink": "Atidaryti skydą iš nuorodos? Šioje naršyklėje išsaugotas skydas bus pakeistas.",
   "project.confirmReplace": "Atidaryti projektą iš failo? Dabartinis skydas bus pakeistas.",
