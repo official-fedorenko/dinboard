@@ -152,6 +152,17 @@ export function snapPos(board, enclosure, devices, row, raw, width, ignoreUid = 
   return byDistance([...grid, ...edges])[0];
 }
 
+/**
+ * Подсказка при перетаскивании: куда встанет устройство шириной width, если отпустить
+ * его в точке raw ряда row, и свободно ли там. { pos, ok } или null (устройство шире рейки).
+ * pos — как у snapPos (тот же расчёт, что и при отпускании), ok — место свободно.
+ */
+export function dropPreview(board, enclosure, devices, row, raw, width, ignoreUid = null) {
+  const pos = snapPos(board, enclosure, devices, row, raw, width, ignoreUid);
+  if (pos === null) return null;
+  return { pos, ok: canPlace(board, enclosure, devices, row, pos, width, ignoreUid) };
+}
+
 function checkPos(enclosure, pos, width) {
   if (!onStep(pos) || pos < 0 || pos + width > enclosure.modulesPerRow) throw new BoardError('bad-pos', { pos });
 }

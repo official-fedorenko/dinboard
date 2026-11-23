@@ -15,6 +15,7 @@ import {
   setEarthing,
   nearestFreePos,
   snapPos,
+  dropPreview,
   BoardError,
 } from './board.js';
 import {
@@ -28,7 +29,7 @@ import {
   num,
 } from './format.js';
 import { h } from './dom.js';
-import { layoutBoard, hitTest, renderBoardSvg, MODULE_MM } from './render-svg.js';
+import { layoutBoard, hitTest, renderBoardSvg, slotRect, MODULE_MM } from './render-svg.js';
 import { checkBoard } from './checks.js';
 import { specTable, toCsv, exportFileName } from './export.js';
 import { xlsxWorkbook } from './xlsx.js';
@@ -362,9 +363,14 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
   // Из списка оборудования в щит — HTML5 Drag and Drop (мышь).
   // Внутри щита — Pointer Events: работает и мышью, и пальцем.
 
+  // Какое устройство тянут из списка: во время dragover браузер не отдаёт данные перетаскивания,
+  // а ширина нужна, чтобы показать, сколько модулей оно займёт
+  let paletteDragId = null;
   const dragStart = (payload) => (event) => {
     event.dataTransfer.setData(DND_TYPE, JSON.stringify(payload));
     event.dataTransfer.effectAllowed = 'copy';
+    paletteDragId = payload.deviceId;
+    event.target.addEventListener('dragend', () => (paletteDragId = null), { once: true });
   };
 
   /** Точка экрана → координаты щита в мм. */
@@ -376,6 +382,22 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
 
   function markDropRow(svg, row) {
     for (const el of svg.querySelectorAll('.cutout')) el.classList.toggle('drop-target', Number(el.dataset.row) === row);
+  }
+
+  /**
+   * Подсказка места при перетаскивании: прямоугольник на модулях, которые займёт устройство;
+   * зелёный — место свободно, красный — занято (там будет отказ). preview — из dropPreview или null.
+   */
+  function showDropSlot(svg, layout, row, preview, width) {
+    svg.querySelector('.drop-slot')?.remove();
+    if (!preview) return;
+    const r = slotRect(layout, row, preview.pos, width);
+    if (!r) return;
+    const slot = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+    slot.setAttribute('class', `drop-slot ${preview.ok ? 'ok' : 'bad'}`);
+    const attrs = { x: r.x + 0.3, y: r.y - 1, width: r.w - 0.6, height: r.h + 2, rx: 1.5 };
+    for (const [k, v] of Object.entries(attrs)) slot.setAttribute(k, String(v));
+    svg.append(slot);
   }
 
   /**
@@ -428,7 +450,13 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
       const scale = 1 / (svg.getScreenCTM()?.a || 1);
       drag.dev.setAttribute('transform', `${drag.base} translate(${dx * scale} ${dy * scale})`);
       const p = toBoardPoint(svg, event.clientX, event.clientY);
-      if (p) markDropRow(svg, hitTest(layout, p.x, p.y)?.row);
+      const hit = p ? hitTest(layout, p.x, p.y) : null;
+      markDropRow(svg, hit?.row);
+      // Где устройство встанет, если отпустить сейчас (тот же расчёт, что в dropExisting)
+      const at = locate(drag.uid);
+      const preview =
+        hit && at ? dropPreview(state.board, enclosure(), devices, hit.row, at.item.pos + (dx * scale) / MODULE_MM, at.device.modules, drag.uid) : null;
+      showDropSlot(svg, layout, hit?.row, preview, at?.device.modules);
     });
 
     const finish = (event, cancelled) => {
@@ -481,16 +509,25 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
       if (!event.dataTransfer.types.includes(DND_TYPE)) return;
       event.preventDefault();
       const p = toBoardPoint(svg, event.clientX, event.clientY);
-      if (p) markDropRow(svg, hitTest(layout, p.x, p.y)?.row);
+      const hit = p ? hitTest(layout, p.x, p.y) : null;
+      markDropRow(svg, hit?.row);
+      // Середина устройства — под указателем (как при отпускании)
+      const width = paletteDragId && devices.has(paletteDragId) ? devices.get(paletteDragId).modules : null;
+      const preview = hit && width ? dropPreview(state.board, enclosure(), devices, hit.row, hit.offset - width / 2, width) : null;
+      showDropSlot(svg, layout, hit?.row, preview, width);
     });
     view.addEventListener('dragleave', (event) => {
-      if (!view.contains(event.relatedTarget)) markDropRow(svg, null);
+      if (!view.contains(event.relatedTarget)) {
+        markDropRow(svg, null);
+        showDropSlot(svg, layout, null, null);
+      }
     });
     view.addEventListener('drop', (event) => {
       const raw = event.dataTransfer.getData(DND_TYPE);
       if (!raw) return;
       event.preventDefault();
       markDropRow(svg, null);
+      showDropSlot(svg, layout, null, null);
       let data;
       try {
         data = JSON.parse(raw);

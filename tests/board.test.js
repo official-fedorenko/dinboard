@@ -17,6 +17,7 @@ import {
   firstFreePos,
   nearestFreePos,
   snapPos,
+  dropPreview,
   BoardError,
 } from '../site/js/board.js';
 
@@ -226,6 +227,16 @@ describe('поиск свободного места', () => {
     const odd = indexById([...devices.values(), { id: 'x75', modules: 7.5 }]);
     const withOdd = addDevice(createBoard(e), e, odd, 'x75', { row: 0, pos: 0 }).board;
     assert.equal(snapPos(withOdd, e, odd, 0, 7.8, 1), 7.5, 'вплотную к устройству шириной 7.5');
+  });
+
+  test('dropPreview: то же место, что snapPos, и свободно ли оно', () => {
+    assert.deepEqual(dropPreview(board, e, devices, 1, 3.3, 2), { pos: 3, ok: true });
+    assert.deepEqual(dropPreview(board, e, devices, 0, 3.06, 1), { pos: 3, ok: false }, 'занято — красная подсказка');
+    assert.deepEqual(dropPreview(board, e, devices, 0, 3.6, 1), { pos: 4, ok: true });
+    assert.equal(dropPreview(board, e, devices, 1, 3, 13), null, 'шире рейки — без подсказки');
+    // Своё место не считается занятым (uid 1 — rcd2 на модулях 2–4)
+    assert.deepEqual(dropPreview(board, e, devices, 0, 2.2, 2, 1), { pos: 2, ok: true });
+    assert.deepEqual(dropPreview(board, e, devices, 0, 2.2, 2), { pos: 2, ok: false }, 'чужое устройство на этом месте');
   });
 });
 

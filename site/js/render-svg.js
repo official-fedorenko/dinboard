@@ -9,6 +9,10 @@ export const MODULE_MM = 17.5;
 export const FACE_MM = 45;
 const ROW_PITCH_MM = 125; // шаг рядов у типовых модульных щитов
 const CUTOUT_GAP = 3; // зазор выреза панели вокруг устройств
+// Полоса маркировки над рядом (на ней номера модулей): высота и отступ от выреза.
+// Номера кеглем 7.5 мм, как подписи на устройствах: мельче на телефоне не читаются.
+const STRIP_MM = 10;
+const STRIP_GAP = 3;
 const COVER_INSET = 10; // отступ лицевой панели от края корпуса
 
 const XML_ESCAPES = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&apos;' };
@@ -76,6 +80,43 @@ export function hitTest(layout, x, y) {
     if (Math.abs(row.cy - y) < Math.abs(best.cy - y)) best = row;
   }
   return { row: best.index, offset: (x - best.x0) / MODULE_MM };
+}
+
+/**
+ * Прямоугольник места на рейке (мм) для подсказки при перетаскивании:
+ * ряд row, с модуля pos, ширина width модулей. { x, y, w, h } или null, если ряда нет.
+ */
+export function slotRect(layout, row, pos, width) {
+  const r = layout.rows[row];
+  if (!r) return null;
+  return { x: r.x0 + pos * MODULE_MM, y: r.y, w: width * MODULE_MM, h: FACE_MM };
+}
+
+/**
+ * Разметка модулей ряда: номера 1…N на полосе маркировки над рядом и деления
+ * между модулями на свободных местах (заглушках) — видно, сколько модулей свободно и где.
+ */
+function moduleGrid(row) {
+  const count = Math.round((row.x1 - row.x0) / MODULE_MM);
+  const stripY = row.y - CUTOUT_GAP - STRIP_GAP - STRIP_MM;
+  const parts = [];
+  for (let i = 0; i < count; i++) {
+    const cx = row.x0 + (i + 0.5) * MODULE_MM;
+    parts.push(`<text class="module-number" x="${n(cx)}" y="${n(stripY + 7.7)}">${i + 1}</text>`);
+    if (i > 0) {
+      const x = row.x0 + i * MODULE_MM;
+      parts.push(`<line class="module-tick" x1="${n(x)}" y1="${n(stripY)}" x2="${n(x)}" y2="${n(stripY + STRIP_MM)}"/>`);
+    }
+  }
+  for (const gap of row.gaps) {
+    for (let i = 1; i < count; i++) {
+      const x = row.x0 + i * MODULE_MM;
+      if (x > gap.x + 0.01 && x < gap.x + gap.w - 0.01) {
+        parts.push(`<line class="module-divider" x1="${n(x)}" y1="${n(row.y + 3)}" x2="${n(x)}" y2="${n(row.y + FACE_MM - 3)}"/>`);
+      }
+    }
+  }
+  return `<g class="module-grid" aria-hidden="true">${parts.join('')}</g>`;
 }
 
 // ---------- устройства ----------
@@ -148,7 +189,7 @@ export function renderBoardSvg(layout, devices, options) {
     const cutY = row.y - CUTOUT_GAP;
     const cutW = row.x1 - row.x0 + 2 * CUTOUT_GAP;
     // Полоса для маркировки над рядом и номер ряда
-    out.push(`<rect class="label-strip" x="${n(row.x0)}" y="${n(cutY - 9)}" width="${n(row.x1 - row.x0)}" height="6" rx="1"/>`);
+    out.push(`<rect class="label-strip" x="${n(row.x0)}" y="${n(cutY - STRIP_GAP - STRIP_MM)}" width="${n(row.x1 - row.x0)}" height="${STRIP_MM}" rx="1"/>`);
     out.push(`<text class="row-number" x="${n(cutX - 4)}" y="${n(row.cy + 2.5)}">${row.index + 1}</text>`);
     out.push(
       `<rect class="cutout${active ? ' active' : ''}" data-row="${row.index}" x="${n(cutX)}" y="${n(cutY)}" width="${n(cutW)}" height="${n(FACE_MM + 2 * CUTOUT_GAP)}" rx="1.5"/>`,
@@ -159,6 +200,8 @@ export function renderBoardSvg(layout, devices, options) {
         `<rect class="blank" data-row="${row.index}" x="${n(gap.x + 0.3)}" y="${n(row.y)}" width="${n(gap.w - 0.6)}" height="${FACE_MM}" rx="1"/>`,
       );
     }
+    // Номера модулей над рядом и деления на заглушках
+    out.push(moduleGrid(row));
     row.items.forEach((item) => {
       const device = devices.get(item.deviceId);
       const label = deviceLabel(device, t);

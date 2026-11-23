@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 
-import { layoutBoard, hitTest, renderBoardSvg, escapeXml, MODULE_MM, FACE_MM } from '../site/js/render-svg.js';
+import { layoutBoard, hitTest, renderBoardSvg, escapeXml, slotRect, MODULE_MM, FACE_MM } from '../site/js/render-svg.js';
 import { createBoard, addDevice, indexById } from '../site/js/board.js';
 import { createTranslator } from '../site/js/i18n.js';
 import { deviceTitle, deviceLabel } from '../site/js/format.js';
@@ -131,6 +131,28 @@ describe('renderBoardSvg', () => {
     assert.match(svg, /class="dev-test"/, 'у УЗО есть кнопка «Тест»');
     assert.equal((svg.match(/class="dev-indicator"/g) ?? []).length, 4, 'у УЗИП 3P+N — 4 окошка');
     assert.ok(svg.endsWith('</svg>'));
+  });
+
+  test('разметка модулей: номера над каждым рядом, деления только на свободных местах', () => {
+    const svg = render(layout);
+    const grids = svg.match(/<g class="module-grid" aria-hidden="true">.*?<\/g>/g) ?? [];
+    assert.equal(grids.length, 2, 'по разметке на ряд');
+    const numbers = [...grids[0].matchAll(/class="module-number"[^>]*>(\d+)</g)].map((m) => Number(m[1]));
+    assert.deepEqual(numbers, Array.from({ length: 12 }, (_, i) => i + 1));
+    assert.equal((grids[0].match(/class="module-tick"/g) ?? []).length, 11);
+    // Ряд 1: занято 4 модуля (УЗО 2 + 2 автомата), свободно 8 — между ними 7 делений
+    assert.equal((grids[0].match(/class="module-divider"/g) ?? []).length, 7);
+    // Деления — на границах модулей внутри свободного места (с 5-го модуля)
+    const x0 = layout.rows[0].x0;
+    const xs = [...grids[0].matchAll(/class="module-divider" x1="([\d.]+)"/g)].map((m) => Number(m[1]));
+    assert.deepEqual(xs, [5, 6, 7, 8, 9, 10, 11].map((i) => Math.round((x0 + i * MODULE_MM) * 100) / 100));
+  });
+
+  test('slotRect: место на рейке для подсказки при перетаскивании', () => {
+    const r = layout.rows[1];
+    assert.deepEqual(slotRect(layout, 1, 4, 2), { x: r.x0 + 4 * MODULE_MM, y: r.y, w: 2 * MODULE_MM, h: FACE_MM });
+    assert.deepEqual(slotRect(layout, 0, 2.5, 1).x, layout.rows[0].x0 + 2.5 * MODULE_MM);
+    assert.equal(slotRect(layout, 5, 0, 1), null, 'нет такого ряда');
   });
 
   test('доступность: устройства — кнопки с подписью и ключом фокуса', () => {

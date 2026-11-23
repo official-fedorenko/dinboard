@@ -29,6 +29,8 @@
   --device-border: #9aa1ad;
   --warn-bg: #fff4d6;
   --warn-text: #7a5300;
+  --drop-ok: #1f9d55;
+  --drop-bad: #d64545;
   --cat-mcb: #2f6fde;
   --cat-rcbo: #8a4fd6;
   --cat-rcd: #d1782a;
@@ -62,6 +64,8 @@
     --device-border: #6b7380;
     --warn-bg: #3b2f12;
     --warn-text: #f3cf74;
+    --drop-ok: #3fcf7a;
+    --drop-bad: #ff6b6b;
     --cat-mcb: #5b8ff0;
     --cat-rcbo: #a77ee6;
     --cat-rcd: #e39445;
@@ -499,6 +503,45 @@ button:focus-visible {
   stroke: var(--accent);
   stroke-width: 2.2;
   stroke-dasharray: 3 2;
+}
+
+/* Разметка модулей: номера над рядом, деления на свободных местах (не мешают щелчкам) */
+.module-grid {
+  pointer-events: none;
+}
+
+.module-number {
+  fill: var(--enc-text);
+  font-size: 7.5px;
+  text-anchor: middle;
+}
+
+.module-tick,
+.module-divider {
+  stroke: var(--enc-edge);
+  stroke-width: 0.3;
+}
+
+.module-divider {
+  stroke-dasharray: 1.5 1.5;
+}
+
+/* Куда встанет устройство при перетаскивании: зелёный — свободно, красный — занято */
+.drop-slot {
+  pointer-events: none;
+  stroke-width: 1;
+  fill-opacity: 0.22;
+}
+
+.drop-slot.ok {
+  fill: var(--drop-ok);
+  stroke: var(--drop-ok);
+}
+
+.drop-slot.bad {
+  fill: var(--drop-bad);
+  stroke: var(--drop-bad);
+  stroke-dasharray: 2 1.5;
 }
 
 .blank {
