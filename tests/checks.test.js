@@ -18,6 +18,8 @@ const devices = indexById([
   dev('spd-1n-tt', 'spd', 2, { poles: '1P+N', spdType: '2', networks: ['TN-S', 'TT'] }),
   dev('spd-3n-tns', 'spd', 4, { poles: '3P+N', spdType: '2', networks: ['TN-S'] }),
   dev('spd-3n-any', 'spd', 4, { poles: '3P+N', spdType: '2' }),
+  dev('term-n', 'terminal', 4, { role: 'N', clamps: [[1, 25], [12, 16]] }),
+  dev('term-pe', 'terminal', 4, { role: 'PE', clamps: [[1, 25], [12, 16]] }),
 ]);
 const enclosure = { id: 'e', rows: 3, modulesPerRow: 12 };
 
@@ -145,9 +147,31 @@ describe('клеммы N/PE', () => {
   });
 
   test('клемм меньше, чем линий и ввод, — совет по каждой роли', () => {
-    // 5 автоматов = 5 линий + ввод = нужно по 6; клемм N — 4, PE — 8
-    const few = run(one, ids).filter((c) => c.key === 'check.fewClamps');
-    assert.deepEqual(few, [{ level: 'info', key: 'check.fewClamps', params: { role: 'N', need: 6, lines: 5, clamps: 4 } }]);
+    // Без УЗО: 5 автоматов = 5 линий + ввод = нужно по 6; клемм N — 4, PE — 8
+    const few = run(one, ['sw2-63', ...Array(5).fill('mcb1-16')]).filter((c) => c.key === 'check.fewClamps');
+    assert.deepEqual(few, [{ level: 'info', key: 'check.fewClamps', params: { role: 'N', need: 6, clamps: 4, basis: [['check.part.lines', 5], ['check.part.main', 1]] } }]);
+  });
+
+  test('в совете видно, откуда «нужно»: линии, ввод, входы УЗО, УЗИП (сумма сходится)', () => {
+    // 5 автоматов + УЗИП 1P+N: N — 5 + ввод + УЗИП = 7, PE — тоже 7; клемм N — 4, PE — 8
+    const few = run(one, ['sw2-63', ...Array(5).fill('mcb1-16'), 'spd-1n-tt']).filter((c) => /Clamps/.test(c.key));
+    assert.deepEqual(few, [
+      { level: 'info', key: 'check.fewClamps', params: { role: 'N', need: 7, clamps: 4, basis: [['check.part.lines', 5], ['check.part.main', 1], ['check.part.spds', 1]] } },
+    ]);
+    // УЗО правее автоматов (группа пустая): его вход — тоже слагаемое «нужно»
+    const rcdRight = run(one, ['sw2-63', ...Array(5).fill('mcb1-16'), 'rcd-63-a']).filter((c) => /Clamps/.test(c.key));
+    assert.deepEqual(rcdRight.map((c) => [c.params.need, c.params.basis]), [[7, [['check.part.lines', 5], ['check.part.main', 1], ['check.part.rcds', 1]]]]);
+  });
+
+  test('группы УЗО: шин N меньше, чем групп и общая, — совет', () => {
+    // УЗО + 5 автоматов: группа 5 и общая (ввод и вход УЗО) 2; одна шина N на 4 клеммы
+    const list = run(one, ids).filter((c) => c.key === 'check.rcdNeutrals' || c.key === 'check.fewClamps');
+    assert.deepEqual(list, [{ level: 'info', key: 'check.rcdNeutrals', params: { rcds: 1, need: 2, bars: 1, short: 3 } }]);
+  });
+
+  test('клеммники на DIN-рейку считаются: держатель не советуется, клемм хватает', () => {
+    const list = run(null, ['sw2-63', ...Array(5).fill('mcb1-16'), 'term-n', 'term-pe']);
+    assert.deepEqual(list.filter((c) => /noCarriers|fewClamps|rcdNeutrals/.test(c.key)), []);
   });
 
   test('без каталога держателей клеммы не проверяются', () => {

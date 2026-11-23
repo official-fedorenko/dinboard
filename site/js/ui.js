@@ -34,7 +34,7 @@ import {
 } from './format.js';
 import { h } from './dom.js';
 import { layoutBoard, hitTest, renderBoardSvg, slotRect, carrierBars, combBars, MODULE_MM } from './render-svg.js';
-import { checkBoard } from './checks.js';
+import { checkBoard, clampBasis } from './checks.js';
 import { specTable, toCsv, exportFileName, carriersSpec, carrierName, insertName, combsSpec, combName, combPartsSpec, combPartName } from './export.js';
 import {
   addInsert,
@@ -50,6 +50,9 @@ import {
   carrierClamps,
   autoFill,
   clampNeed,
+  clampShortage,
+  railTerminals,
+  railClamps,
   snapInsertPos,
   canPlaceInsert,
   firstFreeInsertPos,
@@ -1010,6 +1013,8 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
     const items = list.map((check) => {
       const params = { ...check.params };
       if (typeof params.free === 'number') params.free = fmt(params.free);
+      // Пояснение «нужно клемм» — слагаемые [[ключ, число]] из checks.js
+      if (Array.isArray(params.basis)) params.basis = basisText(params.basis);
       if (check.deviceId) {
         const d = devices.get(check.deviceId);
         params.title = `${deviceTitle(d, t)} — ${deviceRef(d, brandNames.get(d.brand))}`;
@@ -1143,22 +1148,28 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
   /** Подбор по числу линий; если держателей нет — сначала первый подходящий. */
   function fillCarriers(enc) {
     const need = clampNeed(state.board, devices);
+    // Клеммники на DIN-рейку тоже считаются: если их хватает, держатель не добавляется
+    const rail = railTerminals(state.board, devices);
+    const counts = { n: need.N, pe: need.PE, lines: need.lines };
     let start = carrierList();
+    const before = clampShortage(start, need, insertsById, rail);
+    if (!before.N && !before.PE) {
+      update({ status: t('carrier.autoEnough', counts) }, 'carriers-fill');
+      return;
+    }
     if (!start.length) {
       const options = carrierOptions(enc, carriersById);
       const first = options.find((c) => c.kind === 'carrier') ?? options.find((c) => c.kind === 'zone');
       if (!first) return;
       start = addCarrier([], first.id, carriersById);
     }
-    const { carriers, short } = autoFill(start, need, carriersById, insertsById);
-    const status =
-      short.N || short.PE
-        ? t('carrier.autoShort', { n: short.N, pe: short.PE })
-        : carriers === carrierList()
-          ? t('carrier.autoEnough', { n: need.N })
-          : t('carrier.autoDone', { n: need.N, lines: need.lines });
+    const { carriers, short } = autoFill(start, need, carriersById, insertsById, rail);
+    const status = short.N || short.PE ? t('carrier.autoShort', { n: short.N, pe: short.PE }) : t('carrier.autoDone', counts);
     update({ board: setCarriers(state.board, carriers), status, selectedInsert: null }, 'carriers-fill');
   }
+
+  /** Слагаемые «нужно клемм» текстом: «линий: 5, ввод: 1, УЗИП: 1». */
+  const basisText = (parts) => parts.map(([key, n]) => t(key, { n })).join(', ');
 
   /** Есть ли среди держателей и клемм щита (и комплектации корпуса) не подтверждённые источником. */
   function carriersUnverified(enc) {
@@ -1181,6 +1192,10 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
     if (!options.length && !list.length) return null;
     const have = carrierClamps(list, insertsById);
     const need = clampNeed(state.board, devices);
+    // Клеммники на DIN-рейку — тоже клеммы щита
+    const rail = railTerminals(state.board, devices);
+    have.N += railClamps(rail, 'N');
+    have.PE += railClamps(rail, 'PE');
     return h(
       'div',
       { class: 'terminals-info' },
@@ -1188,9 +1203,14 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
       h(
         'p',
         { class: 'terminals-text' },
-        list.length ? t('carrier.summary', { n: have.N, pe: have.PE }) : t('carrier.none'),
+        list.length || have.N || have.PE ? t('carrier.summary', { n: have.N, pe: have.PE }) : t('carrier.none'),
         ' ',
-        h('span', { class: 'muted' }, t('carrier.need', { n: need.N, lines: need.lines })),
+        h(
+          'span',
+          { class: 'muted' },
+          t('carrier.need', { n: need.N, pe: need.PE, basis: basisText(clampBasis(need)) || t('check.part.main', { n: 1 }) }),
+        ),
+        need.groups.length > 0 && h('span', { class: 'muted' }, ` ${t('carrier.needBars', { bars: need.groups.length + 1, rcds: need.groups.length })}`),
         carriersUnverified(enc) && h('span', { class: 'badge', title: t('carrier.unverifiedHint') }, t('device.unverified')),
       ),
       h(

@@ -21,6 +21,8 @@ import {
   removeCarrier,
   swapCarrier,
   clampNeed,
+  railTerminals,
+  clampShortage,
   CarrierError,
 } from '../site/js/carriers.js';
 
@@ -173,9 +175,48 @@ describe('держатели щита', () => {
     assert.deepEqual(carriers[0].inserts.map((x) => x.insertId), ['sure']);
   });
 
-  test('нужно клемм: по одной на линию (автомат, дифавтомат) и на ввод', () => {
-    const devices = byId([{ id: 'm', category: 'mcb' }, { id: 'r', category: 'rcbo' }, { id: 'u', category: 'rcd' }]);
-    const board = { rows: [[{ deviceId: 'm' }, { deviceId: 'u' }], [{ deviceId: 'r' }, { deviceId: 'm' }]] };
-    assert.deepEqual(clampNeed(board, devices), { N: 4, PE: 4, lines: 3 });
+  test('нужно клемм: N — по группам УЗО и общая; PE — на линию, ввод и УЗИП', () => {
+    const devices = byId([
+      { id: 'sw', category: 'switch' },
+      { id: 'm', category: 'mcb' },
+      { id: 'r', category: 'rcbo' },
+      { id: 'u', category: 'rcd' },
+      { id: 'spd', category: 'spd', specs: { poles: '1P+N' } },
+      { id: 'spd3', category: 'spd', specs: { poles: '3P' } },
+    ]);
+    const row = (...ids) => ids.map((deviceId) => ({ deviceId }));
+    // Ряд 1: рубильник, УЗО + 2 автомата, УЗО + 1 автомат. Ряд 2 (группа не переходит в другой ряд): автомат, дифавтомат, УЗИП 1P+N, УЗИП 3P
+    const board = { rows: [row('sw', 'u', 'm', 'm', 'u', 'm'), row('m', 'r', 'spd', 'spd3')] };
+    // Общая N: ввод 1 + входы двух УЗО 2 + автомат 1 + дифавтомат 1 + УЗИП с нейтралью 1 = 6; группы — 2 и 1
+    assert.deepEqual(clampNeed(board, devices), { N: 9, PE: 8, lines: 5, groups: [2, 1], mainN: 6, rcds: 2, spds: 2, spdsN: 1 });
+    // УЗО без автоматов за ним — группы нет
+    assert.deepEqual(clampNeed({ rows: [row('m', 'u'), row('r', 'm')] }, devices).groups, []);
+  });
+
+  test('клеммники на DIN-рейку считаются вместе с держателями', () => {
+    const devices = byId([
+      { id: 'tn', category: 'terminal', specs: { role: 'N', clamps: [[1, 25], [12, 16]] } },
+      { id: 'tpe', category: 'terminal', specs: { role: 'PE', clamps: [[13, 16]] } },
+      { id: 'tx', category: 'terminal', specs: { role: 'N+PE' } },
+      { id: 'm', category: 'mcb' },
+    ]);
+    const board = { rows: [[{ deviceId: 'tn' }, { deviceId: 'tpe' }, { deviceId: 'tx' }, ...Array(5).fill({ deviceId: 'm' })]] };
+    const rail = railTerminals(board, devices);
+    assert.deepEqual(rail, [{ role: 'N', clamps: 13 }, { role: 'PE', clamps: 13 }], 'без числа клемм — не считается');
+    assert.deepEqual(clampShortage([], clampNeed(board, devices), insertsById, rail).N, 0);
+    const { carriers, short } = autoFill(empty(), clampNeed(board, devices), carriersById, insertsById, rail);
+    assert.deepEqual(carriers[0].inserts, [], 'клемм на рейке хватает — ничего не добавляется');
+    assert.deepEqual(short, { N: 0, PE: 0 });
+  });
+
+  test('шины N по группам УЗО: у каждой группы своя шина, общая — остальные', () => {
+    const need = { N: 12, PE: 0, lines: 10, groups: [5, 5], mainN: 2 };
+    const bars = [{ carrierId: 'c240', position: 'top', included: false, inserts: [{ insertId: 'n6', pos: 0 }, { insertId: 'n14', pos: 30 }] }];
+    // Группа 5 → n6, группа 5 → n14, на общую шин не осталось — не хватает 2
+    assert.deepEqual(clampShortage(bars, need, insertsById), { N: 2, PE: 0, bars: 3, haveBars: 2, unmet: [2] });
+    // Подбор: по шине на группу и общая
+    const { carriers, short } = autoFill(empty(), { N: 11, PE: 0, lines: 8, groups: [4, 4], mainN: 3 }, carriersById, insertsById);
+    assert.deepEqual(carriers[0].inserts.map((x) => x.insertId), ['n6', 'n6', 'n6']);
+    assert.deepEqual(short, { N: 0, PE: 0 });
   });
 });

@@ -8,7 +8,7 @@
 
 import { boardStats } from './board.js';
 import { COMB_DEVICE_CATEGORIES } from './catalog.js';
-import { carrierClamps, carrierOptions, clampNeed } from './carriers.js';
+import { carrierClamps, carrierOptions, clampNeed, clampShortage, railTerminals, railClamps } from './carriers.js';
 
 /** Рекомендуемый запас свободных мест (доля от вместимости щита). */
 export const SPARE_SHARE = 0.2;
@@ -74,6 +74,24 @@ function checkCombs(board, devices, combsById, warn, info) {
   });
 }
 
+/** Слагаемые пояснения «нужно клемм» (ключи переводов check.part.<имя>, параметр n). */
+export const CLAMP_PARTS = ['lines', 'main', 'rcds', 'spds'];
+
+/**
+ * Из чего складывается «нужно клемм» для роли N или PE (clampNeed): [[ключ перевода, число]] — только
+ * ненулевые слагаемые, сумма равна need[role] без нейтралей групп УЗО (их показывает check.rcdNeutrals).
+ * N: линии, ввод, входы УЗО, УЗИП с нейтралью; PE: линии, ввод, все УЗИП. Без role — для сводки (линии, УЗО, УЗИП).
+ */
+export function clampBasis(need, role) {
+  const parts =
+    role === 'N'
+      ? [['lines', need.lines], ['main', 1], ['rcds', need.rcds], ['spds', need.spdsN]]
+      : role === 'PE'
+        ? [['lines', need.lines], ['main', 1], ['spds', need.spds]]
+        : [['lines', need.lines], ['rcds', need.rcds], ['spds', need.spds]];
+  return parts.filter(([, n]) => n).map(([part, n]) => [`check.part.${part}`, n]);
+}
+
 /**
  * Все подсказки для щита. Пустой щит — без подсказок. combsById — гребёнки каталога (Map по id);
  * carrierCatalog — { carriersById, insertsById }: держатели и клеммы N/PE (без него клеммы не проверяются).
@@ -128,17 +146,24 @@ export function checkBoard(board, enclosure, devices, combsById = new Map(), car
   const typeAC = residual.filter((d) => d.specs.rcdType === 'AC');
   if (typeAC.length) info('check.rcdTypeAC', { n: typeAC.length });
 
-  // --- Клеммы N/PE: по одной N и PE на каждую отходящую линию (автомат, дифавтомат) и на ввод ---
+  // --- Клеммы N/PE (clampNeed): на линии, ввод и УЗИП; у каждой группы УЗО своя шина N.
+  // Считаются клеммы в держателях и клеммники на DIN-рейку ---
   if (carrierCatalog) {
     const carriers = board.carriers ?? [];
-    if (!carriers.length) {
+    const rail = railTerminals(board, devices);
+    if (!carriers.length && !rail.length) {
       if (carrierOptions(enclosure, carrierCatalog.carriersById).length) info('check.noCarriers');
     } else {
       const need = clampNeed(board, devices);
+      const short = clampShortage(carriers, need, carrierCatalog.insertsById, rail);
       const have = carrierClamps(carriers, carrierCatalog.insertsById);
-      for (const role of ['N', 'PE']) {
-        if (need.lines && have[role] < need[role]) info('check.fewClamps', { role, need: need[role], lines: need.lines, clamps: have[role] });
+      // С УЗИП в пояснении видно, откуда «нужно»: линии, ввод и УЗИП
+      const few = (role, clamps) => info('check.fewClamps', { role, need: need[role], clamps, basis: clampBasis(need, role) });
+      if (need.lines && short.N) {
+        if (need.groups.length) info('check.rcdNeutrals', { rcds: need.groups.length, need: short.bars, bars: short.haveBars, short: short.N });
+        else few('N', have.N + railClamps(rail, 'N'));
       }
+      if (need.lines && short.PE) few('PE', have.PE + railClamps(rail, 'PE'));
     }
   }
 

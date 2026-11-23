@@ -165,21 +165,76 @@ export function carrierClamps(carriers, insertsById) {
   return total;
 }
 
+/** Доля клемм для роли N или PE у клеммника на рейке (общий N+PE — поровну). */
+export const railShare = (t, role) => (t.role === role ? t.clamps : t.role === 'N+PE' ? Math.floor(t.clamps / 2) : 0);
+
 /**
- * Подбор по числу линий: для N и PE, где клемм не хватает до need, в держатели добавляется
- * самая маленькая подходящая клемма (своей роли, универсальная или общая N+PE; подтверждённые источником —
- * раньше), а если ни одна не хватает —
- * самая большая (и так, пока не хватит или есть место). Заводские клеммы остаются.
+ * Шины N щита: число клемм N у каждой отдельной шины — клеммы в держателях (у общей N+PE — половина)
+ * и клеммники на DIN-рейку (rail из railTerminals).
+ */
+export function neutralBars(carriers, insertsById, rail = []) {
+  const bars = [];
+  for (const c of carriers ?? []) {
+    for (const item of c.inserts) {
+      const insert = insertsById.get(item.insertId);
+      const n = insert ? clampsFor(item, insert, 'N') : 0;
+      if (n > 0) bars.push(n);
+    }
+  }
+  for (const t of rail) if (railShare(t, 'N') > 0) bars.push(railShare(t, 'N'));
+  return bars;
+}
+
+/**
+ * Чего не хватает до need (из clampNeed): { N, PE, bars, haveBars, unmet }.
+ * У каждой группы УЗО своя шина N (самая маленькая подходящая; если ни одна не подходит — самая большая
+ * из оставшихся), общей нужде (ввод, входы УЗО, линии без УЗО) — все остальные шины N вместе (их можно соединить).
+ * N и PE — сколько клемм не хватает; bars — сколько шин N нужно (группы + общая), haveBars — сколько есть;
+ * unmet — размеры шин, которые нужно добавить (для группы — целиком, для общей — сколько не хватает).
+ * Схема соединений не моделируется: какие автоматы за каким УЗО — по расстановке (см. clampNeed).
+ */
+export function clampShortage(carriers, need, insertsById, rail = []) {
+  const groups = [...(need.groups ?? [])].sort((a, b) => b - a);
+  const mainN = need.mainN ?? need.N - groups.reduce((s, g) => s + g, 0);
+  const free = neutralBars(carriers, insertsById, rail).sort((a, b) => a - b);
+  const haveBars = free.length;
+  const unmet = [];
+  let shortN = 0;
+  for (const g of groups) {
+    let i = free.findIndex((b) => b >= g);
+    if (i < 0) i = free.length - 1;
+    const got = i >= 0 ? free.splice(i, 1)[0] : 0;
+    if (got < g) {
+      unmet.push(g);
+      shortN += g - got;
+    }
+  }
+  const rest = free.reduce((s, b) => s + b, 0);
+  if (rest < mainN) {
+    unmet.push(mainN - rest);
+    shortN += mainN - rest;
+  }
+  const pe = carrierClamps(carriers, insertsById).PE + railClamps(rail, 'PE');
+  return { N: shortN, PE: Math.max(0, need.PE - pe), bars: groups.length + 1, haveBars, unmet };
+}
+
+/**
+ * Подбор по числу линий (need — из clampNeed, rail — клеммники на рейке, они тоже считаются).
+ * N: для каждой группы УЗО, у которой нет своей подходящей шины, и для общей шины, если в ней мало клемм, в держатели
+ * добавляется отдельная клемма N; PE — пока клемм не хватит. Берётся самая маленькая подходящая клемма (своей роли,
+ * универсальная или общая N+PE; подтверждённые источником — раньше), а если ни одна не хватает — самая большая
+ * (и так, пока не хватит или есть место). Заводские клеммы остаются.
  * Возвращает { carriers, short: { N, PE } } — short: сколько клемм всё ещё не хватает.
  */
-export function autoFill(carriers, need, carriersById, insertsById) {
+export function autoFill(carriers, need, carriersById, insertsById, rail = []) {
   let next = carriers;
-  const short = {};
   for (const role of ['N', 'PE']) {
-    let have = carrierClamps(next, insertsById)[role];
     let guard = 0;
-    while (have < need[role] && guard++ < 10) {
-      const missing = need[role] - have;
+    while (guard++ < 12) {
+      const s = clampShortage(next, need, insertsById, rail);
+      if (!s[role]) break;
+      // N — шина нужного размера целиком (своя для группы УЗО), PE — сколько не хватает
+      const missing = role === 'N' ? s.unmet[0] : s.PE;
       let placed = false;
       for (let index = 0; index < next.length && !placed; index++) {
         const carrier = next[index];
@@ -196,11 +251,10 @@ export function autoFill(carriers, need, carriersById, insertsById) {
         placed = true;
       }
       if (!placed) break;
-      have = carrierClamps(next, insertsById)[role];
     }
-    short[role] = Math.max(0, need[role] - have);
   }
-  return { carriers: next, short };
+  const s = clampShortage(next, need, insertsById, rail);
+  return { carriers: next, short: { N: s.N, PE: s.PE } };
 }
 
 /**
@@ -290,14 +344,77 @@ export function swapCarrier(carriers, index, carrierId, carriersById, insertsByI
   return next;
 }
 
-/** Сколько клемм N и PE нужно: по одной на каждую отходящую линию (автомат, дифавтомат) и на ввод. */
+const SPD_WITH_N = new Set(['1P+N', '3P+N']);
+
+/**
+ * Сколько клемм N и PE нужно: { N, PE, lines, groups, mainN, rcds, spds, spdsN }.
+ * PE — по одной на каждую отходящую линию (автомат, дифавтомат), на ввод и на каждый УЗИП.
+ * N делится по группам УЗО: нейтрали группы идут на свою шину N (общая N на выходе разных УЗО даёт
+ * ложные срабатывания). Схема соединений не моделируется, поэтому группа — УЗО и автоматы правее него
+ * в том же ряду до следующего УЗО или рубильника; groups — число линий каждой группы (пустые не считаются).
+ * mainN — общая шина N: ввод, вход каждого УЗО, автоматы без УЗО, дифавтоматы, УЗИП с нейтралью.
+ * lines — число отходящих линий (автоматы и дифавтоматы); rcds — число УЗО (вход каждого — на общей шине N); spds — число УЗИП (каждому — клемма PE),
+ * spdsN — из них с нейтралью (им ещё клемма N).
+ */
 export function clampNeed(board, devices) {
   let lines = 0;
+  let rcds = 0;
+  let spds = 0;
+  let spdsN = 0;
+  let mainN = 1;
+  const groups = [];
   for (const row of board.rows) {
+    let group = null; // группа УЗО не переходит в другой ряд
     for (const item of row) {
-      const category = devices.get(item.deviceId)?.category;
-      if (category === 'mcb' || category === 'rcbo') lines += 1;
+      const device = devices.get(item.deviceId);
+      switch (device?.category) {
+        case 'rcd':
+          rcds += 1;
+          mainN += 1;
+          group = groups.push(0) - 1;
+          break;
+        case 'switch':
+          group = null;
+          break;
+        case 'mcb':
+          lines += 1;
+          if (group === null) mainN += 1;
+          else groups[group] += 1;
+          break;
+        case 'rcbo':
+          lines += 1;
+          mainN += 1;
+          break;
+        case 'spd':
+          spds += 1;
+          if (SPD_WITH_N.has(device.specs?.poles)) {
+            mainN += 1;
+            spdsN += 1;
+          }
+          break;
+        default:
+          break;
+      }
     }
   }
-  return { N: lines + 1, PE: lines + 1, lines };
+  const used = groups.filter((g) => g > 0);
+  return { N: mainN + used.reduce((s, g) => s + g, 0), PE: lines + 1 + spds, lines, groups: used, mainN, rcds, spds, spdsN };
+}
+
+/** Клемм роли N или PE во всех клеммниках на рейке (rail из railTerminals). */
+export function railClamps(rail, role) {
+  return rail.reduce((s, t) => s + railShare(t, role), 0);
+}
+
+/** Клеммники N/PE на DIN-рейку в щите (категория terminal, с числом клемм): [{ role, clamps }]. */
+export function railTerminals(board, devices) {
+  const out = [];
+  for (const row of board.rows) {
+    for (const item of row) {
+      const device = devices.get(item.deviceId);
+      if (device?.category !== 'terminal' || !device.specs?.clamps) continue;
+      out.push({ role: device.specs.role, clamps: clampCount(device.specs.clamps) });
+    }
+  }
+  return out;
 }
