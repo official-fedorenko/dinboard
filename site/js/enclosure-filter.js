@@ -9,8 +9,8 @@ export const ENCLOSURE_FILTERS = {
   rowsCount: 'rows',
 };
 
-/** Сколько корпусов показывать сразу, остальные — в окне «Ещё варианты». */
-export const PREVIEW_COUNT = 3;
+/** Сколько корпусов показывать сразу, остальные — в окне «Ещё варианты» (если их больше одного). */
+export const PREVIEW_COUNT = 2;
 
 /** Подходит ли корпус под фильтры; фильтр skip не учитывается. */
 function matches(enclosure, filters, skip = null) {
@@ -35,7 +35,14 @@ export function availableValues(enclosures, filters, key) {
   return new Set(enclosures.filter((e) => matches(e, filters, key)).map((e) => e[field]));
 }
 
-/** Короткий список и остальные: { shown, rest }. */
-export function previewSplit(list, count = PREVIEW_COUNT) {
-  return { shown: list.slice(0, count), rest: list.slice(count) };
+/**
+ * Короткий список и остальные: { shown, rest }. Если за коротким списком остаётся
+ * всего один корпус, он показывается сразу — окно ради одного корпуса не нужно.
+ * currentId — выбранный корпус: если он подходит под фильтры, идёт первым.
+ */
+export function previewSplit(list, count = PREVIEW_COUNT, currentId = null) {
+  const current = list.find((e) => e.id === currentId);
+  const ordered = current ? [current, ...list.filter((e) => e !== current)] : list;
+  if (ordered.length <= count + 1) return { shown: ordered, rest: [] };
+  return { shown: ordered.slice(0, count), rest: ordered.slice(count) };
 }

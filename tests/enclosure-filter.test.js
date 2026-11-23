@@ -73,16 +73,31 @@ describe('availableValues', () => {
 });
 
 describe('previewSplit', () => {
-  test('первые три и остальные', () => {
-    assert.equal(PREVIEW_COUNT, 3);
+  test('больше трёх — первые два и остальные в окне', () => {
+    assert.equal(PREVIEW_COUNT, 2);
     const { shown, rest } = previewSplit(list);
-    assert.deepEqual(ids(shown), ['abb-1', 'abb-2', 'abb-4']);
-    assert.deepEqual(ids(rest), ['leg-18', 'leg-12', 'sch-13']);
+    assert.deepEqual(ids(shown), ['abb-1', 'abb-2']);
+    assert.deepEqual(ids(rest), ['abb-4', 'leg-18', 'leg-12', 'sch-13']);
+    const four = previewSplit(list.slice(0, 4));
+    assert.deepEqual([ids(four.shown), ids(four.rest)], [['abb-1', 'abb-2'], ['abb-4', 'leg-18']]);
   });
 
-  test('три и меньше — без остальных', () => {
-    assert.deepEqual(previewSplit(list.slice(0, 3)).rest, []);
+  test('три и меньше — все сразу, без окна (окно ради одного корпуса не нужно)', () => {
+    const three = previewSplit(list.slice(0, 3));
+    assert.deepEqual([ids(three.shown), three.rest], [['abb-1', 'abb-2', 'abb-4'], []]);
+    assert.deepEqual(previewSplit(list.slice(0, 2)).rest, []);
     assert.deepEqual(previewSplit([]), { shown: [], rest: [] });
+  });
+
+  test('выбранный корпус — первым, если подходит под фильтры', () => {
+    const { shown, rest } = previewSplit(list, PREVIEW_COUNT, 'sch-13');
+    assert.deepEqual(ids(shown), ['sch-13', 'abb-1']);
+    assert.deepEqual(ids(rest), ['abb-2', 'abb-4', 'leg-18', 'leg-12']);
+    // Не подходит под фильтры (нет в списке) — порядок как есть
+    assert.deepEqual(ids(previewSplit(list.slice(0, 5), PREVIEW_COUNT, 'sch-13').shown), ['abb-1', 'abb-2']);
+    // Уже первый — без изменений; из трёх — все три, выбранный первым
+    assert.deepEqual(ids(previewSplit(list, PREVIEW_COUNT, 'abb-1').shown), ['abb-1', 'abb-2']);
+    assert.deepEqual(ids(previewSplit(list.slice(0, 3), PREVIEW_COUNT, 'abb-4').shown), ['abb-4', 'abb-1', 'abb-2']);
   });
 });
 

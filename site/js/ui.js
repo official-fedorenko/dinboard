@@ -32,7 +32,7 @@ import { layoutBoard, hitTest, renderBoardSvg, MODULE_MM } from './render-svg.js
 import { checkBoard } from './checks.js';
 import { specTable, toCsv, exportFileName } from './export.js';
 import { xlsxWorkbook } from './xlsx.js';
-import { filterEnclosures, availableValues, previewSplit } from './enclosure-filter.js';
+import { filterEnclosures, availableValues, previewSplit, PREVIEW_COUNT } from './enclosure-filter.js';
 import { EARTHING_SYSTEMS } from './catalog.js';
 import {
   projectFromBoard,
@@ -583,7 +583,7 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
     }
     const filters = { brand: state.brand, mounting: state.mounting, modulesPerRow: state.modulesPerRow, rowsCount: state.rowsCount };
     const list = filterEnclosures(catalog.enclosures, filters);
-    const { shown, rest } = previewSplit(list);
+    const { shown, rest } = previewSplit(list, PREVIEW_COUNT, state.board?.enclosureId ?? null);
     // Вариант фильтра недоступен, если вместе с остальными выбранными фильтрами не найдётся ни одного корпуса
     const options = (key, values) => {
       const available = availableValues(catalog.enclosures, filters, key);
