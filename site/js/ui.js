@@ -1598,8 +1598,8 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
         h(
           'div',
           { class: 'reset-buttons' },
-          h('button', { type: 'button', class: 'link-button', dataset: { focus: 'clear' }, onClick: clearBoard }, t('board.clear')),
-          h('button', { type: 'button', class: 'link-button', dataset: { focus: 'reset' }, onClick: startOver }, t('board.reset')),
+          h('button', { type: 'button', class: 'action', dataset: { focus: 'clear' }, onClick: clearBoard }, t('board.clear')),
+          h('button', { type: 'button', class: 'action', dataset: { focus: 'reset' }, onClick: startOver }, t('board.reset')),
         ),
     );
   }

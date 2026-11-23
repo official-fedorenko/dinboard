@@ -1002,16 +1002,6 @@ button:focus-visible {
   color: #fff;
 }
 
-.link-button {
-  padding: 4px 0;
-  border: none;
-  background: none;
-  color: var(--text-muted);
-  font-size: 13px;
-  text-decoration: underline;
-  cursor: pointer;
-}
-
 /* ---------- Оборудование ---------- */
 
 .device-row {
@@ -1304,9 +1294,9 @@ button:focus-visible {
   color: var(--text);
 }
 
-/* «Очистить щит» и «Начать заново» — рядом */
+/* «Очистить щит» и «Начать заново» — обычные кнопки, рядом */
 .reset-buttons {
   display: flex;
   flex-wrap: wrap;
-  gap: 16px;
+  gap: 8px;
 }
