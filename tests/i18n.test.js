@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import { readFile, readdir } from 'node:fs/promises';
 import { join } from 'node:path';
 
+import { SPEC_COLUMNS } from '../site/js/export.js';
 import { createTranslator, loadMessages, LANGUAGES, placeholders, pickLanguage, formatNumber } from '../site/js/i18n.js';
 import { deviceLabel, deviceTitle, deviceRef, enclosureDescription, enclosureSize, enclosureTitle, num } from '../site/js/format.js';
 import { DEVICE_CATEGORIES, MOUNTINGS, DOORS } from '../site/js/catalog.js';
@@ -53,6 +54,7 @@ describe('ключи переводов', () => {
     ...PROJECT_ERROR_CODES.map((c) => `project.error.${c}`),
     ...LANGUAGES.map((lang) => `language.${lang}`),
     ...['warning', 'info'].map((level) => `check.level.${level}`),
+    ...SPEC_COLUMNS.map((c) => `summary.${c}`),
   ];
 
   async function staticKeys() {

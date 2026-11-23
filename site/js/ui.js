@@ -30,6 +30,8 @@ import {
 import { h } from './dom.js';
 import { layoutBoard, hitTest, renderBoardSvg, MODULE_MM } from './render-svg.js';
 import { checkBoard } from './checks.js';
+import { specTable, toCsv, exportFileName } from './export.js';
+import { xlsxWorkbook } from './xlsx.js';
 import { EARTHING_SYSTEMS } from './catalog.js';
 import {
   projectFromBoard,
@@ -129,8 +131,13 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
     return t(`project.error.${err.code}`);
   }
 
+  /** Полная ссылка на текущий щит. */
+  function boardUrl() {
+    return `${window.location.origin}${window.location.pathname}${LINK_PREFIX}${encodeLink(projectFromBoard(state.board))}`;
+  }
+
   async function copyLink() {
-    const url = `${window.location.origin}${window.location.pathname}${LINK_PREFIX}${encodeLink(projectFromBoard(state.board))}`;
+    const url = boardUrl();
     try {
       await navigator.clipboard.writeText(url);
       update({ status: t('project.linkCopied') });
@@ -140,23 +147,48 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
     }
   }
 
-  function saveAs(name, text) {
-    const url = URL.createObjectURL(new Blob([text], { type: 'application/json' }));
+  /** Скачивание: data — строка или байты, type — MIME-тип, message(name) — текст в строке статуса после. */
+  function saveAs(name, data, type, message) {
+    const url = URL.createObjectURL(new Blob([data], { type }));
     const link = h('a', { href: url, download: name, hidden: true });
     document.body.append(link);
     link.click();
     link.remove();
     setTimeout(() => URL.revokeObjectURL(url), 1000);
-    update({ status: t('project.downloaded', { name }) });
+    update({ status: message(name) });
+  }
+
+  // ---------- выгрузки: CSV, Excel, печать ----------
+
+  const spec = () => specTable(state.board, enclosure(), devices, brandNames, t);
+  const exported = (name) => t('export.downloaded', { name });
+  const projectSaved = (name) => t('project.downloaded', { name });
+
+  function downloadCsv() {
+    saveAs(exportFileName(enclosure(), 'csv'), toCsv(spec(), t.lang), 'text/csv;charset=utf-8', exported);
+  }
+
+  function downloadXlsx() {
+    const book = xlsxWorkbook({ sheet: t('section.summary'), ...spec() });
+    saveAs(exportFileName(enclosure(), 'xlsx'), book, 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', exported);
+  }
+
+  /**
+   * Печать (и PDF через «Сохранить как PDF»): выделение снимаем, чтобы его не было на бумаге;
+   * перерисовка обновляет дату и ссылку в шапке печати.
+   */
+  function printBoard() {
+    update({ selectedUid: null });
+    window.print();
   }
 
   function downloadFile() {
-    saveAs(projectFileName(enclosure()), projectToFile(projectFromBoard(state.board), enclosures, devices));
+    saveAs(projectFileName(enclosure()), projectToFile(projectFromBoard(state.board), enclosures, devices), 'application/json', projectSaved);
   }
 
   /** Прежняя версия сохранения — как есть (обычно это файл проекта). */
   function downloadBackup() {
-    saveAs(`dinboard-backup-${new Date().toISOString().slice(0, 10)}.json`, backupText);
+    saveAs(`dinboard-backup-${new Date().toISOString().slice(0, 10)}.json`, backupText, 'application/json', projectSaved);
   }
 
   function deleteBackup() {
@@ -699,6 +731,16 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
     return h(
       'section',
       { class: 'panel board-panel', 'aria-labelledby': 'h-board' },
+      // Только на бумаге: что за корпус (панель выбора корпуса не печатается), дата и ссылка на щит
+      h(
+        'div',
+        { class: 'print-only print-head' },
+        // Артикул в скобках — только если в названии тип, а не сам артикул
+        h('p', { class: 'print-title' }, `${brandNames.get(enc.brand)} ${enclosureTitle(enc)}${enc.model ? ` (${enc.article})` : ''}`),
+        h('p', {}, `${enclosureDescription(enc, t)} · ${enclosureSize(enc, t)}`),
+        h('p', {}, t('print.date', { date: new Date().toLocaleDateString(t.lang) })),
+        h('p', { class: 'print-link' }, `${t('print.link')} ${boardUrl()}`),
+      ),
       h('div', { class: 'panel-head' }, heading, h('span', { class: 'muted' }, t('board.total', { used: fmt(stats.used), capacity: stats.capacity, free: fmt(stats.free) }))),
       h('p', { class: 'hint' }, t('board.activeRowHint')),
       h(
@@ -827,6 +869,26 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
           ),
         ),
       ),
+      renderExportActions(),
+    );
+  }
+
+  /** Выгрузка состава: печать / PDF, CSV, Excel. */
+  function renderExportActions() {
+    const button = (key, focus, action) =>
+      h('button', { type: 'button', class: 'action', dataset: { focus }, onClick: action }, t(key));
+    return h(
+      'div',
+      { class: 'export-actions' },
+      h('h3', { id: 'h-export' }, t('export.actions')),
+      h(
+        'div',
+        { class: 'action-buttons', role: 'group', 'aria-labelledby': 'h-export' },
+        button('export.print', 'export-print', printBoard),
+        button('export.csv', 'export-csv', downloadCsv),
+        button('export.xlsx', 'export-xlsx', downloadXlsx),
+      ),
+      h('p', { class: 'muted' }, t('export.printHint')),
     );
   }
 
@@ -854,6 +916,9 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
 
   autosave();
   render();
+  // Печать из меню браузера или по Ctrl+P идёт мимо кнопки: перед ней тоже перерисовываем,
+  // иначе в шапке останется дата последней перерисовки (вкладка могла быть открыта со вчера)
+  window.addEventListener('beforeprint', () => render());
   /** Сообщение в строке статуса (для действий вне конструктора, например выбора языка). */
   function setStatus(text) {
     update({ status: text });

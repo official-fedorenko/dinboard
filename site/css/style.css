@@ -1,4 +1,4 @@
-/* Базовые стили Dinboard. Цвета задаются токенами, тёмная тема — через prefers-color-scheme. */
+/* Базовые стили Dinboard. Цвета задаются токенами, тёмная тема — через prefers-color-scheme (только на экране: печать всегда светлая). */
 
 :root {
   --bg: #f5f6f8;
@@ -36,7 +36,7 @@
   --cat-spd: #2f9a5c;
 }
 
-@media (prefers-color-scheme: dark) {
+@media screen and (prefers-color-scheme: dark) {
   :root {
     --bg: #14161a;
     --surface: #1d2026;
@@ -800,5 +800,147 @@ button:focus-visible {
 
   .board-view {
     padding: 6px;
+  }
+}
+
+/* ---------- Выгрузка ---------- */
+
+.export-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+}
+
+.export-actions h3 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.export-actions .muted {
+  margin: 0;
+}
+
+/* Блоки только для печати (шапка с корпусом, датой и ссылкой) */
+.print-only {
+  display: none;
+}
+
+/* ---------- Печать и PDF ----------
+   На бумаге: шапка, рисунок щита, итог по модулям, проверки и состав щита.
+   Кнопки, фильтры, списки выбора и подсказки к экрану не печатаются. */
+@media print {
+  @page {
+    margin: 12mm;
+  }
+
+  body {
+    background: #fff;
+    font-size: 11pt;
+  }
+
+  .app-header {
+    padding: 0 0 4mm;
+    background: none;
+  }
+
+  .app-main {
+    max-width: none;
+    padding: 0;
+  }
+
+  .app-lang,
+  .picker,
+  .palette,
+  .hint,
+  .row-chips,
+  .toolbar,
+  .status,
+  .project-actions,
+  .export-actions {
+    display: none !important;
+  }
+
+  .print-only {
+    display: block;
+  }
+
+  .print-head p {
+    margin: 0 0 1mm;
+  }
+
+  .print-title {
+    font-size: 13pt;
+    font-weight: 600;
+  }
+
+  /* Ссылка длинная — переносится где угодно */
+  .print-link {
+    overflow-wrap: anywhere;
+    font-size: 8pt;
+    color: var(--text-muted);
+  }
+
+  .layout {
+    display: block;
+  }
+
+  .panel {
+    margin: 4mm 0 0;
+    padding: 0;
+    border: none;
+    border-radius: 0;
+  }
+
+  .board-view {
+    padding: 0;
+    background: none;
+    break-inside: avoid;
+  }
+
+  /* Высокий щит уменьшается, чтобы поместиться на лист вместе с шапкой */
+  .board-svg {
+    max-width: 180mm;
+    max-height: 170mm;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  .cutout.active {
+    stroke: var(--enc-edge);
+    stroke-width: 0.5;
+  }
+
+  .dev-outline {
+    display: none;
+  }
+
+  /* Система заземления: печатается только выбранное значение */
+  .checks .chip:not([aria-pressed="true"]) {
+    display: none;
+  }
+
+  .checks .chip {
+    padding: 0;
+    border: none;
+    background: none;
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  .check,
+  .summary tr {
+    break-inside: avoid;
+  }
+
+  /* Заголовок не остаётся внизу листа отдельно от своего текста */
+  h2,
+  h3,
+  .checks-label {
+    break-after: avoid;
   }
 }
