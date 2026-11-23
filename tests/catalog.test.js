@@ -215,6 +215,8 @@ describe('validateBrandFile', () => {
     bad({ terminalCarriers: [carrier({ positions: ['left'] })] }, 'terminalCarriers[0].positions');
     bad({ terminalCarriers: [carrier({ positions: [] })] }, 'terminalCarriers[0].positions');
     bad({ terminalCarriers: [carrier({ lengthMm: 0 })] }, 'terminalCarriers[0].lengthMm');
+    ok({ terminalCarriers: [carrier({ color: 'white' })] });
+    bad({ terminalCarriers: [carrier({ color: 'pink' })] }, 'terminalCarriers[0].color');
     bad({ terminalInserts: [insert({ role: 'holder' })] }, 'terminalInserts[0].role');
     bad({ terminalInserts: [insert({ widthMm: -1 })] }, 'terminalInserts[0].widthMm');
     bad({ terminalInserts: [insert({ color: 'pink' })] }, 'terminalInserts[0].color');

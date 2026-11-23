@@ -16,11 +16,15 @@ import {
   autoFill,
   factoryCarriers,
   carrierOptions,
+  addableCarriers,
   insertOptions,
   addCarrier,
   removeCarrier,
   swapCarrier,
   clampNeed,
+  transferInsert,
+  markFactory,
+  replaceInsert,
   railTerminals,
   clampShortage,
   CarrierError,
@@ -140,6 +144,16 @@ describe('держатели щита', () => {
     assert.deepEqual(insertOptions('c100', inserts).map((x) => x.id), ['n6', 'n14', 'kl'], 'без заводских частей и чужих');
   });
 
+  test('добавить можно только то, что можно заказать: держатель с артикулом или штатное место под шину', () => {
+    const catalog = byId([
+      { id: 'qc', brand: 'x', kind: 'carrier', article: 'VZ711' },
+      { id: 'white', brand: 'x', kind: 'carrier' },
+      { id: 'plate', brand: 'x', kind: 'plate', article: 'VZ522' },
+      { id: 'zone', brand: 'x', kind: 'zone' },
+    ]);
+    assert.deepEqual(addableCarriers({ id: 'box', brand: 'x' }, catalog).map((c) => c.id), ['qc', 'zone']);
+  });
+
   test('добавить, убрать, заменить держатель: место и подходящие клеммы сохраняются', () => {
     let c = addCarrier([], 'c240', carriersById, 'bottom');
     assert.deepEqual(c, [{ carrierId: 'c240', position: 'bottom', included: false, inserts: [] }]);
@@ -218,5 +232,53 @@ describe('держатели щита', () => {
     const { carriers, short } = autoFill(empty(), { N: 11, PE: 0, lines: 8, groups: [4, 4], mainN: 3 }, carriersById, insertsById);
     assert.deepEqual(carriers[0].inserts.map((x) => x.insertId), ['n6', 'n6', 'n6']);
     assert.deepEqual(short, { N: 0, PE: 0 });
+  });
+});
+
+describe('перенос и замена клемм', () => {
+  const two = () => [
+    { carrierId: 'c240', position: 'top', included: true, inserts: [{ insertId: 'n6', pos: 0, included: true }, { insertId: 'n14', pos: 40 }] },
+    { carrierId: 'c240', position: 'bottom', included: false, inserts: [{ insertId: 'pe14', pos: 0 }] },
+  ];
+
+  test('в другой держатель: на нужное место, «с завода» и роль сохраняются; занято или не подходит — отказ', () => {
+    const moved = transferInsert(two(), 0, 0, 1, 100, carriersById, insertsById);
+    assert.deepEqual(moved[0].inserts.map((x) => x.insertId), ['n14']);
+    assert.deepEqual(moved[1].inserts, [{ insertId: 'pe14', pos: 0 }, { insertId: 'n6', pos: 100, included: true }]);
+    fails(() => transferInsert(two(), 0, 0, 1, 10, carriersById, insertsById), 'occupied');
+    const short = [...two(), { carrierId: 'c100', position: 'top', included: false, inserts: [] }];
+    fails(() => transferInsert(short, 1, 0, 2, 0, carriersById, insertsById), 'not-compatible');
+    fails(() => transferInsert(two(), 0, 5, 1, 0, carriersById, insertsById), 'bad-pos');
+    const kl = [{ carrierId: 'c240', position: 'top', included: false, inserts: [{ insertId: 'kl', pos: 0, role: 'PE' }] }, { carrierId: 'c240', position: 'bottom', included: false, inserts: [] }];
+    assert.deepEqual(transferInsert(kl, 0, 0, 1, 0, carriersById, insertsById)[1].inserts, [{ insertId: 'kl', pos: 0, role: 'PE' }]);
+  });
+
+  test('замена клеммы на другую того же держателя: на то же место, иначе на первое свободное; «с завода» снимается', () => {
+    const c = two();
+    const replaced = replaceInsert(c, 0, 0, 'n14', carriersById, insertsById);
+    // n14 (60 мм) на месте n6 (0–30) не помещается (дальше n14 с 40) — на первое свободное: 100
+    assert.deepEqual(replaced[0].inserts, [{ insertId: 'n14', pos: 40 }, { insertId: 'n14', pos: 100 }]);
+    const same = replaceInsert(c, 0, 1, 'n6', carriersById, insertsById);
+    assert.deepEqual(same[0].inserts[1], { insertId: 'n6', pos: 40 });
+    fails(() => replaceInsert(c, 0, 0, 'npe', carriersById, insertsById), 'too-wide');
+    assert.deepEqual(c[0].inserts.length, 2, 'исходный не меняется');
+  });
+});
+
+describe('«в комплекте корпуса» (markFactory)', () => {
+  const enclosure = { terminalSetup: { carriers: [{ carrierId: 'c240', included: true, inserts: [{ insertId: 'n6', pos: 0, included: true }, { insertId: 'pe14', pos: 40, included: true }] }], verified: false } };
+
+  test('заводской блок, перенесённый в другой держатель, — по-прежнему с завода; лишние такие же — к заказу', () => {
+    const board = [
+      { carrierId: 'c240', position: 'bottom', included: false, inserts: [{ insertId: 'n6', pos: 10 }] },
+      { carrierId: 'c100', position: 'top', included: false, inserts: [{ insertId: 'pe14', pos: 0 }] },
+      { carrierId: 'c240', position: 'top', included: true, inserts: [{ insertId: 'pe14', pos: 0, included: true }, { insertId: 'n6', pos: 100, included: true }] },
+    ];
+    const marked = markFactory(board, enclosure);
+    assert.deepEqual(marked.map((c) => [c.included, c.inserts.map((x) => Boolean(x.included))]), [
+      [true, [true]], // заводской держатель (переставлен вниз), его n6 — с завода
+      [false, [true]], // pe14 с завода, хоть и в другом держателе
+      [false, [false, false]], // второй такой же держатель и лишние клеммы — к заказу
+    ]);
   });
 });

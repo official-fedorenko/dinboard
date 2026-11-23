@@ -117,6 +117,7 @@ describe('держатели и клеммы N/PE в спецификации', 
     assert.equal(clampsText([[5, 1.5]], 'ru'), '5×1,5');
     assert.equal(carrierName(carriersById.get('qc'), tRu), 'Держатель клемм N/PE QuickConnect, 240 мм');
     assert.equal(carrierName(carriersById.get('zone'), tEn), 'Place for an N/PE bar, 226 mm');
+    assert.equal(carrierName({ ...carriersById.get('qc'), color: 'white' }, tRu), 'Держатель клемм N/PE QuickConnect, белый, 240 мм');
     assert.equal(insertName(insertsById.get('kn06n'), 'N', tRu), 'Клемма N, 1×16 + 5×4 мм²');
     assert.equal(insertName(insertsById.get('kl'), 'PE', tRu), 'Шина PE (по крышке), 2×25 + 23×16 мм²');
   });

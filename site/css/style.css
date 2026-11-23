@@ -560,8 +560,13 @@ button:focus-visible {
   stroke-width: 0.4;
 }
 
-.carrier.kind-plate .carrier-body {
+.carrier.kind-plate .carrier-body,
+.carrier.color-white .carrier-body {
   fill: var(--carrier-plate);
+}
+
+.carrier.color-grey .carrier-body {
+  fill: var(--enc-edge);
 }
 
 .carrier.kind-zone .carrier-body,
@@ -576,7 +581,7 @@ button:focus-visible {
   pointer-events: none;
 }
 
-.carrier.kind-carrier .carrier-label {
+.carrier.kind-carrier:not(.color-white) .carrier-label {
   fill: var(--term-clamp);
 }
 
@@ -603,10 +608,11 @@ button:focus-visible {
   stroke-width: 0.5;
 }
 
+/* Тёмная обводка — соседние блоки одной роли видны по отдельности */
 .insert.role-n .ins-body,
 .insert .ins-n {
   fill: var(--term-n);
-  stroke: var(--term-n);
+  stroke: rgb(0 0 0 / 0.45);
 }
 
 .insert.role-pe .ins-body,
@@ -617,7 +623,7 @@ button:focus-visible {
 
 .insert.role-l .ins-body {
   fill: var(--term-l);
-  stroke: var(--term-l);
+  stroke: rgb(0 0 0 / 0.45);
 }
 
 .insert:focus-visible .ins-body,
@@ -1278,4 +1284,22 @@ button:focus-visible {
 .carrier-sub {
   margin: 10px 0 4px;
   font-size: 0.95rem;
+}
+
+/* Панель выделенной клеммы: «Заменить на» — выбор другой клеммы того же держателя */
+.toolbar-select {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.toolbar-select select {
+  max-width: 100%;
+  font: inherit;
+  padding: 4px 6px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--surface);
+  color: var(--text);
 }

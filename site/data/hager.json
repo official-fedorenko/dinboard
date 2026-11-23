@@ -30,23 +30,23 @@
             "inserts": [
               {
                 "insertId": "hager-vz521-n",
-                "pos": 0,
+                "pos": 5,
                 "included": true
               },
               {
                 "insertId": "hager-vz521-pe",
-                "pos": 140,
+                "pos": 183,
                 "included": true
               }
             ]
           }
         ],
         "verified": false,
-        "notes": "Число клемм — страница корпуса Hager (1×25 + n×10/16 мм²). Деление на шины N и PE и место вверху — вывод по запасным колодкам VZ521–VZ524 и рисункам инструкции."
+        "notes": "Клеммы — страница корпуса Hager (1×25 + n×10/16 мм²); колодка как запасная VZ521/VZ522 — вывод по числу клемм; N слева, PE справа (фото артикула); место вверху — вывод (можно вниз)."
       },
       "verified": true,
       "source": "https://hager.com/pl/katalog/produkt/va12b-volta-rozdzielnica-n-t-1r-12m-ii-kl-ip30",
-      "notes": "Поставляется без дверцы; непрозрачная стальная дверца — VA12T (заказывается отдельно). Код для PL/ЕС; в DE аналог VA12CN."
+      "notes": "Поставляется без дверцы; непрозрачная стальная дверца — VA12T (заказывается отдельно). Код для PL/ЕС, с латунными винтовыми шинами N и PE; исполнение с клеммами QuickConnect — VA12CN."
     },
     {
       "id": "hager-va24b",
@@ -73,23 +73,23 @@
             "inserts": [
               {
                 "insertId": "hager-vz522-n",
-                "pos": 0,
+                "pos": 5,
                 "included": true
               },
               {
                 "insertId": "hager-vz522-pe",
-                "pos": 140,
+                "pos": 145,
                 "included": true
               }
             ]
           }
         ],
         "verified": false,
-        "notes": "Число клемм — страница корпуса Hager (1×25 + n×10/16 мм²). Деление на шины N и PE и место вверху — вывод по запасным колодкам VZ521–VZ524 и рисункам инструкции."
+        "notes": "Клеммы — страница корпуса Hager (1×25 + n×10/16 мм²); колодка как запасная VZ521/VZ522 — вывод по числу клемм; N слева, PE справа (фото артикула); место вверху — вывод (можно вниз)."
       },
       "verified": true,
       "source": "https://hager.com/pl/katalog/?artnr=VA24B",
-      "notes": "Поставляется без дверцы; непрозрачная стальная дверца — VA24T (заказывается отдельно). Код для PL/ЕС; в DE аналог VA24CN."
+      "notes": "Поставляется без дверцы; непрозрачная стальная дверца — VA24T (заказывается отдельно). Код для PL/ЕС, с латунными винтовыми шинами N и PE; исполнение с клеммами QuickConnect — VA24CN."
     },
     {
       "id": "hager-va36b",
@@ -116,23 +116,30 @@
             "inserts": [
               {
                 "insertId": "hager-vz523-n",
-                "pos": 0,
+                "pos": 45,
                 "included": true
-              },
+              }
+            ]
+          },
+          {
+            "carrierId": "hager-vz523",
+            "position": "top",
+            "included": true,
+            "inserts": [
               {
                 "insertId": "hager-vz523-pe",
-                "pos": 140,
+                "pos": 45,
                 "included": true
               }
             ]
           }
         ],
         "verified": false,
-        "notes": "Число клемм — страница корпуса Hager (1×25 + n×10/16 мм²). Деление на шины N и PE и место вверху — вывод по запасным колодкам VZ521–VZ524 и рисункам инструкции."
+        "notes": "Клеммы — страница корпуса Hager; два держателя VZ523/VZ524, на каждом одна шина (фото артикула); по решению владельца оба вверху — место не подтверждено."
       },
       "verified": true,
       "source": "https://hager.com/pl/katalog/?artnr=VA36B",
-      "notes": "Поставляется без дверцы; непрозрачная стальная дверца — VA36T (заказывается отдельно). Код для PL/ЕС; в DE аналог VA36CN."
+      "notes": "Поставляется без дверцы; непрозрачная стальная дверца — VA36T (заказывается отдельно). Код для PL/ЕС, с латунными винтовыми шинами N и PE; исполнение с клеммами QuickConnect — VA36CN."
     },
     {
       "id": "hager-va48b",
@@ -159,23 +166,248 @@
             "inserts": [
               {
                 "insertId": "hager-vz524-n",
-                "pos": 0,
+                "pos": 42.5,
                 "included": true
-              },
+              }
+            ]
+          },
+          {
+            "carrierId": "hager-vz524",
+            "position": "top",
+            "included": true,
+            "inserts": [
               {
                 "insertId": "hager-vz524-pe",
-                "pos": 140,
+                "pos": 42.5,
                 "included": true
               }
             ]
           }
         ],
         "verified": false,
-        "notes": "Число клемм — страница корпуса Hager (1×25 + n×10/16 мм²). Деление на шины N и PE и место вверху — вывод по запасным колодкам VZ521–VZ524 и рисункам инструкции."
+        "notes": "Клеммы — страница корпуса Hager; два держателя VZ523/VZ524, на каждом одна шина (фото артикула); по решению владельца оба вверху — место не подтверждено."
       },
       "verified": true,
       "source": "https://hager.com/pl/katalog/?artnr=VA48B",
-      "notes": "Поставляется без дверцы; непрозрачная стальная дверца — VA48T (заказывается отдельно). Код для PL/ЕС; в DE аналог VA48CN."
+      "notes": "Поставляется без дверцы; непрозрачная стальная дверца — VA48T (заказывается отдельно). Код для PL/ЕС, с латунными винтовыми шинами N и PE; исполнение с клеммами QuickConnect — VA48CN."
+    },
+    {
+      "id": "hager-va12cn",
+      "brand": "hager",
+      "series": "Volta",
+      "article": "VA12CN",
+      "mounting": "surface",
+      "rows": 1,
+      "modulesPerRow": 12,
+      "material": "plastic",
+      "door": "none",
+      "ipRating": 30,
+      "dimensionsMm": {
+        "width": 305,
+        "height": 245,
+        "depth": 96.5
+      },
+      "verified": true,
+      "source": "https://assets.hager.com/step-content/P/HA_45090289/Document/std.lang.all/24DE0047-bes-volta.pdf",
+      "notes": "Исполнение с клеммами QuickConnect (DE). Без дверцы; дверца VA12T — отдельно (IP40).",
+      "terminalSetup": {
+        "carriers": [
+          {
+            "carrierId": "hager-qc",
+            "position": "top",
+            "included": true,
+            "inserts": [
+              {
+                "insertId": "hager-vz711-kn14n",
+                "pos": 0,
+                "included": true
+              },
+              {
+                "insertId": "hager-vz455n",
+                "pos": 60,
+                "included": true
+              },
+              {
+                "insertId": "hager-vz711-kn14e",
+                "pos": 87,
+                "included": true
+              }
+            ]
+          }
+        ],
+        "verified": true,
+        "source": "https://assets.hager.com/step-content/P/HA_45090289/Document/std.lang.all/24DE0047-bes-volta.pdf",
+        "notes": "Состав блоков — «volta Bestellhilfe» 02/2024, «Klemmenbestückung»; порядок (N, VZ455N, N, PE) — по фото владельца."
+      }
+    },
+    {
+      "id": "hager-va24cn",
+      "brand": "hager",
+      "series": "Volta",
+      "article": "VA24CN",
+      "mounting": "surface",
+      "rows": 2,
+      "modulesPerRow": 12,
+      "material": "plastic",
+      "door": "none",
+      "ipRating": 30,
+      "dimensionsMm": {
+        "width": 305,
+        "height": 370,
+        "depth": 96.5
+      },
+      "verified": true,
+      "source": "https://assets.hager.com/step-content/P/HA_45090289/Document/std.lang.all/24DE0047-bes-volta.pdf",
+      "notes": "Исполнение с клеммами QuickConnect (DE). Без дверцы; дверца VA24T — отдельно (IP40).",
+      "terminalSetup": {
+        "carriers": [
+          {
+            "carrierId": "hager-qc",
+            "position": "top",
+            "included": true,
+            "inserts": [
+              {
+                "insertId": "hager-vz711-kn10n",
+                "pos": 0,
+                "included": true
+              },
+              {
+                "insertId": "hager-vz455n",
+                "pos": 45,
+                "included": true
+              },
+              {
+                "insertId": "hager-vz711-kn10n",
+                "pos": 72,
+                "included": true
+              },
+              {
+                "insertId": "hager-vz711-kn18e",
+                "pos": 117,
+                "included": true
+              }
+            ]
+          }
+        ],
+        "verified": true,
+        "source": "https://assets.hager.com/step-content/P/HA_45090289/Document/std.lang.all/24DE0047-bes-volta.pdf",
+        "notes": "Состав блоков — «volta Bestellhilfe» 02/2024, «Klemmenbestückung»; порядок (N, VZ455N, N, PE) — по фото владельца."
+      }
+    },
+    {
+      "id": "hager-va36cn",
+      "brand": "hager",
+      "series": "Volta",
+      "article": "VA36CN",
+      "mounting": "surface",
+      "rows": 3,
+      "modulesPerRow": 12,
+      "material": "plastic",
+      "door": "none",
+      "ipRating": 30,
+      "dimensionsMm": {
+        "width": 305,
+        "height": 515,
+        "depth": 96.5
+      },
+      "verified": true,
+      "source": "https://assets.hager.com/step-content/P/HA_45090289/Document/std.lang.all/24DE0047-bes-volta.pdf",
+      "notes": "Исполнение с клеммами QuickConnect (DE). Без дверцы; дверца VA36T — отдельно (IP40).",
+      "terminalSetup": {
+        "carriers": [
+          {
+            "carrierId": "hager-qc",
+            "position": "top",
+            "included": true,
+            "inserts": [
+              {
+                "insertId": "hager-vz711-kn14n",
+                "pos": 0,
+                "included": true
+              },
+              {
+                "insertId": "hager-vz455n",
+                "pos": 60,
+                "included": true
+              },
+              {
+                "insertId": "hager-vz711-kn14n",
+                "pos": 87,
+                "included": true
+              },
+              {
+                "insertId": "hager-vz711-kn22e",
+                "pos": 147,
+                "included": true
+              }
+            ]
+          }
+        ],
+        "verified": true,
+        "source": "https://assets.hager.com/step-content/P/HA_45090289/Document/std.lang.all/24DE0047-bes-volta.pdf",
+        "notes": "Состав блоков — «volta Bestellhilfe» 02/2024, «Klemmenbestückung»; порядок (N, VZ455N, N, PE) — по фото владельца."
+      }
+    },
+    {
+      "id": "hager-va48cn",
+      "brand": "hager",
+      "series": "Volta",
+      "article": "VA48CN",
+      "mounting": "surface",
+      "rows": 4,
+      "modulesPerRow": 12,
+      "material": "plastic",
+      "door": "none",
+      "ipRating": 30,
+      "dimensionsMm": {
+        "width": 305,
+        "height": 640,
+        "depth": 96.5
+      },
+      "verified": true,
+      "source": "https://assets.hager.com/step-content/P/HA_45090289/Document/std.lang.all/24DE0047-bes-volta.pdf",
+      "notes": "Исполнение с клеммами QuickConnect (DE). Без дверцы; дверца VA48T — отдельно (IP40).",
+      "terminalSetup": {
+        "carriers": [
+          {
+            "carrierId": "hager-qc",
+            "position": "top",
+            "included": true,
+            "inserts": [
+              {
+                "insertId": "hager-vz711-kn18n",
+                "pos": 0,
+                "included": true
+              },
+              {
+                "insertId": "hager-vz455n",
+                "pos": 75,
+                "included": true
+              },
+              {
+                "insertId": "hager-vz711-kn14n",
+                "pos": 102,
+                "included": true
+              }
+            ]
+          },
+          {
+            "carrierId": "hager-qc",
+            "position": "top",
+            "included": true,
+            "inserts": [
+              {
+                "insertId": "hager-vz711-kn26e",
+                "pos": 0,
+                "included": true
+              }
+            ]
+          }
+        ],
+        "verified": false,
+        "source": "https://assets.hager.com/step-content/P/HA_45090289/Document/std.lang.all/24DE0047-bes-volta.pdf",
+        "notes": "Состав блоков — «volta Bestellhilfe» 02/2024 (у VA48CN блок PE не указан — взят KN26E, как у VU48NC); 267 мм на один держатель не помещается — блок PE на втором держателе вверху (вывод)."
+      }
     },
     {
       "id": "hager-vu12ne",
@@ -202,19 +434,19 @@
             "inserts": [
               {
                 "insertId": "hager-vz521-n",
-                "pos": 0,
+                "pos": 5,
                 "included": true
               },
               {
                 "insertId": "hager-vz521-pe",
-                "pos": 140,
+                "pos": 183,
                 "included": true
               }
             ]
           }
         ],
         "verified": false,
-        "notes": "Число клемм — страница корпуса Hager (1×25 + n×10/16 мм²). Деление на шины N и PE и место вверху — вывод по запасным колодкам VZ521–VZ524 и рисункам инструкции."
+        "notes": "Клеммы — страница корпуса Hager (1×25 + n×10/16 мм²); колодка как запасная VZ521/VZ522 — вывод по числу клемм; N слева, PE справа (фото артикула); место вверху — вывод (можно вниз)."
       },
       "verified": true,
       "source": "https://hager.com/pl/katalog/?artnr=VU12NE",
@@ -245,19 +477,19 @@
             "inserts": [
               {
                 "insertId": "hager-vz522-n",
-                "pos": 0,
+                "pos": 5,
                 "included": true
               },
               {
                 "insertId": "hager-vz522-pe",
-                "pos": 140,
+                "pos": 145,
                 "included": true
               }
             ]
           }
         ],
         "verified": false,
-        "notes": "Число клемм — страница корпуса Hager (1×25 + n×10/16 мм²). Деление на шины N и PE и место вверху — вывод по запасным колодкам VZ521–VZ524 и рисункам инструкции."
+        "notes": "Клеммы — страница корпуса Hager (1×25 + n×10/16 мм²); колодка как запасная VZ521/VZ522 — вывод по числу клемм; N слева, PE справа (фото артикула); место вверху — вывод (можно вниз)."
       },
       "verified": true,
       "source": "https://hager.com/pl/katalog/?artnr=VU24NE",
@@ -288,19 +520,26 @@
             "inserts": [
               {
                 "insertId": "hager-vz523-n",
-                "pos": 0,
+                "pos": 45,
                 "included": true
-              },
+              }
+            ]
+          },
+          {
+            "carrierId": "hager-vz523",
+            "position": "top",
+            "included": true,
+            "inserts": [
               {
                 "insertId": "hager-vz523-pe",
-                "pos": 140,
+                "pos": 45,
                 "included": true
               }
             ]
           }
         ],
         "verified": false,
-        "notes": "Число клемм — страница корпуса Hager (1×25 + n×10/16 мм²). Деление на шины N и PE и место вверху — вывод по запасным колодкам VZ521–VZ524 и рисункам инструкции."
+        "notes": "Клеммы — страница корпуса Hager; два держателя VZ523/VZ524, на каждом одна шина (фото артикула); по решению владельца оба вверху — место не подтверждено."
       },
       "verified": true,
       "source": "https://hager.com/pl/katalog/?artnr=VU36NE",
@@ -331,23 +570,248 @@
             "inserts": [
               {
                 "insertId": "hager-vz524-n",
-                "pos": 0,
+                "pos": 42.5,
                 "included": true
-              },
+              }
+            ]
+          },
+          {
+            "carrierId": "hager-vz524",
+            "position": "top",
+            "included": true,
+            "inserts": [
               {
                 "insertId": "hager-vz524-pe",
-                "pos": 140,
+                "pos": 42.5,
                 "included": true
               }
             ]
           }
         ],
         "verified": false,
-        "notes": "Число клемм — страница корпуса Hager (1×25 + n×10/16 мм²). Деление на шины N и PE и место вверху — вывод по запасным колодкам VZ521–VZ524 и рисункам инструкции."
+        "notes": "Клеммы — страница корпуса Hager; два держателя VZ523/VZ524, на каждом одна шина (фото артикула); по решению владельца оба вверху — место не подтверждено."
       },
       "verified": true,
       "source": "https://hager.com/pl/katalog/?artnr=VU48NE",
       "notes": "Пластиковый корпус с плоской стальной дверцей RAL 9010."
+    },
+    {
+      "id": "hager-vu12nc",
+      "brand": "hager",
+      "series": "Volta",
+      "article": "VU12NC",
+      "mounting": "flush",
+      "rows": 1,
+      "modulesPerRow": 12,
+      "material": "plastic",
+      "door": "opaque",
+      "ipRating": 30,
+      "dimensionsMm": {
+        "width": 348,
+        "height": 356,
+        "depth": 94.5
+      },
+      "verified": true,
+      "source": "https://assets.hager.com/step-content/P/HA_45090289/Document/std.lang.all/24DE0047-bes-volta.pdf",
+      "notes": "Исполнение с клеммами QuickConnect (DE), встраиваемый, со стальной дверцей.",
+      "terminalSetup": {
+        "carriers": [
+          {
+            "carrierId": "hager-qc",
+            "position": "top",
+            "included": true,
+            "inserts": [
+              {
+                "insertId": "hager-vz711-kn14n",
+                "pos": 0,
+                "included": true
+              },
+              {
+                "insertId": "hager-vz455n",
+                "pos": 60,
+                "included": true
+              },
+              {
+                "insertId": "hager-vz711-kn14e",
+                "pos": 87,
+                "included": true
+              }
+            ]
+          }
+        ],
+        "verified": true,
+        "source": "https://assets.hager.com/step-content/P/HA_45090289/Document/std.lang.all/24DE0047-bes-volta.pdf",
+        "notes": "Состав блоков — «volta Bestellhilfe» 02/2024, «Klemmenbestückung»; порядок (N, VZ455N, N, PE) — по фото владельца."
+      }
+    },
+    {
+      "id": "hager-vu24nc",
+      "brand": "hager",
+      "series": "Volta",
+      "article": "VU24NC",
+      "mounting": "flush",
+      "rows": 2,
+      "modulesPerRow": 12,
+      "material": "plastic",
+      "door": "opaque",
+      "ipRating": 30,
+      "dimensionsMm": {
+        "width": 348,
+        "height": 505.5,
+        "depth": 94.5
+      },
+      "verified": true,
+      "source": "https://assets.hager.com/step-content/P/HA_45090289/Document/std.lang.all/24DE0047-bes-volta.pdf",
+      "notes": "Исполнение с клеммами QuickConnect (DE), встраиваемый, со стальной дверцей.",
+      "terminalSetup": {
+        "carriers": [
+          {
+            "carrierId": "hager-qc",
+            "position": "top",
+            "included": true,
+            "inserts": [
+              {
+                "insertId": "hager-vz711-kn10n",
+                "pos": 0,
+                "included": true
+              },
+              {
+                "insertId": "hager-vz455n",
+                "pos": 45,
+                "included": true
+              },
+              {
+                "insertId": "hager-vz711-kn10n",
+                "pos": 72,
+                "included": true
+              },
+              {
+                "insertId": "hager-vz711-kn18e",
+                "pos": 117,
+                "included": true
+              }
+            ]
+          }
+        ],
+        "verified": true,
+        "source": "https://assets.hager.com/step-content/P/HA_45090289/Document/std.lang.all/24DE0047-bes-volta.pdf",
+        "notes": "Состав блоков — «volta Bestellhilfe» 02/2024, «Klemmenbestückung»; порядок (N, VZ455N, N, PE) — по фото владельца."
+      }
+    },
+    {
+      "id": "hager-vu36nc",
+      "brand": "hager",
+      "series": "Volta",
+      "article": "VU36NC",
+      "mounting": "flush",
+      "rows": 3,
+      "modulesPerRow": 12,
+      "material": "plastic",
+      "door": "opaque",
+      "ipRating": 30,
+      "dimensionsMm": {
+        "width": 348,
+        "height": 630.5,
+        "depth": 94.5
+      },
+      "verified": true,
+      "source": "https://assets.hager.com/step-content/P/HA_45090289/Document/std.lang.all/24DE0047-bes-volta.pdf",
+      "notes": "Исполнение с клеммами QuickConnect (DE), встраиваемый, со стальной дверцей.",
+      "terminalSetup": {
+        "carriers": [
+          {
+            "carrierId": "hager-qc",
+            "position": "top",
+            "included": true,
+            "inserts": [
+              {
+                "insertId": "hager-vz711-kn14n",
+                "pos": 0,
+                "included": true
+              },
+              {
+                "insertId": "hager-vz455n",
+                "pos": 60,
+                "included": true
+              },
+              {
+                "insertId": "hager-vz711-kn14n",
+                "pos": 87,
+                "included": true
+              },
+              {
+                "insertId": "hager-vz711-kn22e",
+                "pos": 147,
+                "included": true
+              }
+            ]
+          }
+        ],
+        "verified": true,
+        "source": "https://assets.hager.com/step-content/P/HA_45090289/Document/std.lang.all/24DE0047-bes-volta.pdf",
+        "notes": "Состав блоков — «volta Bestellhilfe» 02/2024, «Klemmenbestückung»; порядок (N, VZ455N, N, PE) — по фото владельца."
+      }
+    },
+    {
+      "id": "hager-vu48nc",
+      "brand": "hager",
+      "series": "Volta",
+      "article": "VU48NC",
+      "mounting": "flush",
+      "rows": 4,
+      "modulesPerRow": 12,
+      "material": "plastic",
+      "door": "opaque",
+      "ipRating": 30,
+      "dimensionsMm": {
+        "width": 348,
+        "height": 755.5,
+        "depth": 94.5
+      },
+      "verified": true,
+      "source": "https://assets.hager.com/step-content/P/HA_45090289/Document/std.lang.all/24DE0047-bes-volta.pdf",
+      "notes": "Исполнение с клеммами QuickConnect (DE), встраиваемый, со стальной дверцей.",
+      "terminalSetup": {
+        "carriers": [
+          {
+            "carrierId": "hager-qc",
+            "position": "top",
+            "included": true,
+            "inserts": [
+              {
+                "insertId": "hager-vz711-kn18n",
+                "pos": 0,
+                "included": true
+              },
+              {
+                "insertId": "hager-vz455n",
+                "pos": 75,
+                "included": true
+              },
+              {
+                "insertId": "hager-vz711-kn14n",
+                "pos": 102,
+                "included": true
+              }
+            ]
+          },
+          {
+            "carrierId": "hager-qc",
+            "position": "top",
+            "included": true,
+            "inserts": [
+              {
+                "insertId": "hager-vz711-kn26e",
+                "pos": 0,
+                "included": true
+              }
+            ]
+          }
+        ],
+        "verified": false,
+        "source": "https://assets.hager.com/step-content/P/HA_45090289/Document/std.lang.all/24DE0047-bes-volta.pdf",
+        "notes": "Состав блоков — «volta Bestellhilfe» 02/2024; 267 мм на один держатель не помещается — блок PE на втором держателе вверху (вывод)."
+      }
     }
   ],
   "devices": [
@@ -3776,8 +4240,8 @@
         "hager-vu12ne"
       ],
       "verified": false,
-      "source": "https://hager.com/pl/katalog/produkt/vz521-vector-v-outdoor-wspornik-zac-pe-n-2x13",
-      "notes": "Заводская колодка: две латунные шины N и PE закреплены на белой планке 270×38 мм и не переставляются. Что в корпусе стоит именно такая — вывод по числу клемм (запасная часть VZ521). Переставить вниз — вывод."
+      "source": "https://hager.com/de/katalog/produkt/vz521-pe-n-klemmentraeger-volta-13-klemmstellen",
+      "notes": "Белая колодка 270×38 мм: латунные винтовые шины N (слева) и PE (справа) под прозрачной крышкой, отдельно не переставляются; держатель защёлкивается вверху или внизу. Что в корпусе стоит именно VZ521 — вывод по числу клемм (запасная часть, страницы Hager). Ширина шин — по фото артикула."
     },
     {
       "id": "hager-vz522",
@@ -3795,8 +4259,8 @@
         "hager-vu24ne"
       ],
       "verified": false,
-      "source": "https://hager.com/pl/katalog/produkt/vz522-vector-v-outdoor-wspornik-zac-pe-n-2x17",
-      "notes": "Заводская колодка: две латунные шины N и PE закреплены на белой планке 270×38 мм и не переставляются. Что в корпусе стоит именно такая — вывод по числу клемм (запасная часть VZ522). Переставить вниз — вывод."
+      "source": "https://hager.com/de/katalog/produkt/vz522-pe-n-klemmentraeger-volta-17-klemmstellen",
+      "notes": "Белая колодка 270×38 мм: латунные винтовые шины N (слева) и PE (справа) под прозрачной крышкой, отдельно не переставляются; держатель защёлкивается вверху или внизу. Что в корпусе стоит именно VZ522 — вывод по числу клемм (запасная часть, страницы Hager). Ширина шин — по фото артикула."
     },
     {
       "id": "hager-vz523",
@@ -3814,8 +4278,8 @@
         "hager-vu36ne"
       ],
       "verified": false,
-      "source": "https://hager.com/pl/katalog/produkt/vz523-vector-v-outdoor-wspornik-zac-pe-n-2x22",
-      "notes": "Заводская колодка: две латунные шины N и PE закреплены на белой планке 270×38 мм и не переставляются. Что в корпусе стоит именно такая — вывод по числу клемм (запасная часть VZ523). Переставить вниз — вывод."
+      "source": "https://hager.com/de/katalog/produkt/vz523-pe-n-klemmentraeger-volta-22-klemmstellen",
+      "notes": "Белый держатель 270×38 мм с одной латунной шиной (N или PE) под прозрачной крышкой; в корпусе 3–4 ряда их два: один N, другой PE (фото артикула VZ523); по решению владельца оба вверху — место не подтверждено. Ширина шины — по фото артикула."
     },
     {
       "id": "hager-vz524",
@@ -3833,8 +4297,8 @@
         "hager-vu48ne"
       ],
       "verified": false,
-      "source": "https://hager.com/pl/katalog/produkt/vz524-vector-v-outdoor-wspornik-zac-pe-n-2x25",
-      "notes": "Заводская колодка: две латунные шины N и PE закреплены на белой планке 270×38 мм и не переставляются. Что в корпусе стоит именно такая — вывод по числу клемм (запасная часть VZ524). Переставить вниз — вывод."
+      "source": "https://hager.com/de/katalog/produkt/vz524-pe-n-klemmentraeger-volta-25-klemmstellen",
+      "notes": "Белый держатель 270×38 мм с одной латунной шиной (N или PE) под прозрачной крышкой; в корпусе 3–4 ряда их два: один N, другой PE (фото артикула VZ524); по решению владельца оба вверху — место не подтверждено. Ширина шины — по фото артикула."
     },
     {
       "id": "hager-vz711",
@@ -3855,11 +4319,45 @@
         "hager-vu12ne",
         "hager-vu24ne",
         "hager-vu36ne",
-        "hager-vu48ne"
+        "hager-vu48ne",
+        "hager-va12cn",
+        "hager-va24cn",
+        "hager-va36cn",
+        "hager-va48cn",
+        "hager-vu12nc",
+        "hager-vu24nc",
+        "hager-vu36nc",
+        "hager-vu48nc"
       ],
+      "color": "black",
       "verified": true,
       "source": "https://hager.com/de-ch/katalog/produkt/vz711-klemmentraeger-volta-qc-klemme",
       "notes": "Чёрный держатель QuickConnect 270 мм, полезная длина 240 мм (8 TE), вверху или внизу корпуса; в него вставляются клеммы KN.. разной ширины. Готовые наборы VZ461–VZ464 — это VZ711 с клеммами KN."
+    },
+    {
+      "id": "hager-qc",
+      "brand": "hager",
+      "kind": "carrier",
+      "series": "QuickConnect",
+      "lengthMm": 240,
+      "positions": [
+        "top",
+        "bottom"
+      ],
+      "enclosureIds": [
+        "hager-va12cn",
+        "hager-va24cn",
+        "hager-va36cn",
+        "hager-va48cn",
+        "hager-vu12nc",
+        "hager-vu24nc",
+        "hager-vu36nc",
+        "hager-vu48nc"
+      ],
+      "color": "white",
+      "verified": false,
+      "source": "https://assets.hager.com/step-content/P/HA_45090289/Document/std.lang.all/24DE0047-bes-volta.pdf",
+      "notes": "Заводской белый решётчатый держатель корпусов volta QuickConnect (VA..CN, VU..NC); отдельным артикулом не продаётся (запчасть — чёрный VZ711 той же длины). Блоки KN.. и VZ455N защёлкиваются и снимаются. Длина 240 мм — по аналогии с VZ711, совпадает с составом 3-рядного корпуса (237 мм)."
     }
   ],
   "terminalInserts": [
@@ -3877,14 +4375,14 @@
           16
         ]
       ],
-      "widthMm": 130,
+      "widthMm": 87,
       "color": "brass",
       "carrierIds": [
         "hager-vz521"
       ],
       "fixed": true,
       "verified": false,
-      "notes": "Шина N колодки VZ521, отдельно не заказывается. Ширина на рисунке — половина колодки (вывод)."
+      "notes": "Латунная шина N колодки VZ521, отдельно не заказывается; клеммы 10/16 мм² — отверстия M4 (до 10 мм²) и M5 (до 16 мм²). Ширина — по фото артикула (вывод)."
     },
     {
       "id": "hager-vz521-pe",
@@ -3900,14 +4398,14 @@
           16
         ]
       ],
-      "widthMm": 130,
+      "widthMm": 82,
       "color": "brass",
       "carrierIds": [
         "hager-vz521"
       ],
       "fixed": true,
       "verified": false,
-      "notes": "Шина PE колодки VZ521, отдельно не заказывается. Ширина на рисунке — половина колодки (вывод)."
+      "notes": "Латунная шина PE колодки VZ521, отдельно не заказывается; клеммы 10/16 мм² — отверстия M4 (до 10 мм²) и M5 (до 16 мм²). Ширина — по фото артикула (вывод)."
     },
     {
       "id": "hager-vz522-n",
@@ -3923,14 +4421,14 @@
           16
         ]
       ],
-      "widthMm": 130,
+      "widthMm": 120,
       "color": "brass",
       "carrierIds": [
         "hager-vz522"
       ],
       "fixed": true,
       "verified": false,
-      "notes": "Шина N колодки VZ522, отдельно не заказывается. Ширина на рисунке — половина колодки (вывод)."
+      "notes": "Латунная шина N колодки VZ522, отдельно не заказывается; клеммы 10/16 мм² — отверстия M4 (до 10 мм²) и M5 (до 16 мм²). Ширина — по фото артикула (вывод)."
     },
     {
       "id": "hager-vz522-pe",
@@ -3946,14 +4444,14 @@
           16
         ]
       ],
-      "widthMm": 130,
+      "widthMm": 120,
       "color": "brass",
       "carrierIds": [
         "hager-vz522"
       ],
       "fixed": true,
       "verified": false,
-      "notes": "Шина PE колодки VZ522, отдельно не заказывается. Ширина на рисунке — половина колодки (вывод)."
+      "notes": "Латунная шина PE колодки VZ522, отдельно не заказывается; клеммы 10/16 мм² — отверстия M4 (до 10 мм²) и M5 (до 16 мм²). Ширина — по фото артикула (вывод)."
     },
     {
       "id": "hager-vz523-n",
@@ -3969,14 +4467,14 @@
           16
         ]
       ],
-      "widthMm": 130,
+      "widthMm": 180,
       "color": "brass",
       "carrierIds": [
         "hager-vz523"
       ],
       "fixed": true,
       "verified": false,
-      "notes": "Шина N колодки VZ523, отдельно не заказывается. Ширина на рисунке — половина колодки (вывод)."
+      "notes": "Латунная шина N колодки VZ523, отдельно не заказывается; клеммы 10/16 мм² — отверстия M4 (до 10 мм²) и M5 (до 16 мм²). Ширина — по фото артикула (вывод)."
     },
     {
       "id": "hager-vz523-pe",
@@ -3992,14 +4490,14 @@
           16
         ]
       ],
-      "widthMm": 130,
+      "widthMm": 180,
       "color": "brass",
       "carrierIds": [
         "hager-vz523"
       ],
       "fixed": true,
       "verified": false,
-      "notes": "Шина PE колодки VZ523, отдельно не заказывается. Ширина на рисунке — половина колодки (вывод)."
+      "notes": "Латунная шина PE колодки VZ523, отдельно не заказывается; клеммы 10/16 мм² — отверстия M4 (до 10 мм²) и M5 (до 16 мм²). Ширина — по фото артикула (вывод)."
     },
     {
       "id": "hager-vz524-n",
@@ -4015,14 +4513,14 @@
           16
         ]
       ],
-      "widthMm": 130,
+      "widthMm": 185,
       "color": "brass",
       "carrierIds": [
         "hager-vz524"
       ],
       "fixed": true,
       "verified": false,
-      "notes": "Шина N колодки VZ524, отдельно не заказывается. Ширина на рисунке — половина колодки (вывод)."
+      "notes": "Латунная шина N колодки VZ524, отдельно не заказывается; клеммы 10/16 мм² — отверстия M4 (до 10 мм²) и M5 (до 16 мм²). Ширина — по фото артикула (вывод)."
     },
     {
       "id": "hager-vz524-pe",
@@ -4038,14 +4536,14 @@
           16
         ]
       ],
-      "widthMm": 130,
+      "widthMm": 185,
       "color": "brass",
       "carrierIds": [
         "hager-vz524"
       ],
       "fixed": true,
       "verified": false,
-      "notes": "Шина PE колодки VZ524, отдельно не заказывается. Ширина на рисунке — половина колодки (вывод)."
+      "notes": "Латунная шина PE колодки VZ524, отдельно не заказывается; клеммы 10/16 мм² — отверстия M4 (до 10 мм²) и M5 (до 16 мм²). Ширина — по фото артикула (вывод)."
     },
     {
       "id": "hager-vz711-kn06n",
@@ -4066,7 +4564,8 @@
       "widthMm": 30,
       "color": "blue",
       "carrierIds": [
-        "hager-vz711"
+        "hager-vz711",
+        "hager-qc"
       ],
       "verified": true,
       "source": "https://hager.com/pl/katalog/produkt/kn06n-qc-blok-samozacisk-n-nieb-1x16-5x4mm2"
@@ -4090,7 +4589,8 @@
       "widthMm": 30,
       "color": "green",
       "carrierIds": [
-        "hager-vz711"
+        "hager-vz711",
+        "hager-qc"
       ],
       "verified": true,
       "source": "https://hager.com/pl/katalog/produkt/kn06e-qc-blok-samozacisk-pe-ziel-1x16-5x4mm2"
@@ -4114,7 +4614,8 @@
       "widthMm": 30,
       "color": "brown",
       "carrierIds": [
-        "hager-vz711"
+        "hager-vz711",
+        "hager-qc"
       ],
       "verified": false,
       "source": "https://hager.com/pl/katalog/?artnr=KN06P",
@@ -4139,7 +4640,8 @@
       "widthMm": 45,
       "color": "blue",
       "carrierIds": [
-        "hager-vz711"
+        "hager-vz711",
+        "hager-qc"
       ],
       "verified": false,
       "source": "https://hager.com/pl/katalog/?artnr=KN10N",
@@ -4164,7 +4666,8 @@
       "widthMm": 45,
       "color": "green",
       "carrierIds": [
-        "hager-vz711"
+        "hager-vz711",
+        "hager-qc"
       ],
       "verified": false,
       "source": "https://hager.com/pl/katalog/?artnr=KN10E",
@@ -4189,7 +4692,8 @@
       "widthMm": 45,
       "color": "brown",
       "carrierIds": [
-        "hager-vz711"
+        "hager-vz711",
+        "hager-qc"
       ],
       "verified": false,
       "source": "https://hager.com/pl/katalog/?artnr=KN10P",
@@ -4214,7 +4718,8 @@
       "widthMm": 60,
       "color": "blue",
       "carrierIds": [
-        "hager-vz711"
+        "hager-vz711",
+        "hager-qc"
       ],
       "verified": true,
       "source": "https://hager.com/pl/katalog/produkt/kn14n-qc-blok-samozacisk-n-nieb-3x16-11x4mm2"
@@ -4238,7 +4743,8 @@
       "widthMm": 60,
       "color": "green",
       "carrierIds": [
-        "hager-vz711"
+        "hager-vz711",
+        "hager-qc"
       ],
       "verified": true,
       "source": "https://hager.com/pl/katalog/produkt/kn14e-qc-blok-samozacisk-pe-ziel-3x16-11x4mm2"
@@ -4262,7 +4768,8 @@
       "widthMm": 60,
       "color": "brown",
       "carrierIds": [
-        "hager-vz711"
+        "hager-vz711",
+        "hager-qc"
       ],
       "verified": true,
       "source": "https://hager.com/at/katalog/produkt/kn14p-klemmen-qc-l-14klemmstellen"
@@ -4286,7 +4793,8 @@
       "widthMm": 75,
       "color": "blue",
       "carrierIds": [
-        "hager-vz711"
+        "hager-vz711",
+        "hager-qc"
       ],
       "verified": true,
       "source": "https://hager.com/at/katalog/produkt/kn18n-klemmen-qc-n-18klemmstellen"
@@ -4310,7 +4818,8 @@
       "widthMm": 75,
       "color": "green",
       "carrierIds": [
-        "hager-vz711"
+        "hager-vz711",
+        "hager-qc"
       ],
       "verified": false,
       "source": "https://hager.com/pl/katalog/?artnr=KN18E",
@@ -4335,7 +4844,8 @@
       "widthMm": 75,
       "color": "brown",
       "carrierIds": [
-        "hager-vz711"
+        "hager-vz711",
+        "hager-qc"
       ],
       "verified": false,
       "source": "https://hager.com/pl/katalog/?artnr=KN18P",
@@ -4360,7 +4870,8 @@
       "widthMm": 90,
       "color": "blue",
       "carrierIds": [
-        "hager-vz711"
+        "hager-vz711",
+        "hager-qc"
       ],
       "verified": false,
       "source": "https://hager.com/pl/katalog/?artnr=KN22N",
@@ -4385,7 +4896,8 @@
       "widthMm": 90,
       "color": "green",
       "carrierIds": [
-        "hager-vz711"
+        "hager-vz711",
+        "hager-qc"
       ],
       "verified": false,
       "source": "https://hager.com/pl/katalog/?artnr=KN22E",
@@ -4410,7 +4922,8 @@
       "widthMm": 90,
       "color": "brown",
       "carrierIds": [
-        "hager-vz711"
+        "hager-vz711",
+        "hager-qc"
       ],
       "verified": false,
       "source": "https://hager.com/pl/katalog/?artnr=KN22P",
@@ -4435,7 +4948,8 @@
       "widthMm": 105,
       "color": "blue",
       "carrierIds": [
-        "hager-vz711"
+        "hager-vz711",
+        "hager-qc"
       ],
       "verified": true,
       "source": "https://hager.com/pl/katalog/produkt/kn26n-qc-blok-samozacisk-n-nieb-6x16-20x4mm2"
@@ -4459,7 +4973,8 @@
       "widthMm": 105,
       "color": "green",
       "carrierIds": [
-        "hager-vz711"
+        "hager-vz711",
+        "hager-qc"
       ],
       "verified": true,
       "source": "https://hager.com/pl/katalog/produkt/kn26e-qc-blok-samozacisk-pe-ziel-6x16-20x4mm2"
@@ -4483,11 +4998,34 @@
       "widthMm": 105,
       "color": "brown",
       "carrierIds": [
-        "hager-vz711"
+        "hager-vz711",
+        "hager-qc"
       ],
       "verified": false,
       "source": "https://hager.com/pl/katalog/?artnr=KN26P",
       "notes": "Число клемм и ширина — по ряду KN.. (вывод), страница артикула не сверена."
+    },
+    {
+      "id": "hager-vz455n",
+      "brand": "hager",
+      "role": "N",
+      "series": "QuickConnect",
+      "article": "VZ455N",
+      "clamps": [
+        [
+          6,
+          16
+        ]
+      ],
+      "widthMm": 27,
+      "color": "blue",
+      "carrierIds": [
+        "hager-vz711",
+        "hager-qc"
+      ],
+      "verified": false,
+      "source": "https://hager.com/de/katalog/?artnr=VZ455N",
+      "notes": "Синий блок N «für FI» (под нейтрали УЗО), 27 мм — страница артикула. Число клемм 6 — вывод по Bestellhilfe (N 20 = KN14N 14 + VZ455N); сечение не указано."
     }
   ]
 }

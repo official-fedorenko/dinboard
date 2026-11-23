@@ -31,6 +31,8 @@ export const CARRIER_KINDS = ['carrier', 'plate', 'zone'];
 // Клемма в держателе: N, PE, общий блок N+PE, фазная (L) или универсальная (роль задаёт крышка)
 export const INSERT_ROLES = ['N', 'PE', 'N+PE', 'L', 'universal'];
 export const INSERT_COLORS = ['blue', 'green', 'grey', 'brown', 'brass'];
+// Цвет держателя на рисунке (без поля — по виду: держатель тёмный, колодка белая)
+export const CARRIER_COLORS = ['black', 'white', 'grey'];
 // Аппараты, которые соединяет гребёнка: автоматы, дифавтоматы, УЗО, выключатели нагрузки
 export const COMB_DEVICE_CATEGORIES = new Set(['mcb', 'rcbo', 'rcd', 'switch']);
 
@@ -198,6 +200,7 @@ const CARRIER_FIELDS = {
   lengthMm: [positiveNumber, true],
   positions: [positionList, true],
   enclosureIds: [stringList, false],
+  color: [oneOf(CARRIER_COLORS), false],
   verified: [boolean, true],
   source: [httpsUrl, false],
   notes: [nonEmptyString, false],

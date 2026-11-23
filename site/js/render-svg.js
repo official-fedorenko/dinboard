@@ -126,41 +126,54 @@ function moduleGrid(row) {
 // ---------- держатели клемм N/PE ----------
 
 /** Высота держателя на рисунке и зазор между держателями на одном месте, мм. */
-export const CARRIER_MM = 10;
+export const CARRIER_MM = 14;
 const CARRIER_STACK_GAP = 3;
+/**
+ * Держатель — у края основания, как в настоящем щите: от наружного края корпуса до держателя, мм
+ * (Hager volta: блок клемм ≈ 32 мм от верхнего края — разрез в каталоге Hager PL 2023, с. 92).
+ */
+export const CARRIER_EDGE_MM = 32;
 const INSERT_INSET = 1.2; // клемма чуть ниже держателя: видно, что она вставлена
 
 const clampTotal = (clamps) => (clamps ?? []).reduce((sum, [count]) => sum + count, 0);
 
 /**
- * Держатели клемм N/PE на рисунке: на своём месте (над первым рядом или под последним),
- * в настоящую длину, по центру корпуса; несколько на одном месте — друг над другом (вверху — выше,
- * внизу — ниже). Возвращает [{ index, carrier, position, included, x, y, w, h, inserts }],
+ * Держатели клемм N/PE на рисунке: на своём месте — у верхнего или нижнего края основания (CARRIER_EDGE_MM),
+ * в настоящую длину, по центру корпуса; несколько на одном месте — друг за другом от края к рядам.
+ * Если у края не хватает места до полосы маркировки (низкий корпус), держатели сдвигаются к краю.
+ * Возвращает [{ index, carrier, position, included, x, y, w, h, inserts }],
  * inserts — [{ item, insert, role, x, w, clamps, included }] (role — у универсальной клеммы по крышке).
  * Держатели, которых нет в каталоге, пропускаются. Без держателей и при emptySlot — место пунктиром
- * ({ slot: true, x, y, w, h }) над первым рядом.
+ * ({ slot: true, x, y, w, h }) у верхнего края.
  */
 export function carrierBars(board, layout, carriersById, insertsById, { emptySlot = false } = {}) {
   if (!layout.rows.length) return [];
   const first = layout.rows[0];
   const last = layout.rows[layout.rows.length - 1];
-  const topY = first.y - CUTOUT_GAP - STRIP_GAP - STRIP_MM - BAR_GAP - CARRIER_MM;
-  const bottomY = last.y + FACE_MM + CUTOUT_GAP + BAR_GAP;
+  const step = CARRIER_MM + CARRIER_STACK_GAP;
+  // Ниже (выше) этих границ держатель заходил бы на полосу маркировки первого ряда (на последний ряд)
+  const topLimit = first.y - CUTOUT_GAP - STRIP_GAP - STRIP_MM - BAR_GAP - CARRIER_MM;
+  const bottomLimit = last.y + FACE_MM + CUTOUT_GAP + BAR_GAP;
+  const topStart = (count) => Math.max(COVER_INSET, Math.min(CARRIER_EDGE_MM, topLimit - (count - 1) * step));
+  const bottomStart = (count) => Math.min(layout.height - COVER_INSET - CARRIER_MM, Math.max(layout.height - CARRIER_EDGE_MM - CARRIER_MM, bottomLimit + (count - 1) * step));
   const placeX = (w) => Math.max(COVER_INSET, (layout.width - w) / 2);
   const list = board.carriers ?? [];
   if (!list.length) {
     if (!emptySlot) return [];
     const w = first.x1 - first.x0;
-    return [{ slot: true, x: first.x0, y: topY, w, h: CARRIER_MM }];
+    return [{ slot: true, x: first.x0, y: topStart(1), w, h: CARRIER_MM }];
   }
+  const known = list.filter((c) => carriersById.has(c.carrierId));
+  const count = { top: known.filter((c) => c.position !== 'bottom').length, bottom: known.filter((c) => c.position === 'bottom').length };
+  const start = { top: topStart(count.top), bottom: bottomStart(count.bottom) };
   const stack = { top: 0, bottom: 0 };
   const out = [];
   list.forEach((c, index) => {
     const carrier = carriersById.get(c.carrierId);
     if (!carrier) return;
-    const level = stack[c.position]++;
-    const step = CARRIER_MM + CARRIER_STACK_GAP;
-    const y = c.position === 'bottom' ? bottomY + level * step : topY - level * step;
+    const where = c.position === 'bottom' ? 'bottom' : 'top';
+    const level = stack[where]++;
+    const y = where === 'bottom' ? start.bottom - level * step : start.top + level * step;
     const x = placeX(carrier.lengthMm);
     const inserts = [];
     c.inserts.forEach((it, item) => {
@@ -203,7 +216,7 @@ function carrierBar(bar, t, selected, formatNumber) {
   }
   const name = bar.carrier.article ?? t(`carrier.kind.${bar.carrier.kind}`);
   const parts = [
-    `<g class="carrier kind-${escapeXml(bar.carrier.kind)}" data-carrier-index="${bar.index}">`,
+    `<g class="carrier kind-${escapeXml(bar.carrier.kind)}${bar.carrier.color ? ` color-${escapeXml(bar.carrier.color)}` : ''}" data-carrier-index="${bar.index}">`,
     `<rect class="carrier-body" x="${n(bar.x)}" y="${n(bar.y)}" width="${n(bar.w)}" height="${n(bar.h)}" rx="1.5"><title>${escapeXml(`${t('carrier.title', { name, length: formatNumber(bar.w) })}`)}</title></rect>`,
   ];
   if (!bar.inserts.length) {

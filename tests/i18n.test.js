@@ -7,7 +7,7 @@ import { SPEC_COLUMNS } from '../site/js/export.js';
 import { CLAMP_PARTS } from '../site/js/checks.js';
 import { createTranslator, loadMessages, LANGUAGES, placeholders, pickLanguage, formatNumber } from '../site/js/i18n.js';
 import { deviceLabel, deviceTitle, deviceRef, enclosureDescription, enclosureSize, enclosureTitle, num } from '../site/js/format.js';
-import { DEVICE_CATEGORIES, MOUNTINGS, DOORS, COMB_PIN_TYPES, COMB_PART_KINDS, CARRIER_KINDS } from '../site/js/catalog.js';
+import { DEVICE_CATEGORIES, MOUNTINGS, DOORS, COMB_PIN_TYPES, COMB_PART_KINDS, CARRIER_KINDS, CARRIER_COLORS } from '../site/js/catalog.js';
 import { CARRIER_POSITIONS, CARRIER_ERROR_CODES } from '../site/js/carriers.js';
 import { PROJECT_ERROR_CODES } from '../site/js/storage.js';
 import { SITE_ROOT } from '../tools/serve.js';
@@ -60,6 +60,7 @@ describe('ключи переводов', () => {
     ...COMB_PIN_TYPES.map((p) => `comb.pin.${p}`),
     ...COMB_PART_KINDS.map((k) => `combPart.${k}`),
     ...CARRIER_KINDS.flatMap((k) => [`carrier.kind.${k}`, `carrier.name.${k}`]),
+    ...CARRIER_COLORS.map((c) => `carrier.color.${c}`),
     ...CARRIER_POSITIONS.map((p) => `carrier.pos.${p}`),
     ...CARRIER_ERROR_CODES.map((c) => `carrier.error.${c}`),
     ...CLAMP_PARTS.map((p) => `check.part.${p}`),

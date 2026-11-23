@@ -40,12 +40,15 @@ import {
   addInsert,
   moveInsert,
   removeInsert,
+  transferInsert,
+  replaceInsert,
   setInsertRole,
   setCarrierPosition,
   addCarrier,
   removeCarrier,
   swapCarrier,
   carrierOptions,
+  addableCarriers,
   insertOptions,
   carrierClamps,
   autoFill,
@@ -57,6 +60,7 @@ import {
   canPlaceInsert,
   firstFreeInsertPos,
   factoryCarriers,
+  markFactory,
   CarrierError,
 } from './carriers.js';
 import { xlsxWorkbook } from './xlsx.js';
@@ -473,8 +477,28 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
     let suppressClick = false;
     const barOf = (index) => bars.find((b) => b.index === index);
 
+    /**
+     * Куда встанет клемма sel, если отпустить её сейчас: { to, pos, ok }. to — держатель под указателем
+     * (p — точка в мм; не над держателем — свой), pos — место в нём (притягивание как у snapInsertPos),
+     * ok — клемма к нему подходит и место свободно. dxMm — сдвиг по горизонтали.
+     */
+    function insertTarget(sel, p, dxMm) {
+      const at = locateInsert(sel);
+      const from = barOf(sel.carrier);
+      if (!at || !from) return null;
+      const over = p ? bars.find((b) => !b.slot && p.y >= b.y - 6 && p.y <= b.y + b.h + 6 && p.x >= b.x - 6 && p.x <= b.x + b.w + 6) : null;
+      const target = over ?? from;
+      const same = target.index === sel.carrier;
+      const carrier = carrierList()[target.index];
+      const raw = from.x + at.item.pos + dxMm - target.x;
+      const pos = snapInsertPos(carrier, carriersById, insertsById, raw, at.insert.widthMm, same ? sel.item : -1);
+      const fits = !at.insert.carrierIds || at.insert.carrierIds.includes(carrier.carrierId);
+      const ok = fits && pos !== null && canPlaceInsert(carrier, carriersById, insertsById, pos, at.insert.widthMm, same ? sel.item : -1);
+      return { to: target.index, bar: target, pos, ok };
+    }
+
     view.addEventListener('pointerdown', (event) => {
-      // Клемма N/PE: тянется только вдоль своего держателя (части заводской колодки — нет)
+      // Клемма N/PE: тянется вдоль держателя или в другой держатель (части заводской колодки — нет)
       const ins = event.target.closest?.('.insert');
       if (ins) {
         if (event.button !== 0 || ins.classList.contains('fixed')) return;
@@ -506,13 +530,12 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
       event.preventDefault();
       const scale = 1 / (svg.getScreenCTM()?.a || 1);
       if (drag.insert) {
-        // Только по горизонтали; подсказка — где клемма встанет, если отпустить сейчас
-        drag.dev.setAttribute('transform', `translate(${dx * scale} 0)`);
+        // Подсказка — где клемма встанет, если отпустить сейчас (в своём держателе или в том, что под указателем)
+        drag.dev.setAttribute('transform', `translate(${dx * scale} ${dy * scale})`);
         const at = locateInsert(drag.insert);
-        if (!at) return;
-        const pos = snapInsertPos(at.carrier, carriersById, insertsById, at.item.pos + dx * scale, at.insert.widthMm, drag.insert.item);
-        const ok = pos !== null && canPlaceInsert(at.carrier, carriersById, insertsById, pos, at.insert.widthMm, drag.insert.item);
-        showInsertSlot(svg, barOf(drag.insert.carrier), pos, at.insert.widthMm, ok);
+        const target = insertTarget(drag.insert, toBoardPoint(svg, event.clientX, event.clientY), dx * scale);
+        if (!at || !target) return;
+        showInsertSlot(svg, target.bar, target.pos, at.insert.widthMm, target.ok);
         return;
       }
       drag.dev.setAttribute('transform', `${drag.base} translate(${dx * scale} ${dy * scale})`);
@@ -541,7 +564,12 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
       const scale = 1 / (svg.getScreenCTM()?.a || 1);
       if (current.insert) {
         // Отпустили за пределами щита — отмена
-        if (!p || p.x < 0 || p.y < 0 || p.x > layout.width || p.y > layout.height) render();
+        if (!p || p.x < 0 || p.y < 0 || p.x > layout.width || p.y > layout.height) {
+          render();
+          return;
+        }
+        const target = insertTarget(current.insert, p, (event.clientX - current.x) * scale);
+        if (target && target.to !== current.insert.carrier) transferInsertTo(current.insert, target.to, target.pos);
         else dropInsert(current.insert, (event.clientX - current.x) * scale);
         return;
       }
@@ -1072,7 +1100,8 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
       update({ status: t(`carrier.error.${err.code}`) });
       return;
     }
-    const changes = { board: setCarriers(state.board, next), status };
+    // «В комплекте корпуса» — по комплектации корпуса, как после открытия ссылки или файла
+    const changes = { board: setCarriers(state.board, markFactory(next, enclosure())), status };
     if (select !== undefined) changes.selectedInsert = typeof select === 'function' ? select(next) : select;
     update(changes, focus);
   }
@@ -1125,6 +1154,38 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
     changeCarriers((list) => removeInsert(list, sel.carrier, sel.item), t('carrier.insertRemoved', { name: insertLabel(at.item, at.insert) }), { select: null, focus: 'carriers-open' });
   }
 
+  /** Переносит клемму sel в держатель to на место pos (перетаскиванием на другой держатель). */
+  function transferInsertTo(sel, to, pos) {
+    const at = locateInsert(sel);
+    if (!at || pos === null) return render();
+    const name = insertLabel(at.item, at.insert);
+    changeCarriers((list) => transferInsert(list, sel.carrier, sel.item, to, pos, carriersById, insertsById), t('carrier.transferred', { name }), {
+      select: (next) => findInsert(next, to, at.item.insertId, pos),
+      focus: 'insert-toolbar',
+    });
+  }
+
+  /** Меняет выделенную клемму на другую того же держателя (другой размер или роль). */
+  function replaceInsertWith(sel, insertId) {
+    const at = locateInsert(sel);
+    const next = insertsById.get(insertId);
+    if (!at || !next) return;
+    const from = insertLabel(at.item, at.insert);
+    changeCarriers(
+      (list) => replaceInsert(list, sel.carrier, sel.item, insertId, carriersById, insertsById),
+      t('carrier.replaced', { from, to: insertLabel({ role: at.item.role }, next) }),
+      {
+        // Новая клемма — на старом месте или на первом свободном: ищем её по id среди не бывших там раньше
+        select: (list) => {
+          const before = new Set(at.carrier.inserts.map((x, i) => (i === sel.item ? null : `${x.insertId}@${x.pos}`)));
+          const item = list[sel.carrier].inserts.findIndex((x) => x.insertId === insertId && !before.has(`${x.insertId}@${x.pos}`));
+          return item >= 0 ? { carrier: sel.carrier, item } : null;
+        },
+        focus: 'insert-toolbar',
+      },
+    );
+  }
+
   /** Отпустили клемму после перетаскивания: dxMm — сдвиг вдоль держателя. */
   function dropInsert(sel, dxMm) {
     const at = locateInsert(sel);
@@ -1158,14 +1219,15 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
       return;
     }
     if (!start.length) {
-      const options = carrierOptions(enc, carriersById);
+      // Держатель, который можно заказать (или штатное место под шину)
+      const options = addableCarriers(enc, carriersById);
       const first = options.find((c) => c.kind === 'carrier') ?? options.find((c) => c.kind === 'zone');
       if (!first) return;
       start = addCarrier([], first.id, carriersById);
     }
     const { carriers, short } = autoFill(start, need, carriersById, insertsById, rail);
     const status = short.N || short.PE ? t('carrier.autoShort', { n: short.N, pe: short.PE }) : t('carrier.autoDone', counts);
-    update({ board: setCarriers(state.board, carriers), status, selectedInsert: null }, 'carriers-fill');
+    update({ board: setCarriers(state.board, markFactory(carriers, enc)), status, selectedInsert: null }, 'carriers-fill');
   }
 
   /** Слагаемые «нужно клемм» текстом: «линий: 5, ввод: 1, УЗИП: 1». */
@@ -1185,8 +1247,8 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
    */
   function renderCarriers(enc) {
     const options = carrierOptions(enc, carriersById);
-    // Заводскую колодку отдельно не поставить (её шины — часть колодки): вернуть её можно кнопкой «Как с завода»
-    const addable = options.filter((o) => o.kind !== 'plate');
+    // Заводскую колодку и держатель без артикула отдельно не заказать: вернуть их можно кнопкой «Как с завода»
+    const addable = addableCarriers(enc, carriersById);
     const factory = factoryCarriers(enc);
     const list = carrierList();
     if (!options.length && !list.length) return null;
@@ -1429,10 +1491,34 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
   function renderInsertToolbar() {
     const at = locateInsert();
     if (!at) return null;
-    const { sel, item, insert } = at;
+    const { sel, item, insert, carrier, catalogCarrier } = at;
     const label = insertLabel(item, insert);
     const tool = (key, text, disabled, action) =>
       h('button', { type: 'button', class: 'tool', 'aria-label': t(key), title: t(key), disabled, dataset: { focus: `insert-${key}` }, onClick: action }, text);
+    // Держатель вверх или вниз — вместе со всеми клеммами (если такое место у него есть)
+    const place = (position) =>
+      changeCarriers((l) => setCarrierPosition(l, sel.carrier, position, carriersById), t('carrier.positionSet', { name: carrierName(catalogCarrier, t), place: t(`carrier.pos.${position}`) }), {
+        focus: 'insert-toolbar',
+      });
+    const canPlace = (position) => carrier.position !== position && catalogCarrier.positions.includes(position);
+    // Замена на другую клемму того же держателя (размер или роль)
+    const others = insertOptions(carrier.carrierId, insertsById)
+      .filter((x) => x.id !== insert.id)
+      .sort((a, b) => INSERT_ROLE_ORDER.indexOf(a.role) - INSERT_ROLE_ORDER.indexOf(b.role) || a.widthMm - b.widthMm);
+    const replace =
+      !insert.fixed &&
+      others.length > 0 &&
+      h(
+        'label',
+        { class: 'toolbar-select' },
+        h('span', { class: 'muted' }, t('carrier.replace')),
+        h(
+          'select',
+          { dataset: { focus: 'insert-replace' }, onChange: (event) => event.target.value && replaceInsertWith(sel, event.target.value) },
+          h('option', { value: '' }, '—'),
+          others.map((x) => h('option', { value: x.id }, `${x.article ? `${x.article} — ` : ''}${insertName(x, x.role === 'universal' ? t('carrier.anyRole') : x.role, t)}, ${t('carrier.width', { mm: fmt(x.widthMm) })}`)),
+        ),
+      );
     return h(
       'div',
       { class: 'toolbar', role: 'toolbar', 'aria-label': t('item.selected', { title: label }), dataset: { focus: 'insert-toolbar' }, tabindex: '-1' },
@@ -1447,8 +1533,11 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
           ),
         tool('carrier.moveLeft', '←', insert.fixed, () => nudgeInsert(sel, -1)),
         tool('carrier.moveRight', '→', insert.fixed, () => nudgeInsert(sel, 1)),
+        tool('carrier.toTop', '↑', !canPlace('top'), () => place('top')),
+        tool('carrier.toBottom', '↓', !canPlace('bottom'), () => place('bottom')),
         tool('item.remove', '✕', insert.fixed, () => removeInsertAt(sel)),
       ),
+      replace,
     );
   }
 

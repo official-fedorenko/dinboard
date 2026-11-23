@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 
-import { layoutBoard, hitTest, renderBoardSvg, escapeXml, slotRect, carrierBars, CARRIER_MM, combBars, MODULE_MM, FACE_MM } from '../site/js/render-svg.js';
+import { layoutBoard, hitTest, renderBoardSvg, escapeXml, slotRect, carrierBars, CARRIER_MM, CARRIER_EDGE_MM, combBars, MODULE_MM, FACE_MM } from '../site/js/render-svg.js';
 import { createBoard, addDevice, indexById } from '../site/js/board.js';
 import { createTranslator } from '../site/js/i18n.js';
 import { deviceTitle, deviceLabel } from '../site/js/format.js';
@@ -207,6 +207,7 @@ describe('держатели клемм N/PE на рисунке', () => {
   const carriersById = indexById([
     { id: 'qc', kind: 'carrier', article: 'VZ711', lengthMm: 240, positions: ['top', 'bottom'] },
     { id: 'plate', kind: 'plate', article: 'VZ522', lengthMm: 270, positions: ['top'] },
+    { id: 'white', kind: 'carrier', lengthMm: 240, positions: ['top'], color: 'white' },
   ]);
   const insertsById = indexById([
     { id: 'n6', role: 'N', article: 'KN06N', clamps: [[1, 16], [5, 4]], widthMm: 30 },
@@ -225,7 +226,7 @@ describe('держатели клемм N/PE на рисунке', () => {
     assert.deepEqual(bar.inserts.map((i) => [i.role, i.x - bar.x, i.w, i.clamps]), [['N', 10, 30, 6], ['PE', 50, 120, 15]]);
   });
 
-  test('внизу — под последним рядом; два на одном месте — друг за другом наружу', () => {
+  test('у края основания (как в настоящем щите): сверху — от верхнего края, снизу — от нижнего; два на одном месте — к рядам', () => {
     const list = bars([
       { carrierId: 'qc', position: 'bottom', included: false, inserts: [] },
       { carrierId: 'qc', position: 'bottom', included: false, inserts: [] },
@@ -235,7 +236,14 @@ describe('держатели клемм N/PE на рисунке', () => {
     const last = layout.rows.at(-1);
     assert.equal(list.length, 3, 'держатель не из каталога пропускается');
     assert.ok(list[0].y > last.y + FACE_MM);
-    assert.ok(list[1].y > list[0].y + list[0].h, 'второй — ниже первого');
+    assert.equal(list[0].y + list[0].h, layout.height - CARRIER_EDGE_MM, 'первый внизу — у нижнего края');
+    assert.ok(list[1].y + list[1].h < list[0].y, 'второй внизу — выше первого, ближе к рядам');
+    assert.equal(list[2].y, CARRIER_EDGE_MM, 'вверху — у верхнего края');
+    // В низком корпусе держатель не заходит на полосу маркировки первого ряда
+    const low = { ...enclosure, rows: 1, dimensionsMm: { width: 305, height: 200, depth: 96.5 } };
+    const lowLayout = layoutBoard(low, createBoard(low), devices);
+    const [top] = carrierBars({ ...createBoard(low), carriers: [{ carrierId: 'plate', position: 'top', included: true, inserts: [] }] }, lowLayout, carriersById, insertsById);
+    assert.ok(top.y + top.h <= lowLayout.rows[0].y - 16 + 1e-6, 'не на полосе маркировки');
     assert.deepEqual(list.map((b) => b.index), [0, 1, 2]);
   });
 
@@ -258,6 +266,8 @@ describe('держатели клемм N/PE на рисунке', () => {
     assert.equal((n6.match(/class="clamp"/g) ?? []).length, 6);
     assert.match(svg, /class="insert role-npe selected".*?class="ins-n".*?class="ins-pe".*?class="insert-outline"/);
     assert.match(svg, /class="insert role-pe fixed"/);
+    const white = render(layout, { carriers: bars([{ carrierId: 'white', position: 'top', included: true, inserts: [] }]) });
+    assert.match(white, /<g class="carrier kind-carrier color-white"/, 'цвет держателя — из каталога');
     const slot = render(layout, { carriers: bars(undefined, { emptySlot: true }) });
     assert.match(slot, /class="carrier kind-slot"/);
     assert.match(slot, />Место под клеммы N\/PE — держатель не выбран</);

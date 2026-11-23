@@ -129,6 +129,43 @@ export function moveInsert(carriers, index, item, pos, carriersById, insertsById
   return withCarrier(carriers, index, { ...carrier, inserts });
 }
 
+/**
+ * Переносит клемму item из держателя from в держатель to на позицию pos (например, сверху вниз).
+ * Роль и «с завода» сохраняются (деталь та же). Ошибки: bad-pos (нет такой клеммы), not-compatible, occupied.
+ */
+export function transferInsert(carriers, from, item, to, pos, carriersById, insertsById) {
+  checkIndex(carriers, from);
+  checkIndex(carriers, to);
+  const current = carriers[from].inserts[item];
+  if (!current) throw new CarrierError('bad-pos', { item });
+  const insert = insertsById.get(current.insertId);
+  const target = carriers[to];
+  if (insert?.carrierIds && !insert.carrierIds.includes(target.carrierId)) throw new CarrierError('not-compatible', { insertId: current.insertId });
+  if (!canPlaceInsert(target, carriersById, insertsById, pos, insert?.widthMm ?? 0)) throw new CarrierError('occupied', { pos });
+  return carriers.map((c, i) => {
+    if (i === from) return { ...c, inserts: c.inserts.filter((_, k) => k !== item) };
+    if (i === to) return { ...c, inserts: [...c.inserts, { ...current, pos }].sort((a, b) => a.pos - b.pos) };
+    return c;
+  });
+}
+
+/**
+ * Меняет клемму item держателя index на клемму insertId (другого размера или роли): на то же место,
+ * а если там не помещается — на первое свободное. Новая клемма — к заказу. Ошибки: как у addInsert.
+ */
+export function replaceInsert(carriers, index, item, insertId, carriersById, insertsById) {
+  checkIndex(carriers, index);
+  const current = carriers[index].inserts[item];
+  if (!current) throw new CarrierError('bad-pos', { item });
+  const without = removeInsert(carriers, index, item);
+  const insert = insertsById.get(insertId);
+  const role = insert?.role === 'universal' ? current.role : undefined;
+  if (insert && canPlaceInsert(without[index], carriersById, insertsById, current.pos, insert.widthMm)) {
+    return addInsert(without, index, insertId, carriersById, insertsById, { pos: current.pos, role });
+  }
+  return addInsert(without, index, insertId, carriersById, insertsById, { role });
+}
+
 /** Убирает клемму item из держателя index. */
 export function removeInsert(carriers, index, item) {
   checkIndex(carriers, index);
@@ -265,7 +302,8 @@ export function autoFill(carriers, need, carriersById, insertsById, rail = []) {
  */
 export function markFactory(carriers, enclosure) {
   const factory = factoryCarriers(enclosure).filter((f) => f.included);
-  return carriers.map((c) => {
+  const pool = []; // заводские клеммы, не найденные в своём держателе (их перенесли в другой)
+  const marked = carriers.map((c) => {
     const at = factory.findIndex((f) => f.carrierId === c.carrierId);
     const fromFactory = at >= 0 ? factory.splice(at, 1)[0] : null;
     const left = (fromFactory?.inserts ?? []).filter((x) => x.included).map((x) => x.insertId);
@@ -275,8 +313,21 @@ export function markFactory(carriers, enclosure) {
       left.splice(k, 1);
       return { ...item, included: true };
     });
+    pool.push(...left);
     return { ...c, included: Boolean(fromFactory), inserts };
   });
+  for (const id of factory.flatMap((f) => f.inserts.filter((x) => x.included).map((x) => x.insertId))) pool.push(id);
+  // Перенесённые заводские клеммы — та же деталь из коробки: первые такие же клеммы в других держателях
+  return marked.map((c) => ({
+    ...c,
+    inserts: c.inserts.map((item) => {
+      if (item.included) return item;
+      const k = pool.indexOf(item.insertId);
+      if (k < 0) return item;
+      pool.splice(k, 1);
+      return { ...item, included: true };
+    }),
+  }));
 }
 
 /** Держатели щита по комплектации корпуса (enclosure.terminalSetup), как с завода. */
@@ -294,6 +345,14 @@ export function carrierOptions(enclosure, carriersById) {
   return [...carriersById.values()].filter((c) =>
     c.enclosureIds ? c.enclosureIds.includes(enclosure.id) : c.brand === enclosure.brand,
   );
+}
+
+/**
+ * Держатели, которые можно добавить или поставить на замену: то, что можно заказать (держатель с артикулом),
+ * и штатные места под шину. Заводские колодки и держатели без артикула (не продаются отдельно) — только «как с завода».
+ */
+export function addableCarriers(enclosure, carriersById) {
+  return carrierOptions(enclosure, carriersById).filter((c) => c.kind === 'zone' || (c.kind === 'carrier' && c.article));
 }
 
 /** Клеммы, которые можно поставить в держатель carrierId (кроме частей заводских колодок). */

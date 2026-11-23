@@ -13,9 +13,11 @@ export function clampsText(clamps, lang) {
   return clamps.map(([count, mm2]) => `${count}×${num(mm2, lang)}`).join(' + ');
 }
 
-/** Название держателя клемм N/PE: «Держатель клемм QuickConnect, 240 мм». */
+/** Название держателя клемм N/PE: «Держатель клемм N/PE QuickConnect, белый, 240 мм» (цвет — если указан в каталоге). */
 export function carrierName(carrier, t) {
-  return t(`carrier.name.${carrier.kind}`, { series: carrier.series ? ` ${carrier.series}` : '', length: num(carrier.lengthMm, t.lang) });
+  // Цвет — в названии, чтобы различать одинаковые держатели (заводской белый и чёрный VZ711)
+  const color = carrier.color ? `, ${t(`carrier.color.${carrier.color}`)}` : '';
+  return t(`carrier.name.${carrier.kind}`, { series: `${carrier.series ? ` ${carrier.series}` : ''}${color}`, length: num(carrier.lengthMm, t.lang) });
 }
 
 /** Название клеммы: «Клемма N, 1×16 + 5×4 мм²»; у универсальной — с ролью по крышке. */
