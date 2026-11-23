@@ -217,6 +217,8 @@ describe('validateBrandFile', () => {
     bad({ terminalCarriers: [carrier({ lengthMm: 0 })] }, 'terminalCarriers[0].lengthMm');
     ok({ terminalCarriers: [carrier({ color: 'white' })] });
     bad({ terminalCarriers: [carrier({ color: 'pink' })] }, 'terminalCarriers[0].color');
+    ok({ terminalCarriers: [carrier({ pitchMm: 30 })] });
+    bad({ terminalCarriers: [carrier({ pitchMm: 0 })] }, 'terminalCarriers[0].pitchMm');
     bad({ terminalInserts: [insert({ role: 'holder' })] }, 'terminalInserts[0].role');
     bad({ terminalInserts: [insert({ widthMm: -1 })] }, 'terminalInserts[0].widthMm');
     bad({ terminalInserts: [insert({ color: 'pink' })] }, 'terminalInserts[0].color');
@@ -361,6 +363,21 @@ describe('настоящий каталог site/data', () => {
       .filter((comb) => !series(comb.brand).some((s) => seriesMatch(s, comb.deviceSeries)))
       .map((comb) => `${comb.article}: ${comb.deviceSeries.join(', ')}`);
     assert.deepEqual(lost, []);
+  });
+
+  test('размеры клемм держателя («−» / «+»): у одного держателя нет двух клемм одной роли и серии с одинаковым числом клемм', async () => {
+    const catalog = await loadCatalog(dataUrl, readJson);
+    const count = (clamps) => clamps.reduce((s, [n]) => s + n, 0);
+    const seen = new Map();
+    const clashes = [];
+    for (const x of catalog.terminalInserts.filter((i) => !i.fixed)) {
+      for (const c of x.carrierIds ?? []) {
+        const key = [c, x.role, x.series ?? '', count(x.clamps)].join('|');
+        if (seen.has(key)) clashes.push(seen.get(key) + ' = ' + x.id + ' (' + key + ')');
+        else seen.set(key, x.id);
+      }
+    }
+    assert.deepEqual(clashes, []);
   });
 
   test('подтверждённые позиции имеют ссылку на источник', async () => {

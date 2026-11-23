@@ -268,6 +268,11 @@ describe('держатели клемм N/PE на рисунке', () => {
     assert.match(svg, /class="insert role-pe fixed"/);
     const white = render(layout, { carriers: bars([{ carrierId: 'white', position: 'top', included: true, inserts: [] }]) });
     assert.match(white, /<g class="carrier kind-carrier color-white"/, 'цвет держателя — из каталога');
+    // Деления модуля держателя: 240 мм по 30 мм — 7 делений внутри; у колодки делений нет
+    const ticks = render(layout, { carriers: bars([{ carrierId: 'white', position: 'top', included: true, inserts: [] }]).map((x) => ({ ...x, carrier: { ...x.carrier, pitchMm: 30 } })) });
+    assert.equal((ticks.match(/class="carrier-tick"/g) ?? []).length, 7);
+    const plateSvg = render(layout, { carriers: bars([{ carrierId: 'plate', position: 'top', included: true, inserts: [] }]) });
+    assert.equal((plateSvg.match(/class="carrier-tick"/g) ?? []).length, 0);
     const slot = render(layout, { carriers: bars(undefined, { emptySlot: true }) });
     assert.match(slot, /class="carrier kind-slot"/);
     assert.match(slot, />Место под клеммы N\/PE — держатель не выбран</);

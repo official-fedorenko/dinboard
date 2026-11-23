@@ -208,6 +208,8 @@
   "carrier.replace": "Заменить на",
   "carrier.replaced": "Замена: {from} → {to}.",
   "carrier.transferred": "{name}: перенесена в другой держатель.",
+  "carrier.smaller": "Меньше клемм (артикул поменьше)",
+  "carrier.bigger": "Больше клемм (артикул побольше)",
   "carrier.moveLeft": "Сдвинуть влево",
   "carrier.moveRight": "Сдвинуть вправо",
   "carrier.autoDone": "Подобрано: N — {n}, PE — {pe} (линий: {lines}).",

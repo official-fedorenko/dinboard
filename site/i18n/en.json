@@ -208,6 +208,8 @@
   "carrier.replace": "Replace with",
   "carrier.replaced": "Replaced: {from} → {to}.",
   "carrier.transferred": "{name}: moved to another carrier.",
+  "carrier.smaller": "Fewer terminals (smaller part)",
+  "carrier.bigger": "More terminals (larger part)",
   "carrier.moveLeft": "Move left",
   "carrier.moveRight": "Move right",
   "carrier.autoDone": "Fitted: N — {n}, PE — {pe} ({lines} circuits).",

@@ -23,6 +23,9 @@ import {
   swapCarrier,
   clampNeed,
   transferInsert,
+  nextInsertSize,
+  carrierPitch,
+  CARRIER_PITCH_MM,
   markFactory,
   replaceInsert,
   railTerminals,
@@ -75,10 +78,17 @@ describe('места в держателе', () => {
     assert.deepEqual(removeInsert(c, 0, 0)[0].inserts.map((x) => x.insertId), ['n14']);
   });
 
-  test('притягивание: к соседу в пределах 5 мм, иначе шаг 0,5 мм, в пределах держателя', () => {
+  test('притягивание: к соседу в пределах 5 мм, иначе к делениям держателя (модуль 17,5 мм), в пределах держателя', () => {
     const c = addInsert(empty(), 0, 'n14', carriersById, insertsById, { pos: 0 });
     assert.equal(snapInsertPos(c[0], carriersById, insertsById, 63, 30), 60, 'вплотную к соседу');
-    assert.equal(snapInsertPos(c[0], carriersById, insertsById, 100.3, 30), 100.5);
+    assert.equal(snapInsertPos(c[0], carriersById, insertsById, 100.3, 30), 105, 'ближайшее деление 17,5 мм');
+    // У держателя свой модуль (Hager QuickConnect — 30 мм)
+    const p30 = new Map([['p30', { id: 'p30', lengthMm: 240, positions: ['top'], pitchMm: 30 }]]);
+    const free = { carrierId: 'p30', position: 'top', included: false, inserts: [] };
+    assert.equal(snapInsertPos(free, p30, insertsById, 44, 30), 30);
+    assert.equal(snapInsertPos(free, p30, insertsById, 50, 30), 60);
+    assert.equal(carrierPitch(p30.get('p30')), 30);
+    assert.equal(carrierPitch({ lengthMm: 100 }), CARRIER_PITCH_MM);
     assert.equal(snapInsertPos(c[0], carriersById, insertsById, 300, 30), 210, 'не правее края');
     assert.equal(snapInsertPos(c[0], carriersById, insertsById, 10, 300), null, 'длиннее держателя');
   });
@@ -280,5 +290,26 @@ describe('«в комплекте корпуса» (markFactory)', () => {
       [false, [true]], // pe14 с завода, хоть и в другом держателе
       [false, [false, false]], // второй такой же держатель и лишние клеммы — к заказу
     ]);
+  });
+});
+
+describe('размер клеммы — из настоящих артикулов', () => {
+  const sizes = byId([
+    { id: 'kn06n', role: 'N', series: 'QC', clamps: [[1, 16], [5, 4]], widthMm: 30, carrierIds: ['c240'] },
+    { id: 'kn10n', role: 'N', series: 'QC', clamps: [[2, 16], [8, 4]], widthMm: 45, carrierIds: ['c240'] },
+    { id: 'kn14n', role: 'N', series: 'QC', clamps: [[3, 16], [11, 4]], widthMm: 60, carrierIds: ['c240'] },
+    { id: 'kn14e', role: 'PE', series: 'QC', clamps: [[3, 16], [11, 4]], widthMm: 60, carrierIds: ['c240'] },
+    { id: 'other', role: 'N', series: 'X', clamps: [[12, 16]], widthMm: 50, carrierIds: ['c240'] },
+    { id: 'fix', role: 'N', series: 'QC', clamps: [[20, 16]], widthMm: 100, carrierIds: ['c240'], fixed: true },
+    { id: 'far', role: 'N', series: 'QC', clamps: [[30, 16]], widthMm: 120, carrierIds: ['c100'] },
+  ]);
+  test('соседний размер той же серии и роли для этого держателя; на краю — нет', () => {
+    const id = (x) => x?.id ?? null;
+    assert.equal(id(nextInsertSize('c240', sizes.get('kn06n'), 1, sizes)), 'kn10n');
+    assert.equal(id(nextInsertSize('c240', sizes.get('kn10n'), 1, sizes)), 'kn14n');
+    assert.equal(id(nextInsertSize('c240', sizes.get('kn10n'), -1, sizes)), 'kn06n');
+    assert.equal(id(nextInsertSize('c240', sizes.get('kn14n'), 1, sizes)), null, 'больше нет (заводская, чужая серия и чужой держатель не считаются)');
+    assert.equal(id(nextInsertSize('c240', sizes.get('kn06n'), -1, sizes)), null);
+    assert.equal(id(nextInsertSize('c240', sizes.get('kn14e'), -1, sizes)), null, 'роль та же: PE меньше нет');
   });
 });

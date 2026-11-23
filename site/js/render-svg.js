@@ -6,6 +6,7 @@
 // ширина модуля — 17.5 мм, через лицевую панель видна передняя часть устройств (45 мм).
 
 import { COMB_DEVICE_CATEGORIES } from './catalog.js';
+import { carrierPitch } from './carriers.js';
 
 export const MODULE_MM = 17.5;
 export const FACE_MM = 45;
@@ -219,6 +220,14 @@ function carrierBar(bar, t, selected, formatNumber) {
     `<g class="carrier kind-${escapeXml(bar.carrier.kind)}${bar.carrier.color ? ` color-${escapeXml(bar.carrier.color)}` : ''}" data-carrier-index="${bar.index}">`,
     `<rect class="carrier-body" x="${n(bar.x)}" y="${n(bar.y)}" width="${n(bar.w)}" height="${n(bar.h)}" rx="1.5"><title>${escapeXml(`${t('carrier.title', { name, length: formatNumber(bar.w) })}`)}</title></rect>`,
   ];
+  // Деления модуля держателя (шаг клеммы, как модули рейки у автоматов) — у держателей, в которые ставят клеммы
+  if (bar.carrier.kind === 'carrier') {
+    const pitch = carrierPitch(bar.carrier);
+    for (let k = 1; k * pitch < bar.w - 0.5; k++) {
+      const x = n(bar.x + k * pitch);
+      parts.push(`<path class="carrier-tick" d="M${x} ${n(bar.y)}v2.5M${x} ${n(bar.y + bar.h)}v-2.5"/>`);
+    }
+  }
   if (!bar.inserts.length) {
     parts.push(`<text class="carrier-label" x="${n(bar.x + 2.5)}" y="${n(bar.y + bar.h / 2 + 1.8)}">${escapeXml(bar.carrier.kind === 'zone' ? t('carrier.zoneEmpty') : t('carrier.empty'))}</text>`);
   }

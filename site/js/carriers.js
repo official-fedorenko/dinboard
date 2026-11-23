@@ -10,8 +10,11 @@
 export const CARRIER_POSITIONS = ['top', 'bottom'];
 /** Коды ошибок CarrierError (тексты — carrier.error.<код> в переводах). */
 export const CARRIER_ERROR_CODES = ['occupied', 'too-wide', 'bad-pos', 'unknown-insert', 'not-compatible', 'bad-carrier'];
-/** Шаг, к которому притягивается клемма при перетаскивании, мм. */
-export const INSERT_STEP_MM = 0.5;
+/** Модуль держателя по умолчанию (как у автоматов на DIN-рейке), мм: деления и шаг клеммы. */
+export const CARRIER_PITCH_MM = 17.5;
+
+/** Модуль держателя: свой (pitchMm в каталоге, например Hager QuickConnect — 30 мм) или 17,5 мм. */
+export const carrierPitch = (carrier) => carrier?.pitchMm ?? CARRIER_PITCH_MM;
 
 export class CarrierError extends Error {
   constructor(code, details = {}) {
@@ -69,11 +72,13 @@ export function firstFreeInsertPos(carrier, carriersById, insertsById, width, ig
 
 /**
  * Позиция при перетаскивании: raw — где оказался левый край клеммы, мм.
- * Вплотную к соседу или краю держателя, если до него не больше 5 мм, иначе — шаг 0,5 мм.
+ * Вплотную к соседу или краю держателя, если до него не больше 5 мм, иначе — к ближайшему делению держателя
+ * (модуль carrierPitch, как у автоматов на рейке).
  * В пределах держателя; занято ли место — проверяет перенос. null — клемма длиннее держателя.
  */
 export function snapInsertPos(carrier, carriersById, insertsById, raw, width, ignore = -1) {
-  const length = carriersById.get(carrier.carrierId)?.lengthMm ?? 0;
+  const catalogCarrier = carriersById.get(carrier.carrierId);
+  const length = catalogCarrier?.lengthMm ?? 0;
   const max = length - width;
   if (max < -1e-6) return null;
   const edges = [0, max];
@@ -85,7 +90,22 @@ export function snapInsertPos(carrier, carriersById, insertsById, raw, width, ig
   const near = edges.filter((e) => e >= -1e-6 && e <= max + 1e-6 && Math.abs(e - raw) <= 5).sort((a, b) => Math.abs(a - raw) - Math.abs(b - raw));
   const free = near.find((e) => canPlaceInsert(carrier, carriersById, insertsById, e, width, ignore));
   if (free !== undefined) return Math.max(0, Math.min(max, free));
-  return Math.max(0, Math.min(max, Math.round(raw / INSERT_STEP_MM) * INSERT_STEP_MM));
+  const pitch = carrierPitch(catalogCarrier);
+  return Math.max(0, Math.min(max, Math.round(raw / pitch) * pitch));
+}
+
+/**
+ * Соседний размер клеммы insert в держателе carrierId: dir = 1 — следующая побольше (больше клемм), -1 — поменьше.
+ * Только настоящие артикулы той же роли и серии, которые ставятся в этот держатель (не части заводских колодок).
+ * null — больше (меньше) нет.
+ */
+export function nextInsertSize(carrierId, insert, dir, insertsById) {
+  const own = clampCount(insert.clamps);
+  const same = insertOptions(carrierId, insertsById)
+    .filter((x) => x.id !== insert.id && x.role === insert.role && (x.series ?? null) === (insert.series ?? null))
+    .filter((x) => (dir > 0 ? clampCount(x.clamps) > own : clampCount(x.clamps) < own))
+    .sort((a, b) => clampCount(a.clamps) - clampCount(b.clamps) || a.widthMm - b.widthMm);
+  return (dir > 0 ? same[0] : same.at(-1)) ?? null;
 }
 
 function withCarrier(carriers, index, carrier) {

@@ -575,6 +575,18 @@ button:focus-visible {
   stroke-dasharray: 2 1.5;
 }
 
+/* Деления модуля держателя */
+.carrier-tick {
+  stroke: var(--enc-edge);
+  stroke-width: 0.5;
+  fill: none;
+  pointer-events: none;
+}
+
+.carrier.kind-carrier:not(.color-white) .carrier-tick {
+  stroke: var(--term-clamp);
+}
+
 .carrier-label {
   fill: var(--enc-text);
   font-size: 4.2px;

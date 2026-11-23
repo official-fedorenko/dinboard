@@ -3164,9 +3164,10 @@
         "abb-1slm004100a1108",
         "abb-1slm004100a1208"
       ],
+      "pitchMm": 16.5,
       "verified": false,
       "source": "https://catalogo-generale.abb.com/quadri-elettrici-di-distribuzione-e-contenitori/mistral/41Z68",
-      "notes": "Держатель клеммников 15×280×15 мм, 16 позиций, вверху или внизу корпуса (страница ABB и инструкция 1SPC8010I5M0201). Полезная длина 264 мм = 16 × ≈16,5 мм — вывод. В комплекте ли он у наших корпусов — не выяснено."
+      "notes": "Держатель клеммников 15×280×15 мм, 16 позиций, вверху или внизу корпуса (страница ABB и инструкция 1SPC8010I5M0201). Полезная длина 264 мм = 16 × ≈16,5 мм — вывод. В комплекте ли он у наших корпусов — не выяснено. Модуль ≈16,5 мм — 16 позиций (вывод)."
     }
   ],
   "terminalInserts": [
@@ -3174,6 +3175,7 @@
       "id": "abb-1spe007715f0731",
       "brand": "abb",
       "role": "N",
+      "series": "screw",
       "article": "1SPE007715F0731",
       "clamps": [
         [
@@ -3197,6 +3199,7 @@
       "id": "abb-1spe007715f0741",
       "brand": "abb",
       "role": "PE",
+      "series": "screw",
       "article": "1SPE007715F0741",
       "clamps": [
         [
@@ -3220,6 +3223,7 @@
       "id": "abb-1spe007715f0732",
       "brand": "abb",
       "role": "N",
+      "series": "screw",
       "article": "1SPE007715F0732",
       "clamps": [
         [
@@ -3243,6 +3247,7 @@
       "id": "abb-1spe007715f0742",
       "brand": "abb",
       "role": "PE",
+      "series": "screw",
       "article": "1SPE007715F0742",
       "clamps": [
         [
@@ -3266,6 +3271,7 @@
       "id": "abb-1spe007715f0733",
       "brand": "abb",
       "role": "N",
+      "series": "screw",
       "article": "1SPE007715F0733",
       "clamps": [
         [
@@ -3289,6 +3295,7 @@
       "id": "abb-1spe007715f0743",
       "brand": "abb",
       "role": "PE",
+      "series": "screw",
       "article": "1SPE007715F0743",
       "clamps": [
         [
@@ -3312,6 +3319,7 @@
       "id": "abb-1spe007715f0734",
       "brand": "abb",
       "role": "N",
+      "series": "screw",
       "article": "1SPE007715F0734",
       "clamps": [
         [
@@ -3335,6 +3343,7 @@
       "id": "abb-1spe007715f0744",
       "brand": "abb",
       "role": "PE",
+      "series": "screw",
       "article": "1SPE007715F0744",
       "clamps": [
         [
@@ -3358,6 +3367,7 @@
       "id": "abb-1spe007715f0735",
       "brand": "abb",
       "role": "N",
+      "series": "screw",
       "article": "1SPE007715F0735",
       "clamps": [
         [
@@ -3381,6 +3391,7 @@
       "id": "abb-1spe007715f0745",
       "brand": "abb",
       "role": "PE",
+      "series": "screw",
       "article": "1SPE007715F0745",
       "clamps": [
         [
@@ -3404,6 +3415,7 @@
       "id": "abb-1spe007715f9701",
       "brand": "abb",
       "role": "N",
+      "series": "screwless",
       "article": "1SPE007715F9701",
       "clamps": [
         [
@@ -3424,6 +3436,7 @@
       "id": "abb-1spe007715f9702",
       "brand": "abb",
       "role": "N",
+      "series": "screwless",
       "article": "1SPE007715F9702",
       "clamps": [
         [
@@ -3448,6 +3461,7 @@
       "id": "abb-1spe007715f9703",
       "brand": "abb",
       "role": "N",
+      "series": "screwless",
       "article": "1SPE007715F9703",
       "clamps": [
         [
@@ -3472,6 +3486,7 @@
       "id": "abb-1spe007715f9704",
       "brand": "abb",
       "role": "N",
+      "series": "screwless",
       "article": "1SPE007715F9704",
       "clamps": [
         [
@@ -3496,6 +3511,7 @@
       "id": "abb-1spe007715f9705",
       "brand": "abb",
       "role": "N",
+      "series": "screwless",
       "article": "1SPE007715F9705",
       "clamps": [
         [
@@ -3520,6 +3536,7 @@
       "id": "abb-1spe007715f9706",
       "brand": "abb",
       "role": "N",
+      "series": "screwless",
       "article": "1SPE007715F9706",
       "clamps": [
         [
@@ -3544,6 +3561,7 @@
       "id": "abb-1spe007715f9707",
       "brand": "abb",
       "role": "N",
+      "series": "screwless",
       "article": "1SPE007715F9707",
       "clamps": [
         [
@@ -3568,6 +3586,7 @@
       "id": "abb-1spe007715f9712",
       "brand": "abb",
       "role": "PE",
+      "series": "screwless",
       "article": "1SPE007715F9712",
       "clamps": [
         [
@@ -3592,6 +3611,7 @@
       "id": "abb-1spe007715f9713",
       "brand": "abb",
       "role": "PE",
+      "series": "screwless",
       "article": "1SPE007715F9713",
       "clamps": [
         [
@@ -3616,6 +3636,7 @@
       "id": "abb-1spe007715f9714",
       "brand": "abb",
       "role": "PE",
+      "series": "screwless",
       "article": "1SPE007715F9714",
       "clamps": [
         [
@@ -3640,6 +3661,7 @@
       "id": "abb-1spe007715f9715",
       "brand": "abb",
       "role": "PE",
+      "series": "screwless",
       "article": "1SPE007715F9715",
       "clamps": [
         [
@@ -3664,6 +3686,7 @@
       "id": "abb-1spe007715f9716",
       "brand": "abb",
       "role": "PE",
+      "series": "screwless",
       "article": "1SPE007715F9716",
       "clamps": [
         [
@@ -3688,6 +3711,7 @@
       "id": "abb-1spe007715f9717",
       "brand": "abb",
       "role": "PE",
+      "series": "screwless",
       "article": "1SPE007715F9717",
       "clamps": [
         [

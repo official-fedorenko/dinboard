@@ -201,6 +201,7 @@ const CARRIER_FIELDS = {
   positions: [positionList, true],
   enclosureIds: [stringList, false],
   color: [oneOf(CARRIER_COLORS), false],
+  pitchMm: [positiveNumber, false], // модуль держателя: деления и шаг клеммы (без поля — 17,5 мм)
   verified: [boolean, true],
   source: [httpsUrl, false],
   notes: [nonEmptyString, false],

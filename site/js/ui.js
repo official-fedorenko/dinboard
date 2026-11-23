@@ -42,6 +42,8 @@ import {
   removeInsert,
   transferInsert,
   replaceInsert,
+  nextInsertSize,
+  carrierPitch,
   setInsertRole,
   setCarrierPosition,
   addCarrier,
@@ -1158,13 +1160,17 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
     });
   }
 
-  /** Сдвиг клеммы кнопками или стрелками: на 5 мм (с Shift — на 0,5 мм), вплотную к соседу, если он ближе. */
+  /** Сдвиг клеммы кнопками или стрелками: на одно деление держателя (с Shift — на 0,5 мм), вплотную к соседу, если он ближе. */
   function nudgeInsert(sel, dir, fine = false) {
     const at = locateInsert(sel);
     if (!at || at.insert.fixed) return;
     const width = at.insert.widthMm;
     const max = at.catalogCarrier.lengthMm - width;
-    let pos = Math.round((at.item.pos + dir * (fine ? 0.5 : 5)) / 0.5) * 0.5;
+    // На одно деление держателя (модуль, как у автоматов на рейке) — к следующему делению; с Shift — на 0,5 мм
+    const pitch = carrierPitch(at.catalogCarrier);
+    let pos = fine
+      ? Math.round((at.item.pos + dir * 0.5) / 0.5) * 0.5
+      : (dir > 0 ? Math.floor(at.item.pos / pitch + 1e-6) + 1 : Math.ceil(at.item.pos / pitch - 1e-6) - 1) * pitch;
     // Упёрлась в соседа — встаёт вплотную к нему
     for (const [i, x] of at.carrier.inserts.entries()) {
       if (i === sel.item) continue;
@@ -1537,6 +1543,9 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
         focus: 'insert-toolbar',
       });
     const canPlace = (position) => carrier.position !== position && catalogCarrier.positions.includes(position);
+    // Размер — соседний настоящий артикул той же серии и роли (меньше или больше клемм)
+    const smaller = nextInsertSize(carrier.carrierId, insert, -1, insertsById);
+    const bigger = nextInsertSize(carrier.carrierId, insert, 1, insertsById);
     // Замена на другую клемму того же держателя (размер или роль)
     const others = insertOptions(carrier.carrierId, insertsById)
       .filter((x) => x.id !== insert.id)
@@ -1567,6 +1576,8 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
           chips(t('carrier.cover'), roleOf(item, insert), [['N', 'N'], ['PE', 'PE']], (role) =>
             changeCarriers((l) => setInsertRole(l, sel.carrier, sel.item, role), t('carrier.roleSet', { name: label, role })),
           ),
+        tool('carrier.smaller', '−', insert.fixed || !smaller, () => replaceInsertWith(sel, smaller.id)),
+        tool('carrier.bigger', '+', insert.fixed || !bigger, () => replaceInsertWith(sel, bigger.id)),
         tool('carrier.moveLeft', '←', insert.fixed, () => nudgeInsert(sel, -1)),
         tool('carrier.moveRight', '→', insert.fixed, () => nudgeInsert(sel, 1)),
         tool('carrier.toTop', '↑', !canPlace('top'), () => place('top')),

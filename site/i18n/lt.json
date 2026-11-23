@@ -208,6 +208,8 @@
   "carrier.replace": "Pakeisti į",
   "carrier.replaced": "Pakeista: {from} → {to}.",
   "carrier.transferred": "{name}: perkelta į kitą laikiklį.",
+  "carrier.smaller": "Mažiau gnybtų (mažesnis gaminys)",
+  "carrier.bigger": "Daugiau gnybtų (didesnis gaminys)",
   "carrier.moveLeft": "Perkelti kairėn",
   "carrier.moveRight": "Perkelti dešinėn",
   "carrier.autoDone": "Parinkta: N — {n}, PE — {pe} (linijų: {lines}).",
