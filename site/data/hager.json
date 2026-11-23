@@ -671,7 +671,7 @@
       "category": "rcd",
       "modules": 2,
       "specs": {
-        "poles": "1P+N",
+        "poles": "2P",
         "ratedCurrentA": 25,
         "sensitivityMa": 30,
         "rcdType": "AC"
@@ -687,7 +687,7 @@
       "category": "rcd",
       "modules": 2,
       "specs": {
-        "poles": "1P+N",
+        "poles": "2P",
         "ratedCurrentA": 40,
         "sensitivityMa": 30,
         "rcdType": "AC"
@@ -703,7 +703,7 @@
       "category": "rcd",
       "modules": 2,
       "specs": {
-        "poles": "1P+N",
+        "poles": "2P",
         "ratedCurrentA": 63,
         "sensitivityMa": 30,
         "rcdType": "AC"
@@ -719,7 +719,7 @@
       "category": "rcd",
       "modules": 4,
       "specs": {
-        "poles": "3P+N",
+        "poles": "4P",
         "ratedCurrentA": 25,
         "sensitivityMa": 30,
         "rcdType": "AC"
@@ -735,7 +735,7 @@
       "category": "rcd",
       "modules": 4,
       "specs": {
-        "poles": "3P+N",
+        "poles": "4P",
         "ratedCurrentA": 40,
         "sensitivityMa": 30,
         "rcdType": "AC"
@@ -751,7 +751,7 @@
       "category": "rcd",
       "modules": 4,
       "specs": {
-        "poles": "3P+N",
+        "poles": "4P",
         "ratedCurrentA": 63,
         "sensitivityMa": 30,
         "rcdType": "AC"
@@ -767,7 +767,7 @@
       "category": "rcd",
       "modules": 2,
       "specs": {
-        "poles": "1P+N",
+        "poles": "2P",
         "ratedCurrentA": 25,
         "sensitivityMa": 30,
         "rcdType": "A"
@@ -783,7 +783,7 @@
       "category": "rcd",
       "modules": 2,
       "specs": {
-        "poles": "1P+N",
+        "poles": "2P",
         "ratedCurrentA": 40,
         "sensitivityMa": 30,
         "rcdType": "A"
@@ -799,7 +799,7 @@
       "category": "rcd",
       "modules": 2,
       "specs": {
-        "poles": "1P+N",
+        "poles": "2P",
         "ratedCurrentA": 63,
         "sensitivityMa": 30,
         "rcdType": "A"
@@ -815,7 +815,7 @@
       "category": "rcd",
       "modules": 4,
       "specs": {
-        "poles": "3P+N",
+        "poles": "4P",
         "ratedCurrentA": 25,
         "sensitivityMa": 30,
         "rcdType": "A"
@@ -831,7 +831,7 @@
       "category": "rcd",
       "modules": 4,
       "specs": {
-        "poles": "3P+N",
+        "poles": "4P",
         "ratedCurrentA": 40,
         "sensitivityMa": 30,
         "rcdType": "A"
@@ -847,7 +847,7 @@
       "category": "rcd",
       "modules": 4,
       "specs": {
-        "poles": "3P+N",
+        "poles": "4P",
         "ratedCurrentA": 63,
         "sensitivityMa": 30,
         "rcdType": "A"
@@ -2176,7 +2176,7 @@
       "category": "rcd",
       "modules": 4,
       "specs": {
-        "poles": "3P+N",
+        "poles": "4P",
         "ratedCurrentA": 80,
         "sensitivityMa": 30,
         "rcdType": "A"
@@ -2193,7 +2193,7 @@
       "category": "rcd",
       "modules": 4,
       "specs": {
-        "poles": "3P+N",
+        "poles": "4P",
         "ratedCurrentA": 100,
         "sensitivityMa": 30,
         "rcdType": "A"
@@ -2210,7 +2210,7 @@
       "category": "rcd",
       "modules": 4,
       "specs": {
-        "poles": "3P+N",
+        "poles": "4P",
         "ratedCurrentA": 40,
         "sensitivityMa": 100,
         "rcdType": "A"
@@ -2226,7 +2226,7 @@
       "category": "rcd",
       "modules": 2,
       "specs": {
-        "poles": "1P+N",
+        "poles": "2P",
         "ratedCurrentA": 40,
         "sensitivityMa": 300,
         "rcdType": "A"
@@ -2242,7 +2242,7 @@
       "category": "rcd",
       "modules": 2,
       "specs": {
-        "poles": "1P+N",
+        "poles": "2P",
         "ratedCurrentA": 63,
         "sensitivityMa": 300,
         "rcdType": "A"
@@ -2258,7 +2258,7 @@
       "category": "rcd",
       "modules": 2,
       "specs": {
-        "poles": "1P+N",
+        "poles": "2P",
         "ratedCurrentA": 63,
         "sensitivityMa": 300,
         "rcdType": "AC"
@@ -2274,7 +2274,7 @@
       "category": "rcd",
       "modules": 4,
       "specs": {
-        "poles": "3P+N",
+        "poles": "4P",
         "ratedCurrentA": 40,
         "sensitivityMa": 300,
         "rcdType": "A"
@@ -2290,7 +2290,7 @@
       "category": "rcd",
       "modules": 4,
       "specs": {
-        "poles": "3P+N",
+        "poles": "4P",
         "ratedCurrentA": 63,
         "sensitivityMa": 300,
         "rcdType": "A"
@@ -2306,7 +2306,7 @@
       "category": "rcd",
       "modules": 4,
       "specs": {
-        "poles": "3P+N",
+        "poles": "4P",
         "ratedCurrentA": 80,
         "sensitivityMa": 300,
         "rcdType": "A"
@@ -2323,7 +2323,7 @@
       "category": "rcd",
       "modules": 4,
       "specs": {
-        "poles": "3P+N",
+        "poles": "4P",
         "ratedCurrentA": 100,
         "sensitivityMa": 300,
         "rcdType": "A"
@@ -2340,7 +2340,7 @@
       "category": "rcd",
       "modules": 4,
       "specs": {
-        "poles": "3P+N",
+        "poles": "4P",
         "ratedCurrentA": 100,
         "sensitivityMa": 300,
         "rcdType": "AC"
@@ -2357,7 +2357,7 @@
       "category": "rcd",
       "modules": 2,
       "specs": {
-        "poles": "1P+N",
+        "poles": "2P",
         "ratedCurrentA": 25,
         "sensitivityMa": 30,
         "rcdType": "F"
@@ -2374,7 +2374,7 @@
       "category": "rcd",
       "modules": 2,
       "specs": {
-        "poles": "1P+N",
+        "poles": "2P",
         "ratedCurrentA": 40,
         "sensitivityMa": 30,
         "rcdType": "F"
@@ -2391,7 +2391,7 @@
       "category": "rcd",
       "modules": 2,
       "specs": {
-        "poles": "1P+N",
+        "poles": "2P",
         "ratedCurrentA": 63,
         "sensitivityMa": 30,
         "rcdType": "F"
@@ -2408,7 +2408,7 @@
       "category": "rcd",
       "modules": 4,
       "specs": {
-        "poles": "3P+N",
+        "poles": "4P",
         "ratedCurrentA": 25,
         "sensitivityMa": 30,
         "rcdType": "F"
@@ -2425,7 +2425,7 @@
       "category": "rcd",
       "modules": 4,
       "specs": {
-        "poles": "3P+N",
+        "poles": "4P",
         "ratedCurrentA": 40,
         "sensitivityMa": 30,
         "rcdType": "F"
@@ -2442,7 +2442,7 @@
       "category": "rcd",
       "modules": 4,
       "specs": {
-        "poles": "3P+N",
+        "poles": "4P",
         "ratedCurrentA": 63,
         "sensitivityMa": 30,
         "rcdType": "F"
@@ -2459,7 +2459,7 @@
       "category": "rcd",
       "modules": 4,
       "specs": {
-        "poles": "3P+N",
+        "poles": "4P",
         "ratedCurrentA": 40,
         "sensitivityMa": 30,
         "rcdType": "B"
@@ -2476,7 +2476,7 @@
       "category": "rcd",
       "modules": 4,
       "specs": {
-        "poles": "3P+N",
+        "poles": "4P",
         "ratedCurrentA": 63,
         "sensitivityMa": 30,
         "rcdType": "B"

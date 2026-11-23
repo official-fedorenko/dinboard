@@ -194,12 +194,13 @@ export const DEVICE_CATEGORIES = {
   },
   // УЗО (выключатель дифференциального тока)
   rcd: {
-    poles: oneOf(['1P+N', '2P', '3P+N', '4P']),
+    // УЗО — всегда по числу полюсов (2P / 4P): у УЗО нет «защищённой» нейтрали, все полюса равноправны
+    poles: oneOf(['2P', '4P']),
     ratedCurrentA: positiveNumber,
     sensitivityMa: oneOf(SENSITIVITIES_MA),
     rcdType: oneOf(RCD_TYPES),
   },
-  // Дифавтомат
+  // Дифавтомат (и автомат): 4P — защищены все 4 полюса; 3P+N — защищены 3, нейтраль только отключается
   rcbo: {
     poles: oneOf(POLES),
     ratedCurrentA: positiveNumber,

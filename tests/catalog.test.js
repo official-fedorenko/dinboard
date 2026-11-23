@@ -222,6 +222,14 @@ describe('validateBrandFile', () => {
     bad('есть', 'terminals: нужен объект');
   });
 
+  test('полюса УЗО — только 2P или 4P (единое правило для всех брендов)', () => {
+    const rcd = (poles) => ({ ...mcb(), id: 'acme-rcd', article: 'R1', category: 'rcd', modules: 2, specs: { poles, ratedCurrentA: 40, sensitivityMa: 30, rcdType: 'A' } });
+    assert.deepEqual(validateBrandFile(brandFile({ devices: [rcd('2P')] })), []);
+    assert.deepEqual(validateBrandFile(brandFile({ devices: [rcd('4P')] })), []);
+    hasError(validateBrandFile(brandFile({ devices: [rcd('1P+N')] })), 'specs.poles: ожидалось одно из: 2P, 4P');
+    hasError(validateBrandFile(brandFile({ devices: [rcd('3P+N')] })), 'specs.poles: ожидалось одно из: 2P, 4P');
+  });
+
   test('версия схемы и не-объекты', () => {
     hasError(validateBrandFile(brandFile({ schemaVersion: 2 })), 'schemaVersion: ожидалось 1');
     assert.deepEqual(validateBrandFile(null, 'x.json'), ['x.json: нужен объект']);

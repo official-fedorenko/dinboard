@@ -13,7 +13,7 @@ const t = createTranslator(JSON.parse(await readFile(join(SITE_ROOT, 'i18n', 'ru
 
 const enclosure = { id: 'e', rows: 2, modulesPerRow: 12, dimensionsMm: { width: 305, height: 370, depth: 96.5 } };
 const mcb = { id: 'mcb', category: 'mcb', article: 'MCN116', modules: 1, specs: { poles: '1P', ratedCurrentA: 16, curve: 'C', breakingCapacityKa: 6 } };
-const rcd = { id: 'rcd', category: 'rcd', article: 'CDA240J', modules: 2, specs: { poles: '1P+N', ratedCurrentA: 40, sensitivityMa: 30, rcdType: 'A' } };
+const rcd = { id: 'rcd', category: 'rcd', article: 'CDA240J', modules: 2, specs: { poles: '2P', ratedCurrentA: 40, sensitivityMa: 30, rcdType: 'A' } };
 const spd = { id: 'spd', category: 'spd', article: 'SPE440', modules: 4, specs: { poles: '3P+N', spdType: '2' } };
 const devices = indexById([mcb, rcd, spd]);
 
@@ -58,7 +58,7 @@ describe('layoutBoard', () => {
     assert.deepEqual(r0.gaps.map((g) => [(g.x - r0.x0) / MODULE_MM, g.w / MODULE_MM]), [[0, 2], [3, 4.5], [9.5, 2.5]]);
     const svg = render(layout);
     assert.equal((svg.match(/class="blank"/g) ?? []).length, 4, '3 промежутка в ряду 1 и пустой ряд 2');
-    assert.match(svg, /aria-label="УЗО 40 А, 30 мА, тип A, 1P\+N, ряд 1, модуль 8.5"/);
+    assert.match(svg, /aria-label="УЗО 40 А, 30 мА, тип A, 2P, ряд 1, модуль 8.5"/);
     assert.match(render(layout, { formatNumber: (v) => String(v).replace('.', ',') }), /модуль 8,5"/);
   });
 

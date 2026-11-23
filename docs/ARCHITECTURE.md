@@ -53,11 +53,11 @@
 - Корпус (`enclosures`): `mounting` (`surface` — накладной, `flush` — встраиваемый), `rows`, `modulesPerRow`, `material` (`plastic`/`metal`), `door` (`transparent`/`opaque`/`none`), `ipRating` (число, например 41), `dimensionsMm` `{ width, height, depth }` (мм, допускаются дробные, например 96.5).
 - Устройство (`devices`): `category`, `modules` (ширина в модулях, шаг 0.5), `specs` — набор полей зависит от категории:
   - `mcb` — автомат: `poles`, `ratedCurrentA`, `curve` (B/C/D), `breakingCapacityKa`;
-  - `rcd` — УЗО: `poles` (1P+N/2P/3P+N/4P, как у производителя), `ratedCurrentA`, `sensitivityMa`, `rcdType` (AC/A/F/B);
+  - `rcd` — УЗО: `poles` — только 2P или 4P (единое правило для всех брендов), `ratedCurrentA`, `sensitivityMa`, `rcdType` (AC/A/F/B);
   - `rcbo` — дифавтомат: поля `mcb` + `sensitivityMa`, `rcdType`;
   - `switch` — выключатель нагрузки: `poles`, `ratedCurrentA`;
   - `spd` — УЗИП: `poles`, `spdType` (1, 1+2, 1+2+3, 2, 2+3, 3), необязательно `networks` — системы заземления, для которых производитель указал применимость (`EARTHING_SYSTEMS`: TN-S, TN-C-S, TT); заполнено только там, где это указано в источнике.
-- `poles`: `1P`, `1P+N`, `2P`, `3P`, `3P+N`, `4P`.
+- `poles`: `1P`, `1P+N`, `2P`, `3P`, `3P+N`, `4P`. У автоматов и дифавтоматов `4P` — защищены все 4 полюса, `3P+N` — защищены 3, нейтраль только отключается.
 
 Сейчас в каталоге 5 брендов — 60 корпусов и 807 устройств (непроверенных устройств 9, у каждого причина в `notes`). Автоматы — 1P, 1P+N, 2P, 3P, 3P+N, 4P с кривыми B, C, D; УЗО на 25–100 А, 10–300 мА, типы AC, A, F, B; дифавтоматы 1P+N, 3P+N, 4P; выключатели нагрузки 1P–4P до 125 А:
 - ABB: корпуса Mistral41 (накладные 41P12X…, встраиваемые 41A12X…, 1–4 ряда по 12 мод.), S200 (S201–S204), F200, DS201, SD200, OVR;

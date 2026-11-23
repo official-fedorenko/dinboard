@@ -3168,7 +3168,7 @@
       "category": "rcbo",
       "modules": 4,
       "specs": {
-        "poles": "3P+N",
+        "poles": "4P",
         "ratedCurrentA": 10,
         "curve": "C",
         "breakingCapacityKa": 6,
@@ -3187,7 +3187,7 @@
       "category": "rcbo",
       "modules": 4,
       "specs": {
-        "poles": "3P+N",
+        "poles": "4P",
         "ratedCurrentA": 16,
         "curve": "C",
         "breakingCapacityKa": 6,
@@ -3206,7 +3206,7 @@
       "category": "rcbo",
       "modules": 4,
       "specs": {
-        "poles": "3P+N",
+        "poles": "4P",
         "ratedCurrentA": 16,
         "curve": "C",
         "breakingCapacityKa": 6,

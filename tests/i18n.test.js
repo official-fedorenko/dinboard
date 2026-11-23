@@ -165,7 +165,7 @@ describe('язык и числа', () => {
 
 describe('format', () => {
   const mcb = { category: 'mcb', article: 'MCN116', specs: { poles: '1P', ratedCurrentA: 16, curve: 'C', breakingCapacityKa: 6 } };
-  const rcd = { category: 'rcd', article: 'CDA240J', specs: { poles: '1P+N', ratedCurrentA: 40, sensitivityMa: 30, rcdType: 'A' } };
+  const rcd = { category: 'rcd', article: 'CDA240J', specs: { poles: '2P', ratedCurrentA: 40, sensitivityMa: 30, rcdType: 'A' } };
   const rcbo = {
     category: 'rcbo',
     article: 'ADA966D',
@@ -176,7 +176,7 @@ describe('format', () => {
 
   test('названия устройств', () => {
     assert.equal(deviceTitle(mcb, t), 'Автомат C16, 1P');
-    assert.equal(deviceTitle(rcd, t), 'УЗО 40 А, 30 мА, тип A, 1P+N');
+    assert.equal(deviceTitle(rcd, t), 'УЗО 40 А, 30 мА, тип A, 2P');
     assert.equal(deviceTitle(rcbo, t), 'Дифавтомат C16, 30 мА, тип A, 1P+N');
     assert.equal(deviceTitle(sw, t), 'Выключатель нагрузки 63 А, 2P');
     assert.equal(deviceTitle(spd, t), 'УЗИП тип 2, 1P+N');
