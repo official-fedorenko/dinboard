@@ -576,7 +576,7 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
         h('div', { class: 'enclosure-current' }, enclosureCard(current)),
         h(
           'button',
-          { type: 'button', class: 'link-button', 'aria-expanded': 'false', dataset: { focus: 'picker-toggle' }, onClick: () => update({ pickerOpen: true }) },
+          { type: 'button', class: 'action picker-toggle', 'aria-expanded': 'false', dataset: { focus: 'picker-toggle' }, onClick: () => update({ pickerOpen: true }) },
           t('enclosure.change'),
         ),
       );
@@ -622,19 +622,25 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
       list.length
         ? h('ul', { class: 'enclosure-list' }, shown.map((e) => h('li', {}, enclosureCard(e))))
         : h('p', { class: 'hint' }, t('enclosure.noneFound')),
-      rest.length > 0 &&
+      // Кнопки под списком: «Ещё варианты» и «Оставить текущий корпус» — в один ряд, на узком экране переносятся
+      (rest.length > 0 || current) &&
         h(
-          'button',
-          { type: 'button', class: 'action more-button', 'aria-haspopup': 'dialog', dataset: { focus: 'enc-more' }, onClick: () => update({ moreOpen: true }) },
-          t('enclosure.more', { n: rest.length }),
+          'div',
+          { class: 'picker-actions' },
+          rest.length > 0 &&
+            h(
+              'button',
+              { type: 'button', class: 'action', 'aria-haspopup': 'dialog', dataset: { focus: 'enc-more' }, onClick: () => update({ moreOpen: true }) },
+              t('enclosure.more', { n: rest.length }),
+            ),
+          current &&
+            h(
+              'button',
+              { type: 'button', class: 'action picker-toggle', 'aria-expanded': 'true', dataset: { focus: 'picker-toggle' }, onClick: () => update({ pickerOpen: false }) },
+              t('enclosure.keep'),
+            ),
         ),
       rest.length > 0 && state.moreOpen && renderMoreDialog(rest),
-      current &&
-        h(
-          'button',
-          { type: 'button', class: 'link-button', 'aria-expanded': 'true', dataset: { focus: 'picker-toggle' }, onClick: () => update({ pickerOpen: false }) },
-          t('enclosure.keep'),
-        ),
     );
   }
 

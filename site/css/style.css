@@ -296,8 +296,11 @@ button:focus-visible {
 
 /* ---------- Выбор корпуса ---------- */
 
-.more-button {
-  flex: none;
+/* Кнопки под списком корпусов: «Ещё варианты», «Оставить текущий корпус» */
+.picker-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
   margin-top: 8px;
 }
 
@@ -381,7 +384,8 @@ button:focus-visible {
   margin-bottom: 4px;
 }
 
-.picker .link-button {
+/* «Сменить корпус» под карточкой выбранного корпуса */
+.enclosure-current + .picker-toggle {
   margin-top: 8px;
 }
 
