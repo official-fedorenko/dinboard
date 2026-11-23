@@ -1554,6 +1554,1772 @@
       },
       "verified": true,
       "source": "https://www.eaton.com.cn/cn/zh-cn/skuPage.158332.html"
+    },
+    {
+      "id": "eaton-286552",
+      "brand": "eaton",
+      "series": "PL6",
+      "article": "286552",
+      "model": "PL6-B6/2",
+      "category": "mcb",
+      "modules": 2,
+      "specs": {
+        "poles": "2P",
+        "ratedCurrentA": 6,
+        "curve": "B",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://www.eaton.com/sk/sk-sk/skuPage.286552.html"
+    },
+    {
+      "id": "eaton-286553",
+      "brand": "eaton",
+      "series": "PL6",
+      "article": "286553",
+      "model": "PL6-B10/2",
+      "category": "mcb",
+      "modules": 2,
+      "specs": {
+        "poles": "2P",
+        "ratedCurrentA": 10,
+        "curve": "B",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://www.eaton.com/sk/sk-sk/skuPage.286553.html"
+    },
+    {
+      "id": "eaton-286554",
+      "brand": "eaton",
+      "series": "PL6",
+      "article": "286554",
+      "model": "PL6-B13/2",
+      "category": "mcb",
+      "modules": 2,
+      "specs": {
+        "poles": "2P",
+        "ratedCurrentA": 13,
+        "curve": "B",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://www.eaton.com/sk/sk-sk/skuPage.286554.html"
+    },
+    {
+      "id": "eaton-286555",
+      "brand": "eaton",
+      "series": "PL6",
+      "article": "286555",
+      "model": "PL6-B16/2",
+      "category": "mcb",
+      "modules": 2,
+      "specs": {
+        "poles": "2P",
+        "ratedCurrentA": 16,
+        "curve": "B",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://www.eaton.com/sk/sk-sk/skuPage.286555.html"
+    },
+    {
+      "id": "eaton-286556",
+      "brand": "eaton",
+      "series": "PL6",
+      "article": "286556",
+      "model": "PL6-B20/2",
+      "category": "mcb",
+      "modules": 2,
+      "specs": {
+        "poles": "2P",
+        "ratedCurrentA": 20,
+        "curve": "B",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://www.eaton.com/gb/en-gb/skuPage.286556.html"
+    },
+    {
+      "id": "eaton-286557",
+      "brand": "eaton",
+      "series": "PL6",
+      "article": "286557",
+      "model": "PL6-B25/2",
+      "category": "mcb",
+      "modules": 2,
+      "specs": {
+        "poles": "2P",
+        "ratedCurrentA": 25,
+        "curve": "B",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://www.eaton.com/gb/en-gb/skuPage.286557.html"
+    },
+    {
+      "id": "eaton-286558",
+      "brand": "eaton",
+      "series": "PL6",
+      "article": "286558",
+      "model": "PL6-B32/2",
+      "category": "mcb",
+      "modules": 2,
+      "specs": {
+        "poles": "2P",
+        "ratedCurrentA": 32,
+        "curve": "B",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://www.eaton.com/gb/en-gb/skuPage.286558.html"
+    },
+    {
+      "id": "eaton-286559",
+      "brand": "eaton",
+      "series": "PL6",
+      "article": "286559",
+      "model": "PL6-B40/2",
+      "category": "mcb",
+      "modules": 2,
+      "specs": {
+        "poles": "2P",
+        "ratedCurrentA": 40,
+        "curve": "B",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://www.eaton.com/gb/en-gb/skuPage.286559.html"
+    },
+    {
+      "id": "eaton-286560",
+      "brand": "eaton",
+      "series": "PL6",
+      "article": "286560",
+      "model": "PL6-B50/2",
+      "category": "mcb",
+      "modules": 2,
+      "specs": {
+        "poles": "2P",
+        "ratedCurrentA": 50,
+        "curve": "B",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://www.eaton.com/gb/en-gb/skuPage.286560.html"
+    },
+    {
+      "id": "eaton-286561",
+      "brand": "eaton",
+      "series": "PL6",
+      "article": "286561",
+      "model": "PL6-B63/2",
+      "category": "mcb",
+      "modules": 2,
+      "specs": {
+        "poles": "2P",
+        "ratedCurrentA": 63,
+        "curve": "B",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://www.eaton.com/gb/en-gb/skuPage.286561.html"
+    },
+    {
+      "id": "eaton-286564",
+      "brand": "eaton",
+      "series": "PL6",
+      "article": "286564",
+      "model": "PL6-C6/2",
+      "category": "mcb",
+      "modules": 2,
+      "specs": {
+        "poles": "2P",
+        "ratedCurrentA": 6,
+        "curve": "C",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://www.eaton.com/gb/en-gb/skuPage.286564.html"
+    },
+    {
+      "id": "eaton-286565",
+      "brand": "eaton",
+      "series": "PL6",
+      "article": "286565",
+      "model": "PL6-C10/2",
+      "category": "mcb",
+      "modules": 2,
+      "specs": {
+        "poles": "2P",
+        "ratedCurrentA": 10,
+        "curve": "C",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://www.eaton.com/gb/en-gb/skuPage.286565.html"
+    },
+    {
+      "id": "eaton-286566",
+      "brand": "eaton",
+      "series": "PL6",
+      "article": "286566",
+      "model": "PL6-C13/2",
+      "category": "mcb",
+      "modules": 2,
+      "specs": {
+        "poles": "2P",
+        "ratedCurrentA": 13,
+        "curve": "C",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://www.eaton.com/gb/en-gb/skuPage.286566.html"
+    },
+    {
+      "id": "eaton-286567",
+      "brand": "eaton",
+      "series": "PL6",
+      "article": "286567",
+      "model": "PL6-C16/2",
+      "category": "mcb",
+      "modules": 2,
+      "specs": {
+        "poles": "2P",
+        "ratedCurrentA": 16,
+        "curve": "C",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://www.eaton.com/gb/en-gb/skuPage.286567.html"
+    },
+    {
+      "id": "eaton-286568",
+      "brand": "eaton",
+      "series": "PL6",
+      "article": "286568",
+      "model": "PL6-C20/2",
+      "category": "mcb",
+      "modules": 2,
+      "specs": {
+        "poles": "2P",
+        "ratedCurrentA": 20,
+        "curve": "C",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://www.eaton.com/gb/en-gb/skuPage.286568.html"
+    },
+    {
+      "id": "eaton-286569",
+      "brand": "eaton",
+      "series": "PL6",
+      "article": "286569",
+      "model": "PL6-C25/2",
+      "category": "mcb",
+      "modules": 2,
+      "specs": {
+        "poles": "2P",
+        "ratedCurrentA": 25,
+        "curve": "C",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://www.eaton.com/gb/en-gb/skuPage.286569.html"
+    },
+    {
+      "id": "eaton-286570",
+      "brand": "eaton",
+      "series": "PL6",
+      "article": "286570",
+      "model": "PL6-C32/2",
+      "category": "mcb",
+      "modules": 2,
+      "specs": {
+        "poles": "2P",
+        "ratedCurrentA": 32,
+        "curve": "C",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://www.eaton.com/gb/en-gb/skuPage.286570.html"
+    },
+    {
+      "id": "eaton-286571",
+      "brand": "eaton",
+      "series": "PL6",
+      "article": "286571",
+      "model": "PL6-C40/2",
+      "category": "mcb",
+      "modules": 2,
+      "specs": {
+        "poles": "2P",
+        "ratedCurrentA": 40,
+        "curve": "C",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://www.eaton.com/gb/en-gb/skuPage.286571.html"
+    },
+    {
+      "id": "eaton-286572",
+      "brand": "eaton",
+      "series": "PL6",
+      "article": "286572",
+      "model": "PL6-C50/2",
+      "category": "mcb",
+      "modules": 2,
+      "specs": {
+        "poles": "2P",
+        "ratedCurrentA": 50,
+        "curve": "C",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://www.eaton.com/gb/en-gb/skuPage.286572.html"
+    },
+    {
+      "id": "eaton-286573",
+      "brand": "eaton",
+      "series": "PL6",
+      "article": "286573",
+      "model": "PL6-C63/2",
+      "category": "mcb",
+      "modules": 2,
+      "specs": {
+        "poles": "2P",
+        "ratedCurrentA": 63,
+        "curve": "C",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://www.eaton.com/gb/en-gb/skuPage.286573.html"
+    },
+    {
+      "id": "eaton-286526",
+      "brand": "eaton",
+      "series": "PL6",
+      "article": "286526",
+      "model": "PL6-B50/1",
+      "category": "mcb",
+      "modules": 1,
+      "specs": {
+        "poles": "1P",
+        "ratedCurrentA": 50,
+        "curve": "B",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://www.eaton.com/gb/en-gb/skuPage.286526.html"
+    },
+    {
+      "id": "eaton-286527",
+      "brand": "eaton",
+      "series": "PL6",
+      "article": "286527",
+      "model": "PL6-B63/1",
+      "category": "mcb",
+      "modules": 1,
+      "specs": {
+        "poles": "1P",
+        "ratedCurrentA": 63,
+        "curve": "B",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://www.eaton.com/sk/sk-sk/skuPage.286527.html"
+    },
+    {
+      "id": "eaton-286538",
+      "brand": "eaton",
+      "series": "PL6",
+      "article": "286538",
+      "model": "PL6-C50/1",
+      "category": "mcb",
+      "modules": 1,
+      "specs": {
+        "poles": "1P",
+        "ratedCurrentA": 50,
+        "curve": "C",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://www.eaton.com/gb/en-gb/skuPage.286538.html"
+    },
+    {
+      "id": "eaton-286539",
+      "brand": "eaton",
+      "series": "PL6",
+      "article": "286539",
+      "model": "PL6-C63/1",
+      "category": "mcb",
+      "modules": 1,
+      "specs": {
+        "poles": "1P",
+        "ratedCurrentA": 63,
+        "curve": "C",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://www.eaton.com/gb/en-gb/skuPage.286539.html"
+    },
+    {
+      "id": "eaton-286542",
+      "brand": "eaton",
+      "series": "PL6",
+      "article": "286542",
+      "model": "PL6-D6/1",
+      "category": "mcb",
+      "modules": 1,
+      "specs": {
+        "poles": "1P",
+        "ratedCurrentA": 6,
+        "curve": "D",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://www.eaton.com/sk/sk-sk/skuPage.286542.html"
+    },
+    {
+      "id": "eaton-286543",
+      "brand": "eaton",
+      "series": "PL6",
+      "article": "286543",
+      "model": "PL6-D10/1",
+      "category": "mcb",
+      "modules": 1,
+      "specs": {
+        "poles": "1P",
+        "ratedCurrentA": 10,
+        "curve": "D",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://www.eaton.com/sk/sk-sk/skuPage.286543.html"
+    },
+    {
+      "id": "eaton-286544",
+      "brand": "eaton",
+      "series": "PL6",
+      "article": "286544",
+      "model": "PL6-D13/1",
+      "category": "mcb",
+      "modules": 1,
+      "specs": {
+        "poles": "1P",
+        "ratedCurrentA": 13,
+        "curve": "D",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://www.eaton.com/sk/sk-sk/skuPage.286544.html"
+    },
+    {
+      "id": "eaton-286545",
+      "brand": "eaton",
+      "series": "PL6",
+      "article": "286545",
+      "model": "PL6-D16/1",
+      "category": "mcb",
+      "modules": 1,
+      "specs": {
+        "poles": "1P",
+        "ratedCurrentA": 16,
+        "curve": "D",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://www.eaton.com/sk/sk-sk/skuPage.286545.html"
+    },
+    {
+      "id": "eaton-286546",
+      "brand": "eaton",
+      "series": "PL6",
+      "article": "286546",
+      "model": "PL6-D20/1",
+      "category": "mcb",
+      "modules": 1,
+      "specs": {
+        "poles": "1P",
+        "ratedCurrentA": 20,
+        "curve": "D",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://www.eaton.com/gb/en-gb/skuPage.286546.html"
+    },
+    {
+      "id": "eaton-286547",
+      "brand": "eaton",
+      "series": "PL6",
+      "article": "286547",
+      "model": "PL6-D25/1",
+      "category": "mcb",
+      "modules": 1,
+      "specs": {
+        "poles": "1P",
+        "ratedCurrentA": 25,
+        "curve": "D",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://www.eaton.com/sk/sk-sk/skuPage.286547.html"
+    },
+    {
+      "id": "eaton-286548",
+      "brand": "eaton",
+      "series": "PL6",
+      "article": "286548",
+      "model": "PL6-D32/1",
+      "category": "mcb",
+      "modules": 1,
+      "specs": {
+        "poles": "1P",
+        "ratedCurrentA": 32,
+        "curve": "D",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://www.eaton.com/sk/sk-sk/skuPage.286548.html"
+    },
+    {
+      "id": "eaton-286549",
+      "brand": "eaton",
+      "series": "PL6",
+      "article": "286549",
+      "model": "PL6-D40/1",
+      "category": "mcb",
+      "modules": 1,
+      "specs": {
+        "poles": "1P",
+        "ratedCurrentA": 40,
+        "curve": "D",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://www.eaton.com/gb/en-gb/skuPage.286549.html"
+    },
+    {
+      "id": "eaton-286586",
+      "brand": "eaton",
+      "series": "PL6",
+      "article": "286586",
+      "model": "PL6-B6/3",
+      "category": "mcb",
+      "modules": 3,
+      "specs": {
+        "poles": "3P",
+        "ratedCurrentA": 6,
+        "curve": "B",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://www.eaton.com/sk/sk-sk/skuPage.286586.html"
+    },
+    {
+      "id": "eaton-286587",
+      "brand": "eaton",
+      "series": "PL6",
+      "article": "286587",
+      "model": "PL6-B10/3",
+      "category": "mcb",
+      "modules": 3,
+      "specs": {
+        "poles": "3P",
+        "ratedCurrentA": 10,
+        "curve": "B",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://www.eaton.com/sk/sk-sk/skuPage.286587.html"
+    },
+    {
+      "id": "eaton-286588",
+      "brand": "eaton",
+      "series": "PL6",
+      "article": "286588",
+      "model": "PL6-B13/3",
+      "category": "mcb",
+      "modules": 3,
+      "specs": {
+        "poles": "3P",
+        "ratedCurrentA": 13,
+        "curve": "B",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://www.eaton.com/gb/en-gb/skuPage.286588.html"
+    },
+    {
+      "id": "eaton-286589",
+      "brand": "eaton",
+      "series": "PL6",
+      "article": "286589",
+      "model": "PL6-B16/3",
+      "category": "mcb",
+      "modules": 3,
+      "specs": {
+        "poles": "3P",
+        "ratedCurrentA": 16,
+        "curve": "B",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://www.eaton.com/sk/sk-sk/skuPage.286589.html"
+    },
+    {
+      "id": "eaton-286590",
+      "brand": "eaton",
+      "series": "PL6",
+      "article": "286590",
+      "model": "PL6-B20/3",
+      "category": "mcb",
+      "modules": 3,
+      "specs": {
+        "poles": "3P",
+        "ratedCurrentA": 20,
+        "curve": "B",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://www.eaton.com/sk/sk-sk/skuPage.286590.html"
+    },
+    {
+      "id": "eaton-286591",
+      "brand": "eaton",
+      "series": "PL6",
+      "article": "286591",
+      "model": "PL6-B25/3",
+      "category": "mcb",
+      "modules": 3,
+      "specs": {
+        "poles": "3P",
+        "ratedCurrentA": 25,
+        "curve": "B",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://www.eaton.com/gb/en-gb/skuPage.286591.html"
+    },
+    {
+      "id": "eaton-286592",
+      "brand": "eaton",
+      "series": "PL6",
+      "article": "286592",
+      "model": "PL6-B32/3",
+      "category": "mcb",
+      "modules": 3,
+      "specs": {
+        "poles": "3P",
+        "ratedCurrentA": 32,
+        "curve": "B",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://www.eaton.com/gb/en-gb/skuPage.286592.html"
+    },
+    {
+      "id": "eaton-286593",
+      "brand": "eaton",
+      "series": "PL6",
+      "article": "286593",
+      "model": "PL6-B40/3",
+      "category": "mcb",
+      "modules": 3,
+      "specs": {
+        "poles": "3P",
+        "ratedCurrentA": 40,
+        "curve": "B",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://www.eaton.com/sk/sk-sk/skuPage.286593.html"
+    },
+    {
+      "id": "eaton-286594",
+      "brand": "eaton",
+      "series": "PL6",
+      "article": "286594",
+      "model": "PL6-B50/3",
+      "category": "mcb",
+      "modules": 3,
+      "specs": {
+        "poles": "3P",
+        "ratedCurrentA": 50,
+        "curve": "B",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://www.eaton.com/sk/sk-sk/skuPage.286594.html"
+    },
+    {
+      "id": "eaton-286595",
+      "brand": "eaton",
+      "series": "PL6",
+      "article": "286595",
+      "model": "PL6-B63/3",
+      "category": "mcb",
+      "modules": 3,
+      "specs": {
+        "poles": "3P",
+        "ratedCurrentA": 63,
+        "curve": "B",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://www.eaton.com/sk/sk-sk/skuPage.286595.html"
+    },
+    {
+      "id": "eaton-286598",
+      "brand": "eaton",
+      "series": "PL6",
+      "article": "286598",
+      "model": "PL6-C6/3",
+      "category": "mcb",
+      "modules": 3,
+      "specs": {
+        "poles": "3P",
+        "ratedCurrentA": 6,
+        "curve": "C",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://www.eaton.com/gb/en-gb/skuPage.286598.html"
+    },
+    {
+      "id": "eaton-286599",
+      "brand": "eaton",
+      "series": "PL6",
+      "article": "286599",
+      "model": "PL6-C10/3",
+      "category": "mcb",
+      "modules": 3,
+      "specs": {
+        "poles": "3P",
+        "ratedCurrentA": 10,
+        "curve": "C",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://www.eaton.com/gb/en-gb/skuPage.286599.html"
+    },
+    {
+      "id": "eaton-286600",
+      "brand": "eaton",
+      "series": "PL6",
+      "article": "286600",
+      "model": "PL6-C13/3",
+      "category": "mcb",
+      "modules": 3,
+      "specs": {
+        "poles": "3P",
+        "ratedCurrentA": 13,
+        "curve": "C",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://www.eaton.com/gb/en-gb/skuPage.286600.html"
+    },
+    {
+      "id": "eaton-106910",
+      "brand": "eaton",
+      "series": "PL6",
+      "article": "106910",
+      "model": "PL6-C16/3N",
+      "category": "mcb",
+      "modules": 4,
+      "specs": {
+        "poles": "3P+N",
+        "ratedCurrentA": 16,
+        "curve": "C",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://www.eaton.com/gb/en-gb/skuPage.106910.html"
+    },
+    {
+      "id": "eaton-106911",
+      "brand": "eaton",
+      "series": "PL6",
+      "article": "106911",
+      "model": "PL6-C20/3N",
+      "category": "mcb",
+      "modules": 4,
+      "specs": {
+        "poles": "3P+N",
+        "ratedCurrentA": 20,
+        "curve": "C",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://www.eaton.com/gb/en-gb/skuPage.106911.html"
+    },
+    {
+      "id": "eaton-106912",
+      "brand": "eaton",
+      "series": "PL6",
+      "article": "106912",
+      "model": "PL6-C25/3N",
+      "category": "mcb",
+      "modules": 4,
+      "specs": {
+        "poles": "3P+N",
+        "ratedCurrentA": 25,
+        "curve": "C",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://www.eaton.com/gb/en-gb/skuPage.106912.html"
+    },
+    {
+      "id": "eaton-106913",
+      "brand": "eaton",
+      "series": "PL6",
+      "article": "106913",
+      "model": "PL6-C32/3N",
+      "category": "mcb",
+      "modules": 4,
+      "specs": {
+        "poles": "3P+N",
+        "ratedCurrentA": 32,
+        "curve": "C",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://www.eaton.com/gb/en-gb/skuPage.106913.html"
+    },
+    {
+      "id": "eaton-106914",
+      "brand": "eaton",
+      "series": "PL6",
+      "article": "106914",
+      "model": "PL6-C40/3N",
+      "category": "mcb",
+      "modules": 4,
+      "specs": {
+        "poles": "3P+N",
+        "ratedCurrentA": 40,
+        "curve": "C",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://www.eaton.com/gb/en-gb/skuPage.106914.html"
+    },
+    {
+      "id": "eaton-106915",
+      "brand": "eaton",
+      "series": "PL6",
+      "article": "106915",
+      "model": "PL6-C50/3N",
+      "category": "mcb",
+      "modules": 4,
+      "specs": {
+        "poles": "3P+N",
+        "ratedCurrentA": 50,
+        "curve": "C",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://www.eaton.com/gb/en-gb/skuPage.106915.html"
+    },
+    {
+      "id": "eaton-106916",
+      "brand": "eaton",
+      "series": "PL6",
+      "article": "106916",
+      "model": "PL6-C63/3N",
+      "category": "mcb",
+      "modules": 4,
+      "specs": {
+        "poles": "3P+N",
+        "ratedCurrentA": 63,
+        "curve": "C",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://www.eaton.com/gb/en-gb/skuPage.106916.html"
+    },
+    {
+      "id": "eaton-286494",
+      "brand": "eaton",
+      "series": "PF6",
+      "article": "286494",
+      "model": "PF6-25/2/03",
+      "category": "rcd",
+      "modules": 2,
+      "specs": {
+        "poles": "2P",
+        "ratedCurrentA": 25,
+        "sensitivityMa": 300,
+        "rcdType": "AC"
+      },
+      "verified": true,
+      "source": "https://www.eaton.com/gb/en-gb/skuPage.286494.html"
+    },
+    {
+      "id": "eaton-286498",
+      "brand": "eaton",
+      "series": "PF6",
+      "article": "286498",
+      "model": "PF6-40/2/03",
+      "category": "rcd",
+      "modules": 2,
+      "specs": {
+        "poles": "2P",
+        "ratedCurrentA": 40,
+        "sensitivityMa": 300,
+        "rcdType": "AC"
+      },
+      "verified": true,
+      "source": "https://www.eaton.com/gb/en-gb/skuPage.286498.html"
+    },
+    {
+      "id": "eaton-286502",
+      "brand": "eaton",
+      "series": "PF6",
+      "article": "286502",
+      "model": "PF6-63/2/03",
+      "category": "rcd",
+      "modules": 2,
+      "specs": {
+        "poles": "2P",
+        "ratedCurrentA": 63,
+        "sensitivityMa": 300,
+        "rcdType": "AC"
+      },
+      "verified": true,
+      "source": "https://www.eaton.com/sk/sk-sk/skuPage.286502.html"
+    },
+    {
+      "id": "eaton-286506",
+      "brand": "eaton",
+      "series": "PF6",
+      "article": "286506",
+      "model": "PF6-25/4/03",
+      "category": "rcd",
+      "modules": 4,
+      "specs": {
+        "poles": "4P",
+        "ratedCurrentA": 25,
+        "sensitivityMa": 300,
+        "rcdType": "AC"
+      },
+      "verified": true,
+      "source": "https://www.eaton.com/gb/en-gb/skuPage.286506.html"
+    },
+    {
+      "id": "eaton-286510",
+      "brand": "eaton",
+      "series": "PF6",
+      "article": "286510",
+      "model": "PF6-40/4/03",
+      "category": "rcd",
+      "modules": 4,
+      "specs": {
+        "poles": "4P",
+        "ratedCurrentA": 40,
+        "sensitivityMa": 300,
+        "rcdType": "AC"
+      },
+      "verified": true,
+      "source": "https://www.eaton.com/gb/en-gb/skuPage.286510.html"
+    },
+    {
+      "id": "eaton-286514",
+      "brand": "eaton",
+      "series": "PF6",
+      "article": "286514",
+      "model": "PF6-63/4/03",
+      "category": "rcd",
+      "modules": 4,
+      "specs": {
+        "poles": "4P",
+        "ratedCurrentA": 63,
+        "sensitivityMa": 300,
+        "rcdType": "AC"
+      },
+      "verified": true,
+      "source": "https://www.eaton.com/gb/en-gb/skuPage.286514.html"
+    },
+    {
+      "id": "eaton-112923",
+      "brand": "eaton",
+      "series": "PF6",
+      "article": "112923",
+      "model": "PF6-25/2/03-A",
+      "category": "rcd",
+      "modules": 2,
+      "specs": {
+        "poles": "2P",
+        "ratedCurrentA": 25,
+        "sensitivityMa": 300,
+        "rcdType": "A"
+      },
+      "verified": true,
+      "source": "https://www.eaton.com/gb/en-gb/skuPage.112923.html"
+    },
+    {
+      "id": "eaton-112926",
+      "brand": "eaton",
+      "series": "PF6",
+      "article": "112926",
+      "model": "PF6-40/2/03-A",
+      "category": "rcd",
+      "modules": 2,
+      "specs": {
+        "poles": "2P",
+        "ratedCurrentA": 40,
+        "sensitivityMa": 300,
+        "rcdType": "A"
+      },
+      "verified": true,
+      "source": "https://www.eaton.com/gb/en-gb/skuPage.112926.html"
+    },
+    {
+      "id": "eaton-112929",
+      "brand": "eaton",
+      "series": "PF6",
+      "article": "112929",
+      "model": "PF6-63/2/03-A",
+      "category": "rcd",
+      "modules": 2,
+      "specs": {
+        "poles": "2P",
+        "ratedCurrentA": 63,
+        "sensitivityMa": 300,
+        "rcdType": "A"
+      },
+      "verified": true,
+      "source": "https://www.eaton.com/gb/en-gb/skuPage.112929.html"
+    },
+    {
+      "id": "eaton-112932",
+      "brand": "eaton",
+      "series": "PF6",
+      "article": "112932",
+      "model": "PF6-25/4/03-A",
+      "category": "rcd",
+      "modules": 4,
+      "specs": {
+        "poles": "4P",
+        "ratedCurrentA": 25,
+        "sensitivityMa": 300,
+        "rcdType": "A"
+      },
+      "verified": true,
+      "source": "https://www.eaton.com/gb/en-gb/skuPage.112932.html"
+    },
+    {
+      "id": "eaton-112935",
+      "brand": "eaton",
+      "series": "PF6",
+      "article": "112935",
+      "model": "PF6-40/4/03-A",
+      "category": "rcd",
+      "modules": 4,
+      "specs": {
+        "poles": "4P",
+        "ratedCurrentA": 40,
+        "sensitivityMa": 300,
+        "rcdType": "A"
+      },
+      "verified": true,
+      "source": "https://www.eaton.com/gb/en-gb/skuPage.112935.html"
+    },
+    {
+      "id": "eaton-112938",
+      "brand": "eaton",
+      "series": "PF6",
+      "article": "112938",
+      "model": "PF6-63/4/03-A",
+      "category": "rcd",
+      "modules": 4,
+      "specs": {
+        "poles": "4P",
+        "ratedCurrentA": 63,
+        "sensitivityMa": 300,
+        "rcdType": "A"
+      },
+      "verified": true,
+      "source": "https://www.eaton.com/gb/en-gb/skuPage.112938.html"
+    },
+    {
+      "id": "eaton-102877",
+      "brand": "eaton",
+      "series": "PXF",
+      "article": "102877",
+      "model": "PXF-80/4/003-A",
+      "category": "rcd",
+      "modules": 4,
+      "specs": {
+        "poles": "4P",
+        "ratedCurrentA": 80,
+        "sensitivityMa": 30,
+        "rcdType": "A"
+      },
+      "verified": true,
+      "source": "https://www.eaton.com/gb/en-gb/skuPage.102877.html"
+    },
+    {
+      "id": "eaton-102879",
+      "brand": "eaton",
+      "series": "PXF",
+      "article": "102879",
+      "model": "PXF-80/4/03-A",
+      "category": "rcd",
+      "modules": 4,
+      "specs": {
+        "poles": "4P",
+        "ratedCurrentA": 80,
+        "sensitivityMa": 300,
+        "rcdType": "A"
+      },
+      "verified": true,
+      "source": "https://www.eaton.com/gb/en-gb/skuPage.102879.html"
+    },
+    {
+      "id": "eaton-102881",
+      "brand": "eaton",
+      "series": "PXF",
+      "article": "102881",
+      "model": "PXF-100/4/003-A",
+      "category": "rcd",
+      "modules": 4,
+      "specs": {
+        "poles": "4P",
+        "ratedCurrentA": 100,
+        "sensitivityMa": 30,
+        "rcdType": "A"
+      },
+      "verified": true,
+      "source": "https://www.eaton.com/gb/en-gb/skuPage.102881.html"
+    },
+    {
+      "id": "eaton-102883",
+      "brand": "eaton",
+      "series": "PXF",
+      "article": "102883",
+      "model": "PXF-100/4/03-A",
+      "category": "rcd",
+      "modules": 4,
+      "specs": {
+        "poles": "4P",
+        "ratedCurrentA": 100,
+        "sensitivityMa": 300,
+        "rcdType": "A"
+      },
+      "verified": true,
+      "source": "https://www.eaton.com/gb/en-gb/skuPage.102883.html"
+    },
+    {
+      "id": "eaton-187449",
+      "brand": "eaton",
+      "series": "PFIM",
+      "article": "187449",
+      "model": "PFIM-25/2/003-G/F",
+      "category": "rcd",
+      "modules": 2,
+      "specs": {
+        "poles": "2P",
+        "ratedCurrentA": 25,
+        "sensitivityMa": 30,
+        "rcdType": "F"
+      },
+      "verified": true,
+      "source": "https://www.eaton.com/tr/tr-tr/skuPage.187449.html"
+    },
+    {
+      "id": "eaton-187450",
+      "brand": "eaton",
+      "series": "PFIM",
+      "article": "187450",
+      "model": "PFIM-40/2/003-G/F",
+      "category": "rcd",
+      "modules": 2,
+      "specs": {
+        "poles": "2P",
+        "ratedCurrentA": 40,
+        "sensitivityMa": 30,
+        "rcdType": "F"
+      },
+      "verified": true,
+      "source": "https://www.eaton.com/de/de-de/skuPage.187450.html"
+    },
+    {
+      "id": "eaton-187451",
+      "brand": "eaton",
+      "series": "PFIM",
+      "article": "187451",
+      "model": "PFIM-63/2/003-G/F",
+      "category": "rcd",
+      "modules": 2,
+      "specs": {
+        "poles": "2P",
+        "ratedCurrentA": 63,
+        "sensitivityMa": 30,
+        "rcdType": "F"
+      },
+      "verified": true,
+      "source": "https://www.eaton.com/de/de-de/skuPage.187451.html"
+    },
+    {
+      "id": "eaton-187456",
+      "brand": "eaton",
+      "series": "PFIM",
+      "article": "187456",
+      "model": "PFIM-40/4/003-G/F",
+      "category": "rcd",
+      "modules": 4,
+      "specs": {
+        "poles": "4P",
+        "ratedCurrentA": 40,
+        "sensitivityMa": 30,
+        "rcdType": "F"
+      },
+      "verified": true,
+      "source": "https://www.eaton.com/tr/tr-tr/skuPage.187456.html"
+    },
+    {
+      "id": "eaton-167893",
+      "brand": "eaton",
+      "series": "FRCdM",
+      "article": "167893",
+      "model": "FRCDM-40/4/003-G/B",
+      "category": "rcd",
+      "modules": 4,
+      "specs": {
+        "poles": "4P",
+        "ratedCurrentA": 40,
+        "sensitivityMa": 30,
+        "rcdType": "B"
+      },
+      "verified": true,
+      "source": "https://www.eaton.com/gb/en-gb/skuPage.167893.html"
+    },
+    {
+      "id": "eaton-286428",
+      "brand": "eaton",
+      "series": "PFL6",
+      "article": "286428",
+      "model": "PFL6-6/1N/B/003",
+      "category": "rcbo",
+      "modules": 2,
+      "specs": {
+        "poles": "1P+N",
+        "ratedCurrentA": 6,
+        "curve": "B",
+        "breakingCapacityKa": 6,
+        "sensitivityMa": 30,
+        "rcdType": "AC"
+      },
+      "verified": true,
+      "source": "https://www.eaton.com/sk/sk-sk/skuPage.286428.html"
+    },
+    {
+      "id": "eaton-286429",
+      "brand": "eaton",
+      "series": "PFL6",
+      "article": "286429",
+      "model": "PFL6-10/1N/B/003",
+      "category": "rcbo",
+      "modules": 2,
+      "specs": {
+        "poles": "1P+N",
+        "ratedCurrentA": 10,
+        "curve": "B",
+        "breakingCapacityKa": 6,
+        "sensitivityMa": 30,
+        "rcdType": "AC"
+      },
+      "verified": true,
+      "source": "https://www.eaton.com/sk/sk-sk/skuPage.286429.html"
+    },
+    {
+      "id": "eaton-286430",
+      "brand": "eaton",
+      "series": "PFL6",
+      "article": "286430",
+      "model": "PFL6-13/1N/B/003",
+      "category": "rcbo",
+      "modules": 2,
+      "specs": {
+        "poles": "1P+N",
+        "ratedCurrentA": 13,
+        "curve": "B",
+        "breakingCapacityKa": 6,
+        "sensitivityMa": 30,
+        "rcdType": "AC"
+      },
+      "verified": true,
+      "source": "https://www.eaton.com/gb/en-gb/skuPage.286430.html"
+    },
+    {
+      "id": "eaton-286431",
+      "brand": "eaton",
+      "series": "PFL6",
+      "article": "286431",
+      "model": "PFL6-16/1N/B/003",
+      "category": "rcbo",
+      "modules": 2,
+      "specs": {
+        "poles": "1P+N",
+        "ratedCurrentA": 16,
+        "curve": "B",
+        "breakingCapacityKa": 6,
+        "sensitivityMa": 30,
+        "rcdType": "AC"
+      },
+      "verified": true,
+      "source": "https://www.eaton.com/gb/en-gb/skuPage.286431.html"
+    },
+    {
+      "id": "eaton-286432",
+      "brand": "eaton",
+      "series": "PFL6",
+      "article": "286432",
+      "model": "PFL6-20/1N/B/003",
+      "category": "rcbo",
+      "modules": 2,
+      "specs": {
+        "poles": "1P+N",
+        "ratedCurrentA": 20,
+        "curve": "B",
+        "breakingCapacityKa": 6,
+        "sensitivityMa": 30,
+        "rcdType": "AC"
+      },
+      "verified": true,
+      "source": "https://www.eaton.com/gb/en-gb/skuPage.286432.html"
+    },
+    {
+      "id": "eaton-286433",
+      "brand": "eaton",
+      "series": "PFL6",
+      "article": "286433",
+      "model": "PFL6-25/1N/B/003",
+      "category": "rcbo",
+      "modules": 2,
+      "specs": {
+        "poles": "1P+N",
+        "ratedCurrentA": 25,
+        "curve": "B",
+        "breakingCapacityKa": 6,
+        "sensitivityMa": 30,
+        "rcdType": "AC"
+      },
+      "verified": true,
+      "source": "https://www.eaton.com/gb/en-gb/skuPage.286433.html"
+    },
+    {
+      "id": "eaton-286434",
+      "brand": "eaton",
+      "series": "PFL6",
+      "article": "286434",
+      "model": "PFL6-32/1N/B/003",
+      "category": "rcbo",
+      "modules": 2,
+      "specs": {
+        "poles": "1P+N",
+        "ratedCurrentA": 32,
+        "curve": "B",
+        "breakingCapacityKa": 6,
+        "sensitivityMa": 30,
+        "rcdType": "AC"
+      },
+      "verified": true,
+      "source": "https://www.eaton.com/gb/en-gb/skuPage.286434.html"
+    },
+    {
+      "id": "eaton-286435",
+      "brand": "eaton",
+      "series": "PFL6",
+      "article": "286435",
+      "model": "PFL6-40/1N/B/003",
+      "category": "rcbo",
+      "modules": 2,
+      "specs": {
+        "poles": "1P+N",
+        "ratedCurrentA": 40,
+        "curve": "B",
+        "breakingCapacityKa": 6,
+        "sensitivityMa": 30,
+        "rcdType": "AC"
+      },
+      "verified": true,
+      "source": "https://www.eaton.com/gb/en-gb/skuPage.286435.html"
+    },
+    {
+      "id": "eaton-112872",
+      "brand": "eaton",
+      "series": "PFL6",
+      "article": "112872",
+      "model": "PFL6-6/1N/B/003-A",
+      "category": "rcbo",
+      "modules": 2,
+      "specs": {
+        "poles": "1P+N",
+        "ratedCurrentA": 6,
+        "curve": "B",
+        "breakingCapacityKa": 6,
+        "sensitivityMa": 30,
+        "rcdType": "A"
+      },
+      "verified": true,
+      "source": "https://www.eaton.com/gb/en-gb/skuPage.112872.html"
+    },
+    {
+      "id": "eaton-112873",
+      "brand": "eaton",
+      "series": "PFL6",
+      "article": "112873",
+      "model": "PFL6-10/1N/B/003-A",
+      "category": "rcbo",
+      "modules": 2,
+      "specs": {
+        "poles": "1P+N",
+        "ratedCurrentA": 10,
+        "curve": "B",
+        "breakingCapacityKa": 6,
+        "sensitivityMa": 30,
+        "rcdType": "A"
+      },
+      "verified": true,
+      "source": "https://www.eaton.com/gb/en-gb/skuPage.112873.html"
+    },
+    {
+      "id": "eaton-112874",
+      "brand": "eaton",
+      "series": "PFL6",
+      "article": "112874",
+      "model": "PFL6-13/1N/B/003-A",
+      "category": "rcbo",
+      "modules": 2,
+      "specs": {
+        "poles": "1P+N",
+        "ratedCurrentA": 13,
+        "curve": "B",
+        "breakingCapacityKa": 6,
+        "sensitivityMa": 30,
+        "rcdType": "A"
+      },
+      "verified": true,
+      "source": "https://www.eaton.com/gb/en-gb/skuPage.112874.html"
+    },
+    {
+      "id": "eaton-112875",
+      "brand": "eaton",
+      "series": "PFL6",
+      "article": "112875",
+      "model": "PFL6-16/1N/B/003-A",
+      "category": "rcbo",
+      "modules": 2,
+      "specs": {
+        "poles": "1P+N",
+        "ratedCurrentA": 16,
+        "curve": "B",
+        "breakingCapacityKa": 6,
+        "sensitivityMa": 30,
+        "rcdType": "A"
+      },
+      "verified": true,
+      "source": "https://www.eaton.com/gb/en-gb/skuPage.112875.html"
+    },
+    {
+      "id": "eaton-113101",
+      "brand": "eaton",
+      "series": "PFL6",
+      "article": "113101",
+      "model": "PFL6-20/1N/B/003-A",
+      "category": "rcbo",
+      "modules": 2,
+      "specs": {
+        "poles": "1P+N",
+        "ratedCurrentA": 20,
+        "curve": "B",
+        "breakingCapacityKa": 6,
+        "sensitivityMa": 30,
+        "rcdType": "A"
+      },
+      "verified": true,
+      "source": "https://www.eaton.com/tr/tr-tr/skuPage.113101.html"
+    },
+    {
+      "id": "eaton-113103",
+      "brand": "eaton",
+      "series": "PFL6",
+      "article": "113103",
+      "model": "PFL6-25/1N/B/003-A",
+      "category": "rcbo",
+      "modules": 2,
+      "specs": {
+        "poles": "1P+N",
+        "ratedCurrentA": 25,
+        "curve": "B",
+        "breakingCapacityKa": 6,
+        "sensitivityMa": 30,
+        "rcdType": "A"
+      },
+      "verified": true,
+      "source": "https://www.eaton.com/tr/tr-tr/skuPage.113103.html"
+    },
+    {
+      "id": "eaton-113107",
+      "brand": "eaton",
+      "series": "PFL6",
+      "article": "113107",
+      "model": "PFL6-40/1N/B/003-A",
+      "category": "rcbo",
+      "modules": 2,
+      "specs": {
+        "poles": "1P+N",
+        "ratedCurrentA": 40,
+        "curve": "B",
+        "breakingCapacityKa": 6,
+        "sensitivityMa": 30,
+        "rcdType": "A"
+      },
+      "verified": true,
+      "source": "https://www.eaton.com/gb/en-gb/skuPage.113107.html"
+    },
+    {
+      "id": "eaton-286471",
+      "brand": "eaton",
+      "series": "PFL6",
+      "article": "286471",
+      "model": "PFL6-40/1N/C/003",
+      "category": "rcbo",
+      "modules": 2,
+      "specs": {
+        "poles": "1P+N",
+        "ratedCurrentA": 40,
+        "curve": "C",
+        "breakingCapacityKa": 6,
+        "sensitivityMa": 30,
+        "rcdType": "AC"
+      },
+      "verified": true,
+      "source": "https://www.eaton.com/gb/en-gb/skuPage.286471.html"
+    },
+    {
+      "id": "eaton-113106",
+      "brand": "eaton",
+      "series": "PFL6",
+      "article": "113106",
+      "model": "PFL6-40/1N/C/003-A",
+      "category": "rcbo",
+      "modules": 2,
+      "specs": {
+        "poles": "1P+N",
+        "ratedCurrentA": 40,
+        "curve": "C",
+        "breakingCapacityKa": 6,
+        "sensitivityMa": 30,
+        "rcdType": "A"
+      },
+      "verified": true,
+      "source": "https://www.eaton.com/gb/en-gb/skuPage.113106.html"
+    },
+    {
+      "id": "eaton-286461",
+      "brand": "eaton",
+      "series": "PFL6",
+      "article": "286461",
+      "model": "PFL6-16/1N/C/001",
+      "category": "rcbo",
+      "modules": 2,
+      "specs": {
+        "poles": "1P+N",
+        "ratedCurrentA": 16,
+        "curve": "C",
+        "breakingCapacityKa": 6,
+        "sensitivityMa": 10,
+        "rcdType": "AC"
+      },
+      "verified": false,
+      "source": "https://www.eaton.com/gb/en-gb/skuPage.286461.html",
+      "notes": "Артикул, ток, уставка и кривая сверены на eaton.com, но отключающая способность на странице не указана; 6 кА принято по серии PFL6."
+    },
+    {
+      "id": "eaton-286477",
+      "brand": "eaton",
+      "series": "PFL6",
+      "article": "286477",
+      "model": "PFL6-16/1N/C/01",
+      "category": "rcbo",
+      "modules": 2,
+      "specs": {
+        "poles": "1P+N",
+        "ratedCurrentA": 16,
+        "curve": "C",
+        "breakingCapacityKa": 6,
+        "sensitivityMa": 100,
+        "rcdType": "AC"
+      },
+      "verified": false,
+      "source": "https://www.eaton.com/gb/en-gb/skuPage.286477.html",
+      "notes": "Артикул, ток, уставка и кривая сверены на eaton.com, но отключающая способность на странице не указана; 6 кА принято по серии PFL6."
+    },
+    {
+      "id": "eaton-120658",
+      "brand": "eaton",
+      "series": "mRB6",
+      "article": "120658",
+      "model": "mRB6-10/3N/C/003-A",
+      "category": "rcbo",
+      "modules": 4,
+      "specs": {
+        "poles": "3P+N",
+        "ratedCurrentA": 10,
+        "curve": "C",
+        "breakingCapacityKa": 6,
+        "sensitivityMa": 30,
+        "rcdType": "A"
+      },
+      "verified": true,
+      "source": "https://www.eaton.com/gb/en-gb/skuPage.120658.html"
+    },
+    {
+      "id": "eaton-120660",
+      "brand": "eaton",
+      "series": "mRB6",
+      "article": "120660",
+      "model": "mRB6-16/3N/C/003-A",
+      "category": "rcbo",
+      "modules": 4,
+      "specs": {
+        "poles": "3P+N",
+        "ratedCurrentA": 16,
+        "curve": "C",
+        "breakingCapacityKa": 6,
+        "sensitivityMa": 30,
+        "rcdType": "A"
+      },
+      "verified": true,
+      "source": "https://www.eaton.com/gb/en-gb/skuPage.120660.html"
+    },
+    {
+      "id": "eaton-120668",
+      "brand": "eaton",
+      "series": "mRB6",
+      "article": "120668",
+      "model": "mRB6-16/3N/C/03-A",
+      "category": "rcbo",
+      "modules": 4,
+      "specs": {
+        "poles": "3P+N",
+        "ratedCurrentA": 16,
+        "curve": "C",
+        "breakingCapacityKa": 6,
+        "sensitivityMa": 300,
+        "rcdType": "A"
+      },
+      "verified": true,
+      "source": "https://www.eaton.com/gb/en-gb/skuPage.120668.html"
+    },
+    {
+      "id": "eaton-276270",
+      "brand": "eaton",
+      "series": "IS",
+      "article": "276270",
+      "model": "IS-40/1",
+      "category": "switch",
+      "modules": 1,
+      "specs": {
+        "poles": "1P",
+        "ratedCurrentA": 40
+      },
+      "verified": true,
+      "source": "https://www.eaton.com/gb/en-gb/skuPage.276270.html"
+    },
+    {
+      "id": "eaton-276274",
+      "brand": "eaton",
+      "series": "IS",
+      "article": "276274",
+      "model": "IS-63/1",
+      "category": "switch",
+      "modules": 1,
+      "specs": {
+        "poles": "1P",
+        "ratedCurrentA": 63
+      },
+      "verified": true,
+      "source": "https://www.eaton.com/gb/en-gb/skuPage.276274.html"
+    },
+    {
+      "id": "eaton-276282",
+      "brand": "eaton",
+      "series": "IS",
+      "article": "276282",
+      "model": "IS-100/1",
+      "category": "switch",
+      "modules": 1,
+      "specs": {
+        "poles": "1P",
+        "ratedCurrentA": 100
+      },
+      "verified": true,
+      "source": "https://www.eaton.com/gb/en-gb/skuPage.276282.html"
+    },
+    {
+      "id": "eaton-276286",
+      "brand": "eaton",
+      "series": "IS",
+      "article": "276286",
+      "model": "IS-125/1",
+      "category": "switch",
+      "modules": 1,
+      "specs": {
+        "poles": "1P",
+        "ratedCurrentA": 125
+      },
+      "verified": true,
+      "source": "https://www.eaton.com/gb/en-gb/skuPage.276286.html"
+    },
+    {
+      "id": "eaton-276287",
+      "brand": "eaton",
+      "series": "IS",
+      "article": "276287",
+      "model": "IS-125/2",
+      "category": "switch",
+      "modules": 2,
+      "specs": {
+        "poles": "2P",
+        "ratedCurrentA": 125
+      },
+      "verified": true,
+      "source": "https://www.eaton.com/gb/en-gb/skuPage.276287.html"
+    },
+    {
+      "id": "eaton-276288",
+      "brand": "eaton",
+      "series": "IS",
+      "article": "276288",
+      "model": "IS-125/3",
+      "category": "switch",
+      "modules": 3,
+      "specs": {
+        "poles": "3P",
+        "ratedCurrentA": 125
+      },
+      "verified": true,
+      "source": "https://www.eaton.com/gb/en-gb/skuPage.276288.html"
+    },
+    {
+      "id": "eaton-276289",
+      "brand": "eaton",
+      "series": "IS",
+      "article": "276289",
+      "model": "IS-125/4",
+      "category": "switch",
+      "modules": 4,
+      "specs": {
+        "poles": "4P",
+        "ratedCurrentA": 125
+      },
+      "verified": true,
+      "source": "https://www.eaton.com/gb/en-gb/skuPage.276289.html"
     }
   ]
 }

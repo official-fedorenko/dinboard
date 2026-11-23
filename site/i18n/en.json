@@ -31,6 +31,8 @@
   "enclosure.more": "More options ({n})",
   "enclosure.moreTitle": "More matching enclosures: {n}",
   "dialog.close": "Close",
+  "devices.more": "More options ({n})",
+  "devices.moreTitle": "More equipment: {n}",
   "enclosure.unverifiedHint": "Enclosure data, including dimensions, is not confirmed by an official source — check the manufacturer’s catalogue.",
   "enclosure.change": "Change enclosure",
   "enclosure.keep": "Keep current enclosure",

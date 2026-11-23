@@ -31,6 +31,8 @@
   "enclosure.more": "Daugiau variantų ({n})",
   "enclosure.moreTitle": "Daugiau tinkamų korpusų: {n}",
   "dialog.close": "Uždaryti",
+  "devices.more": "Daugiau variantų ({n})",
+  "devices.moreTitle": "Daugiau įrangos: {n}",
   "enclosure.unverifiedHint": "Korpuso duomenys, įskaitant matmenis, nepatvirtinti oficialiu šaltiniu — patikrinkite gamintojo kataloge.",
   "enclosure.change": "Keisti korpusą",
   "enclosure.keep": "Palikti dabartinį korpusą",

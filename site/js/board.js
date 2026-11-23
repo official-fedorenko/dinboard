@@ -266,6 +266,14 @@ export function changeEnclosure(board, enclosure, devices) {
   return { board: next, overflow };
 }
 
+/**
+ * Очистка щита: все устройства убираются, а свойства корпуса и проекта остаются —
+ * система заземления и добавленные клеммники N/PE (по решению владельца).
+ */
+export function clearDevices(board, enclosure) {
+  return setAddTerminals(setEarthing(createBoard(enclosure), board.earthing), Boolean(board.addTerminals));
+}
+
 /** Добавить в состав клеммники N/PE производителя (true) или убрать (false). */
 export function setAddTerminals(board, value) {
   const { addTerminals, ...rest } = board;

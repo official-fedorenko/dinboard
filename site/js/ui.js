@@ -14,6 +14,7 @@ import {
   indexById,
   setEarthing,
   setAddTerminals,
+  clearDevices,
   nearestFreePos,
   snapPos,
   dropPreview,
@@ -97,6 +98,7 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
     status: initialStatus,
     pickerOpen: !initialBoard, // список корпусов развёрнут; после выбора сворачивается до выбранного
     moreOpen: false, // окно «Ещё варианты» с остальными подходящими корпусами
+    devicesMoreOpen: false, // окно «Ещё варианты» с остальным оборудованием по фильтрам
   };
 
   let savedBoard = null; // последний сохранённый в браузере щит
@@ -355,8 +357,8 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
 
   function clearBoard() {
     if (!window.confirm(t('board.confirmClear'))) return;
-    // Система заземления — свойство объекта, а не набора устройств: при очистке сохраняется
-    const board = setEarthing(createBoard(enclosure()), state.board.earthing);
+    // Система заземления и добавленные клеммники N/PE при очистке сохраняются
+    const board = clearDevices(state.board, enclosure());
     update({ board, selectedUid: null, activeRow: 0, status: t('board.cleared') });
   }
 
@@ -678,32 +680,41 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
               t('enclosure.keep'),
             ),
         ),
-      rest.length > 0 && state.moreOpen && renderMoreDialog(rest),
+      rest.length > 0 &&
+        state.moreOpen &&
+        moreDialog({
+          titleId: 'h-enclosure-more',
+          title: t('enclosure.moreTitle', { n: rest.length }),
+          stateKey: 'moreOpen',
+          focusKey: 'enc-more',
+          content: h('ul', { class: 'enclosure-list' }, rest.map((e) => h('li', {}, enclosureCard(e)))),
+        }),
     );
   }
 
   /**
-   * Окно «Ещё варианты»: остальные подходящие корпуса. Встроенный <dialog> (showModal — в render):
+   * Окно «Ещё варианты» (корпуса или оборудование): titleId/title — заголовок, stateKey — поле состояния
+   * «окно открыто», focusKey — кнопка, открывающая окно, content — содержимое. Встроенный <dialog> (showModal — в render):
    * Esc и ✕ закрывают, Tab не выходит из окна, щелчок мимо окна (по подложке) тоже закрывает.
    */
-  function renderMoreDialog(rest) {
+  function moreDialog({ titleId, title, stateKey, focusKey, content }) {
     const dialog = h(
       'dialog',
-      { class: 'enclosure-dialog', 'aria-labelledby': 'h-enclosure-more' },
+      { class: 'more-dialog', 'aria-labelledby': titleId },
       h(
         'div',
         { class: 'dialog-body' },
         h(
           'div',
           { class: 'dialog-head' },
-          h('h2', { id: 'h-enclosure-more' }, t('enclosure.moreTitle', { n: rest.length })),
+          h('h2', { id: titleId }, title),
           h(
             'button',
-            { type: 'button', class: 'tool dialog-close', 'aria-label': t('dialog.close'), title: t('dialog.close'), dataset: { focus: 'enc-more-close' }, onClick: () => dialog.close() },
+            { type: 'button', class: 'tool dialog-close', 'aria-label': t('dialog.close'), title: t('dialog.close'), dataset: { focus: `${focusKey}-close` }, onClick: () => closeDialog() },
             '✕',
           ),
         ),
-        h('ul', { class: 'enclosure-list' }, rest.map((e) => h('li', {}, enclosureCard(e)))),
+        content,
       ),
     );
     // Щелчок по подложке приходит на сам <dialog>. Но и щелчок по пустому месту внутри окна
@@ -713,16 +724,27 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
       if (event.target !== dialog) return;
       const r = dialog.getBoundingClientRect();
       const inside = event.clientX >= r.left && event.clientX <= r.right && event.clientY >= r.top && event.clientY <= r.bottom;
-      if (!inside) dialog.close();
+      if (!inside) closeDialog();
     });
-    // Закрытие (Esc, ✕, подложка). Окно, убранное перерисовкой, не трогает состояние.
-    // После закрытия фокус — на кнопку «Ещё варианты» (прежний фокус браузер вернуть не может: кнопку перерисовали).
-    dialog.addEventListener('close', () => {
-      if (!dialog.isConnected || !state.moreOpen) return;
-      update({ moreOpen: false });
-      root.querySelector('[data-focus="enc-more"]')?.focus();
+    // Esc — сами, не дожидаясь события close (в фоновой или скрытой вкладке оно может не прийти)
+    dialog.addEventListener('keydown', (event) => {
+      if (event.key !== 'Escape') return;
+      event.preventDefault();
+      closeDialog();
     });
+    // Запасной путь: окно закрыл браузер (например, своим жестом «назад»)
+    dialog.addEventListener('close', () => closeDialog());
     return dialog;
+
+    // Закрытие (✕, подложка, Esc): окно закрывается и состояние сбрасывается сразу.
+    // Окно, убранное перерисовкой, состояние не трогает. После закрытия фокус — на кнопку
+    // «Ещё варианты» (прежний фокус браузер вернуть не может: кнопку перерисовали).
+    function closeDialog() {
+      if (dialog.open) dialog.close();
+      if (!dialog.isConnected || !state[stateKey]) return;
+      update({ [stateKey]: false });
+      root.querySelector(`[data-focus="${focusKey}"]`)?.focus();
+    }
   }
 
   function renderToolbar() {
@@ -933,7 +955,41 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
     const inCategory = ofBrand.filter((d) => d.category === state.category);
     const poles = POLE_ORDER.filter((p) => inCategory.some((d) => d.specs.poles === p));
     const list = inCategory.filter((d) => state.poles === 'all' || d.specs.poles === state.poles).sort(compareDevices);
+    const { shown, rest } = previewSplit(list, PREVIEW_COUNT);
     const canAdd = Boolean(state.board);
+    // Строка устройства; в окне «Ещё варианты» — без перетаскивания (щит за окном недоступен), только «+»
+    const deviceRow = (d, draggable) => {
+      const title = deviceTitle(d, t);
+      return h(
+        'li',
+        { class: 'device-row', draggable: draggable && canAdd ? 'true' : null, onDragstart: draggable && canAdd ? dragStart({ deviceId: d.id }) : null },
+        h('span', { class: `swatch cat-${d.category}`, style: { width: `${d.modules * 10}px` }, 'aria-hidden': 'true' }),
+        h(
+          'span',
+          { class: 'device-text' },
+          h('strong', {}, title),
+          h(
+            'span',
+            { class: 'muted' },
+            `${deviceRef(d, brandNames.get(d.brand))} · ${d.article} · ${t('device.modules', { n: fmt(d.modules) })}`,
+            !d.verified && h('span', { class: 'badge', title: t('device.unverifiedHint') }, t('device.unverified')),
+          ),
+        ),
+        h(
+          'button',
+          {
+            type: 'button',
+            class: 'add',
+            disabled: !canAdd,
+            'aria-label': t('device.add', { title }),
+            title: t('device.add', { title }),
+            dataset: { focus: `add-${d.id}` },
+            onClick: () => add(d.id),
+          },
+          '+',
+        ),
+      );
+    };
     return h(
       'section',
       { class: 'panel palette', 'aria-labelledby': 'h-devices' },
@@ -952,42 +1008,30 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
         (category) => update({ category, poles: 'all' }),
       ),
       poles.length > 1 && chips(t('filter.poles'), state.poles, [['all', t('filter.all')], ...poles.map((p) => [p, p])], (p) => update({ poles: p })),
-      h(
-        'ul',
-        { class: 'device-list' },
-        list.map((d) => {
-          const title = deviceTitle(d, t);
-          return h(
-            'li',
-            { class: 'device-row', draggable: canAdd ? 'true' : null, onDragstart: canAdd ? dragStart({ deviceId: d.id }) : null },
-            h('span', { class: `swatch cat-${d.category}`, style: { width: `${d.modules * 10}px` }, 'aria-hidden': 'true' }),
-            h(
-              'span',
-              { class: 'device-text' },
-              h('strong', {}, title),
-              h(
-                'span',
-                { class: 'muted' },
-                `${deviceRef(d, brandNames.get(d.brand))} · ${d.article} · ${t('device.modules', { n: fmt(d.modules) })}`,
-                !d.verified && h('span', { class: 'badge', title: t('device.unverifiedHint') }, t('device.unverified')),
-              ),
-            ),
-            h(
-              'button',
-              {
-                type: 'button',
-                class: 'add',
-                disabled: !canAdd,
-                'aria-label': t('device.add', { title }),
-                title: t('device.add', { title }),
-                dataset: { focus: `add-${d.id}` },
-                onClick: () => add(d.id),
-              },
-              '+',
-            ),
-          );
+      h('ul', { class: 'device-list' }, shown.map((d) => deviceRow(d, true))),
+      rest.length > 0 &&
+        h(
+          'div',
+          { class: 'picker-actions' },
+          h(
+            'button',
+            { type: 'button', class: 'action', 'aria-haspopup': 'dialog', dataset: { focus: 'dev-more' }, onClick: () => update({ devicesMoreOpen: true, status: '' }) },
+            t('devices.more', { n: rest.length }),
+          ),
+        ),
+      rest.length > 0 &&
+        state.devicesMoreOpen &&
+        moreDialog({
+          titleId: 'h-devices-more',
+          title: t('devices.moreTitle', { n: rest.length }),
+          stateKey: 'devicesMoreOpen',
+          focusKey: 'dev-more',
+          // Окно не закрывается после «+»: можно добавить несколько устройств подряд; ответ — строкой в окне
+          content: [
+            h('p', { class: 'status dialog-status', role: 'status', 'aria-live': 'polite' }, state.status),
+            h('ul', { class: 'device-list' }, rest.map((d) => deviceRow(d, false))),
+          ],
         }),
-      ),
     );
   }
 
@@ -1058,7 +1102,7 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
       // На широком экране CSS раскладывает панели в две колонки.
       h('div', { class: 'layout' }, renderEnclosurePicker(), renderBoard(), renderPalette(), renderSummary()),
     );
-    root.querySelector('dialog.enclosure-dialog')?.showModal();
+    root.querySelector('dialog.more-dialog')?.showModal();
     // Фокус возвращаем, только если он был внутри конструктора
     if (focusKey) {
       const find = (key) => (key ? root.querySelector(`[data-focus="${CSS.escape(key)}"]`) : null);

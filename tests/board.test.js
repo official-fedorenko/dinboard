@@ -13,6 +13,7 @@ import {
   billOfMaterials,
   setEarthing,
   setAddTerminals,
+  clearDevices,
   rowGaps,
   canPlace,
   firstFreePos,
@@ -322,5 +323,19 @@ describe('клеммники N/PE в составе', () => {
     assert.equal(changeEnclosure(on, enc(1), devices).board.addTerminals, true);
     assert.equal('addTerminals' in changeEnclosure(board, enc(1), devices).board, false);
     assert.equal('addTerminals' in setAddTerminals(on, false), false);
+  });
+});
+
+describe('очистка щита', () => {
+  test('clearDevices: убирает устройства, оставляет систему заземления и добавленные клеммники N/PE', () => {
+    const e = enc(2);
+    let board = setAddTerminals(setEarthing(createBoard(e), 'TT'), true);
+    ({ board } = addDevice(board, e, devices, 'mcb', { row: 0 }));
+    const cleared = clearDevices(board, e);
+    assert.deepEqual(cleared.rows, [[], []]);
+    assert.equal(cleared.earthing, 'TT');
+    assert.equal(cleared.addTerminals, true);
+    assert.equal('addTerminals' in clearDevices(setAddTerminals(board, false), e), false);
+    assert.equal(board.rows[0].length, 1, 'исходный щит не меняется');
   });
 });

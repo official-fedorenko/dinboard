@@ -2009,6 +2009,1995 @@
       },
       "verified": true,
       "source": "https://www.legrand.com/ecatalogue/en/catalog/products/spd-protection-of-main-distribution-board-t1t2-iimp-125kapole-in-25ka-imax-60ka-3pn-left-230400v-ip20-412275"
+    },
+    {
+      "id": "legrand-407454",
+      "brand": "legrand",
+      "series": "DX3",
+      "article": "407454",
+      "category": "mcb",
+      "modules": 1,
+      "specs": {
+        "poles": "1P+N",
+        "ratedCurrentA": 10,
+        "curve": "B",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://www.legrand.fr/pro/catalogue/disjoncteur-dx36000-10ka-arrivee-haute-et-depart-bas-a-vis-un-230v-10a-courbe-b-1-module"
+    },
+    {
+      "id": "legrand-407455",
+      "brand": "legrand",
+      "series": "DX3",
+      "article": "407455",
+      "category": "mcb",
+      "modules": 1,
+      "specs": {
+        "poles": "1P+N",
+        "ratedCurrentA": 16,
+        "curve": "B",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://www.legrand.fr/pro/catalogue/disjoncteur-dx36000-10ka-arrivee-haute-et-depart-bas-a-vis-un-230v-16a-courbe-b-1-module"
+    },
+    {
+      "id": "legrand-407456",
+      "brand": "legrand",
+      "series": "DX3",
+      "article": "407456",
+      "category": "mcb",
+      "modules": 1,
+      "specs": {
+        "poles": "1P+N",
+        "ratedCurrentA": 20,
+        "curve": "B",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://www.legrand.fr/pro/catalogue/disjoncteur-dx36000-10ka-arrivee-haute-et-depart-bas-a-vis-un-230v-20a-courbe-b-1-module"
+    },
+    {
+      "id": "legrand-407457",
+      "brand": "legrand",
+      "series": "DX3",
+      "article": "407457",
+      "category": "mcb",
+      "modules": 1,
+      "specs": {
+        "poles": "1P+N",
+        "ratedCurrentA": 25,
+        "curve": "B",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://www.legrand.fr/pro/catalogue/disjoncteur-dx36000-10ka-arrivee-haute-et-depart-bas-a-vis-un-230v-25a-courbe-b-1-module"
+    },
+    {
+      "id": "legrand-407458",
+      "brand": "legrand",
+      "series": "DX3",
+      "article": "407458",
+      "category": "mcb",
+      "modules": 1,
+      "specs": {
+        "poles": "1P+N",
+        "ratedCurrentA": 32,
+        "curve": "B",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://www.legrand.fr/pro/catalogue/disjoncteur-dx36000-10ka-arrivee-haute-et-depart-bas-a-vis-un-230v-32a-courbe-b-1-module"
+    },
+    {
+      "id": "legrand-407696",
+      "brand": "legrand",
+      "series": "DX3",
+      "article": "407696",
+      "category": "mcb",
+      "modules": 1,
+      "specs": {
+        "poles": "1P+N",
+        "ratedCurrentA": 6,
+        "curve": "C",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://www.legrand.fr/pro/catalogue/disjoncteur-dx36000-10ka-arrivee-haute-et-depart-bas-a-vis-un-230v-6a-courbe-c-1-module"
+    },
+    {
+      "id": "legrand-407698",
+      "brand": "legrand",
+      "series": "DX3",
+      "article": "407698",
+      "category": "mcb",
+      "modules": 1,
+      "specs": {
+        "poles": "1P+N",
+        "ratedCurrentA": 10,
+        "curve": "C",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://www.legrand.fr/pro/catalogue/disjoncteur-dx36000-10ka-arrivee-haute-et-depart-bas-a-vis-un-230v-10a-courbe-c-1-module"
+    },
+    {
+      "id": "legrand-407700",
+      "brand": "legrand",
+      "series": "DX3",
+      "article": "407700",
+      "category": "mcb",
+      "modules": 1,
+      "specs": {
+        "poles": "1P+N",
+        "ratedCurrentA": 16,
+        "curve": "C",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://www.legrand.fr/pro/catalogue/disjoncteur-dx36000-10ka-arrivee-haute-et-depart-bas-a-vis-un-230v-16a-courbe-c-1-module"
+    },
+    {
+      "id": "legrand-407701",
+      "brand": "legrand",
+      "series": "DX3",
+      "article": "407701",
+      "category": "mcb",
+      "modules": 1,
+      "specs": {
+        "poles": "1P+N",
+        "ratedCurrentA": 20,
+        "curve": "C",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://www.legrand.fr/pro/catalogue/disjoncteur-dx36000-10ka-arrivee-haute-et-depart-bas-a-vis-un-230v-20a-courbe-c-1-module"
+    },
+    {
+      "id": "legrand-407702",
+      "brand": "legrand",
+      "series": "DX3",
+      "article": "407702",
+      "category": "mcb",
+      "modules": 1,
+      "specs": {
+        "poles": "1P+N",
+        "ratedCurrentA": 25,
+        "curve": "C",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://www.legrand.fr/pro/catalogue/disjoncteur-dx36000-10ka-arrivee-haute-et-depart-bas-a-vis-un-230v-25a-courbe-c-1-module"
+    },
+    {
+      "id": "legrand-407703",
+      "brand": "legrand",
+      "series": "DX3",
+      "article": "407703",
+      "category": "mcb",
+      "modules": 1,
+      "specs": {
+        "poles": "1P+N",
+        "ratedCurrentA": 32,
+        "curve": "C",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://www.legrand.fr/pro/catalogue/disjoncteur-dx36000-10ka-arrivee-haute-et-depart-bas-a-vis-un-230v-32a-courbe-c-1-module"
+    },
+    {
+      "id": "legrand-407704",
+      "brand": "legrand",
+      "series": "DX3",
+      "article": "407704",
+      "category": "mcb",
+      "modules": 1,
+      "specs": {
+        "poles": "1P+N",
+        "ratedCurrentA": 40,
+        "curve": "C",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://www.legrand.fr/pro/catalogue/disjoncteur-dx36000-10ka-arrivee-haute-et-depart-bas-a-vis-un-230v-40a-courbe-c-1-module"
+    },
+    {
+      "id": "legrand-407506",
+      "brand": "legrand",
+      "series": "DX3",
+      "article": "407506",
+      "category": "mcb",
+      "modules": 2,
+      "specs": {
+        "poles": "2P",
+        "ratedCurrentA": 6,
+        "curve": "B",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://assets.legrand.com/pim/DOCUMENT/CB2022_2023FR_lr-p185.pdf"
+    },
+    {
+      "id": "legrand-407507",
+      "brand": "legrand",
+      "series": "DX3",
+      "article": "407507",
+      "category": "mcb",
+      "modules": 2,
+      "specs": {
+        "poles": "2P",
+        "ratedCurrentA": 10,
+        "curve": "B",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://assets.legrand.com/pim/DOCUMENT/CB2022_2023FR_lr-p185.pdf"
+    },
+    {
+      "id": "legrand-407509",
+      "brand": "legrand",
+      "series": "DX3",
+      "article": "407509",
+      "category": "mcb",
+      "modules": 2,
+      "specs": {
+        "poles": "2P",
+        "ratedCurrentA": 16,
+        "curve": "B",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://assets.legrand.com/pim/DOCUMENT/CB2022_2023FR_lr-p185.pdf"
+    },
+    {
+      "id": "legrand-407510",
+      "brand": "legrand",
+      "series": "DX3",
+      "article": "407510",
+      "category": "mcb",
+      "modules": 2,
+      "specs": {
+        "poles": "2P",
+        "ratedCurrentA": 20,
+        "curve": "B",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://assets.legrand.com/pim/DOCUMENT/CB2022_2023FR_lr-p185.pdf"
+    },
+    {
+      "id": "legrand-407511",
+      "brand": "legrand",
+      "series": "DX3",
+      "article": "407511",
+      "category": "mcb",
+      "modules": 2,
+      "specs": {
+        "poles": "2P",
+        "ratedCurrentA": 25,
+        "curve": "B",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://assets.legrand.com/pim/DOCUMENT/CB2022_2023FR_lr-p185.pdf"
+    },
+    {
+      "id": "legrand-407512",
+      "brand": "legrand",
+      "series": "DX3",
+      "article": "407512",
+      "category": "mcb",
+      "modules": 2,
+      "specs": {
+        "poles": "2P",
+        "ratedCurrentA": 32,
+        "curve": "B",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://assets.legrand.com/pim/DOCUMENT/CB2022_2023FR_lr-p185.pdf"
+    },
+    {
+      "id": "legrand-407513",
+      "brand": "legrand",
+      "series": "DX3",
+      "article": "407513",
+      "category": "mcb",
+      "modules": 2,
+      "specs": {
+        "poles": "2P",
+        "ratedCurrentA": 40,
+        "curve": "B",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://assets.legrand.com/pim/DOCUMENT/CB2022_2023FR_lr-p185.pdf"
+    },
+    {
+      "id": "legrand-407514",
+      "brand": "legrand",
+      "series": "DX3",
+      "article": "407514",
+      "category": "mcb",
+      "modules": 2,
+      "specs": {
+        "poles": "2P",
+        "ratedCurrentA": 50,
+        "curve": "B",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://assets.legrand.com/pim/DOCUMENT/CB2022_2023FR_lr-p185.pdf"
+    },
+    {
+      "id": "legrand-407515",
+      "brand": "legrand",
+      "series": "DX3",
+      "article": "407515",
+      "category": "mcb",
+      "modules": 2,
+      "specs": {
+        "poles": "2P",
+        "ratedCurrentA": 63,
+        "curve": "B",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://assets.legrand.com/pim/DOCUMENT/CB2022_2023FR_lr-p185.pdf"
+    },
+    {
+      "id": "legrand-407796",
+      "brand": "legrand",
+      "series": "DX3",
+      "article": "407796",
+      "category": "mcb",
+      "modules": 2,
+      "specs": {
+        "poles": "2P",
+        "ratedCurrentA": 6,
+        "curve": "C",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://assets.legrand.com/pim/DOCUMENT/CB2022_2023FR_lr-p184.pdf"
+    },
+    {
+      "id": "legrand-407798",
+      "brand": "legrand",
+      "series": "DX3",
+      "article": "407798",
+      "category": "mcb",
+      "modules": 2,
+      "specs": {
+        "poles": "2P",
+        "ratedCurrentA": 10,
+        "curve": "C",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://assets.legrand.com/pim/DOCUMENT/CB2022_2023FR_lr-p184.pdf"
+    },
+    {
+      "id": "legrand-407800",
+      "brand": "legrand",
+      "series": "DX3",
+      "article": "407800",
+      "category": "mcb",
+      "modules": 2,
+      "specs": {
+        "poles": "2P",
+        "ratedCurrentA": 16,
+        "curve": "C",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://assets.legrand.com/pim/DOCUMENT/CB2022_2023FR_lr-p184.pdf"
+    },
+    {
+      "id": "legrand-407801",
+      "brand": "legrand",
+      "series": "DX3",
+      "article": "407801",
+      "category": "mcb",
+      "modules": 2,
+      "specs": {
+        "poles": "2P",
+        "ratedCurrentA": 20,
+        "curve": "C",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://assets.legrand.com/pim/DOCUMENT/CB2022_2023FR_lr-p184.pdf"
+    },
+    {
+      "id": "legrand-407802",
+      "brand": "legrand",
+      "series": "DX3",
+      "article": "407802",
+      "category": "mcb",
+      "modules": 2,
+      "specs": {
+        "poles": "2P",
+        "ratedCurrentA": 25,
+        "curve": "C",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://assets.legrand.com/pim/DOCUMENT/CB2022_2023FR_lr-p184.pdf"
+    },
+    {
+      "id": "legrand-407803",
+      "brand": "legrand",
+      "series": "DX3",
+      "article": "407803",
+      "category": "mcb",
+      "modules": 2,
+      "specs": {
+        "poles": "2P",
+        "ratedCurrentA": 32,
+        "curve": "C",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://assets.legrand.com/pim/DOCUMENT/CB2022_2023FR_lr-p184.pdf"
+    },
+    {
+      "id": "legrand-407804",
+      "brand": "legrand",
+      "series": "DX3",
+      "article": "407804",
+      "category": "mcb",
+      "modules": 2,
+      "specs": {
+        "poles": "2P",
+        "ratedCurrentA": 40,
+        "curve": "C",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://assets.legrand.com/pim/DOCUMENT/CB2022_2023FR_lr-p184.pdf"
+    },
+    {
+      "id": "legrand-407805",
+      "brand": "legrand",
+      "series": "DX3",
+      "article": "407805",
+      "category": "mcb",
+      "modules": 2,
+      "specs": {
+        "poles": "2P",
+        "ratedCurrentA": 50,
+        "curve": "C",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://assets.legrand.com/pim/DOCUMENT/CB2022_2023FR_lr-p184.pdf"
+    },
+    {
+      "id": "legrand-407806",
+      "brand": "legrand",
+      "series": "DX3",
+      "article": "407806",
+      "category": "mcb",
+      "modules": 2,
+      "specs": {
+        "poles": "2P",
+        "ratedCurrentA": 63,
+        "curve": "C",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://assets.legrand.com/pim/DOCUMENT/CB2022_2023FR_lr-p184.pdf"
+    },
+    {
+      "id": "legrand-407437",
+      "brand": "legrand",
+      "series": "DX3",
+      "article": "407437",
+      "category": "mcb",
+      "modules": 1,
+      "specs": {
+        "poles": "1P",
+        "ratedCurrentA": 50,
+        "curve": "B",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://assets.legrand.com/pim/DOCUMENT/CB2022_2023FR_lr-p185.pdf"
+    },
+    {
+      "id": "legrand-407438",
+      "brand": "legrand",
+      "series": "DX3",
+      "article": "407438",
+      "category": "mcb",
+      "modules": 1,
+      "specs": {
+        "poles": "1P",
+        "ratedCurrentA": 63,
+        "curve": "B",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://assets.legrand.com/pim/DOCUMENT/CB2022_2023FR_lr-p185.pdf"
+    },
+    {
+      "id": "legrand-407675",
+      "brand": "legrand",
+      "series": "DX3",
+      "article": "407675",
+      "category": "mcb",
+      "modules": 1,
+      "specs": {
+        "poles": "1P",
+        "ratedCurrentA": 50,
+        "curve": "C",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://assets.legrand.com/pim/DOCUMENT/CB2022_2023FR_lr-p184.pdf"
+    },
+    {
+      "id": "legrand-407676",
+      "brand": "legrand",
+      "series": "DX3",
+      "article": "407676",
+      "category": "mcb",
+      "modules": 1,
+      "specs": {
+        "poles": "1P",
+        "ratedCurrentA": 63,
+        "curve": "C",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://assets.legrand.com/pim/DOCUMENT/CB2022_2023FR_lr-p184.pdf"
+    },
+    {
+      "id": "legrand-407967",
+      "brand": "legrand",
+      "series": "DX3",
+      "article": "407967",
+      "category": "mcb",
+      "modules": 1,
+      "specs": {
+        "poles": "1P",
+        "ratedCurrentA": 6,
+        "curve": "D",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://assets.legrand.com/pim/DOCUMENT/CB2022_2023FR_lr-p185.pdf"
+    },
+    {
+      "id": "legrand-407969",
+      "brand": "legrand",
+      "series": "DX3",
+      "article": "407969",
+      "category": "mcb",
+      "modules": 1,
+      "specs": {
+        "poles": "1P",
+        "ratedCurrentA": 10,
+        "curve": "D",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://assets.legrand.com/pim/DOCUMENT/CB2022_2023FR_lr-p185.pdf"
+    },
+    {
+      "id": "legrand-407971",
+      "brand": "legrand",
+      "series": "DX3",
+      "article": "407971",
+      "category": "mcb",
+      "modules": 1,
+      "specs": {
+        "poles": "1P",
+        "ratedCurrentA": 16,
+        "curve": "D",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://assets.legrand.com/pim/DOCUMENT/CB2022_2023FR_lr-p185.pdf"
+    },
+    {
+      "id": "legrand-407972",
+      "brand": "legrand",
+      "series": "DX3",
+      "article": "407972",
+      "category": "mcb",
+      "modules": 1,
+      "specs": {
+        "poles": "1P",
+        "ratedCurrentA": 20,
+        "curve": "D",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://assets.legrand.com/pim/DOCUMENT/CB2022_2023FR_lr-p185.pdf"
+    },
+    {
+      "id": "legrand-407973",
+      "brand": "legrand",
+      "series": "DX3",
+      "article": "407973",
+      "category": "mcb",
+      "modules": 1,
+      "specs": {
+        "poles": "1P",
+        "ratedCurrentA": 25,
+        "curve": "D",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://assets.legrand.com/pim/DOCUMENT/CB2022_2023FR_lr-p185.pdf"
+    },
+    {
+      "id": "legrand-407974",
+      "brand": "legrand",
+      "series": "DX3",
+      "article": "407974",
+      "category": "mcb",
+      "modules": 1,
+      "specs": {
+        "poles": "1P",
+        "ratedCurrentA": 32,
+        "curve": "D",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://assets.legrand.com/pim/DOCUMENT/CB2022_2023FR_lr-p185.pdf"
+    },
+    {
+      "id": "legrand-407975",
+      "brand": "legrand",
+      "series": "DX3",
+      "article": "407975",
+      "category": "mcb",
+      "modules": 1,
+      "specs": {
+        "poles": "1P",
+        "ratedCurrentA": 40,
+        "curve": "D",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://assets.legrand.com/pim/DOCUMENT/CB2022_2023FR_lr-p185.pdf"
+    },
+    {
+      "id": "legrand-407976",
+      "brand": "legrand",
+      "series": "DX3",
+      "article": "407976",
+      "category": "mcb",
+      "modules": 1,
+      "specs": {
+        "poles": "1P",
+        "ratedCurrentA": 50,
+        "curve": "D",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://assets.legrand.com/pim/DOCUMENT/CB2022_2023FR_lr-p185.pdf"
+    },
+    {
+      "id": "legrand-407977",
+      "brand": "legrand",
+      "series": "DX3",
+      "article": "407977",
+      "category": "mcb",
+      "modules": 1,
+      "specs": {
+        "poles": "1P",
+        "ratedCurrentA": 63,
+        "curve": "D",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://assets.legrand.com/pim/DOCUMENT/CB2022_2023FR_lr-p185.pdf"
+    },
+    {
+      "id": "legrand-407558",
+      "brand": "legrand",
+      "series": "DX3",
+      "article": "407558",
+      "category": "mcb",
+      "modules": 3,
+      "specs": {
+        "poles": "3P",
+        "ratedCurrentA": 6,
+        "curve": "B",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://assets.legrand.com/pim/DOCUMENT/CB2022_2023FR_lr-p185.pdf"
+    },
+    {
+      "id": "legrand-407559",
+      "brand": "legrand",
+      "series": "DX3",
+      "article": "407559",
+      "category": "mcb",
+      "modules": 3,
+      "specs": {
+        "poles": "3P",
+        "ratedCurrentA": 10,
+        "curve": "B",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://assets.legrand.com/pim/DOCUMENT/CB2022_2023FR_lr-p185.pdf"
+    },
+    {
+      "id": "legrand-407561",
+      "brand": "legrand",
+      "series": "DX3",
+      "article": "407561",
+      "category": "mcb",
+      "modules": 3,
+      "specs": {
+        "poles": "3P",
+        "ratedCurrentA": 16,
+        "curve": "B",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://assets.legrand.com/pim/DOCUMENT/CB2022_2023FR_lr-p185.pdf"
+    },
+    {
+      "id": "legrand-407562",
+      "brand": "legrand",
+      "series": "DX3",
+      "article": "407562",
+      "category": "mcb",
+      "modules": 3,
+      "specs": {
+        "poles": "3P",
+        "ratedCurrentA": 20,
+        "curve": "B",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://assets.legrand.com/pim/DOCUMENT/CB2022_2023FR_lr-p185.pdf"
+    },
+    {
+      "id": "legrand-407563",
+      "brand": "legrand",
+      "series": "DX3",
+      "article": "407563",
+      "category": "mcb",
+      "modules": 3,
+      "specs": {
+        "poles": "3P",
+        "ratedCurrentA": 25,
+        "curve": "B",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://assets.legrand.com/pim/DOCUMENT/CB2022_2023FR_lr-p185.pdf"
+    },
+    {
+      "id": "legrand-407564",
+      "brand": "legrand",
+      "series": "DX3",
+      "article": "407564",
+      "category": "mcb",
+      "modules": 3,
+      "specs": {
+        "poles": "3P",
+        "ratedCurrentA": 32,
+        "curve": "B",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://assets.legrand.com/pim/DOCUMENT/CB2022_2023FR_lr-p185.pdf"
+    },
+    {
+      "id": "legrand-407565",
+      "brand": "legrand",
+      "series": "DX3",
+      "article": "407565",
+      "category": "mcb",
+      "modules": 3,
+      "specs": {
+        "poles": "3P",
+        "ratedCurrentA": 40,
+        "curve": "B",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://assets.legrand.com/pim/DOCUMENT/CB2022_2023FR_lr-p185.pdf"
+    },
+    {
+      "id": "legrand-407566",
+      "brand": "legrand",
+      "series": "DX3",
+      "article": "407566",
+      "category": "mcb",
+      "modules": 3,
+      "specs": {
+        "poles": "3P",
+        "ratedCurrentA": 50,
+        "curve": "B",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://assets.legrand.com/pim/DOCUMENT/CB2022_2023FR_lr-p185.pdf"
+    },
+    {
+      "id": "legrand-407567",
+      "brand": "legrand",
+      "series": "DX3",
+      "article": "407567",
+      "category": "mcb",
+      "modules": 3,
+      "specs": {
+        "poles": "3P",
+        "ratedCurrentA": 63,
+        "curve": "B",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://assets.legrand.com/pim/DOCUMENT/CB2022_2023FR_lr-p185.pdf"
+    },
+    {
+      "id": "legrand-407855",
+      "brand": "legrand",
+      "series": "DX3",
+      "article": "407855",
+      "category": "mcb",
+      "modules": 3,
+      "specs": {
+        "poles": "3P",
+        "ratedCurrentA": 6,
+        "curve": "C",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://assets.legrand.com/pim/DOCUMENT/CB2022_2023FR_lr-p184.pdf"
+    },
+    {
+      "id": "legrand-407857",
+      "brand": "legrand",
+      "series": "DX3",
+      "article": "407857",
+      "category": "mcb",
+      "modules": 3,
+      "specs": {
+        "poles": "3P",
+        "ratedCurrentA": 10,
+        "curve": "C",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://assets.legrand.com/pim/DOCUMENT/CB2022_2023FR_lr-p184.pdf"
+    },
+    {
+      "id": "legrand-407928",
+      "brand": "legrand",
+      "series": "DX3",
+      "article": "407928",
+      "category": "mcb",
+      "modules": 4,
+      "specs": {
+        "poles": "4P",
+        "ratedCurrentA": 16,
+        "curve": "C",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://assets.legrand.com/pim/DOCUMENT/CB2022_2023FR_lr-p184.pdf"
+    },
+    {
+      "id": "legrand-407929",
+      "brand": "legrand",
+      "series": "DX3",
+      "article": "407929",
+      "category": "mcb",
+      "modules": 4,
+      "specs": {
+        "poles": "4P",
+        "ratedCurrentA": 20,
+        "curve": "C",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://assets.legrand.com/pim/DOCUMENT/CB2022_2023FR_lr-p184.pdf"
+    },
+    {
+      "id": "legrand-407930",
+      "brand": "legrand",
+      "series": "DX3",
+      "article": "407930",
+      "category": "mcb",
+      "modules": 4,
+      "specs": {
+        "poles": "4P",
+        "ratedCurrentA": 25,
+        "curve": "C",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://assets.legrand.com/pim/DOCUMENT/CB2022_2023FR_lr-p184.pdf"
+    },
+    {
+      "id": "legrand-407931",
+      "brand": "legrand",
+      "series": "DX3",
+      "article": "407931",
+      "category": "mcb",
+      "modules": 4,
+      "specs": {
+        "poles": "4P",
+        "ratedCurrentA": 32,
+        "curve": "C",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://assets.legrand.com/pim/DOCUMENT/CB2022_2023FR_lr-p184.pdf"
+    },
+    {
+      "id": "legrand-407932",
+      "brand": "legrand",
+      "series": "DX3",
+      "article": "407932",
+      "category": "mcb",
+      "modules": 4,
+      "specs": {
+        "poles": "4P",
+        "ratedCurrentA": 40,
+        "curve": "C",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://assets.legrand.com/pim/DOCUMENT/CB2022_2023FR_lr-p184.pdf"
+    },
+    {
+      "id": "legrand-407933",
+      "brand": "legrand",
+      "series": "DX3",
+      "article": "407933",
+      "category": "mcb",
+      "modules": 4,
+      "specs": {
+        "poles": "4P",
+        "ratedCurrentA": 50,
+        "curve": "C",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://assets.legrand.com/pim/DOCUMENT/CB2022_2023FR_lr-p184.pdf"
+    },
+    {
+      "id": "legrand-407934",
+      "brand": "legrand",
+      "series": "DX3",
+      "article": "407934",
+      "category": "mcb",
+      "modules": 4,
+      "specs": {
+        "poles": "4P",
+        "ratedCurrentA": 63,
+        "curve": "C",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://assets.legrand.com/pim/DOCUMENT/CB2022_2023FR_lr-p184.pdf"
+    },
+    {
+      "id": "legrand-411507",
+      "brand": "legrand",
+      "series": "DX3-ID",
+      "article": "411507",
+      "category": "rcd",
+      "modules": 2,
+      "specs": {
+        "poles": "2P",
+        "ratedCurrentA": 80,
+        "sensitivityMa": 30,
+        "rcdType": "AC"
+      },
+      "verified": true,
+      "source": "https://assets.legrand.com/pim/NP-FT-GT/F01316EN-03.pdf"
+    },
+    {
+      "id": "legrand-411508",
+      "brand": "legrand",
+      "series": "DX3-ID",
+      "article": "411508",
+      "category": "rcd",
+      "modules": 2,
+      "specs": {
+        "poles": "2P",
+        "ratedCurrentA": 100,
+        "sensitivityMa": 30,
+        "rcdType": "AC"
+      },
+      "verified": true,
+      "source": "https://assets.legrand.com/pim/NP-FT-GT/F01316EN-03.pdf"
+    },
+    {
+      "id": "legrand-411557",
+      "brand": "legrand",
+      "series": "DX3-ID",
+      "article": "411557",
+      "category": "rcd",
+      "modules": 2,
+      "specs": {
+        "poles": "2P",
+        "ratedCurrentA": 80,
+        "sensitivityMa": 30,
+        "rcdType": "A"
+      },
+      "verified": true,
+      "source": "https://assets.legrand.com/pim/NP-FT-GT/F01316EN-03.pdf"
+    },
+    {
+      "id": "legrand-411514",
+      "brand": "legrand",
+      "series": "DX3-ID",
+      "article": "411514",
+      "category": "rcd",
+      "modules": 2,
+      "specs": {
+        "poles": "2P",
+        "ratedCurrentA": 25,
+        "sensitivityMa": 100,
+        "rcdType": "AC"
+      },
+      "verified": true,
+      "source": "https://assets.legrand.com/pim/NP-FT-GT/F01316EN-03.pdf"
+    },
+    {
+      "id": "legrand-411515",
+      "brand": "legrand",
+      "series": "DX3-ID",
+      "article": "411515",
+      "category": "rcd",
+      "modules": 2,
+      "specs": {
+        "poles": "2P",
+        "ratedCurrentA": 40,
+        "sensitivityMa": 100,
+        "rcdType": "AC"
+      },
+      "verified": true,
+      "source": "https://assets.legrand.com/pim/NP-FT-GT/F01316EN-03.pdf"
+    },
+    {
+      "id": "legrand-411516",
+      "brand": "legrand",
+      "series": "DX3-ID",
+      "article": "411516",
+      "category": "rcd",
+      "modules": 2,
+      "specs": {
+        "poles": "2P",
+        "ratedCurrentA": 63,
+        "sensitivityMa": 100,
+        "rcdType": "AC"
+      },
+      "verified": true,
+      "source": "https://assets.legrand.com/pim/NP-FT-GT/F01316EN-03.pdf"
+    },
+    {
+      "id": "legrand-411517",
+      "brand": "legrand",
+      "series": "DX3-ID",
+      "article": "411517",
+      "category": "rcd",
+      "modules": 2,
+      "specs": {
+        "poles": "2P",
+        "ratedCurrentA": 80,
+        "sensitivityMa": 100,
+        "rcdType": "AC"
+      },
+      "verified": true,
+      "source": "https://assets.legrand.com/pim/NP-FT-GT/F01316EN-03.pdf"
+    },
+    {
+      "id": "legrand-411569",
+      "brand": "legrand",
+      "series": "DX3-ID",
+      "article": "411569",
+      "category": "rcd",
+      "modules": 2,
+      "specs": {
+        "poles": "2P",
+        "ratedCurrentA": 25,
+        "sensitivityMa": 300,
+        "rcdType": "A"
+      },
+      "verified": true,
+      "source": "https://assets.legrand.com/pim/NP-FT-GT/F01316EN-03.pdf"
+    },
+    {
+      "id": "legrand-411570",
+      "brand": "legrand",
+      "series": "DX3-ID",
+      "article": "411570",
+      "category": "rcd",
+      "modules": 2,
+      "specs": {
+        "poles": "2P",
+        "ratedCurrentA": 40,
+        "sensitivityMa": 300,
+        "rcdType": "A"
+      },
+      "verified": true,
+      "source": "https://assets.legrand.com/pim/NP-FT-GT/F01316EN-03.pdf"
+    },
+    {
+      "id": "legrand-411571",
+      "brand": "legrand",
+      "series": "DX3-ID",
+      "article": "411571",
+      "category": "rcd",
+      "modules": 2,
+      "specs": {
+        "poles": "2P",
+        "ratedCurrentA": 63,
+        "sensitivityMa": 300,
+        "rcdType": "A"
+      },
+      "verified": true,
+      "source": "https://assets.legrand.com/pim/NP-FT-GT/F01316EN-03.pdf"
+    },
+    {
+      "id": "legrand-411572",
+      "brand": "legrand",
+      "series": "DX3-ID",
+      "article": "411572",
+      "category": "rcd",
+      "modules": 2,
+      "specs": {
+        "poles": "2P",
+        "ratedCurrentA": 80,
+        "sensitivityMa": 300,
+        "rcdType": "A"
+      },
+      "verified": true,
+      "source": "https://assets.legrand.com/pim/NP-FT-GT/F01316EN-03.pdf"
+    },
+    {
+      "id": "legrand-411590",
+      "brand": "legrand",
+      "series": "DX3-ID",
+      "article": "411590",
+      "category": "rcd",
+      "modules": 2,
+      "specs": {
+        "poles": "2P",
+        "ratedCurrentA": 25,
+        "sensitivityMa": 30,
+        "rcdType": "F"
+      },
+      "verified": true,
+      "source": "https://assets.legrand.com/pim/NP-FT-GT/F01316EN-03.pdf"
+    },
+    {
+      "id": "legrand-411591",
+      "brand": "legrand",
+      "series": "DX3-ID",
+      "article": "411591",
+      "category": "rcd",
+      "modules": 2,
+      "specs": {
+        "poles": "2P",
+        "ratedCurrentA": 40,
+        "sensitivityMa": 30,
+        "rcdType": "F"
+      },
+      "verified": true,
+      "source": "https://assets.legrand.com/pim/NP-FT-GT/F01316EN-03.pdf"
+    },
+    {
+      "id": "legrand-411592",
+      "brand": "legrand",
+      "series": "DX3-ID",
+      "article": "411592",
+      "category": "rcd",
+      "modules": 2,
+      "specs": {
+        "poles": "2P",
+        "ratedCurrentA": 63,
+        "sensitivityMa": 30,
+        "rcdType": "F"
+      },
+      "verified": true,
+      "source": "https://assets.legrand.com/pim/NP-FT-GT/F01316EN-03.pdf"
+    },
+    {
+      "id": "legrand-411663",
+      "brand": "legrand",
+      "series": "DX3-ID",
+      "article": "411663",
+      "category": "rcd",
+      "modules": 4,
+      "specs": {
+        "poles": "4P",
+        "ratedCurrentA": 80,
+        "sensitivityMa": 30,
+        "rcdType": "AC"
+      },
+      "verified": true,
+      "source": "https://assets.legrand.com/pim/NP-FT-GT/F01318EN-02.pdf"
+    },
+    {
+      "id": "legrand-411677",
+      "brand": "legrand",
+      "series": "DX3-ID",
+      "article": "411677",
+      "category": "rcd",
+      "modules": 4,
+      "specs": {
+        "poles": "4P",
+        "ratedCurrentA": 80,
+        "sensitivityMa": 30,
+        "rcdType": "A"
+      },
+      "verified": true,
+      "source": "https://assets.legrand.com/pim/NP-FT-GT/F01318EN-02.pdf"
+    },
+    {
+      "id": "legrand-411678",
+      "brand": "legrand",
+      "series": "DX3-ID",
+      "article": "411678",
+      "category": "rcd",
+      "modules": 4,
+      "specs": {
+        "poles": "4P",
+        "ratedCurrentA": 100,
+        "sensitivityMa": 30,
+        "rcdType": "A"
+      },
+      "verified": true,
+      "source": "https://assets.legrand.com/pim/NP-FT-GT/F01318EN-02.pdf"
+    },
+    {
+      "id": "legrand-411684",
+      "brand": "legrand",
+      "series": "DX3-ID",
+      "article": "411684",
+      "category": "rcd",
+      "modules": 4,
+      "specs": {
+        "poles": "4P",
+        "ratedCurrentA": 25,
+        "sensitivityMa": 300,
+        "rcdType": "A"
+      },
+      "verified": true,
+      "source": "https://assets.legrand.com/pim/NP-FT-GT/F01318EN-02.pdf"
+    },
+    {
+      "id": "legrand-411685",
+      "brand": "legrand",
+      "series": "DX3-ID",
+      "article": "411685",
+      "category": "rcd",
+      "modules": 4,
+      "specs": {
+        "poles": "4P",
+        "ratedCurrentA": 40,
+        "sensitivityMa": 300,
+        "rcdType": "A"
+      },
+      "verified": true,
+      "source": "https://assets.legrand.com/pim/NP-FT-GT/F01318EN-02.pdf"
+    },
+    {
+      "id": "legrand-411686",
+      "brand": "legrand",
+      "series": "DX3-ID",
+      "article": "411686",
+      "category": "rcd",
+      "modules": 4,
+      "specs": {
+        "poles": "4P",
+        "ratedCurrentA": 63,
+        "sensitivityMa": 300,
+        "rcdType": "A"
+      },
+      "verified": true,
+      "source": "https://assets.legrand.com/pim/NP-FT-GT/F01318EN-02.pdf"
+    },
+    {
+      "id": "legrand-411687",
+      "brand": "legrand",
+      "series": "DX3-ID",
+      "article": "411687",
+      "category": "rcd",
+      "modules": 4,
+      "specs": {
+        "poles": "4P",
+        "ratedCurrentA": 80,
+        "sensitivityMa": 300,
+        "rcdType": "A"
+      },
+      "verified": true,
+      "source": "https://assets.legrand.com/pim/NP-FT-GT/F01318EN-02.pdf"
+    },
+    {
+      "id": "legrand-411688",
+      "brand": "legrand",
+      "series": "DX3-ID",
+      "article": "411688",
+      "category": "rcd",
+      "modules": 4,
+      "specs": {
+        "poles": "4P",
+        "ratedCurrentA": 100,
+        "sensitivityMa": 300,
+        "rcdType": "A"
+      },
+      "verified": true,
+      "source": "https://assets.legrand.com/pim/NP-FT-GT/F01318EN-02.pdf"
+    },
+    {
+      "id": "legrand-411694",
+      "brand": "legrand",
+      "series": "DX3-ID",
+      "article": "411694",
+      "category": "rcd",
+      "modules": 4,
+      "specs": {
+        "poles": "4P",
+        "ratedCurrentA": 25,
+        "sensitivityMa": 30,
+        "rcdType": "F"
+      },
+      "verified": true,
+      "source": "https://assets.legrand.com/pim/NP-FT-GT/F01318EN-02.pdf"
+    },
+    {
+      "id": "legrand-411695",
+      "brand": "legrand",
+      "series": "DX3-ID",
+      "article": "411695",
+      "category": "rcd",
+      "modules": 4,
+      "specs": {
+        "poles": "4P",
+        "ratedCurrentA": 40,
+        "sensitivityMa": 30,
+        "rcdType": "F"
+      },
+      "verified": true,
+      "source": "https://assets.legrand.com/pim/NP-FT-GT/F01318EN-02.pdf"
+    },
+    {
+      "id": "legrand-411696",
+      "brand": "legrand",
+      "series": "DX3-ID",
+      "article": "411696",
+      "category": "rcd",
+      "modules": 4,
+      "specs": {
+        "poles": "4P",
+        "ratedCurrentA": 63,
+        "sensitivityMa": 30,
+        "rcdType": "F"
+      },
+      "verified": true,
+      "source": "https://assets.legrand.com/pim/NP-FT-GT/F01318EN-02.pdf"
+    },
+    {
+      "id": "legrand-411697",
+      "brand": "legrand",
+      "series": "DX3-ID",
+      "article": "411697",
+      "category": "rcd",
+      "modules": 4,
+      "specs": {
+        "poles": "4P",
+        "ratedCurrentA": 80,
+        "sensitivityMa": 30,
+        "rcdType": "F"
+      },
+      "verified": true,
+      "source": "https://assets.legrand.com/pim/NP-FT-GT/F01318EN-02.pdf"
+    },
+    {
+      "id": "legrand-411956",
+      "brand": "legrand",
+      "series": "DX3-ID",
+      "article": "411956",
+      "category": "rcd",
+      "modules": 4,
+      "specs": {
+        "poles": "2P",
+        "ratedCurrentA": 40,
+        "sensitivityMa": 30,
+        "rcdType": "B"
+      },
+      "verified": true,
+      "source": "https://assets.legrand.com/pim/NP-FT-GT/F03454EN-03.pdf"
+    },
+    {
+      "id": "legrand-411957",
+      "brand": "legrand",
+      "series": "DX3-ID",
+      "article": "411957",
+      "category": "rcd",
+      "modules": 4,
+      "specs": {
+        "poles": "2P",
+        "ratedCurrentA": 63,
+        "sensitivityMa": 30,
+        "rcdType": "B"
+      },
+      "verified": true,
+      "source": "https://assets.legrand.com/pim/NP-FT-GT/F03454EN-03.pdf"
+    },
+    {
+      "id": "legrand-411961",
+      "brand": "legrand",
+      "series": "DX3-ID",
+      "article": "411961",
+      "category": "rcd",
+      "modules": 4,
+      "specs": {
+        "poles": "2P",
+        "ratedCurrentA": 40,
+        "sensitivityMa": 300,
+        "rcdType": "B"
+      },
+      "verified": true,
+      "source": "https://assets.legrand.com/pim/NP-FT-GT/F03454EN-03.pdf"
+    },
+    {
+      "id": "legrand-411962",
+      "brand": "legrand",
+      "series": "DX3-ID",
+      "article": "411962",
+      "category": "rcd",
+      "modules": 4,
+      "specs": {
+        "poles": "2P",
+        "ratedCurrentA": 63,
+        "sensitivityMa": 300,
+        "rcdType": "B"
+      },
+      "verified": true,
+      "source": "https://assets.legrand.com/pim/NP-FT-GT/F03454EN-03.pdf"
+    },
+    {
+      "id": "legrand-411966",
+      "brand": "legrand",
+      "series": "DX3-ID",
+      "article": "411966",
+      "category": "rcd",
+      "modules": 4,
+      "specs": {
+        "poles": "4P",
+        "ratedCurrentA": 40,
+        "sensitivityMa": 30,
+        "rcdType": "B"
+      },
+      "verified": true,
+      "source": "https://assets.legrand.com/pim/NP-FT-GT/F03454EN-03.pdf"
+    },
+    {
+      "id": "legrand-411967",
+      "brand": "legrand",
+      "series": "DX3-ID",
+      "article": "411967",
+      "category": "rcd",
+      "modules": 4,
+      "specs": {
+        "poles": "4P",
+        "ratedCurrentA": 63,
+        "sensitivityMa": 30,
+        "rcdType": "B"
+      },
+      "verified": true,
+      "source": "https://assets.legrand.com/pim/NP-FT-GT/F03454EN-03.pdf"
+    },
+    {
+      "id": "legrand-411971",
+      "brand": "legrand",
+      "series": "DX3-ID",
+      "article": "411971",
+      "category": "rcd",
+      "modules": 4,
+      "specs": {
+        "poles": "4P",
+        "ratedCurrentA": 40,
+        "sensitivityMa": 300,
+        "rcdType": "B"
+      },
+      "verified": true,
+      "source": "https://assets.legrand.com/pim/NP-FT-GT/F03454EN-03.pdf"
+    },
+    {
+      "id": "legrand-411972",
+      "brand": "legrand",
+      "series": "DX3-ID",
+      "article": "411972",
+      "category": "rcd",
+      "modules": 4,
+      "specs": {
+        "poles": "4P",
+        "ratedCurrentA": 63,
+        "sensitivityMa": 300,
+        "rcdType": "B"
+      },
+      "verified": true,
+      "source": "https://assets.legrand.com/pim/NP-FT-GT/F03454EN-03.pdf"
+    },
+    {
+      "id": "legrand-411006",
+      "brand": "legrand",
+      "series": "DX3",
+      "article": "411006",
+      "category": "rcbo",
+      "modules": 2,
+      "specs": {
+        "poles": "1P+N",
+        "ratedCurrentA": 40,
+        "curve": "C",
+        "breakingCapacityKa": 6,
+        "sensitivityMa": 30,
+        "rcdType": "AC"
+      },
+      "verified": true,
+      "source": "https://assets.legrand.com/pim/NP-FT-GT/F01573EN-04.pdf"
+    },
+    {
+      "id": "legrand-411054",
+      "brand": "legrand",
+      "series": "DX3",
+      "article": "411054",
+      "category": "rcbo",
+      "modules": 2,
+      "specs": {
+        "poles": "1P+N",
+        "ratedCurrentA": 40,
+        "curve": "C",
+        "breakingCapacityKa": 6,
+        "sensitivityMa": 30,
+        "rcdType": "A"
+      },
+      "verified": true,
+      "source": "https://assets.legrand.com/pim/NP-FT-GT/F01573EN-04.pdf"
+    },
+    {
+      "id": "legrand-411091",
+      "brand": "legrand",
+      "series": "DX3",
+      "article": "411091",
+      "category": "rcbo",
+      "modules": 2,
+      "specs": {
+        "poles": "1P+N",
+        "ratedCurrentA": 6,
+        "curve": "C",
+        "breakingCapacityKa": 6,
+        "sensitivityMa": 30,
+        "rcdType": "F"
+      },
+      "verified": true,
+      "source": "https://assets.legrand.com/pim/NP-FT-GT/F01573EN-04.pdf"
+    },
+    {
+      "id": "legrand-411092",
+      "brand": "legrand",
+      "series": "DX3",
+      "article": "411092",
+      "category": "rcbo",
+      "modules": 2,
+      "specs": {
+        "poles": "1P+N",
+        "ratedCurrentA": 10,
+        "curve": "C",
+        "breakingCapacityKa": 6,
+        "sensitivityMa": 30,
+        "rcdType": "F"
+      },
+      "verified": true,
+      "source": "https://assets.legrand.com/pim/NP-FT-GT/F01573EN-04.pdf"
+    },
+    {
+      "id": "legrand-411094",
+      "brand": "legrand",
+      "series": "DX3",
+      "article": "411094",
+      "category": "rcbo",
+      "modules": 2,
+      "specs": {
+        "poles": "1P+N",
+        "ratedCurrentA": 16,
+        "curve": "C",
+        "breakingCapacityKa": 6,
+        "sensitivityMa": 30,
+        "rcdType": "F"
+      },
+      "verified": true,
+      "source": "https://assets.legrand.com/pim/NP-FT-GT/F01573EN-04.pdf"
+    },
+    {
+      "id": "legrand-411095",
+      "brand": "legrand",
+      "series": "DX3",
+      "article": "411095",
+      "category": "rcbo",
+      "modules": 2,
+      "specs": {
+        "poles": "1P+N",
+        "ratedCurrentA": 20,
+        "curve": "C",
+        "breakingCapacityKa": 6,
+        "sensitivityMa": 30,
+        "rcdType": "F"
+      },
+      "verified": true,
+      "source": "https://assets.legrand.com/pim/NP-FT-GT/F01573EN-04.pdf"
+    },
+    {
+      "id": "legrand-411096",
+      "brand": "legrand",
+      "series": "DX3",
+      "article": "411096",
+      "category": "rcbo",
+      "modules": 2,
+      "specs": {
+        "poles": "1P+N",
+        "ratedCurrentA": 25,
+        "curve": "C",
+        "breakingCapacityKa": 6,
+        "sensitivityMa": 30,
+        "rcdType": "F"
+      },
+      "verified": true,
+      "source": "https://assets.legrand.com/pim/NP-FT-GT/F01573EN-04.pdf"
+    },
+    {
+      "id": "legrand-411097",
+      "brand": "legrand",
+      "series": "DX3",
+      "article": "411097",
+      "category": "rcbo",
+      "modules": 2,
+      "specs": {
+        "poles": "1P+N",
+        "ratedCurrentA": 32,
+        "curve": "C",
+        "breakingCapacityKa": 6,
+        "sensitivityMa": 30,
+        "rcdType": "F"
+      },
+      "verified": true,
+      "source": "https://assets.legrand.com/pim/NP-FT-GT/F01573EN-04.pdf"
+    },
+    {
+      "id": "legrand-411098",
+      "brand": "legrand",
+      "series": "DX3",
+      "article": "411098",
+      "category": "rcbo",
+      "modules": 2,
+      "specs": {
+        "poles": "1P+N",
+        "ratedCurrentA": 40,
+        "curve": "C",
+        "breakingCapacityKa": 6,
+        "sensitivityMa": 30,
+        "rcdType": "F"
+      },
+      "verified": true,
+      "source": "https://assets.legrand.com/pim/NP-FT-GT/F01573EN-04.pdf"
+    },
+    {
+      "id": "legrand-411185",
+      "brand": "legrand",
+      "series": "DX3",
+      "article": "411185",
+      "category": "rcbo",
+      "modules": 4,
+      "specs": {
+        "poles": "4P",
+        "ratedCurrentA": 10,
+        "curve": "C",
+        "breakingCapacityKa": 6,
+        "sensitivityMa": 30,
+        "rcdType": "AC"
+      },
+      "verified": true,
+      "source": "https://www.legrand.com/ecatalogue/411185-rcbo-dx-6000-10-ka.html"
+    },
+    {
+      "id": "legrand-411186",
+      "brand": "legrand",
+      "series": "DX3",
+      "article": "411186",
+      "category": "rcbo",
+      "modules": 4,
+      "specs": {
+        "poles": "4P",
+        "ratedCurrentA": 16,
+        "curve": "C",
+        "breakingCapacityKa": 6,
+        "sensitivityMa": 30,
+        "rcdType": "AC"
+      },
+      "verified": true,
+      "source": "https://www.legrand.com/ecatalogue/411186-rcbo-dx-6000-10-ka.html"
+    },
+    {
+      "id": "legrand-411187",
+      "brand": "legrand",
+      "series": "DX3",
+      "article": "411187",
+      "category": "rcbo",
+      "modules": 4,
+      "specs": {
+        "poles": "4P",
+        "ratedCurrentA": 20,
+        "curve": "C",
+        "breakingCapacityKa": 6,
+        "sensitivityMa": 30,
+        "rcdType": "AC"
+      },
+      "verified": true,
+      "source": "https://www.legrand.com/ecatalogue/411187-rcbo-dx-6000-10-ka.html"
+    },
+    {
+      "id": "legrand-411188",
+      "brand": "legrand",
+      "series": "DX3",
+      "article": "411188",
+      "category": "rcbo",
+      "modules": 4,
+      "specs": {
+        "poles": "4P",
+        "ratedCurrentA": 25,
+        "curve": "C",
+        "breakingCapacityKa": 6,
+        "sensitivityMa": 30,
+        "rcdType": "AC"
+      },
+      "verified": true,
+      "source": "https://www.legrand.com/ecatalogue/411188-rcbo-dx-6000-10-ka.html"
+    },
+    {
+      "id": "legrand-411189",
+      "brand": "legrand",
+      "series": "DX3",
+      "article": "411189",
+      "category": "rcbo",
+      "modules": 4,
+      "specs": {
+        "poles": "4P",
+        "ratedCurrentA": 32,
+        "curve": "C",
+        "breakingCapacityKa": 6,
+        "sensitivityMa": 30,
+        "rcdType": "AC"
+      },
+      "verified": true,
+      "source": "https://www.legrand.com/ecatalogue/411189-rcbo-dx-6000-10-ka.html"
+    },
+    {
+      "id": "legrand-411234",
+      "brand": "legrand",
+      "series": "DX3",
+      "article": "411234",
+      "category": "rcbo",
+      "modules": 4,
+      "specs": {
+        "poles": "4P",
+        "ratedCurrentA": 16,
+        "curve": "C",
+        "breakingCapacityKa": 6,
+        "sensitivityMa": 30,
+        "rcdType": "A"
+      },
+      "verified": true,
+      "source": "https://www.legrand.com/ecatalogue/411234-rcbo-dx-6000-10-ka.html"
+    },
+    {
+      "id": "legrand-411235",
+      "brand": "legrand",
+      "series": "DX3",
+      "article": "411235",
+      "category": "rcbo",
+      "modules": 4,
+      "specs": {
+        "poles": "4P",
+        "ratedCurrentA": 20,
+        "curve": "C",
+        "breakingCapacityKa": 6,
+        "sensitivityMa": 30,
+        "rcdType": "A"
+      },
+      "verified": true,
+      "source": "https://www.legrand.com/ecatalogue/411235-rcbo-dx-6000-10-ka.html"
+    },
+    {
+      "id": "legrand-411237",
+      "brand": "legrand",
+      "series": "DX3",
+      "article": "411237",
+      "category": "rcbo",
+      "modules": 4,
+      "specs": {
+        "poles": "4P",
+        "ratedCurrentA": 32,
+        "curve": "C",
+        "breakingCapacityKa": 6,
+        "sensitivityMa": 30,
+        "rcdType": "A"
+      },
+      "verified": true,
+      "source": "https://www.legrand.com/ecatalogue/411237-rcbo-dx-6000-10-ka.html",
+      "notes": "В заголовке страницы указано 10 кА, в таблице характеристик и техпаспорте F01315EN-10 — 6 кА (Icn 6000 A); взято 6 кА."
+    },
+    {
+      "id": "legrand-411241",
+      "brand": "legrand",
+      "series": "DX3",
+      "article": "411241",
+      "category": "rcbo",
+      "modules": 4,
+      "specs": {
+        "poles": "4P",
+        "ratedCurrentA": 25,
+        "curve": "C",
+        "breakingCapacityKa": 6,
+        "sensitivityMa": 300,
+        "rcdType": "A"
+      },
+      "verified": true,
+      "source": "https://www.legrand.com/ecatalogue/411241-rcbo-dx-6000-10-ka.html"
+    },
+    {
+      "id": "legrand-411356",
+      "brand": "legrand",
+      "series": "DX3",
+      "article": "411356",
+      "category": "rcbo",
+      "modules": 4,
+      "specs": {
+        "poles": "4P",
+        "ratedCurrentA": 13,
+        "curve": "B",
+        "breakingCapacityKa": 6,
+        "sensitivityMa": 30,
+        "rcdType": "A"
+      },
+      "verified": true,
+      "source": "https://www.legrand.com/ecatalogue/en/catalog/products/rcbo-dx3-4p-b13-6000a-30ma-4m-230400-411356"
+    },
+    {
+      "id": "legrand-411224",
+      "brand": "legrand",
+      "series": "DX3",
+      "article": "411224",
+      "category": "rcbo",
+      "modules": 4,
+      "specs": {
+        "poles": "4P",
+        "ratedCurrentA": 16,
+        "curve": "B",
+        "breakingCapacityKa": 6,
+        "sensitivityMa": 30,
+        "rcdType": "A"
+      },
+      "verified": true,
+      "source": "https://www.legrand.com/ecatalogue/en/catalog/products/rcbo-dx3-4p-b16-6000a-30ma-4m-230400-411224"
+    },
+    {
+      "id": "legrand-411226",
+      "brand": "legrand",
+      "series": "DX3",
+      "article": "411226",
+      "category": "rcbo",
+      "modules": 4,
+      "specs": {
+        "poles": "4P",
+        "ratedCurrentA": 25,
+        "curve": "B",
+        "breakingCapacityKa": 6,
+        "sensitivityMa": 30,
+        "rcdType": "A"
+      },
+      "verified": true,
+      "source": "https://www.legrand.com/ecatalogue/en/catalog/products/dx3-rcbo-b25-230400v-ac-type-leakage-6ka-breaking-capacity-30ma-4-poles-4-modules-411226"
+    },
+    {
+      "id": "legrand-406411",
+      "brand": "legrand",
+      "series": "DX3-IS",
+      "article": "406411",
+      "category": "switch",
+      "modules": 1,
+      "specs": {
+        "poles": "1P",
+        "ratedCurrentA": 40
+      },
+      "verified": true,
+      "source": "https://www.legrand.com/ecatalogue/en/catalog/products/isolating-switch-dx3-is-1-pole-40a-406411",
+      "notes": "Ширина: 1 модуль на полюс по техпаспорту F01480EN-03."
+    },
+    {
+      "id": "legrand-406412",
+      "brand": "legrand",
+      "series": "DX3-IS",
+      "article": "406412",
+      "category": "switch",
+      "modules": 1,
+      "specs": {
+        "poles": "1P",
+        "ratedCurrentA": 63
+      },
+      "verified": true,
+      "source": "https://www.legrand.com/ecatalogue/en/catalog/products/isolating-switch-dx3-is-1-pole-63a-406412",
+      "notes": "Ширина: 1 модуль на полюс по техпаспорту F01480EN-03."
+    },
+    {
+      "id": "legrand-406423",
+      "brand": "legrand",
+      "series": "DX3-IS",
+      "article": "406423",
+      "category": "switch",
+      "modules": 1,
+      "specs": {
+        "poles": "1P",
+        "ratedCurrentA": 100
+      },
+      "verified": true,
+      "source": "https://www.legrand.com/ecatalogue/en/catalog/products/isolating-switch-dx3-is-1-pole-100a-406423",
+      "notes": "Ширина: 1 модуль на полюс по техпаспорту F01480EN-03."
+    },
+    {
+      "id": "legrand-406450",
+      "brand": "legrand",
+      "series": "DX3-IS",
+      "article": "406450",
+      "category": "switch",
+      "modules": 2,
+      "specs": {
+        "poles": "2P",
+        "ratedCurrentA": 125
+      },
+      "verified": true,
+      "source": "https://www.legrand.com/ecatalogue/en/catalog/products/isolating-switch-dx3-is-2-pole-125a-406450",
+      "notes": "Ширина: 1 модуль на полюс по техпаспорту F01480EN-03."
+    },
+    {
+      "id": "legrand-406470",
+      "brand": "legrand",
+      "series": "DX3-IS",
+      "article": "406470",
+      "category": "switch",
+      "modules": 3,
+      "specs": {
+        "poles": "3P",
+        "ratedCurrentA": 125
+      },
+      "verified": true,
+      "source": "https://www.legrand.com/ecatalogue/en/catalog/products/isolating-switch-dx3-is-3-pole-125a-406470",
+      "notes": "Ширина: 1 модуль на полюс по техпаспорту F01480EN-03."
+    },
+    {
+      "id": "legrand-406490",
+      "brand": "legrand",
+      "series": "DX3-IS",
+      "article": "406490",
+      "category": "switch",
+      "modules": 4,
+      "specs": {
+        "poles": "4P",
+        "ratedCurrentA": 125
+      },
+      "verified": true,
+      "source": "https://www.legrand.com/ecatalogue/en/catalog/products/isolating-switch-dx3-is-4-pole-125a-406490",
+      "notes": "Ширина: 1 модуль на полюс по техпаспорту F01480EN-03."
     }
   ]
 }

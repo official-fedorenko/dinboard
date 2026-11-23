@@ -31,6 +31,8 @@
   "enclosure.more": "Ещё варианты ({n})",
   "enclosure.moreTitle": "Ещё подходящие корпуса: {n}",
   "dialog.close": "Закрыть",
+  "devices.more": "Ещё варианты ({n})",
+  "devices.moreTitle": "Ещё оборудование: {n}",
   "enclosure.unverifiedHint": "Данные корпуса, в том числе размеры, не подтверждены официальным источником — сверьте с каталогом производителя.",
   "enclosure.change": "Сменить корпус",
   "enclosure.keep": "Оставить текущий корпус",

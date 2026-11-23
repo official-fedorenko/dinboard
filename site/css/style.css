@@ -317,7 +317,7 @@ button:focus-visible {
 }
 
 /* Окно «Ещё варианты»: по центру, список прокручивается внутри; на телефоне — во весь экран */
-.enclosure-dialog {
+.more-dialog {
   width: min(640px, calc(100% - 2 * var(--gutter)));
   max-height: min(85vh, 900px);
   padding: 0;
@@ -327,7 +327,7 @@ button:focus-visible {
   color: var(--text);
 }
 
-.enclosure-dialog::backdrop {
+.more-dialog::backdrop {
   background: rgb(0 0 0 / 0.45);
 }
 
@@ -357,8 +357,17 @@ button:focus-visible {
   flex: none;
 }
 
+/* Строка ответа в окне оборудования («Добавлено…», «Нет места…») */
+.dialog-status {
+  margin: 0 0 8px;
+}
+
+.dialog-status:empty {
+  display: none;
+}
+
 @media (max-width: 480px) {
-  .enclosure-dialog {
+  .more-dialog {
     width: 100%;
     max-width: none;
     height: 100%;

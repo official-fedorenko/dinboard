@@ -1977,6 +1977,1227 @@
       },
       "verified": true,
       "source": "https://new.abb.com/products/2CTB815710R1900"
+    },
+    {
+      "id": "abb-2cds252001r0164",
+      "brand": "abb",
+      "article": "2CDS252001R0164",
+      "model": "S202-C16",
+      "series": "S200",
+      "category": "mcb",
+      "modules": 2,
+      "specs": {
+        "poles": "2P",
+        "ratedCurrentA": 16,
+        "curve": "C",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://new.abb.com/products/2CDS252001R0164"
+    },
+    {
+      "id": "abb-2cds252001r0165",
+      "brand": "abb",
+      "article": "2CDS252001R0165",
+      "model": "S202-B16",
+      "series": "S200",
+      "category": "mcb",
+      "modules": 2,
+      "specs": {
+        "poles": "2P",
+        "ratedCurrentA": 16,
+        "curve": "B",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://new.abb.com/products/2CDS252001R0165"
+    },
+    {
+      "id": "abb-2cds252001r0065",
+      "brand": "abb",
+      "article": "2CDS252001R0065",
+      "model": "S202-B6",
+      "series": "S200",
+      "category": "mcb",
+      "modules": 2,
+      "specs": {
+        "poles": "2P",
+        "ratedCurrentA": 6,
+        "curve": "B",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://new.abb.com/products/2CDS252001R0065"
+    },
+    {
+      "id": "abb-2cds252001r0105",
+      "brand": "abb",
+      "article": "2CDS252001R0105",
+      "model": "S202-B10",
+      "series": "S200",
+      "category": "mcb",
+      "modules": 2,
+      "specs": {
+        "poles": "2P",
+        "ratedCurrentA": 10,
+        "curve": "B",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://new.abb.com/products/2CDS252001R0105"
+    },
+    {
+      "id": "abb-2cds252001r0135",
+      "brand": "abb",
+      "article": "2CDS252001R0135",
+      "model": "S202-B13",
+      "series": "S200",
+      "category": "mcb",
+      "modules": 2,
+      "specs": {
+        "poles": "2P",
+        "ratedCurrentA": 13,
+        "curve": "B",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://new.abb.com/products/2CDS252001R0135"
+    },
+    {
+      "id": "abb-2cds252001r0205",
+      "brand": "abb",
+      "article": "2CDS252001R0205",
+      "model": "S202-B20",
+      "series": "S200",
+      "category": "mcb",
+      "modules": 2,
+      "specs": {
+        "poles": "2P",
+        "ratedCurrentA": 20,
+        "curve": "B",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://new.abb.com/products/2CDS252001R0205"
+    },
+    {
+      "id": "abb-2cds252001r0255",
+      "brand": "abb",
+      "article": "2CDS252001R0255",
+      "model": "S202-B25",
+      "series": "S200",
+      "category": "mcb",
+      "modules": 2,
+      "specs": {
+        "poles": "2P",
+        "ratedCurrentA": 25,
+        "curve": "B",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://new.abb.com/products/2CDS252001R0255"
+    },
+    {
+      "id": "abb-2cds252001r0325",
+      "brand": "abb",
+      "article": "2CDS252001R0325",
+      "model": "S202-B32",
+      "series": "S200",
+      "category": "mcb",
+      "modules": 2,
+      "specs": {
+        "poles": "2P",
+        "ratedCurrentA": 32,
+        "curve": "B",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://new.abb.com/products/2CDS252001R0325"
+    },
+    {
+      "id": "abb-2cds252001r0405",
+      "brand": "abb",
+      "article": "2CDS252001R0405",
+      "model": "S202-B40",
+      "series": "S200",
+      "category": "mcb",
+      "modules": 2,
+      "specs": {
+        "poles": "2P",
+        "ratedCurrentA": 40,
+        "curve": "B",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://new.abb.com/products/2CDS252001R0405"
+    },
+    {
+      "id": "abb-2cds252001r0505",
+      "brand": "abb",
+      "article": "2CDS252001R0505",
+      "model": "S202-B50",
+      "series": "S200",
+      "category": "mcb",
+      "modules": 2,
+      "specs": {
+        "poles": "2P",
+        "ratedCurrentA": 50,
+        "curve": "B",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://new.abb.com/products/2CDS252001R0505"
+    },
+    {
+      "id": "abb-2cds252001r0635",
+      "brand": "abb",
+      "article": "2CDS252001R0635",
+      "model": "S202-B63",
+      "series": "S200",
+      "category": "mcb",
+      "modules": 2,
+      "specs": {
+        "poles": "2P",
+        "ratedCurrentA": 63,
+        "curve": "B",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://new.abb.com/products/2CDS252001R0635"
+    },
+    {
+      "id": "abb-2cds252001r0064",
+      "brand": "abb",
+      "article": "2CDS252001R0064",
+      "model": "S202-C6",
+      "series": "S200",
+      "category": "mcb",
+      "modules": 2,
+      "specs": {
+        "poles": "2P",
+        "ratedCurrentA": 6,
+        "curve": "C",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://new.abb.com/products/2CDS252001R0064"
+    },
+    {
+      "id": "abb-2cds252001r0104",
+      "brand": "abb",
+      "article": "2CDS252001R0104",
+      "model": "S202-C10",
+      "series": "S200",
+      "category": "mcb",
+      "modules": 2,
+      "specs": {
+        "poles": "2P",
+        "ratedCurrentA": 10,
+        "curve": "C",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://new.abb.com/products/2CDS252001R0104"
+    },
+    {
+      "id": "abb-2cds252001r0134",
+      "brand": "abb",
+      "article": "2CDS252001R0134",
+      "model": "S202-C13",
+      "series": "S200",
+      "category": "mcb",
+      "modules": 2,
+      "specs": {
+        "poles": "2P",
+        "ratedCurrentA": 13,
+        "curve": "C",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://new.abb.com/products/2CDS252001R0134"
+    },
+    {
+      "id": "abb-2cds252001r0204",
+      "brand": "abb",
+      "article": "2CDS252001R0204",
+      "model": "S202-C20",
+      "series": "S200",
+      "category": "mcb",
+      "modules": 2,
+      "specs": {
+        "poles": "2P",
+        "ratedCurrentA": 20,
+        "curve": "C",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://new.abb.com/products/2CDS252001R0204"
+    },
+    {
+      "id": "abb-2cds252001r0254",
+      "brand": "abb",
+      "article": "2CDS252001R0254",
+      "model": "S202-C25",
+      "series": "S200",
+      "category": "mcb",
+      "modules": 2,
+      "specs": {
+        "poles": "2P",
+        "ratedCurrentA": 25,
+        "curve": "C",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://new.abb.com/products/2CDS252001R0254"
+    },
+    {
+      "id": "abb-2cds252001r0324",
+      "brand": "abb",
+      "article": "2CDS252001R0324",
+      "model": "S202-C32",
+      "series": "S200",
+      "category": "mcb",
+      "modules": 2,
+      "specs": {
+        "poles": "2P",
+        "ratedCurrentA": 32,
+        "curve": "C",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://new.abb.com/products/2CDS252001R0324"
+    },
+    {
+      "id": "abb-2cds252001r0404",
+      "brand": "abb",
+      "article": "2CDS252001R0404",
+      "model": "S202-C40",
+      "series": "S200",
+      "category": "mcb",
+      "modules": 2,
+      "specs": {
+        "poles": "2P",
+        "ratedCurrentA": 40,
+        "curve": "C",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://new.abb.com/products/2CDS252001R0404"
+    },
+    {
+      "id": "abb-2cds252001r0504",
+      "brand": "abb",
+      "article": "2CDS252001R0504",
+      "model": "S202-C50",
+      "series": "S200",
+      "category": "mcb",
+      "modules": 2,
+      "specs": {
+        "poles": "2P",
+        "ratedCurrentA": 50,
+        "curve": "C",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://new.abb.com/products/2CDS252001R0504"
+    },
+    {
+      "id": "abb-2cds252001r0634",
+      "brand": "abb",
+      "article": "2CDS252001R0634",
+      "model": "S202-C63",
+      "series": "S200",
+      "category": "mcb",
+      "modules": 2,
+      "specs": {
+        "poles": "2P",
+        "ratedCurrentA": 63,
+        "curve": "C",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://new.abb.com/products/2CDS252001R0634"
+    },
+    {
+      "id": "abb-2cds251001r0505",
+      "brand": "abb",
+      "article": "2CDS251001R0505",
+      "model": "S201-B50",
+      "series": "S200",
+      "category": "mcb",
+      "modules": 1,
+      "specs": {
+        "poles": "1P",
+        "ratedCurrentA": 50,
+        "curve": "B",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://new.abb.com/products/2CDS251001R0505"
+    },
+    {
+      "id": "abb-2cds251001r0635",
+      "brand": "abb",
+      "article": "2CDS251001R0635",
+      "model": "S201-B63",
+      "series": "S200",
+      "category": "mcb",
+      "modules": 1,
+      "specs": {
+        "poles": "1P",
+        "ratedCurrentA": 63,
+        "curve": "B",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://new.abb.com/products/2CDS251001R0635"
+    },
+    {
+      "id": "abb-2cds251001r0504",
+      "brand": "abb",
+      "article": "2CDS251001R0504",
+      "model": "S201-C50",
+      "series": "S200",
+      "category": "mcb",
+      "modules": 1,
+      "specs": {
+        "poles": "1P",
+        "ratedCurrentA": 50,
+        "curve": "C",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://new.abb.com/products/2CDS251001R0504"
+    },
+    {
+      "id": "abb-2cds251001r0634",
+      "brand": "abb",
+      "article": "2CDS251001R0634",
+      "model": "S201-C63",
+      "series": "S200",
+      "category": "mcb",
+      "modules": 1,
+      "specs": {
+        "poles": "1P",
+        "ratedCurrentA": 63,
+        "curve": "C",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://new.abb.com/products/2CDS251001R0634"
+    },
+    {
+      "id": "abb-2cds251001r0061",
+      "brand": "abb",
+      "article": "2CDS251001R0061",
+      "model": "S201-D6",
+      "series": "S200",
+      "category": "mcb",
+      "modules": 1,
+      "specs": {
+        "poles": "1P",
+        "ratedCurrentA": 6,
+        "curve": "D",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://new.abb.com/products/2CDS251001R0061"
+    },
+    {
+      "id": "abb-2cds251001r0101",
+      "brand": "abb",
+      "article": "2CDS251001R0101",
+      "model": "S201-D10",
+      "series": "S200",
+      "category": "mcb",
+      "modules": 1,
+      "specs": {
+        "poles": "1P",
+        "ratedCurrentA": 10,
+        "curve": "D",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://new.abb.com/products/2CDS251001R0101"
+    },
+    {
+      "id": "abb-2cds251001r0161",
+      "brand": "abb",
+      "article": "2CDS251001R0161",
+      "model": "S201-D16",
+      "series": "S200",
+      "category": "mcb",
+      "modules": 1,
+      "specs": {
+        "poles": "1P",
+        "ratedCurrentA": 16,
+        "curve": "D",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://new.abb.com/products/2CDS251001R0161"
+    },
+    {
+      "id": "abb-2cds251001r0131",
+      "brand": "abb",
+      "article": "2CDS251001R0131",
+      "model": "S201-D13",
+      "series": "S200",
+      "category": "mcb",
+      "modules": 1,
+      "specs": {
+        "poles": "1P",
+        "ratedCurrentA": 13,
+        "curve": "D",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://new.abb.com/products/2CDS251001R0131"
+    },
+    {
+      "id": "abb-2cds251001r0201",
+      "brand": "abb",
+      "article": "2CDS251001R0201",
+      "model": "S201-D20",
+      "series": "S200",
+      "category": "mcb",
+      "modules": 1,
+      "specs": {
+        "poles": "1P",
+        "ratedCurrentA": 20,
+        "curve": "D",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://new.abb.com/products/2CDS251001R0201"
+    },
+    {
+      "id": "abb-2cds251001r0251",
+      "brand": "abb",
+      "article": "2CDS251001R0251",
+      "model": "S201-D25",
+      "series": "S200",
+      "category": "mcb",
+      "modules": 1,
+      "specs": {
+        "poles": "1P",
+        "ratedCurrentA": 25,
+        "curve": "D",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://new.abb.com/products/2CDS251001R0251"
+    },
+    {
+      "id": "abb-2cds251001r0321",
+      "brand": "abb",
+      "article": "2CDS251001R0321",
+      "model": "S201-D32",
+      "series": "S200",
+      "category": "mcb",
+      "modules": 1,
+      "specs": {
+        "poles": "1P",
+        "ratedCurrentA": 32,
+        "curve": "D",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://new.abb.com/products/2CDS251001R0321"
+    },
+    {
+      "id": "abb-2cds251001r0401",
+      "brand": "abb",
+      "article": "2CDS251001R0401",
+      "model": "S201-D40",
+      "series": "S200",
+      "category": "mcb",
+      "modules": 1,
+      "specs": {
+        "poles": "1P",
+        "ratedCurrentA": 40,
+        "curve": "D",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://new.abb.com/products/2CDS251001R0401"
+    },
+    {
+      "id": "abb-2cds253001r0065",
+      "brand": "abb",
+      "article": "2CDS253001R0065",
+      "model": "S203-B6",
+      "series": "S200",
+      "category": "mcb",
+      "modules": 3,
+      "specs": {
+        "poles": "3P",
+        "ratedCurrentA": 6,
+        "curve": "B",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://new.abb.com/products/2CDS253001R0065"
+    },
+    {
+      "id": "abb-2cds253001r0105",
+      "brand": "abb",
+      "article": "2CDS253001R0105",
+      "model": "S203-B10",
+      "series": "S200",
+      "category": "mcb",
+      "modules": 3,
+      "specs": {
+        "poles": "3P",
+        "ratedCurrentA": 10,
+        "curve": "B",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://new.abb.com/products/2CDS253001R0105"
+    },
+    {
+      "id": "abb-2cds253001r0135",
+      "brand": "abb",
+      "article": "2CDS253001R0135",
+      "model": "S203-B13",
+      "series": "S200",
+      "category": "mcb",
+      "modules": 3,
+      "specs": {
+        "poles": "3P",
+        "ratedCurrentA": 13,
+        "curve": "B",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://new.abb.com/products/2CDS253001R0135"
+    },
+    {
+      "id": "abb-2cds253001r0165",
+      "brand": "abb",
+      "article": "2CDS253001R0165",
+      "model": "S203-B16",
+      "series": "S200",
+      "category": "mcb",
+      "modules": 3,
+      "specs": {
+        "poles": "3P",
+        "ratedCurrentA": 16,
+        "curve": "B",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://new.abb.com/products/2CDS253001R0165"
+    },
+    {
+      "id": "abb-2cds253001r0205",
+      "brand": "abb",
+      "article": "2CDS253001R0205",
+      "model": "S203-B20",
+      "series": "S200",
+      "category": "mcb",
+      "modules": 3,
+      "specs": {
+        "poles": "3P",
+        "ratedCurrentA": 20,
+        "curve": "B",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://new.abb.com/products/2CDS253001R0205"
+    },
+    {
+      "id": "abb-2cds253001r0255",
+      "brand": "abb",
+      "article": "2CDS253001R0255",
+      "model": "S203-B25",
+      "series": "S200",
+      "category": "mcb",
+      "modules": 3,
+      "specs": {
+        "poles": "3P",
+        "ratedCurrentA": 25,
+        "curve": "B",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://new.abb.com/products/2CDS253001R0255"
+    },
+    {
+      "id": "abb-2cds253001r0325",
+      "brand": "abb",
+      "article": "2CDS253001R0325",
+      "model": "S203-B32",
+      "series": "S200",
+      "category": "mcb",
+      "modules": 3,
+      "specs": {
+        "poles": "3P",
+        "ratedCurrentA": 32,
+        "curve": "B",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://new.abb.com/products/2CDS253001R0325"
+    },
+    {
+      "id": "abb-2cds253001r0405",
+      "brand": "abb",
+      "article": "2CDS253001R0405",
+      "model": "S203-B40",
+      "series": "S200",
+      "category": "mcb",
+      "modules": 3,
+      "specs": {
+        "poles": "3P",
+        "ratedCurrentA": 40,
+        "curve": "B",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://new.abb.com/products/2CDS253001R0405"
+    },
+    {
+      "id": "abb-2cds253001r0505",
+      "brand": "abb",
+      "article": "2CDS253001R0505",
+      "model": "S203-B50",
+      "series": "S200",
+      "category": "mcb",
+      "modules": 3,
+      "specs": {
+        "poles": "3P",
+        "ratedCurrentA": 50,
+        "curve": "B",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://new.abb.com/products/2CDS253001R0505"
+    },
+    {
+      "id": "abb-2cds253001r0635",
+      "brand": "abb",
+      "article": "2CDS253001R0635",
+      "model": "S203-B63",
+      "series": "S200",
+      "category": "mcb",
+      "modules": 3,
+      "specs": {
+        "poles": "3P",
+        "ratedCurrentA": 63,
+        "curve": "B",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://new.abb.com/products/2CDS253001R0635"
+    },
+    {
+      "id": "abb-2cds253001r0064",
+      "brand": "abb",
+      "article": "2CDS253001R0064",
+      "model": "S203-C6",
+      "series": "S200",
+      "category": "mcb",
+      "modules": 3,
+      "specs": {
+        "poles": "3P",
+        "ratedCurrentA": 6,
+        "curve": "C",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://new.abb.com/products/2CDS253001R0064"
+    },
+    {
+      "id": "abb-2cds253001r0104",
+      "brand": "abb",
+      "article": "2CDS253001R0104",
+      "model": "S203-C10",
+      "series": "S200",
+      "category": "mcb",
+      "modules": 3,
+      "specs": {
+        "poles": "3P",
+        "ratedCurrentA": 10,
+        "curve": "C",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://new.abb.com/products/2CDS253001R0104"
+    },
+    {
+      "id": "abb-2cds253001r0134",
+      "brand": "abb",
+      "article": "2CDS253001R0134",
+      "model": "S203-C13",
+      "series": "S200",
+      "category": "mcb",
+      "modules": 3,
+      "specs": {
+        "poles": "3P",
+        "ratedCurrentA": 13,
+        "curve": "C",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://new.abb.com/products/2CDS253001R0134"
+    },
+    {
+      "id": "abb-2cds254001r0164",
+      "brand": "abb",
+      "article": "2CDS254001R0164",
+      "model": "S204-C16",
+      "series": "S200",
+      "category": "mcb",
+      "modules": 4,
+      "specs": {
+        "poles": "4P",
+        "ratedCurrentA": 16,
+        "curve": "C",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://new.abb.com/products/2CDS254001R0164"
+    },
+    {
+      "id": "abb-2cds254001r0204",
+      "brand": "abb",
+      "article": "2CDS254001R0204",
+      "model": "S204-C20",
+      "series": "S200",
+      "category": "mcb",
+      "modules": 4,
+      "specs": {
+        "poles": "4P",
+        "ratedCurrentA": 20,
+        "curve": "C",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://new.abb.com/products/2CDS254001R0204"
+    },
+    {
+      "id": "abb-2cds254001r0254",
+      "brand": "abb",
+      "article": "2CDS254001R0254",
+      "model": "S204-C25",
+      "series": "S200",
+      "category": "mcb",
+      "modules": 4,
+      "specs": {
+        "poles": "4P",
+        "ratedCurrentA": 25,
+        "curve": "C",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://new.abb.com/products/2CDS254001R0254"
+    },
+    {
+      "id": "abb-2cds254001r0324",
+      "brand": "abb",
+      "article": "2CDS254001R0324",
+      "model": "S204-C32",
+      "series": "S200",
+      "category": "mcb",
+      "modules": 4,
+      "specs": {
+        "poles": "4P",
+        "ratedCurrentA": 32,
+        "curve": "C",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://new.abb.com/products/2CDS254001R0324"
+    },
+    {
+      "id": "abb-2cds254001r0404",
+      "brand": "abb",
+      "article": "2CDS254001R0404",
+      "model": "S204-C40",
+      "series": "S200",
+      "category": "mcb",
+      "modules": 4,
+      "specs": {
+        "poles": "4P",
+        "ratedCurrentA": 40,
+        "curve": "C",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://new.abb.com/products/2CDS254001R0404"
+    },
+    {
+      "id": "abb-2cds254001r0504",
+      "brand": "abb",
+      "article": "2CDS254001R0504",
+      "model": "S204-C50",
+      "series": "S200",
+      "category": "mcb",
+      "modules": 4,
+      "specs": {
+        "poles": "4P",
+        "ratedCurrentA": 50,
+        "curve": "C",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://new.abb.com/products/2CDS254001R0504"
+    },
+    {
+      "id": "abb-2cds254001r0634",
+      "brand": "abb",
+      "article": "2CDS254001R0634",
+      "model": "S204-C63",
+      "series": "S200",
+      "category": "mcb",
+      "modules": 4,
+      "specs": {
+        "poles": "4P",
+        "ratedCurrentA": 63,
+        "curve": "C",
+        "breakingCapacityKa": 6
+      },
+      "verified": true,
+      "source": "https://new.abb.com/products/2CDS254001R0634"
+    },
+    {
+      "id": "abb-2csf202101r1800",
+      "brand": "abb",
+      "article": "2CSF202101R1800",
+      "model": "F202 A-80/0.03",
+      "series": "F200",
+      "category": "rcd",
+      "modules": 2,
+      "specs": {
+        "poles": "1P+N",
+        "ratedCurrentA": 80,
+        "sensitivityMa": 30,
+        "rcdType": "A"
+      },
+      "verified": true,
+      "source": "https://new.abb.com/products/2CSF202101R1800"
+    },
+    {
+      "id": "abb-2csf204101r1800",
+      "brand": "abb",
+      "article": "2CSF204101R1800",
+      "model": "F204 A-80/0.03",
+      "series": "F200",
+      "category": "rcd",
+      "modules": 4,
+      "specs": {
+        "poles": "3P+N",
+        "ratedCurrentA": 80,
+        "sensitivityMa": 30,
+        "rcdType": "A"
+      },
+      "verified": true,
+      "source": "https://new.abb.com/products/2CSF204101R1800"
+    },
+    {
+      "id": "abb-2csf204101r1900",
+      "brand": "abb",
+      "article": "2CSF204101R1900",
+      "model": "F204 A-100/0.03",
+      "series": "F200",
+      "category": "rcd",
+      "modules": 4,
+      "specs": {
+        "poles": "3P+N",
+        "ratedCurrentA": 100,
+        "sensitivityMa": 30,
+        "rcdType": "A"
+      },
+      "verified": true,
+      "source": "https://new.abb.com/products/2CSF204101R1900"
+    },
+    {
+      "id": "abb-2csf202101r3400",
+      "brand": "abb",
+      "article": "2CSF202101R3400",
+      "model": "F202 A-40/0.3",
+      "series": "F200",
+      "category": "rcd",
+      "modules": 2,
+      "specs": {
+        "poles": "1P+N",
+        "ratedCurrentA": 40,
+        "sensitivityMa": 300,
+        "rcdType": "A"
+      },
+      "verified": true,
+      "source": "https://new.abb.com/products/2CSF202101R3400"
+    },
+    {
+      "id": "abb-2csf204101r3400",
+      "brand": "abb",
+      "article": "2CSF204101R3400",
+      "model": "F204 A-40/0.3",
+      "series": "F200",
+      "category": "rcd",
+      "modules": 4,
+      "specs": {
+        "poles": "3P+N",
+        "ratedCurrentA": 40,
+        "sensitivityMa": 300,
+        "rcdType": "A"
+      },
+      "verified": true,
+      "source": "https://new.abb.com/products/2CSF204101R3400"
+    },
+    {
+      "id": "abb-2csf204101r3630",
+      "brand": "abb",
+      "article": "2CSF204101R3630",
+      "model": "F204 A-63/0.3",
+      "series": "F200",
+      "category": "rcd",
+      "modules": 4,
+      "specs": {
+        "poles": "3P+N",
+        "ratedCurrentA": 63,
+        "sensitivityMa": 300,
+        "rcdType": "A"
+      },
+      "verified": true,
+      "source": "https://new.abb.com/products/2CSF204101R3630"
+    },
+    {
+      "id": "abb-2csf202101r2400",
+      "brand": "abb",
+      "article": "2CSF202101R2400",
+      "model": "F202 A-40/0.1",
+      "series": "F200",
+      "category": "rcd",
+      "modules": 2,
+      "specs": {
+        "poles": "1P+N",
+        "ratedCurrentA": 40,
+        "sensitivityMa": 100,
+        "rcdType": "A"
+      },
+      "verified": true,
+      "source": "https://new.abb.com/products/2CSF202101R2400"
+    },
+    {
+      "id": "abb-2csf202001r1800",
+      "brand": "abb",
+      "article": "2CSF202001R1800",
+      "model": "F202 AC-80/0.03",
+      "series": "F200",
+      "category": "rcd",
+      "modules": 2,
+      "specs": {
+        "poles": "1P+N",
+        "ratedCurrentA": 80,
+        "sensitivityMa": 30,
+        "rcdType": "AC"
+      },
+      "verified": true,
+      "source": "https://new.abb.com/products/2CSF202001R1800"
+    },
+    {
+      "id": "abb-2csf204001r1800",
+      "brand": "abb",
+      "article": "2CSF204001R1800",
+      "model": "F204 AC-80/0.03",
+      "series": "F200",
+      "category": "rcd",
+      "modules": 4,
+      "specs": {
+        "poles": "3P+N",
+        "ratedCurrentA": 80,
+        "sensitivityMa": 30,
+        "rcdType": "AC"
+      },
+      "verified": true,
+      "source": "https://new.abb.com/products/2CSF204001R1800"
+    },
+    {
+      "id": "abb-2csf204001r1900",
+      "brand": "abb",
+      "article": "2CSF204001R1900",
+      "model": "F204 AC-100/0.03",
+      "series": "F200",
+      "category": "rcd",
+      "modules": 4,
+      "specs": {
+        "poles": "3P+N",
+        "ratedCurrentA": 100,
+        "sensitivityMa": 30,
+        "rcdType": "AC"
+      },
+      "verified": true,
+      "source": "https://new.abb.com/products/2CSF204001R1900"
+    },
+    {
+      "id": "abb-2csf202101r3630",
+      "brand": "abb",
+      "article": "2CSF202101R3630",
+      "model": "F202 A-63/0.3",
+      "series": "F200",
+      "category": "rcd",
+      "modules": 2,
+      "specs": {
+        "poles": "1P+N",
+        "ratedCurrentA": 63,
+        "sensitivityMa": 300,
+        "rcdType": "A"
+      },
+      "verified": true,
+      "source": "https://new.abb.com/products/2CSF202101R3630"
+    },
+    {
+      "id": "abb-2csf204101r2400",
+      "brand": "abb",
+      "article": "2CSF204101R2400",
+      "model": "F204 A-40/0.1",
+      "series": "F200",
+      "category": "rcd",
+      "modules": 4,
+      "specs": {
+        "poles": "3P+N",
+        "ratedCurrentA": 40,
+        "sensitivityMa": 100,
+        "rcdType": "A"
+      },
+      "verified": true,
+      "source": "https://new.abb.com/products/2CSF204101R2400"
+    },
+    {
+      "id": "abb-2csf204101r2630",
+      "brand": "abb",
+      "article": "2CSF204101R2630",
+      "model": "F204 A-63/0.1",
+      "series": "F200",
+      "category": "rcd",
+      "modules": 4,
+      "specs": {
+        "poles": "3P+N",
+        "ratedCurrentA": 63,
+        "sensitivityMa": 100,
+        "rcdType": "A"
+      },
+      "verified": true,
+      "source": "https://new.abb.com/products/2CSF204101R2630"
+    },
+    {
+      "id": "abb-2csf204568r1400",
+      "brand": "abb",
+      "article": "2CSF204568R1400",
+      "model": "F204 B-40/0.03",
+      "series": "F200",
+      "category": "rcd",
+      "modules": 4,
+      "specs": {
+        "poles": "3P+N",
+        "ratedCurrentA": 40,
+        "sensitivityMa": 30,
+        "rcdType": "B"
+      },
+      "verified": true,
+      "source": "https://new.abb.com/products/2CSF204568R1400",
+      "notes": "Тип B с задержкой 10 мс (высокая помехоустойчивость), по описанию на new.abb.com."
+    },
+    {
+      "id": "abb-2csf204568r1630",
+      "brand": "abb",
+      "article": "2CSF204568R1630",
+      "model": "F204 B-63/0.03",
+      "series": "F200",
+      "category": "rcd",
+      "modules": 4,
+      "specs": {
+        "poles": "3P+N",
+        "ratedCurrentA": 63,
+        "sensitivityMa": 30,
+        "rcdType": "B"
+      },
+      "verified": true,
+      "source": "https://new.abb.com/products/2CSF204568R1630",
+      "notes": "Тип B с задержкой 10 мс (высокая помехоустойчивость), по описанию на new.abb.com."
+    },
+    {
+      "id": "abb-2csr255180r1065",
+      "brand": "abb",
+      "article": "2CSR255180R1065",
+      "model": "DS201 B6 A30",
+      "series": "DS201",
+      "category": "rcbo",
+      "modules": 2,
+      "specs": {
+        "poles": "1P+N",
+        "ratedCurrentA": 6,
+        "curve": "B",
+        "breakingCapacityKa": 6,
+        "sensitivityMa": 30,
+        "rcdType": "A"
+      },
+      "verified": false,
+      "source": "https://new.abb.com/products/2CSR255180R1065",
+      "notes": "На new.abb.com сверены артикул, тип, полюса, ток, кривая B, тип A и 30 мА; отключающая способность 6 кА не сверена (сайт ABB перестал отвечать), взята как у DS201 C в каталоге."
+    },
+    {
+      "id": "abb-2csr255180r1105",
+      "brand": "abb",
+      "article": "2CSR255180R1105",
+      "model": "DS201 B10 A30",
+      "series": "DS201",
+      "category": "rcbo",
+      "modules": 2,
+      "specs": {
+        "poles": "1P+N",
+        "ratedCurrentA": 10,
+        "curve": "B",
+        "breakingCapacityKa": 6,
+        "sensitivityMa": 30,
+        "rcdType": "A"
+      },
+      "verified": false,
+      "source": "https://new.abb.com/products/2CSR255180R1105",
+      "notes": "На new.abb.com сверены артикул, тип, полюса, ток, кривая B, тип A и 30 мА; отключающая способность 6 кА не сверена (сайт ABB перестал отвечать), взята как у DS201 C в каталоге."
+    },
+    {
+      "id": "abb-2csr255180r1165",
+      "brand": "abb",
+      "article": "2CSR255180R1165",
+      "model": "DS201 B16 A30",
+      "series": "DS201",
+      "category": "rcbo",
+      "modules": 2,
+      "specs": {
+        "poles": "1P+N",
+        "ratedCurrentA": 16,
+        "curve": "B",
+        "breakingCapacityKa": 6,
+        "sensitivityMa": 30,
+        "rcdType": "A"
+      },
+      "verified": false,
+      "source": "https://new.abb.com/products/2CSR255180R1165",
+      "notes": "На new.abb.com сверены артикул, тип, полюса, ток, кривая B, тип A и 30 мА; отключающая способность 6 кА не сверена (сайт ABB перестал отвечать), взята как у DS201 C в каталоге."
+    },
+    {
+      "id": "abb-2csr255180r1205",
+      "brand": "abb",
+      "article": "2CSR255180R1205",
+      "model": "DS201 B20 A30",
+      "series": "DS201",
+      "category": "rcbo",
+      "modules": 2,
+      "specs": {
+        "poles": "1P+N",
+        "ratedCurrentA": 20,
+        "curve": "B",
+        "breakingCapacityKa": 6,
+        "sensitivityMa": 30,
+        "rcdType": "A"
+      },
+      "verified": false,
+      "source": "https://new.abb.com/products/2CSR255180R1205",
+      "notes": "На new.abb.com сверены артикул, тип, полюса, ток, кривая B, тип A и 30 мА; отключающая способность 6 кА не сверена (сайт ABB перестал отвечать), взята как у DS201 C в каталоге."
     }
   ]
 }
