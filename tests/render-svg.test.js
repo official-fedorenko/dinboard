@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 
-import { layoutBoard, hitTest, renderBoardSvg, escapeXml, slotRect, terminalBars, combBars, MODULE_MM, FACE_MM } from '../site/js/render-svg.js';
+import { layoutBoard, hitTest, renderBoardSvg, escapeXml, slotRect, carrierBars, CARRIER_MM, combBars, MODULE_MM, FACE_MM } from '../site/js/render-svg.js';
 import { createBoard, addDevice, indexById } from '../site/js/board.js';
 import { createTranslator } from '../site/js/i18n.js';
 import { deviceTitle, deviceLabel } from '../site/js/format.js';
@@ -201,68 +201,66 @@ describe('renderBoardSvg', () => {
   });
 });
 
-describe('клеммники N/PE на рисунке', () => {
-  const withTerminals = (terminals) => ({ ...enclosure, terminals });
+describe('держатели клемм N/PE на рисунке', () => {
   const board = sampleBoard();
-  const bars = (terminals, b = board) => {
-    const enc = withTerminals(terminals);
-    return terminalBars(enc, b, layoutBoard(enc, b, devices));
-  };
+  const layout = layoutBoard(enclosure, board, devices);
+  const carriersById = indexById([
+    { id: 'qc', kind: 'carrier', article: 'VZ711', lengthMm: 240, positions: ['top', 'bottom'] },
+    { id: 'plate', kind: 'plate', article: 'VZ522', lengthMm: 270, positions: ['top'] },
+  ]);
+  const insertsById = indexById([
+    { id: 'n6', role: 'N', article: 'KN06N', clamps: [[1, 16], [5, 4]], widthMm: 30 },
+    { id: 'kl', role: 'universal', clamps: [[2, 25], [13, 16]], widthMm: 120 },
+    { id: 'npe', role: 'N+PE', clamps: [[10, 16]], widthMm: 100 },
+    { id: 'fix', role: 'PE', clamps: [[1, 25], [16, 16]], widthMm: 130, fixed: true },
+  ]);
+  const bars = (carriers, opts) => carrierBars({ ...board, carriers }, layout, carriersById, insertsById, opts);
 
-  test('без данных о клеммниках — ничего', () => {
-    assert.deepEqual(terminalBars(enclosure, board, layoutBoard(enclosure, board, devices)), []);
+  test('держатель — в настоящую длину по центру корпуса, над первым рядом; клеммы — от его левого края', () => {
+    const [bar] = bars([{ carrierId: 'qc', position: 'top', included: false, inserts: [{ insertId: 'n6', pos: 10 }, { insertId: 'kl', pos: 50, role: 'PE' }] }]);
+    assert.equal(bar.w, 240);
+    assert.equal(bar.h, CARRIER_MM);
+    assert.equal(bar.x, (layout.width - 240) / 2);
+    assert.ok(bar.y + bar.h < layout.rows[0].y - 10, 'выше полосы маркировки первого ряда');
+    assert.deepEqual(bar.inserts.map((i) => [i.role, i.x - bar.x, i.w, i.clamps]), [['N', 10, 30, 6], ['PE', 50, 120, 15]]);
   });
 
-  test('в комплекте: N и PE рядом над первым рядом, клеммы посчитаны; место по умолчанию — сверху', () => {
-    const list = bars({ included: true, blocks: [{ role: 'N', clamps: [[2, 25], [11, 16]] }, { role: 'PE', position: 'top', clamps: [[2, 25], [11, 16]] }], verified: false });
-    const layout = layoutBoard(withTerminals({}), board, devices);
-    assert.deepEqual(list.map((b) => [b.role, b.kind, b.clamps, b.vertical]), [['N', 'included', 13, false], ['PE', 'included', 13, false]]);
-    assert.ok(list[0].y + list[0].h < layout.rows[0].y - 10, 'выше полосы маркировки первого ряда');
-    assert.equal(list[0].y, list[1].y);
-    assert.ok(list[0].x + list[0].w < list[1].x, 'рядом, не накладываются');
-    assert.equal(Math.round((list[1].x + list[1].w) * 100) / 100, Math.round(layout.rows[0].x1 * 100) / 100, 'по ширине рейки');
+  test('внизу — под последним рядом; два на одном месте — друг за другом наружу', () => {
+    const list = bars([
+      { carrierId: 'qc', position: 'bottom', included: false, inserts: [] },
+      { carrierId: 'qc', position: 'bottom', included: false, inserts: [] },
+      { carrierId: 'plate', position: 'top', included: true, inserts: [] },
+      { carrierId: 'gone', position: 'top', included: false, inserts: [] },
+    ]);
+    const last = layout.rows.at(-1);
+    assert.equal(list.length, 3, 'держатель не из каталога пропускается');
+    assert.ok(list[0].y > last.y + FACE_MM);
+    assert.ok(list[1].y > list[0].y + list[0].h, 'второй — ниже первого');
+    assert.deepEqual(list.map((b) => b.index), [0, 1, 2]);
   });
 
-  test('снизу — под последним рядом', () => {
-    const [bar] = bars({ included: true, blocks: [{ role: 'PE', position: 'bottom' }], verified: false });
-    const last = layoutBoard(withTerminals({}), board, devices).rows.at(-1);
-    assert.ok(bar.y > last.y + FACE_MM);
-    assert.equal(bar.clamps, null, 'число клемм неизвестно');
+  test('держателей нет: место пунктиром — только если просили (в корпус можно поставить держатель)', () => {
+    assert.deepEqual(bars([]), []);
+    const [slot] = bars(undefined, { emptySlot: true });
+    assert.equal(slot.slot, true);
+    assert.equal(slot.x, layout.rows[0].x0);
   });
 
-  test('сбоку — вертикально у края; если там нет места (узкий корпус) — сверху', () => {
-    const [side] = bars({ included: true, blocks: [{ role: 'N', position: 'left' }], verified: false });
-    assert.equal(side.vertical, true);
-    assert.ok(side.x + side.w < layoutBoard(enclosure, board, devices).rows[0].x0, 'левее рейки');
-    // 13 модулей в корпусе шириной 250 мм: от рейки до края 11 мм — планка не помещается
-    const narrow = { ...enclosure, modulesPerRow: 13, dimensionsMm: { width: 250, height: 370, depth: 94 }, terminals: { included: true, blocks: [{ role: 'N', position: 'right' }], verified: false } };
-    const [top] = terminalBars(narrow, createBoard(narrow), layoutBoard(narrow, createBoard(narrow), devices));
-    assert.equal(top.vertical, false);
-  });
-
-  test('не в комплекте: места пунктиром; с addTerminals — аксессуары на этих местах', () => {
-    const terminals = {
-      included: false,
-      blocks: [{ role: 'N+PE', position: 'top' }, { role: 'N+PE', position: 'bottom' }],
-      accessories: [{ article: 'A1', role: 'PE', clamps: [[7, 16]], verified: false }],
-      verified: false,
-    };
-    assert.deepEqual(bars(terminals).map((b) => b.kind), ['slot', 'slot']);
-    const added = bars(terminals, { ...board, addTerminals: true });
-    assert.deepEqual(added.map((b) => [b.kind, b.role, b.clamps, b.article]), [['accessory', 'PE', 7, 'A1']]);
-    // Без мест в данных — одно место сверху
-    assert.deepEqual(bars({ included: false, verified: false }).map((b) => [b.kind, b.role]), [['slot', 'N+PE']]);
-  });
-
-  test('в SVG: планки с классами по назначению, клеммы кружками, место — с подписью', () => {
-    const included = bars({ included: true, blocks: [{ role: 'N', clamps: [[2, 25], [11, 16]] }, { role: 'N+PE' }], verified: false });
-    const svg = render(layoutBoard(enclosure, board, devices), { terminals: included });
-    assert.match(svg, /<g class="terminal role-n kind-included"><title>Клеммник N, клемм: 13<\/title>/);
-    assert.equal((svg.match(/<g class="terminal role-n[^"]*">.*?<\/g>/)[0].match(/class="clamp"/g) ?? []).length, 13);
-    assert.match(svg, /class="terminal role-npe kind-included".*?class="bar-n".*?class="bar-pe"/);
-    const slot = render(layoutBoard(enclosure, board, devices), { terminals: bars({ included: false, verified: false }) });
-    assert.match(slot, /class="terminal role-npe kind-slot"/);
-    assert.match(slot, />N\+PE · не в комплекте</);
+  test('в SVG: держатель, клеммы-кнопки с ролью и клеммами, общий N+PE пополам, выделенная — с рамкой', () => {
+    const list = bars([
+      { carrierId: 'qc', position: 'top', included: false, inserts: [{ insertId: 'n6', pos: 0 }, { insertId: 'npe', pos: 40 }] },
+      { carrierId: 'plate', position: 'top', included: true, inserts: [{ insertId: 'fix', pos: 0, included: true }] },
+    ]);
+    const svg = render(layout, { carriers: list, selectedInsert: { carrier: 0, item: 1 } });
+    assert.match(svg, /<g class="carrier kind-carrier" data-carrier-index="0">/);
+    assert.match(svg, /<g class="insert role-n" data-carrier="0" data-insert="0" data-focus="insert-0-0" tabindex="0" role="button" aria-pressed="false" aria-label="Клемма N, клемм: 6 · KN06N">/);
+    const n6 = svg.match(/<g class="insert role-n".*?<\/g>/)[0];
+    assert.equal((n6.match(/class="clamp"/g) ?? []).length, 6);
+    assert.match(svg, /class="insert role-npe selected".*?class="ins-n".*?class="ins-pe".*?class="insert-outline"/);
+    assert.match(svg, /class="insert role-pe fixed"/);
+    const slot = render(layout, { carriers: bars(undefined, { emptySlot: true }) });
+    assert.match(slot, /class="carrier kind-slot"/);
+    assert.match(slot, />Место под клеммы N\/PE — держатель не выбран</);
   });
 });
 
@@ -293,26 +291,5 @@ describe('гребёнки на рисунке', () => {
   test('в SVG: полоса с подсказкой — артикул и фазы', () => {
     const svg = render(layout, { combs: combBars(layout, board, combsById, devices) });
     assert.match(svg, /<g class="comb pin-fork"><title>KDN163A · Гребёнка 1P, 12 мод\.<\/title><rect class="comb-bar"/);
-  });
-});
-
-describe('держатель клеммников', () => {
-  test('на рисунке — только клеммники, держатель не показывается', () => {
-    const enc = {
-      ...enclosure,
-      terminals: {
-        included: false,
-        blocks: [{ role: 'N+PE', position: 'top' }, { role: 'N+PE', position: 'bottom' }],
-        accessories: [
-          { article: 'PE1', role: 'PE', verified: false },
-          { article: 'N1', role: 'N', verified: false },
-          { article: 'H1', role: 'holder', verified: false },
-        ],
-        verified: false,
-      },
-    };
-    const board = { ...createBoard(enc), addTerminals: true };
-    const bars = terminalBars(enc, board, layoutBoard(enc, board, devices));
-    assert.deepEqual(bars.map((b) => b.article), ['PE1', 'N1']);
   });
 });

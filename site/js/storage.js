@@ -1,19 +1,23 @@
 // Сохранение и загрузка щита: ссылка, файл проекта, хранилище браузера.
 // Модуль без DOM (кроме переданного объекта хранилища): тестируется в Node.
 //
-// Внутренний вид проекта: { enclosureId, rows: [[deviceId, ...], ...], positions?: [[pos, ...], ...], earthing?, addTerminals?, combs?, combParts? } —
+// Внутренний вид проекта: { enclosureId, rows: [[deviceId, ...], ...], positions?: [[pos, ...], ...], earthing?, combs?, combParts?, carriers? } —
 // без uid, они создаются заново при сборке щита. positions — с какого модуля начинается каждое
 // устройство (по форме как rows). Без positions (старые ссылки и файлы) устройства ставятся подряд.
+// carriers — держатели клемм N/PE (как в щите, см. carriers.js); без поля (старые проекты) — как с завода.
+// addTerminals (этап 15) в старых ссылках и файлах принимается, но больше не используется.
 //
 // Форматы:
 //   ссылка — #b=<base64url(JSON)>, JSON: { v: 1, e: enclosureId, d: [уникальные deviceId], r: [[индекс в d, ...], ...],
-//            p?: [[pos, ...], ...], g?: earthing, t?: 1 (addTerminals), k?: [id гребёнки или null по рядам], x?: { id аксессуара гребёнки: количество } };
-//   файл   — JSON: { app: "dinboard", version: 1, savedAt, enclosure: { id, article }, earthing?, addTerminals?, combs?, combParts?,
+//            p?: [[pos, ...], ...], g?: earthing, k?: [id гребёнки или null по рядам], x?: { id аксессуара гребёнки: количество },
+//            n?: [[carrierId, position, included 0|1, [[insertId, pos, role|0, included 0|1], ...]], ...] (держатели клемм) };
+//   файл   — JSON: { app: "dinboard", version: 1, savedAt, enclosure: { id, article }, earthing?, combs?, combParts?, carriers?,
 //                    rows: [[{ id, article, pos? }, ...], ...] } (артикулы — для человека, при загрузке не нужны);
 //   хранилище браузера — тот же формат, что у файла.
 // Любые входящие данные проверяются: структура, лимиты, наличие в каталоге, место в рядах.
 
-import { createBoard, addDevice, BoardError, POS_STEP } from './board.js';
+import { createBoard, addDevice, setCarriers, BoardError, POS_STEP } from './board.js';
+import { canPlaceInsert, markFactory, CARRIER_POSITIONS } from './carriers.js';
 import { EARTHING_SYSTEMS } from './catalog.js';
 
 export const PROJECT_VERSION = 1;
@@ -28,6 +32,9 @@ export const LIMITS = {
   itemsPerRow: 72, // 36 модулей по 0.5
   modulesPerRow: 36, // наибольшая позиция на рейке
   idLength: 100,
+  carriers: 8, // держателей клемм N/PE
+  inserts: 40, // клемм в одном держателе
+  carrierMm: 1000, // наибольший отступ клеммы в держателе, мм
 };
 
 export const PROJECT_ERROR_CODES = ['format', 'enclosure', 'no-space'];
@@ -55,9 +62,9 @@ export function projectFromBoard(board) {
     positions: board.rows.map((row) => row.map((item) => item.pos)),
   };
   if (board.earthing) project.earthing = board.earthing;
-  if (board.addTerminals) project.addTerminals = true;
   if (board.combs) project.combs = board.combs;
   if (board.combParts) project.combParts = board.combParts;
+  if (board.carriers) project.carriers = board.carriers;
   return project;
 }
 
@@ -92,7 +99,62 @@ function checkShape(project) {
     const ok = entries.length > 0 && entries.length <= LIMITS.itemsPerRow && entries.every(([k, v]) => isId(k) && Number.isInteger(v) && v >= 1 && v <= 99);
     if (!ok) throw formatError('combParts');
   }
+  if (project.carriers !== undefined && !validCarriers(project.carriers)) throw formatError('carriers');
   return project;
+}
+
+const ROLES = ['N', 'PE'];
+const isMm = (v) => typeof v === 'number' && Number.isFinite(v) && v >= 0 && v <= LIMITS.carrierMm;
+
+/** Держатели клемм проекта: [{ carrierId, position, included, inserts: [{ insertId, pos, role?, included? }] }]. */
+function validCarriers(list) {
+  if (!Array.isArray(list) || list.length > LIMITS.carriers) return false;
+  return list.every((c) => {
+    if (!isObject(c) || !isId(c.carrierId) || !CARRIER_POSITIONS.includes(c.position) || typeof c.included !== 'boolean') return false;
+    if (Object.keys(c).some((k) => !['carrierId', 'position', 'included', 'inserts'].includes(k))) return false;
+    if (!Array.isArray(c.inserts) || c.inserts.length > LIMITS.inserts) return false;
+    return c.inserts.every(
+      (x) =>
+        isObject(x) &&
+        isId(x.insertId) &&
+        isMm(x.pos) &&
+        (x.role === undefined || ROLES.includes(x.role)) &&
+        (x.included === undefined || x.included === true) &&
+        Object.keys(x).every((k) => ['insertId', 'pos', 'role', 'included'].includes(k)),
+    );
+  });
+}
+
+/**
+ * Держатели проекта по каталогу: держатели и клеммы, которых нет в каталоге или которые не подходят
+ * (не тот держатель, не помещаются, заняли чужое место), пропускаются — их id в skipped.
+ * «В комплекте корпуса» (included) берётся не из проекта, а из комплектации корпуса (markFactory).
+ */
+export function restoreCarriers(list, carriersById, insertsById, enclosure = {}) {
+  const skipped = [];
+  const carriers = [];
+  for (const c of list) {
+    const carrier = carriersById.get(c.carrierId);
+    if (!carrier) {
+      skipped.push(c.carrierId);
+      continue;
+    }
+    const next = { carrierId: c.carrierId, position: carrier.positions.includes(c.position) ? c.position : carrier.positions[0], included: false, inserts: [] };
+    for (const x of c.inserts) {
+      const insert = insertsById.get(x.insertId);
+      const fits =
+        insert &&
+        (!insert.carrierIds || insert.carrierIds.includes(c.carrierId)) &&
+        canPlaceInsert(next, carriersById, insertsById, x.pos, insert.widthMm);
+      if (!fits) {
+        skipped.push(x.insertId);
+        continue;
+      }
+      next.inserts = [...next.inserts, { ...x }].sort((a, b) => a.pos - b.pos);
+    }
+    carriers.push(next);
+  }
+  return { carriers: markFactory(carriers, enclosure), skipped };
 }
 
 /**
@@ -102,17 +164,26 @@ function checkShape(project) {
  * Сначала устройства встают на свои позиции; если позиции нет или место не подходит
  * (например, в каталоге изменилась ширина устройства) — на первое свободное место своего ряда.
  * Лишние ряды или нехватка места — ProjectError('no-space').
+ * catalog — { carriersById, insertsById } для держателей клемм N/PE: без него держатели проекта не сверяются
+ * с каталогом; без держателей в проекте — как с завода.
  * Возвращает { board, skipped }.
  */
-export function buildBoard(project, enclosures, devices) {
+export function buildBoard(project, enclosures, devices, catalog = null) {
   checkShape(project);
   const enclosure = enclosures.get(project.enclosureId);
   if (!enclosure) throw new ProjectError('enclosure', { enclosureId: project.enclosureId });
   if (project.rows.length > enclosure.rows) throw new ProjectError('no-space', { reason: 'rows' });
 
   // Гребёнки, которых нет в каталоге, при отрисовке и в составе пропускаются — данные щита их не теряют
-  let board = { ...createBoard(enclosure), earthing: project.earthing ?? null, ...(project.addTerminals ? { addTerminals: true } : {}), ...(project.combs ? { combs: [...project.combs] } : {}), ...(project.combParts ? { combParts: { ...project.combParts } } : {}) };
+  let board = { ...createBoard(enclosure), earthing: project.earthing ?? null, ...(project.combs ? { combs: [...project.combs] } : {}), ...(project.combParts ? { combParts: { ...project.combParts } } : {}) };
   const skipped = [];
+  if (project.carriers) {
+    if (catalog) {
+      const restored = restoreCarriers(project.carriers, catalog.carriersById, catalog.insertsById, enclosure);
+      board = setCarriers(board, restored.carriers);
+      skipped.push(...restored.skipped);
+    } else board = setCarriers(board, project.carriers);
+  }
   const rest = []; // без позиции или место не подошло — после всех, кто встал на своё место
   project.rows.forEach((row, rowIndex) => {
     row.forEach((deviceId, i) => {
@@ -187,9 +258,11 @@ export function encodeLink(project) {
   const compact = { v: PROJECT_VERSION, e: project.enclosureId, d: dictionary, r: project.rows.map((row) => row.map((id) => index.get(id))) };
   if (project.positions) compact.p = project.positions;
   if (project.earthing) compact.g = project.earthing;
-  if (project.addTerminals) compact.t = 1;
   if (project.combs) compact.k = project.combs;
   if (project.combParts) compact.x = project.combParts;
+  if (project.carriers) {
+    compact.n = project.carriers.map((c) => [c.carrierId, c.position, c.included ? 1 : 0, c.inserts.map((x) => [x.insertId, x.pos, x.role ?? 0, x.included ? 1 : 0])]);
+  }
   return toBase64Url(JSON.stringify(compact));
 }
 
@@ -216,6 +289,25 @@ export function decodeLink(code) {
     ...(data.t === undefined ? {} : { addTerminals: data.t === 1 ? true : data.t }),
     ...(data.k === undefined ? {} : { combs: data.k }),
     ...(data.x === undefined ? {} : { combParts: data.x }),
+    ...(data.n === undefined ? {} : { carriers: carriersFromLink(data.n) }),
+  });
+}
+
+/** Держатели из краткой записи ссылки (остальная проверка — в checkShape). */
+function carriersFromLink(list) {
+  const arr = (v, n) => Array.isArray(v) && v.length === n;
+  if (!Array.isArray(list) || list.length > LIMITS.carriers) throw formatError('carriers');
+  return list.map((c) => {
+    if (!arr(c, 4) || (c[2] !== 0 && c[2] !== 1) || !Array.isArray(c[3]) || c[3].length > LIMITS.inserts) throw formatError('carriers');
+    return {
+      carrierId: c[0],
+      position: c[1],
+      included: c[2] === 1,
+      inserts: c[3].map((x) => {
+        if (!arr(x, 4) || (x[2] !== 0 && !ROLES.includes(x[2])) || (x[3] !== 0 && x[3] !== 1)) throw formatError('carriers');
+        return { insertId: x[0], pos: x[1], ...(x[2] ? { role: x[2] } : {}), ...(x[3] ? { included: true } : {}) };
+      }),
+    };
   });
 }
 
@@ -235,9 +327,9 @@ export function projectToFile(project, enclosures, devices, savedAt = new Date()
     savedAt: savedAt.toISOString(),
     enclosure: { id: project.enclosureId, article: enclosures.get(project.enclosureId)?.article ?? '' },
     ...(project.earthing ? { earthing: project.earthing } : {}),
-    ...(project.addTerminals ? { addTerminals: true } : {}),
     ...(project.combs ? { combs: project.combs } : {}),
     ...(project.combParts ? { combParts: project.combParts } : {}),
+    ...(project.carriers ? { carriers: project.carriers } : {}),
     rows: project.rows.map((row, r) =>
       row.map((id, i) => ({ id, article: devices.get(id)?.article ?? '', ...(project.positions ? { pos: project.positions[r][i] } : {}) })),
     ),
@@ -266,6 +358,7 @@ export function projectFromFile(text) {
     ...(data.addTerminals === undefined ? {} : { addTerminals: data.addTerminals }),
     ...(data.combs === undefined ? {} : { combs: data.combs }),
     ...(data.combParts === undefined ? {} : { combParts: data.combParts }),
+    ...(data.carriers === undefined ? {} : { carriers: data.carriers }),
   });
 }
 
@@ -328,14 +421,15 @@ export function createLocalStore(storage, enclosures, devices) {
 /**
  * Что открыть при загрузке страницы. Чистая функция (без DOM и хранилища).
  * hash — location.hash; localText — текст сохранения из браузера (или null);
- * confirmLink() — спросить, заменить ли сохранённый щит щитом из ссылки.
+ * confirmLink() — спросить, заменить ли сохранённый щит щитом из ссылки;
+ * catalog — { carriersById, insertsById } для держателей клемм N/PE (см. buildBoard).
  * Возвращает { board, notices: [{ key, params }], backupText }:
  *   board — щит или null (пустой старт);
  *   notices — сообщения для пользователя (ключи переводов);
  *   backupText — исходный текст сохранения, который нужно отложить в резервную копию
  *   до первой перезаписи (если сохранение урезано, не подходит или заменяется ссылкой).
  */
-export function restoreProject({ hash, localText, enclosures, devices, confirmLink }) {
+export function restoreProject({ hash, localText, enclosures, devices, confirmLink, catalog = null }) {
   let local = null;
   let localBroken = false;
   if (localText) {
@@ -351,7 +445,7 @@ export function restoreProject({ hash, localText, enclosures, devices, confirmLi
     if (localBroken) return { board: null, notices: [{ key: 'project.localLost' }], backupText: localText };
     if (!local) return { board: null, notices: [], backupText: null };
     try {
-      const { board, skipped } = buildBoard(local, enclosures, devices);
+      const { board, skipped } = buildBoard(local, enclosures, devices, catalog);
       if (skipped.length) {
         return { board, notices: [{ key: 'project.localSkipped', params: { n: skipped.length } }], backupText: localText };
       }
@@ -369,7 +463,7 @@ export function restoreProject({ hash, localText, enclosures, devices, confirmLi
    */
   const asPlaced = (project) => {
     try {
-      const { board, skipped } = buildBoard(project, enclosures, devices);
+      const { board, skipped } = buildBoard(project, enclosures, devices, catalog);
       return skipped.length ? project : projectFromBoard(board);
     } catch (err) {
       if (!(err instanceof ProjectError)) throw err;
@@ -379,7 +473,7 @@ export function restoreProject({ hash, localText, enclosures, devices, confirmLi
   /** Своё сохранение при сборке теряет устройства (их нет в каталоге) — его нужно отложить в копию. */
   const localTrimmed = () => {
     try {
-      return buildBoard(local, enclosures, devices).skipped.length > 0;
+      return buildBoard(local, enclosures, devices, catalog).skipped.length > 0;
     } catch (err) {
       if (!(err instanceof ProjectError)) throw err;
       return true;
@@ -395,7 +489,7 @@ export function restoreProject({ hash, localText, enclosures, devices, confirmLi
     // на тот же щит, что сохранён, — не замена
     const replacesLocal = !localBroken && !isEmptyProject(local) && !sameProject(asPlaced(local), asPlaced(fromLink));
     if (replacesLocal && !confirmLink()) return fromLocal();
-    const { board, skipped } = buildBoard(fromLink, enclosures, devices);
+    const { board, skipped } = buildBoard(fromLink, enclosures, devices, catalog);
     // Свой щит заменяется или в нём есть устройства не из каталога — при перезаписи они пропадут
     const keepLocal = replacesLocal || (!localBroken && !isEmptyProject(local) && localTrimmed());
     const notices = [];

@@ -22,64 +22,6 @@
         "height": 262,
         "depth": 119
       },
-      "terminals": {
-        "included": false,
-        "blocks": [
-          {
-            "role": "N+PE",
-            "position": "top"
-          },
-          {
-            "role": "N+PE",
-            "position": "bottom"
-          }
-        ],
-        "accessories": [
-          {
-            "article": "1SPE007715F0743",
-            "role": "PE",
-            "clamps": [
-              [
-                7,
-                16
-              ],
-              [
-                9,
-                6
-              ]
-            ],
-            "verified": true,
-            "source": "https://vypinace.sk.abb.com/sk/product/detail/32215/32226",
-            "notes": "Клеммник PE (41Z64), ставится на держатель 1SPE007715F0752 для ряда 12 мод."
-          },
-          {
-            "article": "1SPE007715F0733",
-            "role": "N",
-            "clamps": [
-              [
-                7,
-                16
-              ],
-              [
-                9,
-                6
-              ]
-            ],
-            "verified": true,
-            "source": "https://vypinace.sk.abb.com/sk/product/detail/32215/32221",
-            "notes": "Клеммник N, ставится на тот же держатель 1SPE007715F0752."
-          },
-          {
-            "article": "1SPE007715F0752",
-            "role": "holder",
-            "verified": true,
-            "source": "https://vypinace.sk.abb.com/sk/product/detail/32215/32217",
-            "notes": "Держатель клеммников (41Z68) для ряда 12 мод., 16 позиций: на него ставятся клеммники PE и N."
-          }
-        ],
-        "verified": false,
-        "notes": "Без клеммников — по аналогии с 41P12X21 и 41A12X21. Клеммники ставятся на держатель 1SPE007715F0752 (16 позиций, вверху или внизу корпуса) — каталог ABB Mistral (SK16), сайт ABB Словакия."
-      },
       "verified": true,
       "source": "https://new.abb.com/products/1SPE007717F0410"
     },
@@ -99,64 +41,6 @@
         "width": 297,
         "height": 262,
         "depth": 119
-      },
-      "terminals": {
-        "included": false,
-        "blocks": [
-          {
-            "role": "N+PE",
-            "position": "top"
-          },
-          {
-            "role": "N+PE",
-            "position": "bottom"
-          }
-        ],
-        "accessories": [
-          {
-            "article": "1SPE007715F0743",
-            "role": "PE",
-            "clamps": [
-              [
-                7,
-                16
-              ],
-              [
-                9,
-                6
-              ]
-            ],
-            "verified": true,
-            "source": "https://vypinace.sk.abb.com/sk/product/detail/32215/32226",
-            "notes": "Клеммник PE (41Z64), ставится на держатель 1SPE007715F0752 для ряда 12 мод."
-          },
-          {
-            "article": "1SPE007715F0733",
-            "role": "N",
-            "clamps": [
-              [
-                7,
-                16
-              ],
-              [
-                9,
-                6
-              ]
-            ],
-            "verified": true,
-            "source": "https://vypinace.sk.abb.com/sk/product/detail/32215/32221",
-            "notes": "Клеммник N, ставится на тот же держатель 1SPE007715F0752."
-          },
-          {
-            "article": "1SPE007715F0752",
-            "role": "holder",
-            "verified": true,
-            "source": "https://vypinace.sk.abb.com/sk/product/detail/32215/32217",
-            "notes": "Держатель клеммников (41Z68) для ряда 12 мод., 16 позиций: на него ставятся клеммники PE и N."
-          }
-        ],
-        "verified": false,
-        "notes": "Без клеммников — по аналогии с 41P12X21 и 41A12X21. Клеммники ставятся на держатель 1SPE007715F0752 (16 позиций, вверху или внизу корпуса) — каталог ABB Mistral (SK16), сайт ABB Словакия."
       },
       "verified": true,
       "source": "https://new.abb.com/products/1SPE007717F0420"
@@ -178,65 +62,6 @@
         "height": 387,
         "depth": 119
       },
-      "terminals": {
-        "included": false,
-        "blocks": [
-          {
-            "role": "N+PE",
-            "position": "top"
-          },
-          {
-            "role": "N+PE",
-            "position": "bottom"
-          }
-        ],
-        "accessories": [
-          {
-            "article": "1SPE007715F0743",
-            "role": "PE",
-            "clamps": [
-              [
-                7,
-                16
-              ],
-              [
-                9,
-                6
-              ]
-            ],
-            "verified": true,
-            "source": "https://vypinace.sk.abb.com/sk/product/detail/32215/32226",
-            "notes": "Клеммник PE (41Z64), ставится на держатель 1SPE007715F0752 для ряда 12 мод."
-          },
-          {
-            "article": "1SPE007715F0733",
-            "role": "N",
-            "clamps": [
-              [
-                7,
-                16
-              ],
-              [
-                9,
-                6
-              ]
-            ],
-            "verified": true,
-            "source": "https://vypinace.sk.abb.com/sk/product/detail/32215/32221",
-            "notes": "Клеммник N, ставится на тот же держатель 1SPE007715F0752."
-          },
-          {
-            "article": "1SPE007715F0752",
-            "role": "holder",
-            "verified": true,
-            "source": "https://vypinace.sk.abb.com/sk/product/detail/32215/32217",
-            "notes": "Держатель клеммников (41Z68) для ряда 12 мод., 16 позиций: на него ставятся клеммники PE и N."
-          }
-        ],
-        "verified": true,
-        "source": "https://new.abb.com/products/1SPE007717F0510",
-        "notes": "На странице ABB: «Terminal Type: No Terminals». Клеммники ставятся на держатель 1SPE007715F0752 (16 позиций, вверху или внизу корпуса) — каталог ABB Mistral (SK16), сайт ABB Словакия."
-      },
       "verified": true,
       "source": "https://new.abb.com/products/1SPE007717F0510"
     },
@@ -256,64 +81,6 @@
         "width": 297,
         "height": 387,
         "depth": 119
-      },
-      "terminals": {
-        "included": false,
-        "blocks": [
-          {
-            "role": "N+PE",
-            "position": "top"
-          },
-          {
-            "role": "N+PE",
-            "position": "bottom"
-          }
-        ],
-        "accessories": [
-          {
-            "article": "1SPE007715F0743",
-            "role": "PE",
-            "clamps": [
-              [
-                7,
-                16
-              ],
-              [
-                9,
-                6
-              ]
-            ],
-            "verified": true,
-            "source": "https://vypinace.sk.abb.com/sk/product/detail/32215/32226",
-            "notes": "Клеммник PE (41Z64), ставится на держатель 1SPE007715F0752 для ряда 12 мод."
-          },
-          {
-            "article": "1SPE007715F0733",
-            "role": "N",
-            "clamps": [
-              [
-                7,
-                16
-              ],
-              [
-                9,
-                6
-              ]
-            ],
-            "verified": true,
-            "source": "https://vypinace.sk.abb.com/sk/product/detail/32215/32221",
-            "notes": "Клеммник N, ставится на тот же держатель 1SPE007715F0752."
-          },
-          {
-            "article": "1SPE007715F0752",
-            "role": "holder",
-            "verified": true,
-            "source": "https://vypinace.sk.abb.com/sk/product/detail/32215/32217",
-            "notes": "Держатель клеммников (41Z68) для ряда 12 мод., 16 позиций: на него ставятся клеммники PE и N."
-          }
-        ],
-        "verified": false,
-        "notes": "Без клеммников — по аналогии с 41P12X21 и 41A12X21. Клеммники ставятся на держатель 1SPE007715F0752 (16 позиций, вверху или внизу корпуса) — каталог ABB Mistral (SK16), сайт ABB Словакия."
       },
       "verified": true,
       "source": "https://new.abb.com/products/1SPE007717F0520"
@@ -335,64 +102,6 @@
         "height": 512,
         "depth": 119
       },
-      "terminals": {
-        "included": false,
-        "blocks": [
-          {
-            "role": "N+PE",
-            "position": "top"
-          },
-          {
-            "role": "N+PE",
-            "position": "bottom"
-          }
-        ],
-        "accessories": [
-          {
-            "article": "1SPE007715F0743",
-            "role": "PE",
-            "clamps": [
-              [
-                7,
-                16
-              ],
-              [
-                9,
-                6
-              ]
-            ],
-            "verified": true,
-            "source": "https://vypinace.sk.abb.com/sk/product/detail/32215/32226",
-            "notes": "Клеммник PE (41Z64), ставится на держатель 1SPE007715F0752 для ряда 12 мод."
-          },
-          {
-            "article": "1SPE007715F0733",
-            "role": "N",
-            "clamps": [
-              [
-                7,
-                16
-              ],
-              [
-                9,
-                6
-              ]
-            ],
-            "verified": true,
-            "source": "https://vypinace.sk.abb.com/sk/product/detail/32215/32221",
-            "notes": "Клеммник N, ставится на тот же держатель 1SPE007715F0752."
-          },
-          {
-            "article": "1SPE007715F0752",
-            "role": "holder",
-            "verified": true,
-            "source": "https://vypinace.sk.abb.com/sk/product/detail/32215/32217",
-            "notes": "Держатель клеммников (41Z68) для ряда 12 мод., 16 позиций: на него ставятся клеммники PE и N."
-          }
-        ],
-        "verified": false,
-        "notes": "Без клеммников — по аналогии с 41P12X21 и 41A12X21. Клеммники ставятся на держатель 1SPE007715F0752 (16 позиций, вверху или внизу корпуса) — каталог ABB Mistral (SK16), сайт ABB Словакия."
-      },
       "verified": true,
       "source": "https://new.abb.com/products/1SPE007717F0610"
     },
@@ -412,64 +121,6 @@
         "width": 297,
         "height": 512,
         "depth": 119
-      },
-      "terminals": {
-        "included": false,
-        "blocks": [
-          {
-            "role": "N+PE",
-            "position": "top"
-          },
-          {
-            "role": "N+PE",
-            "position": "bottom"
-          }
-        ],
-        "accessories": [
-          {
-            "article": "1SPE007715F0743",
-            "role": "PE",
-            "clamps": [
-              [
-                7,
-                16
-              ],
-              [
-                9,
-                6
-              ]
-            ],
-            "verified": true,
-            "source": "https://vypinace.sk.abb.com/sk/product/detail/32215/32226",
-            "notes": "Клеммник PE (41Z64), ставится на держатель 1SPE007715F0752 для ряда 12 мод."
-          },
-          {
-            "article": "1SPE007715F0733",
-            "role": "N",
-            "clamps": [
-              [
-                7,
-                16
-              ],
-              [
-                9,
-                6
-              ]
-            ],
-            "verified": true,
-            "source": "https://vypinace.sk.abb.com/sk/product/detail/32215/32221",
-            "notes": "Клеммник N, ставится на тот же держатель 1SPE007715F0752."
-          },
-          {
-            "article": "1SPE007715F0752",
-            "role": "holder",
-            "verified": true,
-            "source": "https://vypinace.sk.abb.com/sk/product/detail/32215/32217",
-            "notes": "Держатель клеммников (41Z68) для ряда 12 мод., 16 позиций: на него ставятся клеммники PE и N."
-          }
-        ],
-        "verified": false,
-        "notes": "Без клеммников — по аналогии с 41P12X21 и 41A12X21. Клеммники ставятся на держатель 1SPE007715F0752 (16 позиций, вверху или внизу корпуса) — каталог ABB Mistral (SK16), сайт ABB Словакия."
       },
       "verified": true,
       "source": "https://new.abb.com/products/1SPE007717F0620"
@@ -491,64 +142,6 @@
         "height": 659,
         "depth": 119
       },
-      "terminals": {
-        "included": false,
-        "blocks": [
-          {
-            "role": "N+PE",
-            "position": "top"
-          },
-          {
-            "role": "N+PE",
-            "position": "bottom"
-          }
-        ],
-        "accessories": [
-          {
-            "article": "1SPE007715F0743",
-            "role": "PE",
-            "clamps": [
-              [
-                7,
-                16
-              ],
-              [
-                9,
-                6
-              ]
-            ],
-            "verified": true,
-            "source": "https://vypinace.sk.abb.com/sk/product/detail/32215/32226",
-            "notes": "Клеммник PE (41Z64), ставится на держатель 1SPE007715F0752 для ряда 12 мод."
-          },
-          {
-            "article": "1SPE007715F0733",
-            "role": "N",
-            "clamps": [
-              [
-                7,
-                16
-              ],
-              [
-                9,
-                6
-              ]
-            ],
-            "verified": true,
-            "source": "https://vypinace.sk.abb.com/sk/product/detail/32215/32221",
-            "notes": "Клеммник N, ставится на тот же держатель 1SPE007715F0752."
-          },
-          {
-            "article": "1SPE007715F0752",
-            "role": "holder",
-            "verified": true,
-            "source": "https://vypinace.sk.abb.com/sk/product/detail/32215/32217",
-            "notes": "Держатель клеммников (41Z68) для ряда 12 мод., 16 позиций: на него ставятся клеммники PE и N."
-          }
-        ],
-        "verified": false,
-        "notes": "Без клеммников — по аналогии с 41P12X21 и 41A12X21. Клеммники ставятся на держатель 1SPE007715F0752 (16 позиций, вверху или внизу корпуса) — каталог ABB Mistral (SK16), сайт ABB Словакия."
-      },
       "verified": true,
       "source": "https://new.abb.com/products/1SPE007717F0710"
     },
@@ -568,64 +161,6 @@
         "width": 297,
         "height": 659,
         "depth": 119
-      },
-      "terminals": {
-        "included": false,
-        "blocks": [
-          {
-            "role": "N+PE",
-            "position": "top"
-          },
-          {
-            "role": "N+PE",
-            "position": "bottom"
-          }
-        ],
-        "accessories": [
-          {
-            "article": "1SPE007715F0743",
-            "role": "PE",
-            "clamps": [
-              [
-                7,
-                16
-              ],
-              [
-                9,
-                6
-              ]
-            ],
-            "verified": true,
-            "source": "https://vypinace.sk.abb.com/sk/product/detail/32215/32226",
-            "notes": "Клеммник PE (41Z64), ставится на держатель 1SPE007715F0752 для ряда 12 мод."
-          },
-          {
-            "article": "1SPE007715F0733",
-            "role": "N",
-            "clamps": [
-              [
-                7,
-                16
-              ],
-              [
-                9,
-                6
-              ]
-            ],
-            "verified": true,
-            "source": "https://vypinace.sk.abb.com/sk/product/detail/32215/32221",
-            "notes": "Клеммник N, ставится на тот же держатель 1SPE007715F0752."
-          },
-          {
-            "article": "1SPE007715F0752",
-            "role": "holder",
-            "verified": true,
-            "source": "https://vypinace.sk.abb.com/sk/product/detail/32215/32217",
-            "notes": "Держатель клеммников (41Z68) для ряда 12 мод., 16 позиций: на него ставятся клеммники PE и N."
-          }
-        ],
-        "verified": false,
-        "notes": "Без клеммников — по аналогии с 41P12X21 и 41A12X21. Клеммники ставятся на держатель 1SPE007715F0752 (16 позиций, вверху или внизу корпуса) — каталог ABB Mistral (SK16), сайт ABB Словакия."
       },
       "verified": true,
       "source": "https://new.abb.com/products/1SPE007717F0720"
@@ -647,64 +182,6 @@
         "height": 250,
         "depth": 107
       },
-      "terminals": {
-        "included": false,
-        "blocks": [
-          {
-            "role": "N+PE",
-            "position": "top"
-          },
-          {
-            "role": "N+PE",
-            "position": "bottom"
-          }
-        ],
-        "accessories": [
-          {
-            "article": "1SPE007715F0743",
-            "role": "PE",
-            "clamps": [
-              [
-                7,
-                16
-              ],
-              [
-                9,
-                6
-              ]
-            ],
-            "verified": true,
-            "source": "https://vypinace.sk.abb.com/sk/product/detail/32215/32226",
-            "notes": "Клеммник PE (41Z64), ставится на держатель 1SPE007715F0752 для ряда 12 мод."
-          },
-          {
-            "article": "1SPE007715F0733",
-            "role": "N",
-            "clamps": [
-              [
-                7,
-                16
-              ],
-              [
-                9,
-                6
-              ]
-            ],
-            "verified": true,
-            "source": "https://vypinace.sk.abb.com/sk/product/detail/32215/32221",
-            "notes": "Клеммник N, ставится на тот же держатель 1SPE007715F0752."
-          },
-          {
-            "article": "1SPE007715F0752",
-            "role": "holder",
-            "verified": true,
-            "source": "https://vypinace.sk.abb.com/sk/product/detail/32215/32217",
-            "notes": "Держатель клеммников (41Z68) для ряда 12 мод., 16 позиций: на него ставятся клеммники PE и N."
-          }
-        ],
-        "verified": false,
-        "notes": "Без клеммников — по аналогии с 41P12X21 и 41A12X21. Клеммники ставятся на держатель 1SPE007715F0752 (16 позиций, вверху или внизу корпуса) — каталог ABB Mistral (SK16), сайт ABB Словакия."
-      },
       "verified": true,
       "source": "https://new.abb.com/products/1SLM004100A1103"
     },
@@ -724,64 +201,6 @@
         "width": 320,
         "height": 250,
         "depth": 107
-      },
-      "terminals": {
-        "included": false,
-        "blocks": [
-          {
-            "role": "N+PE",
-            "position": "top"
-          },
-          {
-            "role": "N+PE",
-            "position": "bottom"
-          }
-        ],
-        "accessories": [
-          {
-            "article": "1SPE007715F0743",
-            "role": "PE",
-            "clamps": [
-              [
-                7,
-                16
-              ],
-              [
-                9,
-                6
-              ]
-            ],
-            "verified": true,
-            "source": "https://vypinace.sk.abb.com/sk/product/detail/32215/32226",
-            "notes": "Клеммник PE (41Z64), ставится на держатель 1SPE007715F0752 для ряда 12 мод."
-          },
-          {
-            "article": "1SPE007715F0733",
-            "role": "N",
-            "clamps": [
-              [
-                7,
-                16
-              ],
-              [
-                9,
-                6
-              ]
-            ],
-            "verified": true,
-            "source": "https://vypinace.sk.abb.com/sk/product/detail/32215/32221",
-            "notes": "Клеммник N, ставится на тот же держатель 1SPE007715F0752."
-          },
-          {
-            "article": "1SPE007715F0752",
-            "role": "holder",
-            "verified": true,
-            "source": "https://vypinace.sk.abb.com/sk/product/detail/32215/32217",
-            "notes": "Держатель клеммников (41Z68) для ряда 12 мод., 16 позиций: на него ставятся клеммники PE и N."
-          }
-        ],
-        "verified": false,
-        "notes": "Без клеммников — по аналогии с 41P12X21 и 41A12X21. Клеммники ставятся на держатель 1SPE007715F0752 (16 позиций, вверху или внизу корпуса) — каталог ABB Mistral (SK16), сайт ABB Словакия."
       },
       "verified": true,
       "source": "https://new.abb.com/products/1SLM004100A1203"
@@ -803,65 +222,6 @@
         "height": 435,
         "depth": 107
       },
-      "terminals": {
-        "included": false,
-        "blocks": [
-          {
-            "role": "N+PE",
-            "position": "top"
-          },
-          {
-            "role": "N+PE",
-            "position": "bottom"
-          }
-        ],
-        "accessories": [
-          {
-            "article": "1SPE007715F0743",
-            "role": "PE",
-            "clamps": [
-              [
-                7,
-                16
-              ],
-              [
-                9,
-                6
-              ]
-            ],
-            "verified": true,
-            "source": "https://vypinace.sk.abb.com/sk/product/detail/32215/32226",
-            "notes": "Клеммник PE (41Z64), ставится на держатель 1SPE007715F0752 для ряда 12 мод."
-          },
-          {
-            "article": "1SPE007715F0733",
-            "role": "N",
-            "clamps": [
-              [
-                7,
-                16
-              ],
-              [
-                9,
-                6
-              ]
-            ],
-            "verified": true,
-            "source": "https://vypinace.sk.abb.com/sk/product/detail/32215/32221",
-            "notes": "Клеммник N, ставится на тот же держатель 1SPE007715F0752."
-          },
-          {
-            "article": "1SPE007715F0752",
-            "role": "holder",
-            "verified": true,
-            "source": "https://vypinace.sk.abb.com/sk/product/detail/32215/32217",
-            "notes": "Держатель клеммников (41Z68) для ряда 12 мод., 16 позиций: на него ставятся клеммники PE и N."
-          }
-        ],
-        "verified": true,
-        "source": "https://new.abb.com/products/1SLM004100A1105",
-        "notes": "На странице ABB: «Terminal Type: No Terminals». Клеммники ставятся на держатель 1SPE007715F0752 (16 позиций, вверху или внизу корпуса) — каталог ABB Mistral (SK16), сайт ABB Словакия."
-      },
       "verified": true,
       "source": "https://new.abb.com/products/1SLM004100A1105"
     },
@@ -881,64 +241,6 @@
         "width": 320,
         "height": 435,
         "depth": 107
-      },
-      "terminals": {
-        "included": false,
-        "blocks": [
-          {
-            "role": "N+PE",
-            "position": "top"
-          },
-          {
-            "role": "N+PE",
-            "position": "bottom"
-          }
-        ],
-        "accessories": [
-          {
-            "article": "1SPE007715F0743",
-            "role": "PE",
-            "clamps": [
-              [
-                7,
-                16
-              ],
-              [
-                9,
-                6
-              ]
-            ],
-            "verified": true,
-            "source": "https://vypinace.sk.abb.com/sk/product/detail/32215/32226",
-            "notes": "Клеммник PE (41Z64), ставится на держатель 1SPE007715F0752 для ряда 12 мод."
-          },
-          {
-            "article": "1SPE007715F0733",
-            "role": "N",
-            "clamps": [
-              [
-                7,
-                16
-              ],
-              [
-                9,
-                6
-              ]
-            ],
-            "verified": true,
-            "source": "https://vypinace.sk.abb.com/sk/product/detail/32215/32221",
-            "notes": "Клеммник N, ставится на тот же держатель 1SPE007715F0752."
-          },
-          {
-            "article": "1SPE007715F0752",
-            "role": "holder",
-            "verified": true,
-            "source": "https://vypinace.sk.abb.com/sk/product/detail/32215/32217",
-            "notes": "Держатель клеммников (41Z68) для ряда 12 мод., 16 позиций: на него ставятся клеммники PE и N."
-          }
-        ],
-        "verified": false,
-        "notes": "Без клеммников — по аналогии с 41P12X21 и 41A12X21. Клеммники ставятся на держатель 1SPE007715F0752 (16 позиций, вверху или внизу корпуса) — каталог ABB Mistral (SK16), сайт ABB Словакия."
       },
       "verified": true,
       "source": "https://new.abb.com/products/1SLM004100A1205"
@@ -960,64 +262,6 @@
         "height": 600,
         "depth": 107
       },
-      "terminals": {
-        "included": false,
-        "blocks": [
-          {
-            "role": "N+PE",
-            "position": "top"
-          },
-          {
-            "role": "N+PE",
-            "position": "bottom"
-          }
-        ],
-        "accessories": [
-          {
-            "article": "1SPE007715F0743",
-            "role": "PE",
-            "clamps": [
-              [
-                7,
-                16
-              ],
-              [
-                9,
-                6
-              ]
-            ],
-            "verified": true,
-            "source": "https://vypinace.sk.abb.com/sk/product/detail/32215/32226",
-            "notes": "Клеммник PE (41Z64), ставится на держатель 1SPE007715F0752 для ряда 12 мод."
-          },
-          {
-            "article": "1SPE007715F0733",
-            "role": "N",
-            "clamps": [
-              [
-                7,
-                16
-              ],
-              [
-                9,
-                6
-              ]
-            ],
-            "verified": true,
-            "source": "https://vypinace.sk.abb.com/sk/product/detail/32215/32221",
-            "notes": "Клеммник N, ставится на тот же держатель 1SPE007715F0752."
-          },
-          {
-            "article": "1SPE007715F0752",
-            "role": "holder",
-            "verified": true,
-            "source": "https://vypinace.sk.abb.com/sk/product/detail/32215/32217",
-            "notes": "Держатель клеммников (41Z68) для ряда 12 мод., 16 позиций: на него ставятся клеммники PE и N."
-          }
-        ],
-        "verified": false,
-        "notes": "Без клеммников — по аналогии с 41P12X21 и 41A12X21. Клеммники ставятся на держатель 1SPE007715F0752 (16 позиций, вверху или внизу корпуса) — каталог ABB Mistral (SK16), сайт ABB Словакия."
-      },
       "verified": true,
       "source": "https://new.abb.com/products/1SLM004100A1107"
     },
@@ -1037,64 +281,6 @@
         "width": 320,
         "height": 600,
         "depth": 107
-      },
-      "terminals": {
-        "included": false,
-        "blocks": [
-          {
-            "role": "N+PE",
-            "position": "top"
-          },
-          {
-            "role": "N+PE",
-            "position": "bottom"
-          }
-        ],
-        "accessories": [
-          {
-            "article": "1SPE007715F0743",
-            "role": "PE",
-            "clamps": [
-              [
-                7,
-                16
-              ],
-              [
-                9,
-                6
-              ]
-            ],
-            "verified": true,
-            "source": "https://vypinace.sk.abb.com/sk/product/detail/32215/32226",
-            "notes": "Клеммник PE (41Z64), ставится на держатель 1SPE007715F0752 для ряда 12 мод."
-          },
-          {
-            "article": "1SPE007715F0733",
-            "role": "N",
-            "clamps": [
-              [
-                7,
-                16
-              ],
-              [
-                9,
-                6
-              ]
-            ],
-            "verified": true,
-            "source": "https://vypinace.sk.abb.com/sk/product/detail/32215/32221",
-            "notes": "Клеммник N, ставится на тот же держатель 1SPE007715F0752."
-          },
-          {
-            "article": "1SPE007715F0752",
-            "role": "holder",
-            "verified": true,
-            "source": "https://vypinace.sk.abb.com/sk/product/detail/32215/32217",
-            "notes": "Держатель клеммников (41Z68) для ряда 12 мод., 16 позиций: на него ставятся клеммники PE и N."
-          }
-        ],
-        "verified": false,
-        "notes": "Без клеммников — по аналогии с 41P12X21 и 41A12X21. Клеммники ставятся на держатель 1SPE007715F0752 (16 позиций, вверху или внизу корпуса) — каталог ABB Mistral (SK16), сайт ABB Словакия."
       },
       "verified": true,
       "source": "https://new.abb.com/products/1SLM004100A1207"
@@ -1116,64 +302,6 @@
         "height": 735,
         "depth": 107
       },
-      "terminals": {
-        "included": false,
-        "blocks": [
-          {
-            "role": "N+PE",
-            "position": "top"
-          },
-          {
-            "role": "N+PE",
-            "position": "bottom"
-          }
-        ],
-        "accessories": [
-          {
-            "article": "1SPE007715F0743",
-            "role": "PE",
-            "clamps": [
-              [
-                7,
-                16
-              ],
-              [
-                9,
-                6
-              ]
-            ],
-            "verified": true,
-            "source": "https://vypinace.sk.abb.com/sk/product/detail/32215/32226",
-            "notes": "Клеммник PE (41Z64), ставится на держатель 1SPE007715F0752 для ряда 12 мод."
-          },
-          {
-            "article": "1SPE007715F0733",
-            "role": "N",
-            "clamps": [
-              [
-                7,
-                16
-              ],
-              [
-                9,
-                6
-              ]
-            ],
-            "verified": true,
-            "source": "https://vypinace.sk.abb.com/sk/product/detail/32215/32221",
-            "notes": "Клеммник N, ставится на тот же держатель 1SPE007715F0752."
-          },
-          {
-            "article": "1SPE007715F0752",
-            "role": "holder",
-            "verified": true,
-            "source": "https://vypinace.sk.abb.com/sk/product/detail/32215/32217",
-            "notes": "Держатель клеммников (41Z68) для ряда 12 мод., 16 позиций: на него ставятся клеммники PE и N."
-          }
-        ],
-        "verified": false,
-        "notes": "Без клеммников — по аналогии с 41P12X21 и 41A12X21. Клеммники ставятся на держатель 1SPE007715F0752 (16 позиций, вверху или внизу корпуса) — каталог ABB Mistral (SK16), сайт ABB Словакия."
-      },
       "verified": true,
       "source": "https://new.abb.com/products/1SLM004100A1108"
     },
@@ -1193,64 +321,6 @@
         "width": 320,
         "height": 735,
         "depth": 107
-      },
-      "terminals": {
-        "included": false,
-        "blocks": [
-          {
-            "role": "N+PE",
-            "position": "top"
-          },
-          {
-            "role": "N+PE",
-            "position": "bottom"
-          }
-        ],
-        "accessories": [
-          {
-            "article": "1SPE007715F0743",
-            "role": "PE",
-            "clamps": [
-              [
-                7,
-                16
-              ],
-              [
-                9,
-                6
-              ]
-            ],
-            "verified": true,
-            "source": "https://vypinace.sk.abb.com/sk/product/detail/32215/32226",
-            "notes": "Клеммник PE (41Z64), ставится на держатель 1SPE007715F0752 для ряда 12 мод."
-          },
-          {
-            "article": "1SPE007715F0733",
-            "role": "N",
-            "clamps": [
-              [
-                7,
-                16
-              ],
-              [
-                9,
-                6
-              ]
-            ],
-            "verified": true,
-            "source": "https://vypinace.sk.abb.com/sk/product/detail/32215/32221",
-            "notes": "Клеммник N, ставится на тот же держатель 1SPE007715F0752."
-          },
-          {
-            "article": "1SPE007715F0752",
-            "role": "holder",
-            "verified": true,
-            "source": "https://vypinace.sk.abb.com/sk/product/detail/32215/32217",
-            "notes": "Держатель клеммников (41Z68) для ряда 12 мод., 16 позиций: на него ставятся клеммники PE и N."
-          }
-        ],
-        "verified": false,
-        "notes": "Без клеммников — по аналогии с 41P12X21 и 41A12X21. Клеммники ставятся на держатель 1SPE007715F0752 (16 позиций, вверху или внизу корпуса) — каталог ABB Mistral (SK16), сайт ABB Словакия."
       },
       "verified": true,
       "source": "https://new.abb.com/products/1SLM004100A1208"
@@ -4063,6 +3133,580 @@
       "verified": true,
       "source": "https://library.e.abb.com/public/3edf5531106644e1866fa8857e07a6e6/A_ELSB_Cat_2022_04_Accessories%20for%20MCBs%20and%20RCDs.pdf",
       "notes": "Вводная клемма 6–50 мм² для гребёнок PS (по стр. 4/33: SZ-ESK 6–35 мм² — 100 A, 6–50 мм² — 125 A). Есть SZ-ESK 2 (6–35 мм², 2CDL200001R3501). Каталог ABB «Accessories for MCBs, RCDs, AFDDs» 2022 (9AKK107991A8329), стр. 4/65."
+    }
+  ],
+  "terminalCarriers": [
+    {
+      "id": "abb-1spe007715f0752",
+      "brand": "abb",
+      "kind": "carrier",
+      "article": "1SPE007715F0752",
+      "lengthMm": 264,
+      "positions": [
+        "top",
+        "bottom"
+      ],
+      "enclosureIds": [
+        "abb-1spe007717f0410",
+        "abb-1spe007717f0420",
+        "abb-1spe007717f0510",
+        "abb-1spe007717f0520",
+        "abb-1spe007717f0610",
+        "abb-1spe007717f0620",
+        "abb-1spe007717f0710",
+        "abb-1spe007717f0720",
+        "abb-1slm004100a1103",
+        "abb-1slm004100a1203",
+        "abb-1slm004100a1105",
+        "abb-1slm004100a1205",
+        "abb-1slm004100a1107",
+        "abb-1slm004100a1207",
+        "abb-1slm004100a1108",
+        "abb-1slm004100a1208"
+      ],
+      "verified": false,
+      "source": "https://catalogo-generale.abb.com/quadri-elettrici-di-distribuzione-e-contenitori/mistral/41Z68",
+      "notes": "Держатель клеммников 15×280×15 мм, 16 позиций, вверху или внизу корпуса (страница ABB и инструкция 1SPC8010I5M0201). Полезная длина 264 мм = 16 × ≈16,5 мм — вывод. В комплекте ли он у наших корпусов — не выяснено."
+    }
+  ],
+  "terminalInserts": [
+    {
+      "id": "abb-1spe007715f0731",
+      "brand": "abb",
+      "role": "N",
+      "article": "1SPE007715F0731",
+      "clamps": [
+        [
+          3,
+          16
+        ],
+        [
+          3,
+          6
+        ]
+      ],
+      "widthMm": 49,
+      "color": "blue",
+      "carrierIds": [
+        "abb-1spe007715f0752"
+      ],
+      "verified": true,
+      "source": "https://catalogo-generale.abb.com/quadri-elettrici-di-distribuzione-e-contenitori/mistral/41Z57"
+    },
+    {
+      "id": "abb-1spe007715f0741",
+      "brand": "abb",
+      "role": "PE",
+      "article": "1SPE007715F0741",
+      "clamps": [
+        [
+          3,
+          16
+        ],
+        [
+          3,
+          6
+        ]
+      ],
+      "widthMm": 49,
+      "color": "green",
+      "carrierIds": [
+        "abb-1spe007715f0752"
+      ],
+      "verified": true,
+      "source": "https://catalogo-generale.abb.com/quadri-elettrici-di-distribuzione-e-contenitori/mistral/41Z62"
+    },
+    {
+      "id": "abb-1spe007715f0732",
+      "brand": "abb",
+      "role": "N",
+      "article": "1SPE007715F0732",
+      "clamps": [
+        [
+          5,
+          16
+        ],
+        [
+          6,
+          6
+        ]
+      ],
+      "widthMm": 82,
+      "color": "blue",
+      "carrierIds": [
+        "abb-1spe007715f0752"
+      ],
+      "verified": true,
+      "source": "https://catalogo-generale.abb.com/quadri-elettrici-di-distribuzione-e-contenitori/mistral/41Z58"
+    },
+    {
+      "id": "abb-1spe007715f0742",
+      "brand": "abb",
+      "role": "PE",
+      "article": "1SPE007715F0742",
+      "clamps": [
+        [
+          5,
+          16
+        ],
+        [
+          6,
+          6
+        ]
+      ],
+      "widthMm": 82,
+      "color": "green",
+      "carrierIds": [
+        "abb-1spe007715f0752"
+      ],
+      "verified": true,
+      "source": "https://catalogo-generale.abb.com/quadri-elettrici-di-distribuzione-e-contenitori/mistral/41Z63"
+    },
+    {
+      "id": "abb-1spe007715f0733",
+      "brand": "abb",
+      "role": "N",
+      "article": "1SPE007715F0733",
+      "clamps": [
+        [
+          7,
+          16
+        ],
+        [
+          9,
+          6
+        ]
+      ],
+      "widthMm": 115,
+      "color": "blue",
+      "carrierIds": [
+        "abb-1spe007715f0752"
+      ],
+      "verified": true,
+      "source": "https://catalogo-generale.abb.com/quadri-elettrici-di-distribuzione-e-contenitori/mistral/41Z59"
+    },
+    {
+      "id": "abb-1spe007715f0743",
+      "brand": "abb",
+      "role": "PE",
+      "article": "1SPE007715F0743",
+      "clamps": [
+        [
+          7,
+          16
+        ],
+        [
+          9,
+          6
+        ]
+      ],
+      "widthMm": 115,
+      "color": "green",
+      "carrierIds": [
+        "abb-1spe007715f0752"
+      ],
+      "verified": true,
+      "source": "https://catalogo-generale.abb.com/quadri-elettrici-di-distribuzione-e-contenitori/mistral/41Z64"
+    },
+    {
+      "id": "abb-1spe007715f0734",
+      "brand": "abb",
+      "role": "N",
+      "article": "1SPE007715F0734",
+      "clamps": [
+        [
+          9,
+          16
+        ],
+        [
+          12,
+          6
+        ]
+      ],
+      "widthMm": 148,
+      "color": "blue",
+      "carrierIds": [
+        "abb-1spe007715f0752"
+      ],
+      "verified": true,
+      "source": "https://catalogo-generale.abb.com/quadri-elettrici-di-distribuzione-e-contenitori/mistral/41Z60"
+    },
+    {
+      "id": "abb-1spe007715f0744",
+      "brand": "abb",
+      "role": "PE",
+      "article": "1SPE007715F0744",
+      "clamps": [
+        [
+          9,
+          16
+        ],
+        [
+          12,
+          6
+        ]
+      ],
+      "widthMm": 148,
+      "color": "green",
+      "carrierIds": [
+        "abb-1spe007715f0752"
+      ],
+      "verified": true,
+      "source": "https://catalogo-generale.abb.com/quadri-elettrici-di-distribuzione-e-contenitori/mistral/41Z65"
+    },
+    {
+      "id": "abb-1spe007715f0735",
+      "brand": "abb",
+      "role": "N",
+      "article": "1SPE007715F0735",
+      "clamps": [
+        [
+          11,
+          16
+        ],
+        [
+          15,
+          6
+        ]
+      ],
+      "widthMm": 181,
+      "color": "blue",
+      "carrierIds": [
+        "abb-1spe007715f0752"
+      ],
+      "verified": true,
+      "source": "https://catalogo-generale.abb.com/quadri-elettrici-di-distribuzione-e-contenitori/mistral/41Z61"
+    },
+    {
+      "id": "abb-1spe007715f0745",
+      "brand": "abb",
+      "role": "PE",
+      "article": "1SPE007715F0745",
+      "clamps": [
+        [
+          11,
+          16
+        ],
+        [
+          15,
+          6
+        ]
+      ],
+      "widthMm": 181,
+      "color": "green",
+      "carrierIds": [
+        "abb-1spe007715f0752"
+      ],
+      "verified": true,
+      "source": "https://catalogo-generale.abb.com/quadri-elettrici-di-distribuzione-e-contenitori/mistral/41Z66"
+    },
+    {
+      "id": "abb-1spe007715f9701",
+      "brand": "abb",
+      "role": "N",
+      "article": "1SPE007715F9701",
+      "clamps": [
+        [
+          5,
+          4
+        ]
+      ],
+      "widthMm": 33,
+      "color": "blue",
+      "carrierIds": [
+        "abb-1spe007715f0752"
+      ],
+      "verified": false,
+      "source": "https://catalogo-generale.abb.com/quadri-elettrici-di-distribuzione-e-contenitori/mistral/41Z70",
+      "notes": "Безвинтовой клеммник: ширина в позициях держателя и то, что он встаёт на 1SPE007715F0752, — вывод."
+    },
+    {
+      "id": "abb-1spe007715f9702",
+      "brand": "abb",
+      "role": "N",
+      "article": "1SPE007715F9702",
+      "clamps": [
+        [
+          1,
+          25
+        ],
+        [
+          5,
+          4
+        ]
+      ],
+      "widthMm": 33,
+      "color": "blue",
+      "carrierIds": [
+        "abb-1spe007715f0752"
+      ],
+      "verified": false,
+      "source": "https://catalogo-generale.abb.com/quadri-elettrici-di-distribuzione-e-contenitori/mistral/41Z71",
+      "notes": "Безвинтовой клеммник: ширина в позициях держателя и то, что он встаёт на 1SPE007715F0752, — вывод."
+    },
+    {
+      "id": "abb-1spe007715f9703",
+      "brand": "abb",
+      "role": "N",
+      "article": "1SPE007715F9703",
+      "clamps": [
+        [
+          2,
+          25
+        ],
+        [
+          8,
+          4
+        ]
+      ],
+      "widthMm": 49,
+      "color": "blue",
+      "carrierIds": [
+        "abb-1spe007715f0752"
+      ],
+      "verified": false,
+      "source": "https://catalogo-generale.abb.com/quadri-elettrici-di-distribuzione-e-contenitori/mistral/41Z72",
+      "notes": "Безвинтовой клеммник: ширина в позициях держателя и то, что он встаёт на 1SPE007715F0752, — вывод."
+    },
+    {
+      "id": "abb-1spe007715f9704",
+      "brand": "abb",
+      "role": "N",
+      "article": "1SPE007715F9704",
+      "clamps": [
+        [
+          3,
+          25
+        ],
+        [
+          11,
+          4
+        ]
+      ],
+      "widthMm": 66,
+      "color": "blue",
+      "carrierIds": [
+        "abb-1spe007715f0752"
+      ],
+      "verified": false,
+      "source": "https://catalogo-generale.abb.com/quadri-elettrici-di-distribuzione-e-contenitori/mistral/41Z73",
+      "notes": "Безвинтовой клеммник: ширина в позициях держателя и то, что он встаёт на 1SPE007715F0752, — вывод."
+    },
+    {
+      "id": "abb-1spe007715f9705",
+      "brand": "abb",
+      "role": "N",
+      "article": "1SPE007715F9705",
+      "clamps": [
+        [
+          4,
+          25
+        ],
+        [
+          14,
+          4
+        ]
+      ],
+      "widthMm": 82,
+      "color": "blue",
+      "carrierIds": [
+        "abb-1spe007715f0752"
+      ],
+      "verified": false,
+      "source": "https://catalogo-generale.abb.com/quadri-elettrici-di-distribuzione-e-contenitori/mistral/41Z74",
+      "notes": "Безвинтовой клеммник: ширина в позициях держателя и то, что он встаёт на 1SPE007715F0752, — вывод."
+    },
+    {
+      "id": "abb-1spe007715f9706",
+      "brand": "abb",
+      "role": "N",
+      "article": "1SPE007715F9706",
+      "clamps": [
+        [
+          5,
+          25
+        ],
+        [
+          17,
+          4
+        ]
+      ],
+      "widthMm": 99,
+      "color": "blue",
+      "carrierIds": [
+        "abb-1spe007715f0752"
+      ],
+      "verified": false,
+      "source": "https://catalogo-generale.abb.com/quadri-elettrici-di-distribuzione-e-contenitori/mistral/41Z75",
+      "notes": "Безвинтовой клеммник: ширина в позициях держателя и то, что он встаёт на 1SPE007715F0752, — вывод."
+    },
+    {
+      "id": "abb-1spe007715f9707",
+      "brand": "abb",
+      "role": "N",
+      "article": "1SPE007715F9707",
+      "clamps": [
+        [
+          6,
+          25
+        ],
+        [
+          20,
+          4
+        ]
+      ],
+      "widthMm": 115,
+      "color": "blue",
+      "carrierIds": [
+        "abb-1spe007715f0752"
+      ],
+      "verified": false,
+      "source": "https://catalogo-generale.abb.com/quadri-elettrici-di-distribuzione-e-contenitori/mistral/41Z76",
+      "notes": "Безвинтовой клеммник: ширина в позициях держателя и то, что он встаёт на 1SPE007715F0752, — вывод."
+    },
+    {
+      "id": "abb-1spe007715f9712",
+      "brand": "abb",
+      "role": "PE",
+      "article": "1SPE007715F9712",
+      "clamps": [
+        [
+          1,
+          25
+        ],
+        [
+          5,
+          4
+        ]
+      ],
+      "widthMm": 33,
+      "color": "green",
+      "carrierIds": [
+        "abb-1spe007715f0752"
+      ],
+      "verified": false,
+      "source": "https://catalogo-generale.abb.com/quadri-elettrici-di-distribuzione-e-contenitori/mistral/41Z77",
+      "notes": "Безвинтовой клеммник: ширина в позициях держателя и то, что он встаёт на 1SPE007715F0752, — вывод."
+    },
+    {
+      "id": "abb-1spe007715f9713",
+      "brand": "abb",
+      "role": "PE",
+      "article": "1SPE007715F9713",
+      "clamps": [
+        [
+          2,
+          25
+        ],
+        [
+          8,
+          4
+        ]
+      ],
+      "widthMm": 49,
+      "color": "green",
+      "carrierIds": [
+        "abb-1spe007715f0752"
+      ],
+      "verified": false,
+      "source": "https://catalogo-generale.abb.com/quadri-elettrici-di-distribuzione-e-contenitori/mistral/41Z78",
+      "notes": "Безвинтовой клеммник: ширина в позициях держателя и то, что он встаёт на 1SPE007715F0752, — вывод."
+    },
+    {
+      "id": "abb-1spe007715f9714",
+      "brand": "abb",
+      "role": "PE",
+      "article": "1SPE007715F9714",
+      "clamps": [
+        [
+          3,
+          25
+        ],
+        [
+          11,
+          4
+        ]
+      ],
+      "widthMm": 66,
+      "color": "green",
+      "carrierIds": [
+        "abb-1spe007715f0752"
+      ],
+      "verified": false,
+      "source": "https://catalogo-generale.abb.com/quadri-elettrici-di-distribuzione-e-contenitori/mistral/41Z79",
+      "notes": "Безвинтовой клеммник: ширина в позициях держателя и то, что он встаёт на 1SPE007715F0752, — вывод."
+    },
+    {
+      "id": "abb-1spe007715f9715",
+      "brand": "abb",
+      "role": "PE",
+      "article": "1SPE007715F9715",
+      "clamps": [
+        [
+          4,
+          25
+        ],
+        [
+          14,
+          4
+        ]
+      ],
+      "widthMm": 82,
+      "color": "green",
+      "carrierIds": [
+        "abb-1spe007715f0752"
+      ],
+      "verified": false,
+      "source": "https://catalogo-generale.abb.com/quadri-elettrici-di-distribuzione-e-contenitori/mistral/41Z80",
+      "notes": "Безвинтовой клеммник: ширина в позициях держателя и то, что он встаёт на 1SPE007715F0752, — вывод."
+    },
+    {
+      "id": "abb-1spe007715f9716",
+      "brand": "abb",
+      "role": "PE",
+      "article": "1SPE007715F9716",
+      "clamps": [
+        [
+          5,
+          25
+        ],
+        [
+          17,
+          4
+        ]
+      ],
+      "widthMm": 99,
+      "color": "green",
+      "carrierIds": [
+        "abb-1spe007715f0752"
+      ],
+      "verified": false,
+      "source": "https://catalogo-generale.abb.com/quadri-elettrici-di-distribuzione-e-contenitori/mistral/41Z81",
+      "notes": "Безвинтовой клеммник: ширина в позициях держателя и то, что он встаёт на 1SPE007715F0752, — вывод."
+    },
+    {
+      "id": "abb-1spe007715f9717",
+      "brand": "abb",
+      "role": "PE",
+      "article": "1SPE007715F9717",
+      "clamps": [
+        [
+          6,
+          25
+        ],
+        [
+          20,
+          4
+        ]
+      ],
+      "widthMm": 115,
+      "color": "green",
+      "carrierIds": [
+        "abb-1spe007715f0752"
+      ],
+      "verified": false,
+      "source": "https://catalogo-generale.abb.com/quadri-elettrici-di-distribuzione-e-contenitori/mistral/41Z82",
+      "notes": "Безвинтовой клеммник: ширина в позициях держателя и то, что он встаёт на 1SPE007715F0752, — вывод."
     }
   ]
 }

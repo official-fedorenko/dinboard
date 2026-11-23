@@ -21,56 +21,24 @@
         "height": 236,
         "depth": 107
       },
-      "terminals": {
-        "included": false,
-        "blocks": [
+      "terminalSetup": {
+        "carriers": [
           {
-            "role": "N+PE",
-            "position": "top"
+            "carrierId": "legrand-zone-275",
+            "position": "top",
+            "included": true,
+            "inserts": []
           },
           {
-            "role": "N+PE",
-            "position": "bottom"
+            "carrierId": "legrand-zone-275",
+            "position": "bottom",
+            "included": true,
+            "inserts": []
           }
         ],
-        "accessories": [
-          {
-            "article": "134803",
-            "role": "PE",
-            "clamps": [
-              [
-                12,
-                16
-              ],
-              [
-                12,
-                10
-              ]
-            ],
-            "verified": true,
-            "source": "https://www.legrand.com/ecatalogue/134803-earth-terminal-block-for-12.html",
-            "notes": "Клеммник земли на опоре; совместимость с корпусом — по странице аксессуара Legrand."
-          },
-          {
-            "article": "134813",
-            "role": "N+PE",
-            "clamps": [
-              [
-                24,
-                16
-              ],
-              [
-                24,
-                10
-              ]
-            ],
-            "verified": true,
-            "source": "https://www.legrand.com/ecatalogue/en/catalog/products/earth-neutral-brass-terminal-blocks-with-isolated-support-24-24-holes-134813",
-            "notes": "Клеммник земли и нейтрали на опоре (клеммы: земля + нейтраль поровну)."
-          }
-        ],
-        "verified": false,
-        "notes": "Техлисты Legrand F02563/F02564: корпус «without terminal block», места вверху и внизу (2). Соответствие техлиста артикулу корпуса не сверено."
+        "verified": true,
+        "source": "https://assets.legrand.com/pim/NP-FT-GT/F02563FR-01.pdf",
+        "notes": "Мест под клеммник: 2 (техлист F02563FR-01, «Capacité en bornier»). Как места делятся между верхом и низом — вывод."
       },
       "verified": true,
       "source": "https://www.legrand.com/ecatalogue/135111-practibox-s-surface-mounting-cabinet.html"
@@ -91,56 +59,24 @@
         "height": 386,
         "depth": 108
       },
-      "terminals": {
-        "included": false,
-        "blocks": [
+      "terminalSetup": {
+        "carriers": [
           {
-            "role": "N+PE",
-            "position": "top"
+            "carrierId": "legrand-zone-275",
+            "position": "top",
+            "included": true,
+            "inserts": []
           },
           {
-            "role": "N+PE",
-            "position": "bottom"
+            "carrierId": "legrand-zone-275",
+            "position": "bottom",
+            "included": true,
+            "inserts": []
           }
         ],
-        "accessories": [
-          {
-            "article": "134803",
-            "role": "PE",
-            "clamps": [
-              [
-                12,
-                16
-              ],
-              [
-                12,
-                10
-              ]
-            ],
-            "verified": true,
-            "source": "https://www.legrand.com/ecatalogue/134803-earth-terminal-block-for-12.html",
-            "notes": "Клеммник земли на опоре; совместимость с корпусом — по странице аксессуара Legrand."
-          },
-          {
-            "article": "134813",
-            "role": "N+PE",
-            "clamps": [
-              [
-                24,
-                16
-              ],
-              [
-                24,
-                10
-              ]
-            ],
-            "verified": true,
-            "source": "https://www.legrand.com/ecatalogue/en/catalog/products/earth-neutral-brass-terminal-blocks-with-isolated-support-24-24-holes-134813",
-            "notes": "Клеммник земли и нейтрали на опоре (клеммы: земля + нейтраль поровну)."
-          }
-        ],
-        "verified": false,
-        "notes": "Техлисты Legrand F02563/F02564: корпус «without terminal block», места вверху и внизу (2). Соответствие техлиста артикулу корпуса не сверено."
+        "verified": true,
+        "source": "https://assets.legrand.com/pim/NP-FT-GT/F02563FR-01.pdf",
+        "notes": "Мест под клеммник: 2 (техлист F02563FR-01, «Capacité en bornier»). Как места делятся между верхом и низом — вывод."
       },
       "verified": true,
       "source": "https://assets.legrand.com/pim/NP-FT-GT/F02563EN_03.pdf"
@@ -161,56 +97,24 @@
         "height": 536,
         "depth": 108
       },
-      "terminals": {
-        "included": false,
-        "blocks": [
+      "terminalSetup": {
+        "carriers": [
           {
-            "role": "N+PE",
-            "position": "top"
+            "carrierId": "legrand-zone-275",
+            "position": "top",
+            "included": true,
+            "inserts": []
           },
           {
-            "role": "N+PE",
-            "position": "bottom"
+            "carrierId": "legrand-zone-275",
+            "position": "bottom",
+            "included": true,
+            "inserts": []
           }
         ],
-        "accessories": [
-          {
-            "article": "134803",
-            "role": "PE",
-            "clamps": [
-              [
-                12,
-                16
-              ],
-              [
-                12,
-                10
-              ]
-            ],
-            "verified": true,
-            "source": "https://www.legrand.com/ecatalogue/134803-earth-terminal-block-for-12.html",
-            "notes": "Клеммник земли на опоре; совместимость с корпусом — по странице аксессуара Legrand."
-          },
-          {
-            "article": "134813",
-            "role": "N+PE",
-            "clamps": [
-              [
-                24,
-                16
-              ],
-              [
-                24,
-                10
-              ]
-            ],
-            "verified": true,
-            "source": "https://www.legrand.com/ecatalogue/en/catalog/products/earth-neutral-brass-terminal-blocks-with-isolated-support-24-24-holes-134813",
-            "notes": "Клеммник земли и нейтрали на опоре (клеммы: земля + нейтраль поровну)."
-          }
-        ],
-        "verified": false,
-        "notes": "Техлисты Legrand F02563/F02564: корпус «without terminal block», места вверху и внизу (2). Соответствие техлиста артикулу корпуса не сверено."
+        "verified": true,
+        "source": "https://assets.legrand.com/pim/NP-FT-GT/F02563FR-01.pdf",
+        "notes": "Мест под клеммник: 2 (техлист F02563FR-01, «Capacité en bornier»). Как места делятся между верхом и низом — вывод."
       },
       "verified": true,
       "source": "https://assets.legrand.com/pim/NP-FT-GT/F02563EN_03.pdf"
@@ -231,64 +135,36 @@
         "height": 766,
         "depth": 108
       },
-      "terminals": {
-        "included": false,
-        "blocks": [
+      "terminalSetup": {
+        "carriers": [
           {
-            "role": "N+PE",
-            "position": "top"
+            "carrierId": "legrand-zone-275",
+            "position": "top",
+            "included": true,
+            "inserts": []
           },
           {
-            "role": "N+PE",
-            "position": "top"
+            "carrierId": "legrand-zone-275",
+            "position": "top",
+            "included": true,
+            "inserts": []
           },
           {
-            "role": "N+PE",
-            "position": "bottom"
+            "carrierId": "legrand-zone-275",
+            "position": "bottom",
+            "included": true,
+            "inserts": []
           },
           {
-            "role": "N+PE",
-            "position": "bottom"
+            "carrierId": "legrand-zone-275",
+            "position": "bottom",
+            "included": true,
+            "inserts": []
           }
         ],
-        "accessories": [
-          {
-            "article": "134803",
-            "role": "PE",
-            "clamps": [
-              [
-                12,
-                16
-              ],
-              [
-                12,
-                10
-              ]
-            ],
-            "verified": true,
-            "source": "https://www.legrand.com/ecatalogue/134803-earth-terminal-block-for-12.html",
-            "notes": "Клеммник земли на опоре; совместимость с корпусом — по странице аксессуара Legrand."
-          },
-          {
-            "article": "134813",
-            "role": "N+PE",
-            "clamps": [
-              [
-                24,
-                16
-              ],
-              [
-                24,
-                10
-              ]
-            ],
-            "verified": true,
-            "source": "https://www.legrand.com/ecatalogue/en/catalog/products/earth-neutral-brass-terminal-blocks-with-isolated-support-24-24-holes-134813",
-            "notes": "Клеммник земли и нейтрали на опоре (клеммы: земля + нейтраль поровну)."
-          }
-        ],
-        "verified": false,
-        "notes": "Техлисты Legrand F02563/F02564: корпус «without terminal block», места вверху и внизу (4). Соответствие техлиста артикулу корпуса не сверено."
+        "verified": true,
+        "source": "https://assets.legrand.com/pim/NP-FT-GT/F02563FR-01.pdf",
+        "notes": "Мест под клеммник: 4 (техлист F02563FR-01, «Capacité en bornier»). Как места делятся между верхом и низом — вывод."
       },
       "verified": true,
       "source": "https://www.legrand.com/ecatalogue/135114-practibox-s-surface-mounting-cabinet.html"
@@ -309,56 +185,24 @@
         "height": 236,
         "depth": 107
       },
-      "terminals": {
-        "included": false,
-        "blocks": [
+      "terminalSetup": {
+        "carriers": [
           {
-            "role": "N+PE",
-            "position": "top"
+            "carrierId": "legrand-zone-385",
+            "position": "top",
+            "included": true,
+            "inserts": []
           },
           {
-            "role": "N+PE",
-            "position": "bottom"
+            "carrierId": "legrand-zone-385",
+            "position": "bottom",
+            "included": true,
+            "inserts": []
           }
         ],
-        "accessories": [
-          {
-            "article": "134805",
-            "role": "PE",
-            "clamps": [
-              [
-                1,
-                25
-              ],
-              [
-                26,
-                16
-              ]
-            ],
-            "verified": true,
-            "source": "https://www.legrand.com/ecatalogue/en/catalog/products/earth-brass-terminal-blocks-with-isolated-support-27-holes-134805",
-            "notes": "Клеммник земли на опоре; совместимость с корпусом — по странице аксессуара Legrand."
-          },
-          {
-            "article": "134815",
-            "role": "N+PE",
-            "clamps": [
-              [
-                2,
-                25
-              ],
-              [
-                52,
-                16
-              ]
-            ],
-            "verified": true,
-            "source": "https://www.legrand.com/ecatalogue/en/catalog/products/earth-neutral-brass-terminal-blocks-with-isolated-support-27-27-holes-134815",
-            "notes": "Клеммник земли и нейтрали на опоре (клеммы: земля + нейтраль поровну)."
-          }
-        ],
-        "verified": false,
-        "notes": "Техлисты Legrand F02563/F02564: корпус «without terminal block», места вверху и внизу (2). Соответствие техлиста артикулу корпуса не сверено."
+        "verified": true,
+        "source": "https://assets.legrand.com/pim/NP-FT-GT/F02563FR-01.pdf",
+        "notes": "Мест под клеммник: 2 (техлист F02563FR-01, «Capacité en bornier»). Как места делятся между верхом и низом — вывод."
       },
       "verified": true,
       "source": "https://assets.legrand.com/pim/NP-FT-GT/F02563EN_03.pdf"
@@ -379,56 +223,24 @@
         "height": 386,
         "depth": 108
       },
-      "terminals": {
-        "included": false,
-        "blocks": [
+      "terminalSetup": {
+        "carriers": [
           {
-            "role": "N+PE",
-            "position": "top"
+            "carrierId": "legrand-zone-385",
+            "position": "top",
+            "included": true,
+            "inserts": []
           },
           {
-            "role": "N+PE",
-            "position": "bottom"
+            "carrierId": "legrand-zone-385",
+            "position": "bottom",
+            "included": true,
+            "inserts": []
           }
         ],
-        "accessories": [
-          {
-            "article": "134805",
-            "role": "PE",
-            "clamps": [
-              [
-                1,
-                25
-              ],
-              [
-                26,
-                16
-              ]
-            ],
-            "verified": true,
-            "source": "https://www.legrand.com/ecatalogue/en/catalog/products/earth-brass-terminal-blocks-with-isolated-support-27-holes-134805",
-            "notes": "Клеммник земли на опоре; совместимость с корпусом — по странице аксессуара Legrand."
-          },
-          {
-            "article": "134815",
-            "role": "N+PE",
-            "clamps": [
-              [
-                2,
-                25
-              ],
-              [
-                52,
-                16
-              ]
-            ],
-            "verified": true,
-            "source": "https://www.legrand.com/ecatalogue/en/catalog/products/earth-neutral-brass-terminal-blocks-with-isolated-support-27-27-holes-134815",
-            "notes": "Клеммник земли и нейтрали на опоре (клеммы: земля + нейтраль поровну)."
-          }
-        ],
-        "verified": false,
-        "notes": "Техлисты Legrand F02563/F02564: корпус «without terminal block», места вверху и внизу (2). Соответствие техлиста артикулу корпуса не сверено."
+        "verified": true,
+        "source": "https://assets.legrand.com/pim/NP-FT-GT/F02563FR-01.pdf",
+        "notes": "Мест под клеммник: 2 (техлист F02563FR-01, «Capacité en bornier»). Как места делятся между верхом и низом — вывод."
       },
       "verified": true,
       "source": "https://assets.legrand.com/pim/NP-FT-GT/F02563EN_03.pdf"
@@ -449,64 +261,36 @@
         "height": 616,
         "depth": 108
       },
-      "terminals": {
-        "included": false,
-        "blocks": [
+      "terminalSetup": {
+        "carriers": [
           {
-            "role": "N+PE",
-            "position": "top"
+            "carrierId": "legrand-zone-385",
+            "position": "top",
+            "included": true,
+            "inserts": []
           },
           {
-            "role": "N+PE",
-            "position": "top"
+            "carrierId": "legrand-zone-385",
+            "position": "top",
+            "included": true,
+            "inserts": []
           },
           {
-            "role": "N+PE",
-            "position": "bottom"
+            "carrierId": "legrand-zone-385",
+            "position": "bottom",
+            "included": true,
+            "inserts": []
           },
           {
-            "role": "N+PE",
-            "position": "bottom"
+            "carrierId": "legrand-zone-385",
+            "position": "bottom",
+            "included": true,
+            "inserts": []
           }
         ],
-        "accessories": [
-          {
-            "article": "134805",
-            "role": "PE",
-            "clamps": [
-              [
-                1,
-                25
-              ],
-              [
-                26,
-                16
-              ]
-            ],
-            "verified": true,
-            "source": "https://www.legrand.com/ecatalogue/en/catalog/products/earth-brass-terminal-blocks-with-isolated-support-27-holes-134805",
-            "notes": "Клеммник земли на опоре; совместимость с корпусом — по странице аксессуара Legrand."
-          },
-          {
-            "article": "134815",
-            "role": "N+PE",
-            "clamps": [
-              [
-                2,
-                25
-              ],
-              [
-                52,
-                16
-              ]
-            ],
-            "verified": true,
-            "source": "https://www.legrand.com/ecatalogue/en/catalog/products/earth-neutral-brass-terminal-blocks-with-isolated-support-27-27-holes-134815",
-            "notes": "Клеммник земли и нейтрали на опоре (клеммы: земля + нейтраль поровну)."
-          }
-        ],
-        "verified": false,
-        "notes": "Техлисты Legrand F02563/F02564: корпус «without terminal block», места вверху и внизу (4). Соответствие техлиста артикулу корпуса не сверено."
+        "verified": true,
+        "source": "https://assets.legrand.com/pim/NP-FT-GT/F02563FR-01.pdf",
+        "notes": "Мест под клеммник: 4 (техлист F02563FR-01, «Capacité en bornier»). Как места делятся между верхом и низом — вывод."
       },
       "verified": true,
       "source": "https://www.legrand.com/ecatalogue/137118-practibox-s-surface-mounting-cabinet.html"
@@ -527,64 +311,36 @@
         "height": 766,
         "depth": 108
       },
-      "terminals": {
-        "included": false,
-        "blocks": [
+      "terminalSetup": {
+        "carriers": [
           {
-            "role": "N+PE",
-            "position": "top"
+            "carrierId": "legrand-zone-385",
+            "position": "top",
+            "included": true,
+            "inserts": []
           },
           {
-            "role": "N+PE",
-            "position": "top"
+            "carrierId": "legrand-zone-385",
+            "position": "top",
+            "included": true,
+            "inserts": []
           },
           {
-            "role": "N+PE",
-            "position": "bottom"
+            "carrierId": "legrand-zone-385",
+            "position": "bottom",
+            "included": true,
+            "inserts": []
           },
           {
-            "role": "N+PE",
-            "position": "bottom"
+            "carrierId": "legrand-zone-385",
+            "position": "bottom",
+            "included": true,
+            "inserts": []
           }
         ],
-        "accessories": [
-          {
-            "article": "134805",
-            "role": "PE",
-            "clamps": [
-              [
-                1,
-                25
-              ],
-              [
-                26,
-                16
-              ]
-            ],
-            "verified": true,
-            "source": "https://www.legrand.com/ecatalogue/en/catalog/products/earth-brass-terminal-blocks-with-isolated-support-27-holes-134805",
-            "notes": "Клеммник земли на опоре; совместимость с корпусом — по странице аксессуара Legrand."
-          },
-          {
-            "article": "134815",
-            "role": "N+PE",
-            "clamps": [
-              [
-                2,
-                25
-              ],
-              [
-                52,
-                16
-              ]
-            ],
-            "verified": true,
-            "source": "https://www.legrand.com/ecatalogue/en/catalog/products/earth-neutral-brass-terminal-blocks-with-isolated-support-27-27-holes-134815",
-            "notes": "Клеммник земли и нейтрали на опоре (клеммы: земля + нейтраль поровну)."
-          }
-        ],
-        "verified": false,
-        "notes": "Техлисты Legrand F02563/F02564: корпус «without terminal block», места вверху и внизу (4). Соответствие техлиста артикулу корпуса не сверено."
+        "verified": true,
+        "source": "https://assets.legrand.com/pim/NP-FT-GT/F02563FR-01.pdf",
+        "notes": "Мест под клеммник: 4 (техлист F02563FR-01, «Capacité en bornier»). Как места делятся между верхом и низом — вывод."
       },
       "verified": true,
       "source": "https://assets.legrand.com/pim/NP-FT-GT/F02563EN_03.pdf"
@@ -605,56 +361,24 @@
         "height": 236,
         "depth": 107
       },
-      "terminals": {
-        "included": false,
-        "blocks": [
+      "terminalSetup": {
+        "carriers": [
           {
-            "role": "N+PE",
-            "position": "top"
+            "carrierId": "legrand-zone-275",
+            "position": "top",
+            "included": true,
+            "inserts": []
           },
           {
-            "role": "N+PE",
-            "position": "bottom"
+            "carrierId": "legrand-zone-275",
+            "position": "bottom",
+            "included": true,
+            "inserts": []
           }
         ],
-        "accessories": [
-          {
-            "article": "134803",
-            "role": "PE",
-            "clamps": [
-              [
-                12,
-                16
-              ],
-              [
-                12,
-                10
-              ]
-            ],
-            "verified": true,
-            "source": "https://www.legrand.com/ecatalogue/134803-earth-terminal-block-for-12.html",
-            "notes": "Клеммник земли на опоре; совместимость с корпусом — по странице аксессуара Legrand."
-          },
-          {
-            "article": "134813",
-            "role": "N+PE",
-            "clamps": [
-              [
-                24,
-                16
-              ],
-              [
-                24,
-                10
-              ]
-            ],
-            "verified": true,
-            "source": "https://www.legrand.com/ecatalogue/en/catalog/products/earth-neutral-brass-terminal-blocks-with-isolated-support-24-24-holes-134813",
-            "notes": "Клеммник земли и нейтрали на опоре (клеммы: земля + нейтраль поровну)."
-          }
-        ],
-        "verified": false,
-        "notes": "Техлисты Legrand F02563/F02564: корпус «without terminal block», места вверху и внизу (2). Соответствие техлиста артикулу корпуса не сверено."
+        "verified": true,
+        "source": "https://assets.legrand.com/pim/NP-FT-GT/F02563FR-01.pdf",
+        "notes": "Мест под клеммник: 2 (техлист F02563FR-01, «Capacité en bornier»). Как места делятся между верхом и низом — вывод."
       },
       "verified": true,
       "source": "https://www.legrand.com/ecatalogue/en/catalog/products/practibox-s-surface-mounting-din-cabinet-1-row-of-12-modules-white-door-135101"
@@ -675,56 +399,24 @@
         "height": 386,
         "depth": 108
       },
-      "terminals": {
-        "included": false,
-        "blocks": [
+      "terminalSetup": {
+        "carriers": [
           {
-            "role": "N+PE",
-            "position": "top"
+            "carrierId": "legrand-zone-275",
+            "position": "top",
+            "included": true,
+            "inserts": []
           },
           {
-            "role": "N+PE",
-            "position": "bottom"
+            "carrierId": "legrand-zone-275",
+            "position": "bottom",
+            "included": true,
+            "inserts": []
           }
         ],
-        "accessories": [
-          {
-            "article": "134803",
-            "role": "PE",
-            "clamps": [
-              [
-                12,
-                16
-              ],
-              [
-                12,
-                10
-              ]
-            ],
-            "verified": true,
-            "source": "https://www.legrand.com/ecatalogue/134803-earth-terminal-block-for-12.html",
-            "notes": "Клеммник земли на опоре; совместимость с корпусом — по странице аксессуара Legrand."
-          },
-          {
-            "article": "134813",
-            "role": "N+PE",
-            "clamps": [
-              [
-                24,
-                16
-              ],
-              [
-                24,
-                10
-              ]
-            ],
-            "verified": true,
-            "source": "https://www.legrand.com/ecatalogue/en/catalog/products/earth-neutral-brass-terminal-blocks-with-isolated-support-24-24-holes-134813",
-            "notes": "Клеммник земли и нейтрали на опоре (клеммы: земля + нейтраль поровну)."
-          }
-        ],
-        "verified": false,
-        "notes": "Техлисты Legrand F02563/F02564: корпус «without terminal block», места вверху и внизу (2). Соответствие техлиста артикулу корпуса не сверено."
+        "verified": true,
+        "source": "https://assets.legrand.com/pim/NP-FT-GT/F02563FR-01.pdf",
+        "notes": "Мест под клеммник: 2 (техлист F02563FR-01, «Capacité en bornier»). Как места делятся между верхом и низом — вывод."
       },
       "verified": true,
       "source": "https://assets.legrand.com/pim/NP-FT-GT/F02563EN_03.pdf"
@@ -745,56 +437,24 @@
         "height": 536,
         "depth": 108
       },
-      "terminals": {
-        "included": false,
-        "blocks": [
+      "terminalSetup": {
+        "carriers": [
           {
-            "role": "N+PE",
-            "position": "top"
+            "carrierId": "legrand-zone-275",
+            "position": "top",
+            "included": true,
+            "inserts": []
           },
           {
-            "role": "N+PE",
-            "position": "bottom"
+            "carrierId": "legrand-zone-275",
+            "position": "bottom",
+            "included": true,
+            "inserts": []
           }
         ],
-        "accessories": [
-          {
-            "article": "134803",
-            "role": "PE",
-            "clamps": [
-              [
-                12,
-                16
-              ],
-              [
-                12,
-                10
-              ]
-            ],
-            "verified": true,
-            "source": "https://www.legrand.com/ecatalogue/134803-earth-terminal-block-for-12.html",
-            "notes": "Клеммник земли на опоре; совместимость с корпусом — по странице аксессуара Legrand."
-          },
-          {
-            "article": "134813",
-            "role": "N+PE",
-            "clamps": [
-              [
-                24,
-                16
-              ],
-              [
-                24,
-                10
-              ]
-            ],
-            "verified": true,
-            "source": "https://www.legrand.com/ecatalogue/en/catalog/products/earth-neutral-brass-terminal-blocks-with-isolated-support-24-24-holes-134813",
-            "notes": "Клеммник земли и нейтрали на опоре (клеммы: земля + нейтраль поровну)."
-          }
-        ],
-        "verified": false,
-        "notes": "Техлисты Legrand F02563/F02564: корпус «without terminal block», места вверху и внизу (2). Соответствие техлиста артикулу корпуса не сверено."
+        "verified": true,
+        "source": "https://assets.legrand.com/pim/NP-FT-GT/F02563FR-01.pdf",
+        "notes": "Мест под клеммник: 2 (техлист F02563FR-01, «Capacité en bornier»). Как места делятся между верхом и низом — вывод."
       },
       "verified": true,
       "source": "https://assets.legrand.com/pim/NP-FT-GT/F02563EN_03.pdf"
@@ -815,64 +475,36 @@
         "height": 766,
         "depth": 108
       },
-      "terminals": {
-        "included": false,
-        "blocks": [
+      "terminalSetup": {
+        "carriers": [
           {
-            "role": "N+PE",
-            "position": "top"
+            "carrierId": "legrand-zone-275",
+            "position": "top",
+            "included": true,
+            "inserts": []
           },
           {
-            "role": "N+PE",
-            "position": "top"
+            "carrierId": "legrand-zone-275",
+            "position": "top",
+            "included": true,
+            "inserts": []
           },
           {
-            "role": "N+PE",
-            "position": "bottom"
+            "carrierId": "legrand-zone-275",
+            "position": "bottom",
+            "included": true,
+            "inserts": []
           },
           {
-            "role": "N+PE",
-            "position": "bottom"
+            "carrierId": "legrand-zone-275",
+            "position": "bottom",
+            "included": true,
+            "inserts": []
           }
         ],
-        "accessories": [
-          {
-            "article": "134803",
-            "role": "PE",
-            "clamps": [
-              [
-                12,
-                16
-              ],
-              [
-                12,
-                10
-              ]
-            ],
-            "verified": true,
-            "source": "https://www.legrand.com/ecatalogue/134803-earth-terminal-block-for-12.html",
-            "notes": "Клеммник земли на опоре; совместимость с корпусом — по странице аксессуара Legrand."
-          },
-          {
-            "article": "134813",
-            "role": "N+PE",
-            "clamps": [
-              [
-                24,
-                16
-              ],
-              [
-                24,
-                10
-              ]
-            ],
-            "verified": true,
-            "source": "https://www.legrand.com/ecatalogue/en/catalog/products/earth-neutral-brass-terminal-blocks-with-isolated-support-24-24-holes-134813",
-            "notes": "Клеммник земли и нейтрали на опоре (клеммы: земля + нейтраль поровну)."
-          }
-        ],
-        "verified": false,
-        "notes": "Техлисты Legrand F02563/F02564: корпус «without terminal block», места вверху и внизу (4). Соответствие техлиста артикулу корпуса не сверено."
+        "verified": true,
+        "source": "https://assets.legrand.com/pim/NP-FT-GT/F02563FR-01.pdf",
+        "notes": "Мест под клеммник: 4 (техлист F02563FR-01, «Capacité en bornier»). Как места делятся между верхом и низом — вывод."
       },
       "verified": true,
       "source": "https://assets.legrand.com/pim/NP-FT-GT/F02563EN_03.pdf"
@@ -893,56 +525,24 @@
         "height": 236,
         "depth": 107
       },
-      "terminals": {
-        "included": false,
-        "blocks": [
+      "terminalSetup": {
+        "carriers": [
           {
-            "role": "N+PE",
-            "position": "top"
+            "carrierId": "legrand-zone-385",
+            "position": "top",
+            "included": true,
+            "inserts": []
           },
           {
-            "role": "N+PE",
-            "position": "bottom"
+            "carrierId": "legrand-zone-385",
+            "position": "bottom",
+            "included": true,
+            "inserts": []
           }
         ],
-        "accessories": [
-          {
-            "article": "134805",
-            "role": "PE",
-            "clamps": [
-              [
-                1,
-                25
-              ],
-              [
-                26,
-                16
-              ]
-            ],
-            "verified": true,
-            "source": "https://www.legrand.com/ecatalogue/en/catalog/products/earth-brass-terminal-blocks-with-isolated-support-27-holes-134805",
-            "notes": "Клеммник земли на опоре; совместимость с корпусом — по странице аксессуара Legrand."
-          },
-          {
-            "article": "134815",
-            "role": "N+PE",
-            "clamps": [
-              [
-                2,
-                25
-              ],
-              [
-                52,
-                16
-              ]
-            ],
-            "verified": true,
-            "source": "https://www.legrand.com/ecatalogue/en/catalog/products/earth-neutral-brass-terminal-blocks-with-isolated-support-27-27-holes-134815",
-            "notes": "Клеммник земли и нейтрали на опоре (клеммы: земля + нейтраль поровну)."
-          }
-        ],
-        "verified": false,
-        "notes": "Техлисты Legrand F02563/F02564: корпус «without terminal block», места вверху и внизу (2). Соответствие техлиста артикулу корпуса не сверено."
+        "verified": true,
+        "source": "https://assets.legrand.com/pim/NP-FT-GT/F02563FR-01.pdf",
+        "notes": "Мест под клеммник: 2 (техлист F02563FR-01, «Capacité en bornier»). Как места делятся между верхом и низом — вывод."
       },
       "verified": true,
       "source": "https://assets.legrand.com/pim/NP-FT-GT/F02563EN_03.pdf"
@@ -963,56 +563,24 @@
         "height": 386,
         "depth": 108
       },
-      "terminals": {
-        "included": false,
-        "blocks": [
+      "terminalSetup": {
+        "carriers": [
           {
-            "role": "N+PE",
-            "position": "top"
+            "carrierId": "legrand-zone-385",
+            "position": "top",
+            "included": true,
+            "inserts": []
           },
           {
-            "role": "N+PE",
-            "position": "bottom"
+            "carrierId": "legrand-zone-385",
+            "position": "bottom",
+            "included": true,
+            "inserts": []
           }
         ],
-        "accessories": [
-          {
-            "article": "134805",
-            "role": "PE",
-            "clamps": [
-              [
-                1,
-                25
-              ],
-              [
-                26,
-                16
-              ]
-            ],
-            "verified": true,
-            "source": "https://www.legrand.com/ecatalogue/en/catalog/products/earth-brass-terminal-blocks-with-isolated-support-27-holes-134805",
-            "notes": "Клеммник земли на опоре; совместимость с корпусом — по странице аксессуара Legrand."
-          },
-          {
-            "article": "134815",
-            "role": "N+PE",
-            "clamps": [
-              [
-                2,
-                25
-              ],
-              [
-                52,
-                16
-              ]
-            ],
-            "verified": true,
-            "source": "https://www.legrand.com/ecatalogue/en/catalog/products/earth-neutral-brass-terminal-blocks-with-isolated-support-27-27-holes-134815",
-            "notes": "Клеммник земли и нейтрали на опоре (клеммы: земля + нейтраль поровну)."
-          }
-        ],
-        "verified": false,
-        "notes": "Техлисты Legrand F02563/F02564: корпус «without terminal block», места вверху и внизу (2). Соответствие техлиста артикулу корпуса не сверено."
+        "verified": true,
+        "source": "https://assets.legrand.com/pim/NP-FT-GT/F02563FR-01.pdf",
+        "notes": "Мест под клеммник: 2 (техлист F02563FR-01, «Capacité en bornier»). Как места делятся между верхом и низом — вывод."
       },
       "verified": true,
       "source": "https://assets.legrand.com/pim/NP-FT-GT/F02563EN_03.pdf"
@@ -1033,64 +601,36 @@
         "height": 616,
         "depth": 108
       },
-      "terminals": {
-        "included": false,
-        "blocks": [
+      "terminalSetup": {
+        "carriers": [
           {
-            "role": "N+PE",
-            "position": "top"
+            "carrierId": "legrand-zone-385",
+            "position": "top",
+            "included": true,
+            "inserts": []
           },
           {
-            "role": "N+PE",
-            "position": "top"
+            "carrierId": "legrand-zone-385",
+            "position": "top",
+            "included": true,
+            "inserts": []
           },
           {
-            "role": "N+PE",
-            "position": "bottom"
+            "carrierId": "legrand-zone-385",
+            "position": "bottom",
+            "included": true,
+            "inserts": []
           },
           {
-            "role": "N+PE",
-            "position": "bottom"
+            "carrierId": "legrand-zone-385",
+            "position": "bottom",
+            "included": true,
+            "inserts": []
           }
         ],
-        "accessories": [
-          {
-            "article": "134805",
-            "role": "PE",
-            "clamps": [
-              [
-                1,
-                25
-              ],
-              [
-                26,
-                16
-              ]
-            ],
-            "verified": true,
-            "source": "https://www.legrand.com/ecatalogue/en/catalog/products/earth-brass-terminal-blocks-with-isolated-support-27-holes-134805",
-            "notes": "Клеммник земли на опоре; совместимость с корпусом — по странице аксессуара Legrand."
-          },
-          {
-            "article": "134815",
-            "role": "N+PE",
-            "clamps": [
-              [
-                2,
-                25
-              ],
-              [
-                52,
-                16
-              ]
-            ],
-            "verified": true,
-            "source": "https://www.legrand.com/ecatalogue/en/catalog/products/earth-neutral-brass-terminal-blocks-with-isolated-support-27-27-holes-134815",
-            "notes": "Клеммник земли и нейтрали на опоре (клеммы: земля + нейтраль поровну)."
-          }
-        ],
-        "verified": false,
-        "notes": "Техлисты Legrand F02563/F02564: корпус «without terminal block», места вверху и внизу (4). Соответствие техлиста артикулу корпуса не сверено."
+        "verified": true,
+        "source": "https://assets.legrand.com/pim/NP-FT-GT/F02563FR-01.pdf",
+        "notes": "Мест под клеммник: 4 (техлист F02563FR-01, «Capacité en bornier»). Как места делятся между верхом и низом — вывод."
       },
       "verified": true,
       "source": "https://assets.legrand.com/pim/NP-FT-GT/F02563EN_03.pdf"
@@ -1111,64 +651,36 @@
         "height": 766,
         "depth": 108
       },
-      "terminals": {
-        "included": false,
-        "blocks": [
+      "terminalSetup": {
+        "carriers": [
           {
-            "role": "N+PE",
-            "position": "top"
+            "carrierId": "legrand-zone-385",
+            "position": "top",
+            "included": true,
+            "inserts": []
           },
           {
-            "role": "N+PE",
-            "position": "top"
+            "carrierId": "legrand-zone-385",
+            "position": "top",
+            "included": true,
+            "inserts": []
           },
           {
-            "role": "N+PE",
-            "position": "bottom"
+            "carrierId": "legrand-zone-385",
+            "position": "bottom",
+            "included": true,
+            "inserts": []
           },
           {
-            "role": "N+PE",
-            "position": "bottom"
+            "carrierId": "legrand-zone-385",
+            "position": "bottom",
+            "included": true,
+            "inserts": []
           }
         ],
-        "accessories": [
-          {
-            "article": "134805",
-            "role": "PE",
-            "clamps": [
-              [
-                1,
-                25
-              ],
-              [
-                26,
-                16
-              ]
-            ],
-            "verified": true,
-            "source": "https://www.legrand.com/ecatalogue/en/catalog/products/earth-brass-terminal-blocks-with-isolated-support-27-holes-134805",
-            "notes": "Клеммник земли на опоре; совместимость с корпусом — по странице аксессуара Legrand."
-          },
-          {
-            "article": "134815",
-            "role": "N+PE",
-            "clamps": [
-              [
-                2,
-                25
-              ],
-              [
-                52,
-                16
-              ]
-            ],
-            "verified": true,
-            "source": "https://www.legrand.com/ecatalogue/en/catalog/products/earth-neutral-brass-terminal-blocks-with-isolated-support-27-27-holes-134815",
-            "notes": "Клеммник земли и нейтрали на опоре (клеммы: земля + нейтраль поровну)."
-          }
-        ],
-        "verified": false,
-        "notes": "Техлисты Legrand F02563/F02564: корпус «without terminal block», места вверху и внизу (4). Соответствие техлиста артикулу корпуса не сверено."
+        "verified": true,
+        "source": "https://assets.legrand.com/pim/NP-FT-GT/F02563FR-01.pdf",
+        "notes": "Мест под клеммник: 4 (техлист F02563FR-01, «Capacité en bornier»). Как места делятся между верхом и низом — вывод."
       },
       "verified": true,
       "source": "https://assets.legrand.com/pim/NP-FT-GT/F02563EN_03.pdf"
@@ -1189,56 +701,24 @@
         "height": 235,
         "depth": 104
       },
-      "terminals": {
-        "included": false,
-        "blocks": [
+      "terminalSetup": {
+        "carriers": [
           {
-            "role": "N+PE",
-            "position": "top"
+            "carrierId": "legrand-zone-226",
+            "position": "top",
+            "included": true,
+            "inserts": []
           },
           {
-            "role": "N+PE",
-            "position": "bottom"
+            "carrierId": "legrand-zone-226",
+            "position": "bottom",
+            "included": true,
+            "inserts": []
           }
         ],
-        "accessories": [
-          {
-            "article": "134802",
-            "role": "PE",
-            "clamps": [
-              [
-                12,
-                16
-              ],
-              [
-                12,
-                10
-              ]
-            ],
-            "verified": true,
-            "source": "https://www.legrand.com/ecatalogue/en/catalog/products/earth-brass-terminal-blocks-with-isolated-support-24-holes-134802",
-            "notes": "Клеммник земли на опоре; совместимость с корпусом — по странице аксессуара Legrand."
-          },
-          {
-            "article": "134812",
-            "role": "N+PE",
-            "clamps": [
-              [
-                24,
-                16
-              ],
-              [
-                24,
-                10
-              ]
-            ],
-            "verified": true,
-            "source": "https://www.legrand.com/ecatalogue/en/catalog/products/earth-neutral-brass-terminal-blocks-with-isolated-support-24-24-holes-134812",
-            "notes": "Клеммник земли и нейтрали на опоре (клеммы: земля + нейтраль поровну)."
-          }
-        ],
-        "verified": false,
-        "notes": "Техлисты Legrand F02563/F02564: корпус «without terminal block», места вверху и внизу (2). Соответствие техлиста артикулу корпуса не сверено."
+        "verified": true,
+        "source": "https://assets.legrand.com/pim/NP-FT-GT/F02563FR-01.pdf",
+        "notes": "Мест под клеммник: 2 (техлист F02563FR-01, «Capacité en bornier»). Как места делятся между верхом и низом — вывод."
       },
       "verified": true,
       "source": "https://assets.legrand.com/pim/NP-FT-GT/F02564EN_04.pdf"
@@ -1259,56 +739,24 @@
         "height": 385,
         "depth": 105
       },
-      "terminals": {
-        "included": false,
-        "blocks": [
+      "terminalSetup": {
+        "carriers": [
           {
-            "role": "N+PE",
-            "position": "top"
+            "carrierId": "legrand-zone-226",
+            "position": "top",
+            "included": true,
+            "inserts": []
           },
           {
-            "role": "N+PE",
-            "position": "bottom"
+            "carrierId": "legrand-zone-226",
+            "position": "bottom",
+            "included": true,
+            "inserts": []
           }
         ],
-        "accessories": [
-          {
-            "article": "134802",
-            "role": "PE",
-            "clamps": [
-              [
-                12,
-                16
-              ],
-              [
-                12,
-                10
-              ]
-            ],
-            "verified": true,
-            "source": "https://www.legrand.com/ecatalogue/en/catalog/products/earth-brass-terminal-blocks-with-isolated-support-24-holes-134802",
-            "notes": "Клеммник земли на опоре; совместимость с корпусом — по странице аксессуара Legrand."
-          },
-          {
-            "article": "134812",
-            "role": "N+PE",
-            "clamps": [
-              [
-                24,
-                16
-              ],
-              [
-                24,
-                10
-              ]
-            ],
-            "verified": true,
-            "source": "https://www.legrand.com/ecatalogue/en/catalog/products/earth-neutral-brass-terminal-blocks-with-isolated-support-24-24-holes-134812",
-            "notes": "Клеммник земли и нейтрали на опоре (клеммы: земля + нейтраль поровну)."
-          }
-        ],
-        "verified": false,
-        "notes": "Техлисты Legrand F02563/F02564: корпус «without terminal block», места вверху и внизу (2). Соответствие техлиста артикулу корпуса не сверено."
+        "verified": true,
+        "source": "https://assets.legrand.com/pim/NP-FT-GT/F02563FR-01.pdf",
+        "notes": "Мест под клеммник: 2 (техлист F02563FR-01, «Capacité en bornier»). Как места делятся между верхом и низом — вывод."
       },
       "verified": true,
       "source": "https://www.legrand.com/ecatalogue/en/catalog/products/practibox-s-flush-mounting-din-cabinet-for-masonry-wall-2-rows-of-12-modules-smoked-door-135012"
@@ -1329,56 +777,24 @@
         "height": 535,
         "depth": 105
       },
-      "terminals": {
-        "included": false,
-        "blocks": [
+      "terminalSetup": {
+        "carriers": [
           {
-            "role": "N+PE",
-            "position": "top"
+            "carrierId": "legrand-zone-226",
+            "position": "top",
+            "included": true,
+            "inserts": []
           },
           {
-            "role": "N+PE",
-            "position": "bottom"
+            "carrierId": "legrand-zone-226",
+            "position": "bottom",
+            "included": true,
+            "inserts": []
           }
         ],
-        "accessories": [
-          {
-            "article": "134802",
-            "role": "PE",
-            "clamps": [
-              [
-                12,
-                16
-              ],
-              [
-                12,
-                10
-              ]
-            ],
-            "verified": true,
-            "source": "https://www.legrand.com/ecatalogue/en/catalog/products/earth-brass-terminal-blocks-with-isolated-support-24-holes-134802",
-            "notes": "Клеммник земли на опоре; совместимость с корпусом — по странице аксессуара Legrand."
-          },
-          {
-            "article": "134812",
-            "role": "N+PE",
-            "clamps": [
-              [
-                24,
-                16
-              ],
-              [
-                24,
-                10
-              ]
-            ],
-            "verified": true,
-            "source": "https://www.legrand.com/ecatalogue/en/catalog/products/earth-neutral-brass-terminal-blocks-with-isolated-support-24-24-holes-134812",
-            "notes": "Клеммник земли и нейтрали на опоре (клеммы: земля + нейтраль поровну)."
-          }
-        ],
-        "verified": false,
-        "notes": "Техлисты Legrand F02563/F02564: корпус «without terminal block», места вверху и внизу (2). Соответствие техлиста артикулу корпуса не сверено."
+        "verified": true,
+        "source": "https://assets.legrand.com/pim/NP-FT-GT/F02563FR-01.pdf",
+        "notes": "Мест под клеммник: 2 (техлист F02563FR-01, «Capacité en bornier»). Как места делятся между верхом и низом — вывод."
       },
       "verified": true,
       "source": "https://assets.legrand.com/pim/NP-FT-GT/F02564EN_04.pdf"
@@ -1399,64 +815,36 @@
         "height": 765,
         "depth": 105
       },
-      "terminals": {
-        "included": false,
-        "blocks": [
+      "terminalSetup": {
+        "carriers": [
           {
-            "role": "N+PE",
-            "position": "top"
+            "carrierId": "legrand-zone-226",
+            "position": "top",
+            "included": true,
+            "inserts": []
           },
           {
-            "role": "N+PE",
-            "position": "top"
+            "carrierId": "legrand-zone-226",
+            "position": "top",
+            "included": true,
+            "inserts": []
           },
           {
-            "role": "N+PE",
-            "position": "bottom"
+            "carrierId": "legrand-zone-226",
+            "position": "bottom",
+            "included": true,
+            "inserts": []
           },
           {
-            "role": "N+PE",
-            "position": "bottom"
+            "carrierId": "legrand-zone-226",
+            "position": "bottom",
+            "included": true,
+            "inserts": []
           }
         ],
-        "accessories": [
-          {
-            "article": "134802",
-            "role": "PE",
-            "clamps": [
-              [
-                12,
-                16
-              ],
-              [
-                12,
-                10
-              ]
-            ],
-            "verified": true,
-            "source": "https://www.legrand.com/ecatalogue/en/catalog/products/earth-brass-terminal-blocks-with-isolated-support-24-holes-134802",
-            "notes": "Клеммник земли на опоре; совместимость с корпусом — по странице аксессуара Legrand."
-          },
-          {
-            "article": "134812",
-            "role": "N+PE",
-            "clamps": [
-              [
-                24,
-                16
-              ],
-              [
-                24,
-                10
-              ]
-            ],
-            "verified": true,
-            "source": "https://www.legrand.com/ecatalogue/en/catalog/products/earth-neutral-brass-terminal-blocks-with-isolated-support-24-24-holes-134812",
-            "notes": "Клеммник земли и нейтрали на опоре (клеммы: земля + нейтраль поровну)."
-          }
-        ],
-        "verified": false,
-        "notes": "Техлисты Legrand F02563/F02564: корпус «without terminal block», места вверху и внизу (4). Соответствие техлиста артикулу корпуса не сверено."
+        "verified": true,
+        "source": "https://assets.legrand.com/pim/NP-FT-GT/F02563FR-01.pdf",
+        "notes": "Мест под клеммник: 4 (техлист F02563FR-01, «Capacité en bornier»). Как места делятся между верхом и низом — вывод."
       },
       "verified": true,
       "source": "https://assets.legrand.com/pim/NP-FT-GT/F02564EN_04.pdf"
@@ -1477,56 +865,24 @@
         "height": 235,
         "depth": 104
       },
-      "terminals": {
-        "included": false,
-        "blocks": [
+      "terminalSetup": {
+        "carriers": [
           {
-            "role": "N+PE",
-            "position": "top"
+            "carrierId": "legrand-zone-276",
+            "position": "top",
+            "included": true,
+            "inserts": []
           },
           {
-            "role": "N+PE",
-            "position": "bottom"
+            "carrierId": "legrand-zone-276",
+            "position": "bottom",
+            "included": true,
+            "inserts": []
           }
         ],
-        "accessories": [
-          {
-            "article": "134804",
-            "role": "PE",
-            "clamps": [
-              [
-                1,
-                25
-              ],
-              [
-                12,
-                16
-              ]
-            ],
-            "verified": true,
-            "source": "https://www.legrand.com/ecatalogue/en/catalog/products/earth-brass-terminal-blocks-with-isolated-support-13-holes-134804",
-            "notes": "Клеммник земли на опоре; совместимость с корпусом — по странице аксессуара Legrand."
-          },
-          {
-            "article": "134814",
-            "role": "N+PE",
-            "clamps": [
-              [
-                2,
-                25
-              ],
-              [
-                24,
-                16
-              ]
-            ],
-            "verified": true,
-            "source": "https://www.legrand.com/ecatalogue/en/catalog/products/earth-neutral-brass-terminal-blocks-with-isolated-support-13-13-holes-134814",
-            "notes": "Клеммник земли и нейтрали на опоре (клеммы: земля + нейтраль поровну)."
-          }
-        ],
-        "verified": false,
-        "notes": "Техлисты Legrand F02563/F02564: корпус «without terminal block», места вверху и внизу (2). Соответствие техлиста артикулу корпуса не сверено."
+        "verified": true,
+        "source": "https://assets.legrand.com/pim/NP-FT-GT/F02563FR-01.pdf",
+        "notes": "Мест под клеммник: 2 (техлист F02563FR-01, «Capacité en bornier»). Как места делятся между верхом и низом — вывод."
       },
       "verified": true,
       "source": "https://assets.legrand.com/pim/NP-FT-GT/F02564EN_04.pdf"
@@ -1547,56 +903,24 @@
         "height": 385,
         "depth": 105
       },
-      "terminals": {
-        "included": false,
-        "blocks": [
+      "terminalSetup": {
+        "carriers": [
           {
-            "role": "N+PE",
-            "position": "top"
+            "carrierId": "legrand-zone-385",
+            "position": "top",
+            "included": true,
+            "inserts": []
           },
           {
-            "role": "N+PE",
-            "position": "bottom"
+            "carrierId": "legrand-zone-385",
+            "position": "bottom",
+            "included": true,
+            "inserts": []
           }
         ],
-        "accessories": [
-          {
-            "article": "134805",
-            "role": "PE",
-            "clamps": [
-              [
-                1,
-                25
-              ],
-              [
-                26,
-                16
-              ]
-            ],
-            "verified": true,
-            "source": "https://www.legrand.com/ecatalogue/en/catalog/products/earth-brass-terminal-blocks-with-isolated-support-27-holes-134805",
-            "notes": "Клеммник земли на опоре; совместимость с корпусом — по странице аксессуара Legrand."
-          },
-          {
-            "article": "134815",
-            "role": "N+PE",
-            "clamps": [
-              [
-                2,
-                25
-              ],
-              [
-                52,
-                16
-              ]
-            ],
-            "verified": true,
-            "source": "https://www.legrand.com/ecatalogue/en/catalog/products/earth-neutral-brass-terminal-blocks-with-isolated-support-27-27-holes-134815",
-            "notes": "Клеммник земли и нейтрали на опоре (клеммы: земля + нейтраль поровну)."
-          }
-        ],
-        "verified": false,
-        "notes": "Техлисты Legrand F02563/F02564: корпус «without terminal block», места вверху и внизу (2). Соответствие техлиста артикулу корпуса не сверено."
+        "verified": true,
+        "source": "https://assets.legrand.com/pim/NP-FT-GT/F02563FR-01.pdf",
+        "notes": "Мест под клеммник: 2 (техлист F02563FR-01, «Capacité en bornier»). Как места делятся между верхом и низом — вывод."
       },
       "verified": true,
       "source": "https://www.legrand.com/ecatalogue/en/catalog/products/practibox-s-flush-mounting-din-cabinet-for-masonry-wall-2-rows-of-18-modules-smoked-door-137017"
@@ -1617,64 +941,36 @@
         "height": 615,
         "depth": 105
       },
-      "terminals": {
-        "included": false,
-        "blocks": [
+      "terminalSetup": {
+        "carriers": [
           {
-            "role": "N+PE",
-            "position": "top"
+            "carrierId": "legrand-zone-385",
+            "position": "top",
+            "included": true,
+            "inserts": []
           },
           {
-            "role": "N+PE",
-            "position": "top"
+            "carrierId": "legrand-zone-385",
+            "position": "top",
+            "included": true,
+            "inserts": []
           },
           {
-            "role": "N+PE",
-            "position": "bottom"
+            "carrierId": "legrand-zone-385",
+            "position": "bottom",
+            "included": true,
+            "inserts": []
           },
           {
-            "role": "N+PE",
-            "position": "bottom"
+            "carrierId": "legrand-zone-385",
+            "position": "bottom",
+            "included": true,
+            "inserts": []
           }
         ],
-        "accessories": [
-          {
-            "article": "134805",
-            "role": "PE",
-            "clamps": [
-              [
-                1,
-                25
-              ],
-              [
-                26,
-                16
-              ]
-            ],
-            "verified": true,
-            "source": "https://www.legrand.com/ecatalogue/en/catalog/products/earth-brass-terminal-blocks-with-isolated-support-27-holes-134805",
-            "notes": "Клеммник земли на опоре; совместимость с корпусом — по странице аксессуара Legrand."
-          },
-          {
-            "article": "134815",
-            "role": "N+PE",
-            "clamps": [
-              [
-                2,
-                25
-              ],
-              [
-                52,
-                16
-              ]
-            ],
-            "verified": true,
-            "source": "https://www.legrand.com/ecatalogue/en/catalog/products/earth-neutral-brass-terminal-blocks-with-isolated-support-27-27-holes-134815",
-            "notes": "Клеммник земли и нейтрали на опоре (клеммы: земля + нейтраль поровну)."
-          }
-        ],
-        "verified": false,
-        "notes": "Техлисты Legrand F02563/F02564: корпус «without terminal block», места вверху и внизу (4). Соответствие техлиста артикулу корпуса не сверено."
+        "verified": true,
+        "source": "https://assets.legrand.com/pim/NP-FT-GT/F02563FR-01.pdf",
+        "notes": "Мест под клеммник: 4 (техлист F02563FR-01, «Capacité en bornier»). Как места делятся между верхом и низом — вывод."
       },
       "verified": true,
       "source": "https://assets.legrand.com/pim/NP-FT-GT/F02564EN_04.pdf"
@@ -1695,64 +991,36 @@
         "height": 765,
         "depth": 105
       },
-      "terminals": {
-        "included": false,
-        "blocks": [
+      "terminalSetup": {
+        "carriers": [
           {
-            "role": "N+PE",
-            "position": "top"
+            "carrierId": "legrand-zone-385",
+            "position": "top",
+            "included": true,
+            "inserts": []
           },
           {
-            "role": "N+PE",
-            "position": "top"
+            "carrierId": "legrand-zone-385",
+            "position": "top",
+            "included": true,
+            "inserts": []
           },
           {
-            "role": "N+PE",
-            "position": "bottom"
+            "carrierId": "legrand-zone-385",
+            "position": "bottom",
+            "included": true,
+            "inserts": []
           },
           {
-            "role": "N+PE",
-            "position": "bottom"
+            "carrierId": "legrand-zone-385",
+            "position": "bottom",
+            "included": true,
+            "inserts": []
           }
         ],
-        "accessories": [
-          {
-            "article": "134805",
-            "role": "PE",
-            "clamps": [
-              [
-                1,
-                25
-              ],
-              [
-                26,
-                16
-              ]
-            ],
-            "verified": true,
-            "source": "https://www.legrand.com/ecatalogue/en/catalog/products/earth-brass-terminal-blocks-with-isolated-support-27-holes-134805",
-            "notes": "Клеммник земли на опоре; совместимость с корпусом — по странице аксессуара Legrand."
-          },
-          {
-            "article": "134815",
-            "role": "N+PE",
-            "clamps": [
-              [
-                2,
-                25
-              ],
-              [
-                52,
-                16
-              ]
-            ],
-            "verified": true,
-            "source": "https://www.legrand.com/ecatalogue/en/catalog/products/earth-neutral-brass-terminal-blocks-with-isolated-support-27-27-holes-134815",
-            "notes": "Клеммник земли и нейтрали на опоре (клеммы: земля + нейтраль поровну)."
-          }
-        ],
-        "verified": false,
-        "notes": "Техлисты Legrand F02563/F02564: корпус «without terminal block», места вверху и внизу (4). Соответствие техлиста артикулу корпуса не сверено."
+        "verified": true,
+        "source": "https://assets.legrand.com/pim/NP-FT-GT/F02563FR-01.pdf",
+        "notes": "Мест под клеммник: 4 (техлист F02563FR-01, «Capacité en bornier»). Как места делятся между верхом и низом — вывод."
       },
       "verified": true,
       "source": "https://assets.legrand.com/pim/NP-FT-GT/F02564EN_04.pdf"
@@ -5703,6 +4971,286 @@
       "verified": true,
       "source": "https://assets.legrand.com/pim/NP-FT-GT/F04448EN-02.pdf",
       "notes": "Изолирующая заглушка концов гребёнок 1P/1P+N (404926/28/33/37). Для остальных — заглушки 404970–404976 по техлисту."
+    }
+  ],
+  "terminalCarriers": [
+    {
+      "id": "legrand-zone-226",
+      "brand": "legrand",
+      "kind": "zone",
+      "series": "Practibox S",
+      "lengthMm": 226,
+      "positions": [
+        "top",
+        "bottom"
+      ],
+      "enclosureIds": [
+        "legrand-135011",
+        "legrand-135012",
+        "legrand-135013",
+        "legrand-135014"
+      ],
+      "verified": true,
+      "source": "https://assets.legrand.com/pim/NP-FT-GT/F02563FR-01.pdf",
+      "notes": "Штатное место под клеммник вверху или внизу корпуса; ставится шина на своей опоре 134802 или 134812 (226 мм). Корпуса поставляются без клеммников."
+    },
+    {
+      "id": "legrand-zone-275",
+      "brand": "legrand",
+      "kind": "zone",
+      "series": "Practibox S",
+      "lengthMm": 275,
+      "positions": [
+        "top",
+        "bottom"
+      ],
+      "enclosureIds": [
+        "legrand-135111",
+        "legrand-135112",
+        "legrand-135113",
+        "legrand-135114",
+        "legrand-135101",
+        "legrand-135102",
+        "legrand-135103",
+        "legrand-135104"
+      ],
+      "verified": true,
+      "source": "https://assets.legrand.com/pim/NP-FT-GT/F02563FR-01.pdf",
+      "notes": "Штатное место под клеммник вверху или внизу корпуса; ставится шина на своей опоре 134803 или 134813 (275 мм). Корпуса поставляются без клеммников."
+    },
+    {
+      "id": "legrand-zone-276",
+      "brand": "legrand",
+      "kind": "zone",
+      "series": "Practibox S",
+      "lengthMm": 276,
+      "positions": [
+        "top",
+        "bottom"
+      ],
+      "enclosureIds": [
+        "legrand-137016"
+      ],
+      "verified": true,
+      "source": "https://assets.legrand.com/pim/NP-FT-GT/F02563FR-01.pdf",
+      "notes": "Штатное место под клеммник вверху или внизу корпуса; ставится шина на своей опоре 134804 или 134814 (276 мм). Корпуса поставляются без клеммников."
+    },
+    {
+      "id": "legrand-zone-385",
+      "brand": "legrand",
+      "kind": "zone",
+      "series": "Practibox S",
+      "lengthMm": 385,
+      "positions": [
+        "top",
+        "bottom"
+      ],
+      "enclosureIds": [
+        "legrand-137116",
+        "legrand-137117",
+        "legrand-137118",
+        "legrand-137119",
+        "legrand-137106",
+        "legrand-137107",
+        "legrand-137108",
+        "legrand-137109",
+        "legrand-137017",
+        "legrand-137018",
+        "legrand-137019"
+      ],
+      "verified": true,
+      "source": "https://assets.legrand.com/pim/NP-FT-GT/F02563FR-01.pdf",
+      "notes": "Штатное место под клеммник вверху или внизу корпуса; ставится шина на своей опоре 134805 или 134815 (385 мм). Корпуса поставляются без клеммников."
+    }
+  ],
+  "terminalInserts": [
+    {
+      "id": "legrand-134802",
+      "brand": "legrand",
+      "role": "PE",
+      "series": "Practibox S",
+      "article": "134802",
+      "clamps": [
+        [
+          12,
+          16
+        ],
+        [
+          12,
+          10
+        ]
+      ],
+      "widthMm": 226,
+      "color": "green",
+      "carrierIds": [
+        "legrand-zone-226"
+      ],
+      "verified": true,
+      "source": "https://www.legrand.com/ecatalogue/en/catalog/products/earth-brass-terminal-blocks-with-isolated-support-24-holes-134802"
+    },
+    {
+      "id": "legrand-134812",
+      "brand": "legrand",
+      "role": "N+PE",
+      "series": "Practibox S",
+      "article": "134812",
+      "clamps": [
+        [
+          24,
+          16
+        ],
+        [
+          24,
+          10
+        ]
+      ],
+      "widthMm": 226,
+      "carrierIds": [
+        "legrand-zone-226"
+      ],
+      "verified": true,
+      "source": "https://www.legrand.com/ecatalogue/en/catalog/products/earth-neutral-brass-terminal-blocks-with-isolated-support-24-24-holes-134812"
+    },
+    {
+      "id": "legrand-134803",
+      "brand": "legrand",
+      "role": "PE",
+      "series": "Practibox S",
+      "article": "134803",
+      "clamps": [
+        [
+          12,
+          16
+        ],
+        [
+          12,
+          10
+        ]
+      ],
+      "widthMm": 275,
+      "color": "green",
+      "carrierIds": [
+        "legrand-zone-275"
+      ],
+      "verified": true,
+      "source": "https://www.legrand.com/ecatalogue/134803-earth-terminal-block-for-12.html"
+    },
+    {
+      "id": "legrand-134813",
+      "brand": "legrand",
+      "role": "N+PE",
+      "series": "Practibox S",
+      "article": "134813",
+      "clamps": [
+        [
+          24,
+          16
+        ],
+        [
+          24,
+          10
+        ]
+      ],
+      "widthMm": 275,
+      "carrierIds": [
+        "legrand-zone-275"
+      ],
+      "verified": true,
+      "source": "https://www.legrand.com/ecatalogue/en/catalog/products/earth-neutral-brass-terminal-blocks-with-isolated-support-24-24-holes-134813"
+    },
+    {
+      "id": "legrand-134804",
+      "brand": "legrand",
+      "role": "PE",
+      "series": "Practibox S",
+      "article": "134804",
+      "clamps": [
+        [
+          1,
+          25
+        ],
+        [
+          12,
+          16
+        ]
+      ],
+      "widthMm": 276,
+      "color": "green",
+      "carrierIds": [
+        "legrand-zone-276"
+      ],
+      "verified": true,
+      "source": "https://www.legrand.com/ecatalogue/en/catalog/products/earth-brass-terminal-blocks-with-isolated-support-13-holes-134804"
+    },
+    {
+      "id": "legrand-134814",
+      "brand": "legrand",
+      "role": "N+PE",
+      "series": "Practibox S",
+      "article": "134814",
+      "clamps": [
+        [
+          2,
+          25
+        ],
+        [
+          24,
+          16
+        ]
+      ],
+      "widthMm": 276,
+      "carrierIds": [
+        "legrand-zone-276"
+      ],
+      "verified": true,
+      "source": "https://www.legrand.com/ecatalogue/en/catalog/products/earth-neutral-brass-terminal-blocks-with-isolated-support-13-13-holes-134814"
+    },
+    {
+      "id": "legrand-134805",
+      "brand": "legrand",
+      "role": "PE",
+      "series": "Practibox S",
+      "article": "134805",
+      "clamps": [
+        [
+          1,
+          25
+        ],
+        [
+          26,
+          16
+        ]
+      ],
+      "widthMm": 385,
+      "color": "green",
+      "carrierIds": [
+        "legrand-zone-385"
+      ],
+      "verified": true,
+      "source": "https://www.legrand.com/ecatalogue/en/catalog/products/earth-brass-terminal-blocks-with-isolated-support-27-holes-134805"
+    },
+    {
+      "id": "legrand-134815",
+      "brand": "legrand",
+      "role": "N+PE",
+      "series": "Practibox S",
+      "article": "134815",
+      "clamps": [
+        [
+          2,
+          25
+        ],
+        [
+          52,
+          16
+        ]
+      ],
+      "widthMm": 385,
+      "carrierIds": [
+        "legrand-zone-385"
+      ],
+      "verified": true,
+      "source": "https://www.legrand.com/ecatalogue/en/catalog/products/earth-neutral-brass-terminal-blocks-with-isolated-support-27-27-holes-134815"
     }
   ]
 }

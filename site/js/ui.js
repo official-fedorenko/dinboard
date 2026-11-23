@@ -13,7 +13,7 @@ import {
   billOfMaterials,
   indexById,
   setEarthing,
-  setAddTerminals,
+  setCarriers,
   setRowComb,
   setCombPart,
   clearDevices,
@@ -33,9 +33,29 @@ import {
   num,
 } from './format.js';
 import { h } from './dom.js';
-import { layoutBoard, hitTest, renderBoardSvg, slotRect, terminalBars, combBars, MODULE_MM } from './render-svg.js';
+import { layoutBoard, hitTest, renderBoardSvg, slotRect, carrierBars, combBars, MODULE_MM } from './render-svg.js';
 import { checkBoard } from './checks.js';
-import { specTable, toCsv, exportFileName, terminalsSpec, combsSpec, combName, combPartsSpec, combPartName } from './export.js';
+import { specTable, toCsv, exportFileName, carriersSpec, carrierName, insertName, combsSpec, combName, combPartsSpec, combPartName } from './export.js';
+import {
+  addInsert,
+  moveInsert,
+  removeInsert,
+  setInsertRole,
+  setCarrierPosition,
+  addCarrier,
+  removeCarrier,
+  swapCarrier,
+  carrierOptions,
+  insertOptions,
+  carrierClamps,
+  autoFill,
+  clampNeed,
+  snapInsertPos,
+  canPlaceInsert,
+  firstFreeInsertPos,
+  factoryCarriers,
+  CarrierError,
+} from './carriers.js';
 import { xlsxWorkbook } from './xlsx.js';
 import { filterEnclosures, availableValues, previewSplit, PREVIEW_COUNT } from './enclosure-filter.js';
 import { EARTHING_SYSTEMS, COMB_PHASES, COMB_DEVICE_CATEGORIES } from './catalog.js';
@@ -56,6 +76,8 @@ import {
 export const CATEGORY_ORDER = ['mcb', 'rcbo', 'rcd', 'switch', 'spd', 'terminal', 'distribution'];
 const POLE_ORDER = ['1P', '1P+N', '2P', '3P', '3P+N', '4P'];
 const DND_TYPE = 'application/x-dinboard';
+// Порядок клемм в окне «Клеммы N/PE»
+const INSERT_ROLE_ORDER = ['N', 'PE', 'N+PE', 'universal', 'L'];
 
 /** Порядок устройств в списке: серия, полюса, кривая/тип, номинал. */
 function compareDevices(a, b) {
@@ -81,6 +103,9 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
   const devices = indexById(catalog.devices);
   const combsById = indexById(catalog.combs ?? []);
   const partsById = indexById(catalog.combParts ?? []);
+  const carriersById = indexById(catalog.terminalCarriers ?? []);
+  const insertsById = indexById(catalog.terminalInserts ?? []);
+  const carrierCatalog = { carriersById, insertsById };
   const enclosures = indexById(catalog.enclosures);
   const brandNames = new Map(catalog.brands.map((b) => [b.id, b.name]));
   // Значения фильтров корпусов — только те, что есть в каталоге
@@ -104,6 +129,8 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
     moreOpen: false, // окно «Ещё варианты» с остальными подходящими корпусами
     devicesMoreOpen: false, // окно «Ещё варианты» с остальным оборудованием по фильтрам
     combOpen: false, // окно выбора гребёнки для выделенного ряда
+    carriersOpen: false, // окно «Клеммы N/PE»: держатели и клеммы
+    selectedInsert: null, // выделенная клемма N/PE: { carrier, item } (индексы в board.carriers)
   };
 
   let savedBoard = null; // последний сохранённый в браузере щит
@@ -171,7 +198,7 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
 
   // ---------- выгрузки: CSV, Excel, печать ----------
 
-  const spec = () => specTable(state.board, enclosure(), devices, brandNames, t, combsById, partsById);
+  const spec = () => specTable(state.board, enclosure(), devices, brandNames, t, combsById, partsById, carrierCatalog);
   const exported = (name) => t('export.downloaded', { name });
   const projectSaved = (name) => t('project.downloaded', { name });
 
@@ -218,7 +245,7 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
       try {
         if (file.size > LIMITS.textLength) throw new ProjectError('format', { reason: 'size' });
         const project = projectFromFile(await file.text());
-        const { board, skipped } = buildBoard(project, enclosures, devices);
+        const { board, skipped } = buildBoard(project, enclosures, devices, carrierCatalog);
         const current = state.board ? projectFromBoard(state.board) : null;
         if (!isEmptyProject(current) && !sameProject(current, projectFromBoard(board)) && !window.confirm(t('project.confirmReplace'))) {
           return;
@@ -226,6 +253,7 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
         update({
           board,
           selectedUid: null,
+          selectedInsert: null,
           activeRow: 0,
           pickerOpen: false,
           status: skipped.length ? t('project.loadedSkipped', { n: skipped.length }) : t('project.loaded'),
@@ -253,14 +281,14 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
   function selectEnclosure(id) {
     const next = enclosures.get(id);
     if (!state.board) {
-      update({ board: createBoard(next), activeRow: 0, selectedUid: null, status: '', pickerOpen: false, moreOpen: false });
+      update({ board: createBoard(next), activeRow: 0, selectedUid: null, selectedInsert: null, status: '', pickerOpen: false, moreOpen: false });
       return;
     }
     if (state.board.enclosureId === id) {
       update({ pickerOpen: false, moreOpen: false });
       return;
     }
-    const { board, overflow } = changeEnclosure(state.board, next, devices);
+    const { board, overflow } = changeEnclosure(state.board, next, devices, carriersById, insertsById);
     if (overflow.length && !window.confirm(t('enclosure.confirmOverflow', { n: overflow.length }))) return;
     update({
       board,
@@ -268,6 +296,7 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
       moreOpen: false,
       activeRow: Math.min(state.activeRow, board.rows.length - 1),
       selectedUid: findItem(board, state.selectedUid) ? state.selectedUid : null,
+      selectedInsert: null,
       status: overflow.length
         ? t('enclosure.overflowRemoved', { n: overflow.length })
         : t('enclosure.changed', { title: enclosureTitle(next) }),
@@ -362,9 +391,9 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
 
   function clearBoard() {
     if (!window.confirm(t('board.confirmClear'))) return;
-    // Система заземления и добавленные клеммники N/PE при очистке сохраняются
+    // Система заземления и держатели клемм N/PE при очистке сохраняются
     const board = clearDevices(state.board, enclosure());
-    update({ board, selectedUid: null, activeRow: 0, status: t('board.cleared') });
+    update({ board, selectedUid: null, selectedInsert: null, activeRow: 0, status: t('board.cleared') });
   }
 
   // ---------- перетаскивание ----------
@@ -428,11 +457,26 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
     move(uid, hit.row, pos);
   }
 
-  function bindBoardEvents(view, svg, layout) {
+  /** Выделить клемму N/PE на рисунке (повторно — снять выделение). */
+  function toggleInsert(sel) {
+    const same = state.selectedInsert?.carrier === sel.carrier && state.selectedInsert?.item === sel.item;
+    update({ selectedInsert: same ? null : sel, selectedUid: null });
+  }
+
+  function bindBoardEvents(view, svg, layout, bars) {
     let drag = null;
     let suppressClick = false;
+    const barOf = (index) => bars.find((b) => b.index === index);
 
     view.addEventListener('pointerdown', (event) => {
+      // Клемма N/PE: тянется только вдоль своего держателя (части заводской колодки — нет)
+      const ins = event.target.closest?.('.insert');
+      if (ins) {
+        if (event.button !== 0 || ins.classList.contains('fixed')) return;
+        const sel = { carrier: Number(ins.dataset.carrier), item: Number(ins.dataset.insert) };
+        drag = { insert: sel, dev: ins, x: event.clientX, y: event.clientY, id: event.pointerId, moved: false };
+        return;
+      }
       const dev = event.target.closest?.('.dev');
       if (!dev || event.button !== 0) return;
       drag = { uid: Number(dev.dataset.uid), dev, x: event.clientX, y: event.clientY, id: event.pointerId, moved: false };
@@ -456,6 +500,16 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
       }
       event.preventDefault();
       const scale = 1 / (svg.getScreenCTM()?.a || 1);
+      if (drag.insert) {
+        // Только по горизонтали; подсказка — где клемма встанет, если отпустить сейчас
+        drag.dev.setAttribute('transform', `translate(${dx * scale} 0)`);
+        const at = locateInsert(drag.insert);
+        if (!at) return;
+        const pos = snapInsertPos(at.carrier, carriersById, insertsById, at.item.pos + dx * scale, at.insert.widthMm, drag.insert.item);
+        const ok = pos !== null && canPlaceInsert(at.carrier, carriersById, insertsById, pos, at.insert.widthMm, drag.insert.item);
+        showInsertSlot(svg, barOf(drag.insert.carrier), pos, at.insert.widthMm, ok);
+        return;
+      }
       drag.dev.setAttribute('transform', `${drag.base} translate(${dx * scale} ${dy * scale})`);
       const p = toBoardPoint(svg, event.clientX, event.clientY);
       const hit = p ? hitTest(layout, p.x, p.y) : null;
@@ -480,6 +534,12 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
       }
       const p = toBoardPoint(svg, event.clientX, event.clientY);
       const scale = 1 / (svg.getScreenCTM()?.a || 1);
+      if (current.insert) {
+        // Отпустили за пределами щита — отмена
+        if (!p || p.x < 0 || p.y < 0 || p.x > layout.width || p.y > layout.height) render();
+        else dropInsert(current.insert, (event.clientX - current.x) * scale);
+        return;
+      }
       dropExisting(current.uid, p ? hitTest(layout, p.x, p.y) : null, (event.clientX - current.x) * scale);
     };
     view.addEventListener('pointerup', (event) => finish(event, false));
@@ -487,11 +547,16 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
 
     view.addEventListener('click', (event) => {
       if (suppressClick) return;
+      const ins = event.target.closest?.('.insert');
+      if (ins) {
+        toggleInsert({ carrier: Number(ins.dataset.carrier), item: Number(ins.dataset.insert) });
+        return;
+      }
       const dev = event.target.closest?.('.dev');
       if (dev) {
         const uid = Number(dev.dataset.uid);
         const at = findItem(state.board, uid);
-        if (at) update({ selectedUid: state.selectedUid === uid ? null : uid, activeRow: at.row });
+        if (at) update({ selectedUid: state.selectedUid === uid ? null : uid, selectedInsert: null, activeRow: at.row });
         return;
       }
       const rowEl = event.target.closest?.('[data-row]');
@@ -499,6 +564,21 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
     });
 
     view.addEventListener('keydown', (event) => {
+      const ins = event.target.closest?.('.insert');
+      if (ins) {
+        const sel = { carrier: Number(ins.dataset.carrier), item: Number(ins.dataset.insert) };
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          toggleInsert(sel);
+        } else if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+          event.preventDefault();
+          nudgeInsert(sel, event.key === 'ArrowLeft' ? -1 : 1, event.shiftKey);
+        } else if (event.key === 'Delete' || event.key === 'Backspace') {
+          event.preventDefault();
+          removeInsertAt(sel);
+        }
+        return;
+      }
       const dev = event.target.closest?.('.dev');
       if (!dev) return;
       const uid = Number(dev.dataset.uid);
@@ -780,6 +860,8 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
 
   function renderBoardView(enc) {
     const layout = layoutBoard(enc, state.board, devices);
+    // Держателей нет, а в корпус их можно поставить — место пунктиром
+    const bars = carrierBars(state.board, layout, carriersById, insertsById, { emptySlot: carrierOptions(enc, carriersById).length > 0 });
     const svg = svgNode(
       renderBoardSvg(layout, devices, {
         t,
@@ -789,12 +871,13 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
         selectedUid: state.selectedUid,
         activeRow: state.activeRow,
         formatNumber: fmt,
-        terminals: terminalBars(enc, state.board, layout),
+        carriers: bars,
+        selectedInsert: state.selectedInsert,
         combs: combBars(layout, state.board, combsById, devices),
       }),
     );
     const view = h('div', { class: `board-view${state.selectedUid !== null ? ' has-selection' : ''}` }, svg);
-    bindBoardEvents(view, svg, layout);
+    bindBoardEvents(view, svg, layout, bars);
     return view;
   }
 
@@ -921,7 +1004,7 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
 
   /** Проверки щита: система заземления и подсказки (не мешают сборке). */
   function renderChecks(enc) {
-    const list = checkBoard(state.board, enc, devices, combsById);
+    const list = checkBoard(state.board, enc, devices, combsById, carrierCatalog);
     const items = list.map((check) => {
       const params = { ...check.params };
       if (typeof params.free === 'number') params.free = fmt(params.free);
@@ -949,51 +1032,401 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
         [['none', t('earthing.none')], ...EARTHING_SYSTEMS.map((e) => [e, e])],
         (value) => update({ board: setEarthing(state.board, value === 'none' ? null : value) }),
       ),
-      renderTerminals(enc),
+      renderCarriers(enc),
       items.length ? h('ul', { class: 'check-list' }, items) : h('p', { class: 'check-ok' }, t('check.ok')),
     );
   }
 
+  // ---------- держатели клемм N/PE ----------
+
+  const carrierList = () => state.board.carriers ?? [];
+  /** Выделенная клемма: { sel, carrier, item, insert, catalogCarrier } или null (если её уже нет). */
+  function locateInsert(sel = state.selectedInsert) {
+    if (!sel || !state.board) return null;
+    const carrier = carrierList()[sel.carrier];
+    const item = carrier?.inserts[sel.item];
+    const insert = item && insertsById.get(item.insertId);
+    if (!insert) return null;
+    return { sel, carrier, item, insert, catalogCarrier: carriersById.get(carrier.carrierId) };
+  }
+  const roleOf = (item, insert) => (insert.role === 'universal' ? item.role ?? 'N' : insert.role);
+  const insertLabel = (item, insert) => `${insertName(insert, roleOf(item, insert), t)}${insert.article ? ` (${insert.article})` : ''}`;
+
   /**
-   * Клеммники N/PE корпуса: что в комплекте (и сколько клемм), а если в комплекте нет —
-   * кнопка, добавляющая клеммники производителя в состав и на рисунок.
+   * Изменение держателей: fn(carriers) → новые держатели. Отказ (занято, не помещается) — сообщением.
+   * select(next) — какую клемму выделить после (или null).
    */
-  function renderTerminals(enc) {
-    const terminals = enc.terminals;
-    if (!terminals) return null;
-    const count = (clamps) => clamps.reduce((sum, [c]) => sum + c, 0);
-    let text;
-    if (terminals.included) {
-      const blocks = terminals.blocks ?? [];
-      const list = blocks.map((b) => (b.clamps ? t('terminals.item', { role: b.role, n: count(b.clamps) }) : b.role)).join(', ');
-      text = list ? t('terminals.included', { list }) : t('terminals.includedUnknown');
-    } else {
-      text = t('terminals.notIncludedInfo');
+  function changeCarriers(fn, status, { focus, select } = {}) {
+    let next;
+    try {
+      next = fn(carrierList());
+    } catch (err) {
+      if (!(err instanceof CarrierError)) throw err;
+      update({ status: t(`carrier.error.${err.code}`) });
+      return;
     }
-    const added = Boolean(state.board.addTerminals);
+    const changes = { board: setCarriers(state.board, next), status };
+    if (select !== undefined) changes.selectedInsert = typeof select === 'function' ? select(next) : select;
+    update(changes, focus);
+  }
+
+  /** Индекс клеммы insertId на позиции pos в держателе (после сортировки он меняется). */
+  const findInsert = (carriers, index, insertId, pos) => {
+    const item = carriers[index]?.inserts.findIndex((x) => x.insertId === insertId && Math.abs(x.pos - pos) < 1e-6);
+    return item >= 0 ? { carrier: index, item } : null;
+  };
+
+  /** Переносит клемму sel на позицию pos того же держателя. */
+  function moveInsertTo(sel, pos) {
+    const at = locateInsert(sel);
+    if (!at) return;
+    changeCarriers((list) => moveInsert(list, sel.carrier, sel.item, pos, carriersById, insertsById), t('carrier.moved', { name: insertLabel(at.item, at.insert) }), {
+      select: (next) => findInsert(next, sel.carrier, at.item.insertId, pos),
+      focus: 'insert-toolbar',
+    });
+  }
+
+  /** Сдвиг клеммы кнопками или стрелками: на 5 мм (с Shift — на 0,5 мм), вплотную к соседу, если он ближе. */
+  function nudgeInsert(sel, dir, fine = false) {
+    const at = locateInsert(sel);
+    if (!at || at.insert.fixed) return;
+    const width = at.insert.widthMm;
+    const max = at.catalogCarrier.lengthMm - width;
+    let pos = Math.round((at.item.pos + dir * (fine ? 0.5 : 5)) / 0.5) * 0.5;
+    // Упёрлась в соседа — встаёт вплотную к нему
+    for (const [i, x] of at.carrier.inserts.entries()) {
+      if (i === sel.item) continue;
+      const w = insertsById.get(x.insertId)?.widthMm ?? 0;
+      if (dir > 0 && x.pos >= at.item.pos + width - 1e-6 && pos + width > x.pos) pos = Math.min(pos, x.pos - width);
+      if (dir < 0 && x.pos + w <= at.item.pos + 1e-6 && pos < x.pos + w) pos = Math.max(pos, x.pos + w);
+    }
+    pos = Math.max(0, Math.min(max, pos));
+    if (Math.abs(pos - at.item.pos) < 1e-6) {
+      update({ status: t('carrier.cantMove') });
+      return;
+    }
+    moveInsertTo(sel, pos);
+  }
+
+  function removeInsertAt(sel) {
+    const at = locateInsert(sel);
+    if (!at) return;
+    if (at.insert.fixed) {
+      update({ status: t('carrier.fixedHint') });
+      return;
+    }
+    changeCarriers((list) => removeInsert(list, sel.carrier, sel.item), t('carrier.insertRemoved', { name: insertLabel(at.item, at.insert) }), { select: null, focus: 'carriers-open' });
+  }
+
+  /** Отпустили клемму после перетаскивания: dxMm — сдвиг вдоль держателя. */
+  function dropInsert(sel, dxMm) {
+    const at = locateInsert(sel);
+    if (!at) return render();
+    const pos = snapInsertPos(at.carrier, carriersById, insertsById, at.item.pos + dxMm, at.insert.widthMm, sel.item);
+    if (pos === null || Math.abs(pos - at.item.pos) < 1e-6) return render();
+    moveInsertTo(sel, pos);
+  }
+
+  /** Подсказка места клеммы при перетаскивании: зелёный — свободно, красный — занято. */
+  function showInsertSlot(svg, bar, pos, width, ok) {
+    svg.querySelector('.drop-slot')?.remove();
+    if (!bar || pos === null) return;
+    const slot = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+    slot.setAttribute('class', `drop-slot ${ok ? 'ok' : 'bad'}`);
+    const attrs = { x: bar.x + pos, y: bar.y - 0.8, width, height: bar.h + 1.6, rx: 1 };
+    for (const [k, v] of Object.entries(attrs)) slot.setAttribute(k, String(v));
+    svg.append(slot);
+  }
+
+  /** Подбор по числу линий; если держателей нет — сначала первый подходящий. */
+  function fillCarriers(enc) {
+    const need = clampNeed(state.board, devices);
+    let start = carrierList();
+    if (!start.length) {
+      const options = carrierOptions(enc, carriersById);
+      const first = options.find((c) => c.kind === 'carrier') ?? options.find((c) => c.kind === 'zone');
+      if (!first) return;
+      start = addCarrier([], first.id, carriersById);
+    }
+    const { carriers, short } = autoFill(start, need, carriersById, insertsById);
+    const status =
+      short.N || short.PE
+        ? t('carrier.autoShort', { n: short.N, pe: short.PE })
+        : carriers === carrierList()
+          ? t('carrier.autoEnough', { n: need.N })
+          : t('carrier.autoDone', { n: need.N, lines: need.lines });
+    update({ board: setCarriers(state.board, carriers), status, selectedInsert: null }, 'carriers-fill');
+  }
+
+  /** Есть ли среди держателей и клемм щита (и комплектации корпуса) не подтверждённые источником. */
+  function carriersUnverified(enc) {
+    if (enc.terminalSetup && !enc.terminalSetup.verified && carrierList().some((c) => c.included)) return true;
+    return carrierList().some(
+      (c) => carriersById.get(c.carrierId)?.verified === false || c.inserts.some((x) => insertsById.get(x.insertId)?.verified === false),
+    );
+  }
+
+  /**
+   * Клеммы N/PE в блоке проверок: сколько клемм N и PE и сколько нужно по числу линий,
+   * «Подобрать по числу линий» и окно «Клеммы N/PE» (держатели, клеммы, места).
+   */
+  function renderCarriers(enc) {
+    const options = carrierOptions(enc, carriersById);
+    // Заводскую колодку отдельно не поставить (её шины — часть колодки): вернуть её можно кнопкой «Как с завода»
+    const addable = options.filter((o) => o.kind !== 'plate');
+    const factory = factoryCarriers(enc);
+    const list = carrierList();
+    if (!options.length && !list.length) return null;
+    const have = carrierClamps(list, insertsById);
+    const need = clampNeed(state.board, devices);
     return h(
       'div',
       { class: 'terminals-info' },
-      h('p', { class: 'muted checks-label' }, t('terminals.label')),
+      h('p', { class: 'muted checks-label' }, t('carrier.label')),
       h(
         'p',
         { class: 'terminals-text' },
-        text,
-        !terminals.verified && h('span', { class: 'badge', title: t('terminals.unverifiedHint') }, t('device.unverified')),
+        list.length ? t('carrier.summary', { n: have.N, pe: have.PE }) : t('carrier.none'),
+        ' ',
+        h('span', { class: 'muted' }, t('carrier.need', { n: need.N, lines: need.lines })),
+        carriersUnverified(enc) && h('span', { class: 'badge', title: t('carrier.unverifiedHint') }, t('device.unverified')),
       ),
-      !terminals.included &&
-        (terminals.accessories
-          ? h(
+      h(
+        'div',
+        { class: 'action-buttons' },
+        h('button', { type: 'button', class: 'action', dataset: { focus: 'carriers-fill' }, onClick: () => fillCarriers(enc) }, t('carrier.fill')),
+        h(
+          'button',
+          { type: 'button', class: 'action', 'aria-haspopup': 'dialog', dataset: { focus: 'carriers-open' }, onClick: () => update({ carriersOpen: true, status: '' }) },
+          t('carrier.open'),
+        ),
+      ),
+      state.carriersOpen &&
+        moreDialog({
+          titleId: 'h-carriers',
+          title: t('carrier.dialogTitle'),
+          stateKey: 'carriersOpen',
+          focusKey: 'carriers-open',
+          content: [
+            h('p', { class: 'status dialog-status', role: 'status', 'aria-live': 'polite' }, state.status),
+            h('p', { class: 'hint' }, t('carrier.dialogHint')),
+            list.map((c, index) => renderCarrierBlock(enc, c, index, addable)),
+            factory.length > 0 &&
+              JSON.stringify(factory) !== JSON.stringify(list) &&
+              h(
+                'p',
+                {},
+                h(
+                  'button',
+                  {
+                    type: 'button',
+                    class: 'action',
+                    dataset: { focus: 'carriers-factory' },
+                    onClick: () => changeCarriers(() => factory, t('carrier.factorySet'), { select: null, focus: 'carriers-open' }),
+                  },
+                  t('carrier.factory'),
+                ),
+              ),
+            h('h3', { class: 'comb-parts-title' }, t('carrier.addTitle')),
+            h(
+              'ul',
+              { class: 'device-list' },
+              addable.map((o) =>
+                h(
+                  'li',
+                  { class: 'device-row' },
+                  h(
+                    'span',
+                    { class: 'device-text' },
+                    h('strong', {}, carrierName(o, t)),
+                    h('span', { class: 'muted' }, o.article ?? t('carrier.noArticle'), !o.verified && h('span', { class: 'badge', title: t('device.unverifiedHint') }, t('device.unverified'))),
+                  ),
+                  h(
+                    'button',
+                    {
+                      type: 'button',
+                      class: 'action',
+                      disabled: list.length >= LIMITS.carriers,
+                      dataset: { focus: `carrier-add-${o.id}` },
+                      onClick: () => changeCarriers((l) => addCarrier(l, o.id, carriersById), t('carrier.added', { name: carrierName(o, t) })),
+                    },
+                    t('carrier.add'),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        }),
+    );
+  }
+
+  /** Один держатель в окне «Клеммы N/PE»: место, клеммы (роль, убрать), добавить клемму, заменить или убрать держатель. */
+  function renderCarrierBlock(enc, c, index, options) {
+    const carrier = carriersById.get(c.carrierId);
+    if (!carrier) return null;
+    const name = carrierName(carrier, t);
+    const free = (insert) => firstFreeInsertPos(c, carriersById, insertsById, insert.widthMm) !== null;
+    const adds = insertOptions(c.carrierId, insertsById).sort(
+      (a, b) => INSERT_ROLE_ORDER.indexOf(a.role) - INSERT_ROLE_ORDER.indexOf(b.role) || a.widthMm - b.widthMm,
+    );
+    const positionLabel = `${t('carrier.position')} ${index + 1}`;
+    return h(
+      'section',
+      { class: 'carrier-block', 'aria-label': `${index + 1}. ${name}` },
+      h(
+        'h3',
+        { class: 'comb-parts-title' },
+        `${index + 1}. ${name}${carrier.article ? ` · ${carrier.article}` : ''}`,
+        !carrier.verified && h('span', { class: 'badge', title: t('device.unverifiedHint') }, t('device.unverified')),
+      ),
+      h('p', { class: 'muted' }, carrier.kind === 'zone' ? t('carrier.zoneHint') : c.included ? t('carrier.included') : t('carrier.toOrder')),
+      carrier.positions.length > 1
+        ? chips(
+            positionLabel,
+            c.position,
+            carrier.positions.map((p) => [p, t(`carrier.pos.${p}`)]),
+            (p) => changeCarriers((l) => setCarrierPosition(l, index, p, carriersById), t('carrier.positionSet', { name, place: t(`carrier.pos.${p}`) })),
+          )
+        : h('p', { class: 'muted' }, t('carrier.onlyAt', { place: t(`carrier.pos.${carrier.positions[0]}`) })),
+      c.inserts.length
+        ? h(
+            'ul',
+            { class: 'device-list' },
+            c.inserts.map((item, i) => {
+              const insert = insertsById.get(item.insertId);
+              if (!insert) return null;
+              const label = insertLabel(item, insert);
+              return h(
+                'li',
+                { class: 'device-row' },
+                h(
+                  'span',
+                  { class: 'device-text' },
+                  h('strong', {}, insertName(insert, roleOf(item, insert), t)),
+                  h(
+                    'span',
+                    { class: 'muted' },
+                    [insert.article, t('carrier.width', { mm: fmt(insert.widthMm) }), item.included ? t('carrier.specIncluded') : null].filter(Boolean).join(' · '),
+                    !insert.verified && h('span', { class: 'badge', title: t('device.unverifiedHint') }, t('device.unverified')),
+                  ),
+                ),
+                insert.role === 'universal' &&
+                  chips(`${t('carrier.cover')} ${index + 1}-${i + 1}`, roleOf(item, insert), [['N', 'N'], ['PE', 'PE']], (role) =>
+                    changeCarriers((l) => setInsertRole(l, index, i, role), t('carrier.roleSet', { name: label, role })),
+                  ),
+                insert.fixed
+                  ? h('span', { class: 'muted' }, t('carrier.fixed'))
+                  : h(
+                      'button',
+                      {
+                        type: 'button',
+                        class: 'tool',
+                        'aria-label': t('carrier.removeInsert', { name: label }),
+                        title: t('carrier.removeInsert', { name: label }),
+                        dataset: { focus: `insert-remove-${index}-${i}` },
+                        onClick: () => changeCarriers((l) => removeInsert(l, index, i), t('carrier.insertRemoved', { name: label }), { select: null, focus: `carrier-block-${index}` }),
+                      },
+                      '✕',
+                    ),
+              );
+            }),
+          )
+        : h('p', { class: 'muted' }, t('carrier.empty')),
+      adds.length > 0 && h('h4', { class: 'carrier-sub' }, t('carrier.addInsert')),
+      adds.length > 0 &&
+        h(
+          'ul',
+          { class: 'device-list' },
+          adds.map((insert) => {
+            const role = insert.role === 'universal' ? 'N' : insert.role;
+            const nameText = insertName(insert, insert.role === 'universal' ? t('carrier.anyRole') : role, t);
+            const fits = free(insert);
+            return h(
+              'li',
+              { class: 'device-row' },
+              h(
+                'span',
+                { class: 'device-text' },
+                h('strong', {}, nameText),
+                h(
+                  'span',
+                  { class: 'muted' },
+                  [insert.article, t('carrier.width', { mm: fmt(insert.widthMm) })].filter(Boolean).join(' · '),
+                  !insert.verified && h('span', { class: 'badge', title: t('device.unverifiedHint') }, t('device.unverified')),
+                ),
+              ),
+              h(
+                'button',
+                {
+                  type: 'button',
+                  class: 'action',
+                  disabled: !fits,
+                  title: fits ? undefined : t('carrier.error.too-wide'),
+                  'aria-label': t('carrier.addInsertTitle', { name: `${nameText}${insert.article ? ` (${insert.article})` : ''}` }),
+                  dataset: { focus: `insert-add-${index}-${insert.id}` },
+                  onClick: () => changeCarriers((l) => addInsert(l, index, insert.id, carriersById, insertsById), t('carrier.insertAdded', { name: nameText })),
+                },
+                fits ? t('carrier.add') : t('carrier.noRoom'),
+              ),
+            );
+          }),
+        ),
+      h(
+        'div',
+        { class: 'action-buttons', dataset: { focus: `carrier-block-${index}` }, tabindex: '-1' },
+        options
+          .filter((o) => o.id !== c.carrierId)
+          .map((o) =>
+            h(
               'button',
               {
                 type: 'button',
                 class: 'action',
-                dataset: { focus: 'terminals-toggle' },
-                onClick: () => update({ board: setAddTerminals(state.board, !added) }),
+                dataset: { focus: `carrier-swap-${index}-${o.id}` },
+                onClick: () =>
+                  changeCarriers((l) => swapCarrier(l, index, o.id, carriersById, insertsById), t('carrier.swapped', { from: name, to: carrierName(o, t) }), { select: null }),
               },
-              added ? t('terminals.remove') : t('terminals.add'),
-            )
-          : h('p', { class: 'muted' }, t('terminals.noAccessories'))),
+              t('carrier.swap', { name: carrierName(o, t) }),
+            ),
+          ),
+        h(
+          'button',
+          {
+            type: 'button',
+            class: 'action',
+            dataset: { focus: `carrier-remove-${index}` },
+            onClick: () => changeCarriers((l) => removeCarrier(l, index), t('carrier.removed', { name }), { select: null, focus: 'carriers-open' }),
+          },
+          carrier.kind === 'zone' ? t('carrier.removeZone') : t('carrier.remove'),
+        ),
+      ),
+    );
+  }
+
+  /** Панель выделенной клеммы: сдвиг ← →, роль по крышке (у универсальной), убрать. */
+  function renderInsertToolbar() {
+    const at = locateInsert();
+    if (!at) return null;
+    const { sel, item, insert } = at;
+    const label = insertLabel(item, insert);
+    const tool = (key, text, disabled, action) =>
+      h('button', { type: 'button', class: 'tool', 'aria-label': t(key), title: t(key), disabled, dataset: { focus: `insert-${key}` }, onClick: action }, text);
+    return h(
+      'div',
+      { class: 'toolbar', role: 'toolbar', 'aria-label': t('item.selected', { title: label }), dataset: { focus: 'insert-toolbar' }, tabindex: '-1' },
+      h('span', { class: 'toolbar-title' }, t('item.selected', { title: label })),
+      insert.fixed && h('span', { class: 'muted' }, t('carrier.fixedHint')),
+      h(
+        'span',
+        { class: 'toolbar-buttons' },
+        insert.role === 'universal' &&
+          chips(t('carrier.cover'), roleOf(item, insert), [['N', 'N'], ['PE', 'PE']], (role) =>
+            changeCarriers((l) => setInsertRole(l, sel.carrier, sel.item, role), t('carrier.roleSet', { name: label, role })),
+          ),
+        tool('carrier.moveLeft', '←', insert.fixed, () => nudgeInsert(sel, -1)),
+        tool('carrier.moveRight', '→', insert.fixed, () => nudgeInsert(sel, 1)),
+        tool('item.remove', '✕', insert.fixed, () => removeInsertAt(sel)),
+      ),
     );
   }
 
@@ -1071,6 +1504,7 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
       renderRowComb(enc),
       renderBoardView(enc),
       renderToolbar(),
+      renderInsertToolbar(),
       status,
       renderChecks(enc),
       renderProjectActions(true),
@@ -1167,11 +1601,16 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
     const enc = enclosure();
     const head = h('h2', { id: 'h-summary' }, t('section.summary'));
     if (!enc) return h('section', { class: 'panel summary', 'aria-labelledby': 'h-summary' }, head, h('p', { class: 'hint' }, t('summary.empty')));
-    const terminals = terminalsSpec(state.board, enc, t);
     const enclosureName = t('summary.enclosure', { title: `${brandNames.get(enc.brand)} ${enclosureTitle(enc)} (${enclosureDescription(enc, t)})` });
     const rows = [
-      [enc.article, terminals.suffix ? `${enclosureName}, ${terminals.suffix}` : enclosureName, 1, !enc.verified && t('enclosure.unverifiedHint')],
-      ...terminals.accessories.map((a) => [a.article, `${a.name} — ${brandNames.get(enc.brand)}`, 1, !a.verified && t('device.unverifiedHint')]),
+      [enc.article, enclosureName, 1, !enc.verified && t('enclosure.unverifiedHint')],
+      // Держатели и клеммы N/PE — своими артикулами; стоящие с завода — с пометкой «в комплекте корпуса»
+      ...carriersSpec(state.board, carriersById, insertsById, t).map((line) => [
+        line.article || '—',
+        `${line.name} — ${brandNames.get(line.brand)}${line.included ? ` (${t('carrier.specIncluded')})` : ''}`,
+        line.count,
+        !line.verified && t('device.unverifiedHint'),
+      ]),
       ...billOfMaterials(state.board).map(({ deviceId, count }) => {
         const d = devices.get(deviceId);
         return [d.article, `${deviceTitle(d, t)} — ${deviceRef(d, brandNames.get(d.brand))}`, count, !d.verified && t('device.unverifiedHint')];

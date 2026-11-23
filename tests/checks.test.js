@@ -1,7 +1,7 @@
 import { test, describe } from 'node:test';
 import assert from 'node:assert/strict';
 
-import { checkBoard, mainApparatus, spdFitsEarthing, terminalClamps, seriesMatch, SPARE_SHARE } from '../site/js/checks.js';
+import { checkBoard, mainApparatus, spdFitsEarthing, seriesMatch, SPARE_SHARE } from '../site/js/checks.js';
 import { createBoard, addDevice, setEarthing, indexById } from '../site/js/board.js';
 
 const dev = (id, category, modules, specs) => ({ id, category, modules, specs });
@@ -122,40 +122,38 @@ describe('вспомогательные', () => {
   });
 });
 
-describe('клеммники N/PE', () => {
-  const withTerminals = (terminals) => ({ ...enclosure, terminals });
-  const run = (terminals, ids, extra = {}) => {
-    const enc = withTerminals(terminals);
-    let board = createBoard(enc);
-    for (const id of ids) ({ board } = addDevice(board, enc, devices, id));
-    return checkBoard({ ...board, ...extra }, enc, devices);
+describe('клеммы N/PE', () => {
+  const carriersById = indexById([{ id: 'qc', brand: 'acme', lengthMm: 240, positions: ['top'], enclosureIds: [enclosure.id] }]);
+  const insertsById = indexById([
+    { id: 'n4', role: 'N', clamps: [[4, 16]], widthMm: 40 },
+    { id: 'pe8', role: 'PE', clamps: [[8, 16]], widthMm: 60 },
+  ]);
+  const catalog = { carriersById, insertsById };
+  const run = (carriers, ids) => {
+    let board = createBoard(enclosure);
+    for (const id of ids) ({ board } = addDevice(board, enclosure, devices, id));
+    return checkBoard(carriers ? { ...board, carriers } : board, enclosure, devices, new Map(), catalog);
   };
   const ids = ['sw2-63', 'rcd-63-a', ...Array(5).fill('mcb1-16')];
+  const one = [{ carrierId: 'qc', position: 'top', included: false, inserts: [{ insertId: 'n4', pos: 0 }, { insertId: 'pe8', pos: 40 }] }];
 
-  test('terminalClamps: N и PE по блокам; общий блок N+PE и неизвестное число — null', () => {
-    const t = { included: true, blocks: [{ role: 'N', clamps: [[2, 25], [11, 16]] }, { role: 'PE', clamps: [[3, 25]] }, { role: 'PE', clamps: [[2, 16]] }], verified: false };
-    const board = createBoard(enclosure);
-    assert.equal(terminalClamps(withTerminals(t), board, 'N'), 13);
-    assert.equal(terminalClamps(withTerminals(t), board, 'PE'), 5);
-    assert.equal(terminalClamps(withTerminals({ included: true, blocks: [{ role: 'N+PE', clamps: [[9, 16]] }], verified: false }), board, 'N'), null);
-    assert.equal(terminalClamps(enclosure, board, 'N'), null);
-    const acc = { included: false, accessories: [{ article: 'X', role: 'PE', clamps: [[7, 16]], verified: false }], verified: false };
-    assert.equal(terminalClamps(withTerminals(acc), board, 'PE'), null, 'аксессуары не добавлены');
-    assert.equal(terminalClamps(withTerminals(acc), { ...board, addTerminals: true }, 'PE'), 7);
+  test('держателей нет, а в корпус их можно поставить — совет; есть — совета нет', () => {
+    assert.ok(run(null, ids).some((c) => c.key === 'check.noCarriers'));
+    assert.ok(!run(one, ids).some((c) => c.key === 'check.noCarriers'));
+    const noOptions = checkBoard(createBoard(enclosure), enclosure, devices, new Map(), { carriersById: new Map(), insertsById });
+    assert.deepEqual(noOptions, []);
   });
 
-  test('не в комплекте и не добавлены — совет; добавлены — совета нет', () => {
-    const t = { included: false, accessories: [{ article: 'X', role: 'PE', verified: false }], verified: false };
-    assert.ok(run(t, ids).some((c) => c.key === 'check.noTerminals'));
-    assert.ok(!run(t, ids, { addTerminals: true }).some((c) => c.key === 'check.noTerminals'));
-    assert.ok(!run({ included: true, verified: false }, ids).some((c) => c.key === 'check.noTerminals'));
+  test('клемм меньше, чем линий и ввод, — совет по каждой роли', () => {
+    // 5 автоматов = 5 линий + ввод = нужно по 6; клемм N — 4, PE — 8
+    const few = run(one, ids).filter((c) => c.key === 'check.fewClamps');
+    assert.deepEqual(few, [{ level: 'info', key: 'check.fewClamps', params: { role: 'N', need: 6, lines: 5, clamps: 4 } }]);
   });
 
-  test('отходящих линий больше, чем клемм — совет по каждой роли', () => {
-    // 5 автоматов = 5 линий; клемм N — 4, PE — 6
-    const t = { included: true, blocks: [{ role: 'N', clamps: [[4, 16]] }, { role: 'PE', clamps: [[6, 16]] }], verified: false };
-    const few = run(t, ids).filter((c) => c.key === 'check.fewClamps');
-    assert.deepEqual(few, [{ level: 'info', key: 'check.fewClamps', params: { role: 'N', lines: 5, clamps: 4 } }]);
+  test('без каталога держателей клеммы не проверяются', () => {
+    let board = createBoard(enclosure);
+    for (const id of ids) ({ board } = addDevice(board, enclosure, devices, id));
+    assert.ok(!checkBoard(board, enclosure, devices).some((c) => c.key.startsWith('check.noCarriers') || c.key === 'check.fewClamps'));
   });
 });
 

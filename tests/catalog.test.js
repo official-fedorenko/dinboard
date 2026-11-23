@@ -202,29 +202,48 @@ describe('validateBrandFile', () => {
     hasError(validateBrandFile(brandFile({ enclosures: [enclosure({ model: 5 })] })), 'enclosures[0].model: нужна непустая строка');
   });
 
-  test('клеммники N/PE корпуса: блоки и аксессуары', () => {
-    const ok = (terminals) => assert.deepEqual(validateBrandFile(brandFile({ enclosures: [enclosure({ terminals })] })), []);
-    const bad = (terminals, fragment) => hasError(validateBrandFile(brandFile({ enclosures: [enclosure({ terminals })] })), fragment);
-    ok({
-      included: true,
-      blocks: [
-        { role: 'N', position: 'top', clamps: [[2, 25], [11, 16]] },
-        { role: 'PE', clamps: [[2, 25], [11, 16]] },
-      ],
-      verified: true,
-      source: 'https://example.com/box',
+  test('держатели и клеммы N/PE (terminalCarriers, terminalInserts) и комплектация корпуса', () => {
+    const carrier = (over = {}) => ({ id: 'acme-c', brand: 'acme', kind: 'carrier', article: 'C1', lengthMm: 240, positions: ['top', 'bottom'], verified: false, ...over });
+    const insert = (over = {}) => ({ id: 'acme-n6', brand: 'acme', role: 'N', article: 'N6', clamps: [[1, 16], [5, 4]], widthMm: 30, color: 'blue', carrierIds: ['acme-c'], verified: false, ...over });
+    const setup = { carriers: [{ carrierId: 'acme-c', position: 'top', included: true, inserts: [{ insertId: 'acme-n6', pos: 0, included: true }] }], verified: false };
+    const ok = (over) => assert.deepEqual(validateBrandFile(brandFile({ terminalCarriers: [carrier()], terminalInserts: [insert()], ...over })), []);
+    ok({});
+    ok({ enclosures: [enclosure({ terminalSetup: setup })] });
+    ok({ terminalInserts: [insert({ role: 'universal', color: undefined }), insert({ id: 'acme-f', article: undefined, fixed: true })].map((x) => JSON.parse(JSON.stringify(x))) });
+    const bad = (over, fragment) => hasError(validateBrandFile(brandFile({ terminalCarriers: [carrier()], terminalInserts: [insert()], ...over })), fragment);
+    bad({ terminalCarriers: [carrier({ kind: 'rail' })] }, 'terminalCarriers[0].kind');
+    bad({ terminalCarriers: [carrier({ positions: ['left'] })] }, 'terminalCarriers[0].positions');
+    bad({ terminalCarriers: [carrier({ positions: [] })] }, 'terminalCarriers[0].positions');
+    bad({ terminalCarriers: [carrier({ lengthMm: 0 })] }, 'terminalCarriers[0].lengthMm');
+    bad({ terminalInserts: [insert({ role: 'holder' })] }, 'terminalInserts[0].role');
+    bad({ terminalInserts: [insert({ widthMm: -1 })] }, 'terminalInserts[0].widthMm');
+    bad({ terminalInserts: [insert({ color: 'pink' })] }, 'terminalInserts[0].color');
+    bad({ terminalInserts: [insert({ clamps: [] })] }, 'terminalInserts[0].clamps');
+    bad({ enclosures: [enclosure({ terminalSetup: { ...setup, carriers: [{ ...setup.carriers[0], position: 'left' }] } })] }, 'terminalSetup: carriers: [0].position');
+    bad({ enclosures: [enclosure({ terminalSetup: { ...setup, carriers: [{ ...setup.carriers[0], inserts: [{ insertId: 'acme-n6', pos: -1 }] }] } })] }, 'pos: нужно число');
+    bad({ enclosures: [enclosure({ terminalSetup: { carriers: [] } })] }, 'terminalSetup: verified: обязательное поле');
+    bad({ enclosures: [enclosure({ terminals: { included: true, verified: false } })] }, 'enclosures[0].terminals: неизвестное поле');
+  });
+
+  test('ссылки держателей и клемм: корпуса, держатели, клеммы существуют; заводские клеммы помещаются', () => {
+    const enc = (terminalSetup) => ({ ...enclosure(), terminalSetup });
+    const cat = (over = {}) => ({
+      enclosures: [enc({ carriers: [{ carrierId: 'acme-c', position: 'top', included: true, inserts: [{ insertId: 'acme-n6', pos: 0 }, { insertId: 'acme-n6', pos: 30 }] }], verified: false })],
+      devices: [],
+      terminalCarriers: [{ id: 'acme-c', brand: 'acme', lengthMm: 60, positions: ['top'], enclosureIds: ['acme-box-12'] }],
+      terminalInserts: [{ id: 'acme-n6', brand: 'acme', role: 'N', widthMm: 30, carrierIds: ['acme-c'] }],
+      ...over,
     });
-    ok({ included: false, blocks: [{ role: 'N+PE', position: 'bottom' }], accessories: [{ article: 'X1', role: 'PE', verified: false }], verified: false });
-    bad({ blocks: [] , verified: false }, 'terminals: included: обязательное поле');
-    bad({ included: true, verified: false, blocks: [] }, 'blocks: нужен непустой список');
-    bad({ included: true, verified: false, blocks: [{ role: 'L' }] }, 'blocks: [0].role: ожидалось одно из');
-    bad({ included: true, verified: false, blocks: [{ role: 'N', position: 'side' }] }, 'blocks: [0].position: ожидалось одно из');
-    bad({ included: true, verified: false, blocks: [{ role: 'N', clamps: [[0, 16]] }] }, 'clamps: нужен список групп');
-    bad({ included: true, verified: false, blocks: [{ role: 'N', clamps: [[2]] }] }, 'clamps: нужен список групп');
-    bad({ included: true, verified: false, blocks: [{ role: 'N', color: 'blue' }] }, 'лишние поля: color');
-    bad({ included: true, verified: true }, 'terminals: source: обязательно при verified: true');
-    bad({ included: false, verified: false, accessories: [{ article: 'X', role: 'N', verified: true }] }, 'accessories: [0].source: обязательно');
-    bad('есть', 'terminals: нужен объект');
+    assert.deepEqual(validateCatalog(cat()), []);
+    const has = (c, fragment) => assert.ok(validateCatalog(c).some((e) => e.includes(fragment)), `${fragment}: ${validateCatalog(c)}`);
+    has(cat({ terminalCarriers: [{ id: 'acme-c', brand: 'acme', lengthMm: 50, positions: ['top'], enclosureIds: ['acme-box-12'] }] }), '"acme-n6" не помещается');
+    has(cat({ terminalCarriers: [{ id: 'acme-c', brand: 'acme', lengthMm: 60, positions: ['bottom'] }] }), 'место "top" не подходит');
+    has(cat({ terminalCarriers: [{ id: 'acme-c', brand: 'acme', lengthMm: 60, positions: ['top'], enclosureIds: ['acme-other'] }] }), 'нет корпуса "acme-other"');
+    has(cat({ terminalInserts: [{ id: 'acme-n6', brand: 'acme', role: 'N', widthMm: 30, carrierIds: ['acme-x'] }] }), 'нет держателя "acme-x"');
+    has(cat({ terminalInserts: [] }), 'нет клеммы "acme-n6"');
+    has(cat({ enclosures: [enc({ carriers: [{ carrierId: 'acme-y', included: true }], verified: false })] }), 'нет держателя "acme-y"');
+    const overlap = enc({ carriers: [{ carrierId: 'acme-c', position: 'top', included: true, inserts: [{ insertId: 'acme-n6', pos: 0 }, { insertId: 'acme-n6', pos: 20 }] }], verified: false });
+    has(cat({ enclosures: [overlap] }), 'не помещается');
   });
 
   test('полюса УЗО — только 2P или 4P (единое правило для всех брендов)', () => {
@@ -235,14 +254,11 @@ describe('validateBrandFile', () => {
     hasError(validateBrandFile(brandFile({ devices: [rcd('3P+N')] })), 'specs.poles: ожидалось одно из: 2P, 4P');
   });
 
-  test('аксессуары гребёнок (combParts) и держатель клеммников', () => {
+  test('аксессуары гребёнок (combParts)', () => {
     const part = (over = {}) => ({ id: 'acme-cap', brand: 'acme', series: 'K', article: 'CAP', kind: 'end-cap', combSeries: ['K'], verified: false, ...over });
     assert.deepEqual(validateBrandFile(brandFile({ combParts: [part(), part({ id: 'acme-f', article: 'F', kind: 'feed-terminal', packQty: 4 })] })), []);
     hasError(validateBrandFile(brandFile({ combParts: [part({ kind: 'clip' })] })), 'combParts[0].kind');
     hasError(validateBrandFile(brandFile({ combParts: [part({ combSeries: [] })] })), 'combParts[0].combSeries');
-    const holder = { included: false, accessories: [{ article: 'H', role: 'holder', verified: false }], verified: false };
-    assert.deepEqual(validateBrandFile(brandFile({ enclosures: [enclosure({ terminals: holder })] })), []);
-    hasError(validateBrandFile(brandFile({ enclosures: [enclosure({ terminals: { included: true, blocks: [{ role: 'holder' }], verified: false } })] })), 'blocks: [0].role');
   });
 
   test('версия схемы и не-объекты', () => {

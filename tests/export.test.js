@@ -2,7 +2,7 @@ import { test, describe } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 
-import { specTable, toCsv, csvSeparator, exportFileName, terminalsSpec, clampsText, combsSpec, combName, combPartsSpec, combPartName, SPEC_COLUMNS } from '../site/js/export.js';
+import { specTable, toCsv, csvSeparator, exportFileName, carriersSpec, carrierName, insertName, clampsText, combsSpec, combName, combPartsSpec, combPartName, SPEC_COLUMNS } from '../site/js/export.js';
 import { createBoard, addDevice, indexById } from '../site/js/board.js';
 import { createTranslator } from '../site/js/i18n.js';
 
@@ -97,42 +97,52 @@ describe('exportFileName', () => {
   });
 });
 
-describe('клеммники N/PE в спецификации', () => {
-  const included = { ...enclosure, terminals: { included: true, blocks: [{ role: 'N' }], verified: false } };
-  const notIncluded = {
-    ...enclosure,
-    terminals: {
-      included: false,
-      accessories: [
-        { article: '1SPE007715F0743', role: 'PE', clamps: [[7, 16], [9, 6]], verified: true, source: 'https://x.example' },
-        { article: 'N5', role: 'N', verified: false },
-      ],
-      verified: false,
-    },
-  };
+describe('держатели и клеммы N/PE в спецификации', () => {
+  const carriersById = indexById([
+    { id: 'plate', brand: 'hager', kind: 'plate', series: 'volta', article: 'VZ522', lengthMm: 270, positions: ['top'], verified: false },
+    { id: 'qc', brand: 'hager', kind: 'carrier', series: 'QuickConnect', article: 'VZ711', lengthMm: 240, positions: ['top'], verified: true, source: 'https://x.example' },
+    { id: 'zone', brand: 'legrand', kind: 'zone', lengthMm: 226, positions: ['top'], verified: true, source: 'https://x.example' },
+  ]);
+  const insertsById = indexById([
+    { id: 'plate-n', brand: 'hager', role: 'N', clamps: [[1, 25], [16, 16]], widthMm: 130, fixed: true, verified: false },
+    { id: 'kn06n', brand: 'hager', role: 'N', article: 'KN06N', clamps: [[1, 16], [5, 4]], widthMm: 30, verified: true, source: 'https://x.example' },
+    { id: 'kl', brand: 'eaton', role: 'universal', article: '236845', clamps: [[2, 25], [23, 16]], widthMm: 190, verified: true, source: 'https://x.example' },
+    { id: 'bar', brand: 'legrand', role: 'N+PE', article: '134812', clamps: [[24, 16], [24, 10]], widthMm: 226, verified: true, source: 'https://x.example' },
+  ]);
+  const catalog = { carriersById, insertsById };
+  const brands = new Map([...brandNames, ['eaton', 'Eaton'], ['legrand', 'Legrand']]);
 
-  test('clampsText', () => {
+  test('clampsText и названия', () => {
     assert.equal(clampsText([[2, 25], [11, 16]], 'ru'), '2×25 + 11×16');
     assert.equal(clampsText([[5, 1.5]], 'ru'), '5×1,5');
+    assert.equal(carrierName(carriersById.get('qc'), tRu), 'Держатель клемм N/PE QuickConnect, 240 мм');
+    assert.equal(carrierName(carriersById.get('zone'), tEn), 'Place for an N/PE bar, 226 mm');
+    assert.equal(insertName(insertsById.get('kn06n'), 'N', tRu), 'Клемма N, 1×16 + 5×4 мм²');
+    assert.equal(insertName(insertsById.get('kl'), 'PE', tRu), 'Шина PE (по крышке), 2×25 + 23×16 мм²');
   });
 
-  test('в комплекте — пометка в строке корпуса; не подтверждено — с «(не проверено)»', () => {
-    const verified = { ...included, terminals: { ...included.terminals, verified: true, source: 'https://x.example' } };
-    assert.match(specTable(build([]), verified, devices, brandNames, tRu).rows[0][2], /, клеммники N\/PE в комплекте$/);
-    // included.terminals.verified: false — в составе и выгрузках видно, что это не подтверждено
-    assert.match(specTable(build([]), included, devices, brandNames, tRu).rows[0][2], /, клеммники N\/PE в комплекте \(не проверено\)$/);
-  });
-
-  test('не в комплекте: без флага — ничего, с флагом — аксессуары сразу после корпуса', () => {
-    assert.equal(specTable(build([]), notIncluded, devices, brandNames, tRu).rows.length, 1);
-    const board = { ...build(['mcb']), addTerminals: true };
-    const rows = specTable(board, notIncluded, devices, brandNames, tRu).rows;
-    assert.deepEqual(rows.slice(1, 3), [
-      ['1SPE007715F0743', 'Hager', 'Клеммник PE, 7×16 + 9×6 мм²', '', null, 1, ''],
-      ['N5', 'Hager', 'Клеммник N', '', null, 1, 'не проверено'],
+  test('каждый держатель и клемма — своей строкой после корпуса; с завода — «в комплекте корпуса»', () => {
+    const board = {
+      ...build(['mcb']),
+      carriers: [
+        { carrierId: 'plate', position: 'top', included: true, inserts: [{ insertId: 'plate-n', pos: 0, included: true }] },
+        { carrierId: 'qc', position: 'bottom', included: false, inserts: [{ insertId: 'kn06n', pos: 0 }, { insertId: 'kn06n', pos: 30 }, { insertId: 'kl', pos: 0, role: 'PE' }] },
+        { carrierId: 'zone', position: 'top', included: true, inserts: [{ insertId: 'bar', pos: 0 }] },
+        { carrierId: 'gone', position: 'top', included: false, inserts: [] },
+      ],
+    };
+    const rows = specTable(board, enclosure, devices, brands, tRu, new Map(), new Map(), catalog).rows;
+    assert.deepEqual(rows.slice(1, 7), [
+      ['VZ522', 'Hager', 'Колодка N/PE volta, 270 мм', '', null, 1, 'в комплекте корпуса, не проверено'],
+      ['', 'Hager', 'Клемма N, 1×25 + 16×16 мм²', '', null, 1, 'в комплекте корпуса, не проверено'],
+      ['VZ711', 'Hager', 'Держатель клемм N/PE QuickConnect, 240 мм', '', null, 1, ''],
+      ['KN06N', 'Hager', 'Клемма N, 1×16 + 5×4 мм²', '', null, 2, ''],
+      ['236845', 'Eaton', 'Шина PE (по крышке), 2×25 + 23×16 мм²', '', null, 1, ''],
+      ['134812', 'Legrand', 'Клемма N+PE, 24×16 + 24×10 мм²', '', null, 1, ''],
     ]);
-    assert.equal(rows[3][0], 'MCN116', 'потом устройства');
-    assert.deepEqual(terminalsSpec(board, enclosure, tRu), { suffix: '', accessories: [] }, 'без данных о клеммниках');
+    assert.equal(rows[7][0], 'MCN116', 'потом устройства');
+    assert.equal(carriersSpec(board, carriersById, insertsById, tRu).some((l) => l.name.startsWith('Место')), false, 'место под шину — не деталь');
+    assert.equal(specTable(board, enclosure, devices, brands, tRu).rows.length, 2, 'без каталога держателей — без строк держателей');
   });
 });
 
@@ -156,7 +166,7 @@ describe('гребёнки в спецификации', () => {
   });
 });
 
-describe('аксессуары гребёнок и держатели в спецификации', () => {
+describe('аксессуары гребёнок в спецификации', () => {
   const cap = { id: 'hager-kzn023', brand: 'hager', series: 'KZN', article: 'KZN023', kind: 'end-cap', combSeries: ['KDN'], verified: true, source: 'https://x.example' };
   const covers = { id: 'hager-c20', brand: 'hager', series: 'X', article: 'C20', kind: 'tooth-cover', combSeries: ['KDN'], packQty: 20, verified: false };
   const partsById = new Map([cap, covers].map((p) => [p.id, p]));
@@ -171,21 +181,5 @@ describe('аксессуары гребёнок и держатели в спе�
       ['KZN023', 'Hager', 'Торцевая заглушка гребёнки', '', null, 2, ''],
       ['C20', 'Hager', 'Колпачки на свободные штыри гребёнки (упаковка 20 шт.)', '', null, 1, 'не проверено'],
     ]);
-  });
-
-  test('держатель клеммников — строкой в составе вместе с клеммниками', () => {
-    const enc = {
-      ...enclosure,
-      terminals: {
-        included: false,
-        accessories: [
-          { article: 'PE1', role: 'PE', verified: false },
-          { article: 'H1', role: 'holder', verified: true, source: 'https://x.example' },
-        ],
-        verified: false,
-      },
-    };
-    const { accessories } = terminalsSpec({ ...build([]), addTerminals: true }, enc, tRu);
-    assert.deepEqual(accessories.map((a) => [a.article, a.name]), [['PE1', 'Клеммник PE'], ['H1', 'Держатель клеммников']]);
   });
 });

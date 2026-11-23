@@ -12,7 +12,7 @@ import {
   findItem,
   billOfMaterials,
   setEarthing,
-  setAddTerminals,
+  setCarriers,
   clearDevices,
   setRowComb,
   setCombPart,
@@ -315,29 +315,63 @@ describe('система заземления', () => {
   });
 });
 
-describe('клеммники N/PE в составе', () => {
-  test('setAddTerminals: флаг только при true, сохраняется при смене корпуса', () => {
-    const board = createBoard(enc(2));
-    assert.equal('addTerminals' in board, false);
-    const on = setAddTerminals(board, true);
-    assert.equal(on.addTerminals, true);
-    assert.equal('addTerminals' in board, false, 'исходный щит не меняется');
-    assert.equal(changeEnclosure(on, enc(1), devices).board.addTerminals, true);
-    assert.equal('addTerminals' in changeEnclosure(board, enc(1), devices).board, false);
-    assert.equal('addTerminals' in setAddTerminals(on, false), false);
+describe('держатели клемм N/PE щита', () => {
+  const factory = [{ carrierId: 'plate', position: 'top', included: true, inserts: [{ insertId: 'n', pos: 0, included: true }] }];
+  const withSetup = (rows, id = 'box') => ({ ...enc(rows), id, terminalSetup: { carriers: factory, verified: false } });
+  const qc = [{ carrierId: 'qc', position: 'bottom', included: false, inserts: [{ insertId: 'kn', pos: 10 }] }];
+  const carriersById = new Map([
+    ['plate', { id: 'plate', enclosureIds: ['box'] }],
+    ['qc', { id: 'qc', enclosureIds: ['box', 'big'] }],
+  ]);
+
+  test('новый щит — как с завода; без комплектации — без поля carriers', () => {
+    assert.deepEqual(createBoard(withSetup(2)).carriers, factory);
+    assert.equal('carriers' in createBoard(enc(2)), false);
+  });
+
+  test('смена корпуса: свои держатели остаются, если все ставятся в новый корпус, иначе — заводские', () => {
+    const mine = setCarriers(createBoard(withSetup(1)), qc);
+    assert.deepEqual(changeEnclosure(mine, withSetup(2, 'big'), devices, carriersById).board.carriers, qc);
+    const plate = createBoard(withSetup(1));
+    assert.deepEqual(changeEnclosure(plate, withSetup(2, 'big'), devices, carriersById).board.carriers, factory, 'колодка не для big');
+    assert.equal('carriers' in changeEnclosure(plate, enc(2), devices, carriersById).board, false);
+    assert.deepEqual(setCarriers(mine, []).carriers, [], 'все убраны — пустой список');
+  });
+
+  test('смена корпуса: «в комплекте корпуса» — по комплектации нового корпуса; чужие заводские шины не переезжают', () => {
+    const rail = (inserts, included = true) => ({ carrierId: 'rail', position: 'top', included, inserts });
+    const setup = (id, carriers) => ({ ...enc(1), id, terminalSetup: { carriers, verified: false } });
+    const small = setup('small', [rail([{ insertId: 'fix1', pos: 0, included: true }])]);
+    const big = setup('big', [rail([{ insertId: 'kl', pos: 0, included: true }])]);
+    const bigToo = setup('big2', [rail([{ insertId: 'kl', pos: 0, included: true }])]);
+    const byId = new Map([['rail', { id: 'rail', enclosureIds: ['small', 'big', 'big2'] }]]);
+    const inserts = new Map([
+      ['fix1', { id: 'fix1', fixed: true }],
+      ['kl', { id: 'kl' }],
+      ['n6', { id: 'n6' }],
+    ]);
+    const move = (board, to) => changeEnclosure(board, to, devices, byId, inserts).board.carriers;
+    // Своя шина kl из большого корпуса в маленьком — уже к заказу; держатель там с завода есть
+    const mine = setCarriers(createBoard(big), [rail([{ insertId: 'kl', pos: 0, included: true }, { insertId: 'n6', pos: 200 }])]);
+    assert.deepEqual(move(mine, small), [rail([{ insertId: 'kl', pos: 0 }, { insertId: 'n6', pos: 200 }])]);
+    // В корпус с той же комплектацией — по-прежнему с завода
+    assert.deepEqual(move(mine, bigToo), mine.carriers);
+    // Заводская шина маленького корпуса (без артикула) в другой корпус не переезжает — там своя комплектация
+    assert.deepEqual(move(createBoard(small), big), big.terminalSetup.carriers);
   });
 });
 
 describe('очистка щита', () => {
-  test('clearDevices: убирает устройства, оставляет систему заземления и добавленные клеммники N/PE', () => {
+  test('clearDevices: убирает устройства, оставляет систему заземления и держатели клемм N/PE', () => {
     const e = enc(2);
-    let board = setAddTerminals(setEarthing(createBoard(e), 'TT'), true);
+    const carriers = [{ carrierId: 'qc', position: 'top', included: false, inserts: [{ insertId: 'kn', pos: 0 }] }];
+    let board = setCarriers(setEarthing(createBoard(e), 'TT'), carriers);
     ({ board } = addDevice(board, e, devices, 'mcb', { row: 0 }));
     const cleared = clearDevices(board, e);
     assert.deepEqual(cleared.rows, [[], []]);
     assert.equal(cleared.earthing, 'TT');
-    assert.equal(cleared.addTerminals, true);
-    assert.equal('addTerminals' in clearDevices(setAddTerminals(board, false), e), false);
+    assert.deepEqual(cleared.carriers, carriers);
+    assert.deepEqual(clearDevices(setCarriers(board, []), e).carriers, [], 'убранные держатели не возвращаются');
     assert.equal(board.rows[0].length, 1, 'исходный щит не меняется');
   });
 });

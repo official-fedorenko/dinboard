@@ -13,33 +13,46 @@ export function clampsText(clamps, lang) {
   return clamps.map(([count, mm2]) => `${count}×${num(mm2, lang)}`).join(' + ');
 }
 
+/** Название держателя клемм N/PE: «Держатель клемм QuickConnect, 240 мм». */
+export function carrierName(carrier, t) {
+  return t(`carrier.name.${carrier.kind}`, { series: carrier.series ? ` ${carrier.series}` : '', length: num(carrier.lengthMm, t.lang) });
+}
+
+/** Название клеммы: «Клемма N, 1×16 + 5×4 мм²»; у универсальной — с ролью по крышке. */
+export function insertName(insert, role, t) {
+  const clamps = clampsText(insert.clamps, t.lang);
+  return insert.role === 'universal' ? t('insert.nameUniversal', { role, clamps }) : t('insert.name', { role: insert.role, clamps });
+}
+
 /**
- * Клеммники N/PE в составе щита: { suffix, accessories: [{ article, name, verified }] }.
- * suffix — пометка к строке корпуса («клеммники N/PE в комплекте») или '';
- * accessories — клеммники производителя, если в комплекте их нет и они добавлены (board.addTerminals).
+ * Держатели и клеммы N/PE щита в составе: [{ article, brand, name, count, included, verified }].
+ * Каждый держатель и каждая клемма — своей строкой, одинаковые суммируются; included — стоит с завода
+ * («в комплекте корпуса»), иначе — к заказу. Места под шину (kind: zone) — не деталь, в состав не идут;
+ * части заводских колодок без артикула — только как «в комплекте корпуса». Неизвестные пропускаются.
  */
-export function terminalsSpec(board, enclosure, t) {
-  const terminals = enclosure.terminals;
-  if (!terminals) return { suffix: '', accessories: [] };
-  // Не подтверждено официальным источником — видно и в составе, и в выгрузках (чтобы клеммники не забыли сверить)
-  if (terminals.included) {
-    const suffix = t('terminals.specIncluded');
-    return { suffix: terminals.verified ? suffix : `${suffix} (${t('device.unverified')})`, accessories: [] };
-  }
-  if (!board.addTerminals || !terminals.accessories) return { suffix: '', accessories: [] };
-  return {
-    suffix: '',
-    accessories: terminals.accessories.map((a) => ({
-      article: a.article,
-      verified: a.verified,
-      name:
-        a.role === 'holder'
-          ? t('terminals.holderName')
-          : a.clamps
-            ? t('terminals.accessoryName', { role: a.role, clamps: clampsText(a.clamps, t.lang) })
-            : t('terminals.accessoryNameShort', { role: a.role }),
-    })),
+export function carriersSpec(board, carriersById, insertsById, t) {
+  const lines = new Map();
+  const add = (key, line) => {
+    const prev = lines.get(key);
+    if (prev) prev.count += 1;
+    else lines.set(key, { ...line, count: 1 });
   };
+  for (const c of board.carriers ?? []) {
+    const carrier = carriersById.get(c.carrierId);
+    if (!carrier) continue;
+    if (carrier.kind !== 'zone' && (carrier.article || c.included)) {
+      add(`c:${carrier.id}:${c.included}`, { article: carrier.article ?? '', brand: carrier.brand, name: carrierName(carrier, t), included: c.included, verified: carrier.verified });
+    }
+    for (const item of c.inserts) {
+      const insert = insertsById.get(item.insertId);
+      if (!insert) continue;
+      const included = Boolean(item.included);
+      if (!insert.article && !included) continue;
+      const role = insert.role === 'universal' ? item.role ?? 'N' : insert.role;
+      add(`i:${insert.id}:${role}:${included}`, { article: insert.article ?? '', brand: insert.brand, name: insertName(insert, role, t), included, verified: insert.verified });
+    }
+  }
+  return [...lines.values()];
 }
 
 /** Гребёнки щита: [{ comb, count }] — по одной на ряд, одинаковые суммируются; неизвестные пропускаются. */
@@ -71,18 +84,21 @@ export function combName(comb, t) {
 
 /**
  * Спецификация щита: первой строкой корпус, затем устройства (как в billOfMaterials).
- * Клеммники N/PE: пометка в строке корпуса или клеммники-аксессуары сразу после него; гребёнки и их аксессуары — в конце.
+ * Держатели и клеммы N/PE (carriersSpec) — сразу после корпуса; гребёнки и их аксессуары — в конце.
  * Ячейки — строки и числа; `modules` у корпуса — null (пустая ячейка).
+ * carrierCatalog — { carriersById, insertsById } (без него держатели в состав не идут).
  * Возвращает { head: [заголовки], rows: [[ячейки по SPEC_COLUMNS]] }.
  */
-export function specTable(board, enclosure, devices, brandNames, t, combsById = new Map(), partsById = new Map()) {
+export function specTable(board, enclosure, devices, brandNames, t, combsById = new Map(), partsById = new Map(), carrierCatalog = null) {
   const note = (item) => (item.verified ? '' : t('device.unverified'));
   const brand = brandNames.get(enclosure.brand) ?? enclosure.brand;
-  const terminals = terminalsSpec(board, enclosure, t);
   const enclosureName = t('summary.enclosure', { title: `${enclosureTitle(enclosure)} (${enclosureDescription(enclosure, t)})` });
+  const carriers = carrierCatalog ? carriersSpec(board, carrierCatalog.carriersById, carrierCatalog.insertsById, t) : [];
+  // «В комплекте корпуса» и «не проверено» — в примечании (чтобы с завода не заказали лишнего и сверили)
+  const carrierNote = (line) => [line.included ? t('carrier.specIncluded') : '', note(line)].filter(Boolean).join(', ');
   const rows = [
-    [enclosure.article, brand, terminals.suffix ? `${enclosureName}, ${terminals.suffix}` : enclosureName, enclosure.model ?? '', null, 1, note(enclosure)],
-    ...terminals.accessories.map((a) => [a.article, brand, a.name, '', null, 1, note(a)]),
+    [enclosure.article, brand, enclosureName, enclosure.model ?? '', null, 1, note(enclosure)],
+    ...carriers.map((line) => [line.article, brandNames.get(line.brand) ?? line.brand, line.name, '', null, line.count, carrierNote(line)]),
     ...billOfMaterials(board).map(({ deviceId, count }) => {
       const d = devices.get(deviceId);
       return [d.article, brandNames.get(d.brand) ?? d.brand, deviceTitle(d, t), d.model ?? '', d.modules, count, note(d)];

@@ -22,39 +22,35 @@
         "height": 230,
         "depth": 145
       },
-      "terminals": {
-        "included": true,
-        "blocks": [
+      "terminalSetup": {
+        "carriers": [
           {
-            "role": "N",
-            "clamps": [
-              [
-                2,
-                25
-              ],
-              [
-                11,
-                16
-              ]
+            "carrierId": "eaton-294905",
+            "position": "top",
+            "included": true,
+            "inserts": [
+              {
+                "insertId": "eaton-bc-a1-n",
+                "pos": 0,
+                "included": true
+              }
             ]
           },
           {
-            "role": "PE",
-            "clamps": [
-              [
-                2,
-                25
-              ],
-              [
-                11,
-                16
-              ]
+            "carrierId": "eaton-294905",
+            "position": "top",
+            "included": true,
+            "inserts": [
+              {
+                "insertId": "eaton-bc-a1-pe",
+                "pos": 0,
+                "included": true
+              }
             ]
           }
         ],
-        "verified": true,
-        "source": "https://www.eaton.com/content/dam/eaton/products/low-voltage-power-distribution-controls-systems/xcomfort-bc/eaton-xcomfort-bc-a-catalog-ca014025de-de-de.pdf",
-        "notes": "Каталог Eaton CA014025DE (2021), с. 2 и 6: клеммы N и PE с держателем в комплекте. Где стоит держатель, в каталоге не указано."
+        "verified": false,
+        "notes": "Клеммы N и PE — каталог CA014025DE, с. 6; тип держателя и место вверху — вывод по фото eaton.com."
       },
       "verified": false,
       "source": "https://www.eaton.com.cn/cn/zh-cn/skuPage.101558.html",
@@ -77,39 +73,35 @@
         "height": 350,
         "depth": 145
       },
-      "terminals": {
-        "included": true,
-        "blocks": [
+      "terminalSetup": {
+        "carriers": [
           {
-            "role": "N",
-            "clamps": [
-              [
-                2,
-                25
-              ],
-              [
-                14,
-                16
-              ]
+            "carrierId": "eaton-294905",
+            "position": "top",
+            "included": true,
+            "inserts": [
+              {
+                "insertId": "eaton-bc-a2-n",
+                "pos": 0,
+                "included": true
+              }
             ]
           },
           {
-            "role": "PE",
-            "clamps": [
-              [
-                2,
-                25
-              ],
-              [
-                14,
-                16
-              ]
+            "carrierId": "eaton-294905",
+            "position": "top",
+            "included": true,
+            "inserts": [
+              {
+                "insertId": "eaton-bc-a2-pe",
+                "pos": 0,
+                "included": true
+              }
             ]
           }
         ],
-        "verified": true,
-        "source": "https://www.eaton.com/content/dam/eaton/products/low-voltage-power-distribution-controls-systems/xcomfort-bc/eaton-xcomfort-bc-a-catalog-ca014025de-de-de.pdf",
-        "notes": "Каталог Eaton CA014025DE (2021), с. 2 и 6: клеммы N и PE с держателем в комплекте. Где стоит держатель, в каталоге не указано."
+        "verified": false,
+        "notes": "Клеммы N и PE — каталог CA014025DE, с. 6; тип держателя и место вверху — вывод по фото eaton.com."
       },
       "verified": false,
       "source": "https://www.eaton.com.cn/cn/zh-cn/skuPage.101559.html",
@@ -132,39 +124,37 @@
         "height": 480,
         "depth": 145
       },
-      "terminals": {
-        "included": true,
-        "blocks": [
+      "terminalSetup": {
+        "carriers": [
           {
-            "role": "N",
-            "clamps": [
-              [
-                2,
-                25
-              ],
-              [
-                23,
-                16
-              ]
+            "carrierId": "eaton-294905",
+            "position": "top",
+            "included": true,
+            "inserts": [
+              {
+                "insertId": "eaton-236845",
+                "pos": 0,
+                "role": "N",
+                "included": true
+              }
             ]
           },
           {
-            "role": "PE",
-            "clamps": [
-              [
-                2,
-                25
-              ],
-              [
-                23,
-                16
-              ]
+            "carrierId": "eaton-294905",
+            "position": "top",
+            "included": true,
+            "inserts": [
+              {
+                "insertId": "eaton-236845",
+                "pos": 0,
+                "role": "PE",
+                "included": true
+              }
             ]
           }
         ],
-        "verified": true,
-        "source": "https://www.eaton.com/content/dam/eaton/products/low-voltage-power-distribution-controls-systems/xcomfort-bc/eaton-xcomfort-bc-a-catalog-ca014025de-de-de.pdf",
-        "notes": "Каталог Eaton CA014025DE (2021), с. 2 и 6: клеммы N и PE с держателем в комплекте. Где стоит держатель, в каталоге не указано."
+        "verified": false,
+        "notes": "Клеммы N и PE 2×25 + 23×16 мм² (каталог CA014025DE, с. 6) — как KLV-KL-25, по одной на N и PE; держатели и место вверху — вывод по фото eaton.com."
       },
       "verified": false,
       "source": "https://www.eaton.com.cn/cn/zh-cn/skuPage.101560.html",
@@ -187,39 +177,37 @@
         "height": 650,
         "depth": 145
       },
-      "terminals": {
-        "included": true,
-        "blocks": [
+      "terminalSetup": {
+        "carriers": [
           {
-            "role": "N",
-            "clamps": [
-              [
-                2,
-                25
-              ],
-              [
-                23,
-                16
-              ]
+            "carrierId": "eaton-294905",
+            "position": "top",
+            "included": true,
+            "inserts": [
+              {
+                "insertId": "eaton-236845",
+                "pos": 0,
+                "role": "N",
+                "included": true
+              }
             ]
           },
           {
-            "role": "PE",
-            "clamps": [
-              [
-                2,
-                25
-              ],
-              [
-                23,
-                16
-              ]
+            "carrierId": "eaton-294905",
+            "position": "top",
+            "included": true,
+            "inserts": [
+              {
+                "insertId": "eaton-236845",
+                "pos": 0,
+                "role": "PE",
+                "included": true
+              }
             ]
           }
         ],
-        "verified": true,
-        "source": "https://www.eaton.com/content/dam/eaton/products/low-voltage-power-distribution-controls-systems/xcomfort-bc/eaton-xcomfort-bc-a-catalog-ca014025de-de-de.pdf",
-        "notes": "Каталог Eaton CA014025DE (2021), с. 2 и 6: клеммы N и PE с держателем в комплекте. Где стоит держатель, в каталоге не указано."
+        "verified": false,
+        "notes": "Клеммы N и PE 2×25 + 23×16 мм² (каталог CA014025DE, с. 6) — как KLV-KL-25, по одной на N и PE; держатели и место вверху — вывод по фото eaton.com."
       },
       "verified": false,
       "source": "https://www.eaton.com.cn/cn/zh-cn/skuPage.101561.html",
@@ -242,39 +230,35 @@
         "height": 230,
         "depth": 100
       },
-      "terminals": {
-        "included": true,
-        "blocks": [
+      "terminalSetup": {
+        "carriers": [
           {
-            "role": "N",
-            "clamps": [
-              [
-                2,
-                25
-              ],
-              [
-                11,
-                16
-              ]
+            "carrierId": "eaton-294905",
+            "position": "top",
+            "included": true,
+            "inserts": [
+              {
+                "insertId": "eaton-bc-a1-n",
+                "pos": 0,
+                "included": true
+              }
             ]
           },
           {
-            "role": "PE",
-            "clamps": [
-              [
-                2,
-                25
-              ],
-              [
-                11,
-                16
-              ]
+            "carrierId": "eaton-294905",
+            "position": "top",
+            "included": true,
+            "inserts": [
+              {
+                "insertId": "eaton-bc-a1-pe",
+                "pos": 0,
+                "included": true
+              }
             ]
           }
         ],
-        "verified": true,
-        "source": "https://www.eaton.com/content/dam/eaton/products/low-voltage-power-distribution-controls-systems/xcomfort-bc/eaton-xcomfort-bc-a-catalog-ca014025de-de-de.pdf",
-        "notes": "Каталог Eaton CA014025DE (2021), с. 2 и 6: клеммы N и PE с держателем в комплекте. Где стоит держатель, в каталоге не указано."
+        "verified": false,
+        "notes": "Клеммы N и PE — каталог CA014025DE, с. 6; тип держателя и место вверху — вывод по фото eaton.com."
       },
       "verified": false,
       "source": "https://www.eaton.com.cn/cn/zh-cn/skuPage.101550.html",
@@ -297,39 +281,35 @@
         "height": 355,
         "depth": 100
       },
-      "terminals": {
-        "included": true,
-        "blocks": [
+      "terminalSetup": {
+        "carriers": [
           {
-            "role": "N",
-            "clamps": [
-              [
-                2,
-                25
-              ],
-              [
-                14,
-                16
-              ]
+            "carrierId": "eaton-294905",
+            "position": "top",
+            "included": true,
+            "inserts": [
+              {
+                "insertId": "eaton-bc-a2-n",
+                "pos": 0,
+                "included": true
+              }
             ]
           },
           {
-            "role": "PE",
-            "clamps": [
-              [
-                2,
-                25
-              ],
-              [
-                14,
-                16
-              ]
+            "carrierId": "eaton-294905",
+            "position": "top",
+            "included": true,
+            "inserts": [
+              {
+                "insertId": "eaton-bc-a2-pe",
+                "pos": 0,
+                "included": true
+              }
             ]
           }
         ],
-        "verified": true,
-        "source": "https://www.eaton.com/content/dam/eaton/products/low-voltage-power-distribution-controls-systems/xcomfort-bc/eaton-xcomfort-bc-a-catalog-ca014025de-de-de.pdf",
-        "notes": "Каталог Eaton CA014025DE (2021), с. 2 и 6: клеммы N и PE с держателем в комплекте. Где стоит держатель, в каталоге не указано."
+        "verified": false,
+        "notes": "Клеммы N и PE — каталог CA014025DE, с. 6; тип держателя и место вверху — вывод по фото eaton.com."
       },
       "verified": false,
       "source": "https://www.eaton.com.cn/cn/zh-cn/skuPage.101551.html",
@@ -352,39 +332,37 @@
         "height": 480,
         "depth": 100
       },
-      "terminals": {
-        "included": true,
-        "blocks": [
+      "terminalSetup": {
+        "carriers": [
           {
-            "role": "N",
-            "clamps": [
-              [
-                2,
-                25
-              ],
-              [
-                23,
-                16
-              ]
+            "carrierId": "eaton-294905",
+            "position": "top",
+            "included": true,
+            "inserts": [
+              {
+                "insertId": "eaton-236845",
+                "pos": 0,
+                "role": "N",
+                "included": true
+              }
             ]
           },
           {
-            "role": "PE",
-            "clamps": [
-              [
-                2,
-                25
-              ],
-              [
-                23,
-                16
-              ]
+            "carrierId": "eaton-294905",
+            "position": "top",
+            "included": true,
+            "inserts": [
+              {
+                "insertId": "eaton-236845",
+                "pos": 0,
+                "role": "PE",
+                "included": true
+              }
             ]
           }
         ],
-        "verified": true,
-        "source": "https://www.eaton.com/content/dam/eaton/products/low-voltage-power-distribution-controls-systems/xcomfort-bc/eaton-xcomfort-bc-a-catalog-ca014025de-de-de.pdf",
-        "notes": "Каталог Eaton CA014025DE (2021), с. 2 и 6: клеммы N и PE с держателем в комплекте. Где стоит держатель, в каталоге не указано."
+        "verified": false,
+        "notes": "Клеммы N и PE 2×25 + 23×16 мм² (каталог CA014025DE, с. 6) — как KLV-KL-25, по одной на N и PE; держатели и место вверху — вывод по фото eaton.com."
       },
       "verified": false,
       "source": "https://www.eaton.com.cn/cn/zh-cn/skuPage.101552.html",
@@ -407,39 +385,37 @@
         "height": 600,
         "depth": 100
       },
-      "terminals": {
-        "included": true,
-        "blocks": [
+      "terminalSetup": {
+        "carriers": [
           {
-            "role": "N",
-            "clamps": [
-              [
-                2,
-                25
-              ],
-              [
-                23,
-                16
-              ]
+            "carrierId": "eaton-294905",
+            "position": "top",
+            "included": true,
+            "inserts": [
+              {
+                "insertId": "eaton-236845",
+                "pos": 0,
+                "role": "N",
+                "included": true
+              }
             ]
           },
           {
-            "role": "PE",
-            "clamps": [
-              [
-                2,
-                25
-              ],
-              [
-                23,
-                16
-              ]
+            "carrierId": "eaton-294905",
+            "position": "top",
+            "included": true,
+            "inserts": [
+              {
+                "insertId": "eaton-236845",
+                "pos": 0,
+                "role": "PE",
+                "included": true
+              }
             ]
           }
         ],
-        "verified": true,
-        "source": "https://www.eaton.com/content/dam/eaton/products/low-voltage-power-distribution-controls-systems/xcomfort-bc/eaton-xcomfort-bc-a-catalog-ca014025de-de-de.pdf",
-        "notes": "Каталог Eaton CA014025DE (2021), с. 2 и 6: клеммы N и PE с держателем в комплекте. Где стоит держатель, в каталоге не указано."
+        "verified": false,
+        "notes": "Клеммы N и PE 2×25 + 23×16 мм² (каталог CA014025DE, с. 6) — как KLV-KL-25, по одной на N и PE; держатели и место вверху — вывод по фото eaton.com."
       },
       "verified": false,
       "source": "https://www.eaton.com.cn/cn/zh-cn/skuPage.101553.html",
@@ -4118,6 +4094,247 @@
       "verified": true,
       "source": "https://www.eaton.com/content/dam/eaton/products/electrical-circuit-protection/circuit-breakers/xpole-rccb/eaton-xpole-accessories-ca019015en-en-us.pdf",
       "notes": "Вводная клемма 6–25 мм² для шин Z-SV/Z-GSV (сверено по каталогу CA019015EN)."
+    }
+  ],
+  "terminalCarriers": [
+    {
+      "id": "eaton-294905",
+      "brand": "eaton",
+      "kind": "carrier",
+      "series": "BCZ-CS-BO",
+      "article": "294905",
+      "lengthMm": 230,
+      "positions": [
+        "top",
+        "bottom"
+      ],
+      "enclosureIds": [
+        "eaton-101558",
+        "eaton-101559",
+        "eaton-101560",
+        "eaton-101561",
+        "eaton-101550",
+        "eaton-101551",
+        "eaton-101552",
+        "eaton-101553"
+      ],
+      "verified": false,
+      "source": "https://www.eaton.com/de/de-de/skuPage.294905.html",
+      "notes": "Держатель BCZ-CS-BO 250×70×35 мм (страница артикула); полезная длина под шины 230 мм — вывод. Потенциал шины задаёт крышка: BCZ-CS-BO-B (синяя, N), -V (зелёная, PE)."
+    }
+  ],
+  "terminalInserts": [
+    {
+      "id": "eaton-236841",
+      "brand": "eaton",
+      "role": "universal",
+      "series": "KLV-KL",
+      "article": "236841",
+      "clamps": [
+        [
+          1,
+          25
+        ],
+        [
+          3,
+          16
+        ]
+      ],
+      "widthMm": 36,
+      "carrierIds": [
+        "eaton-294905"
+      ],
+      "verified": true,
+      "source": "https://www.eaton.com/content/dam/eaton/products/low-voltage-power-distribution-controls-systems/xcomfort-bc/eaton-xcomfort-bc-a-catalog-ca014025de-de-de.pdf",
+      "notes": "Шина без цвета: N или PE задаёт крышка держателя."
+    },
+    {
+      "id": "eaton-236842",
+      "brand": "eaton",
+      "role": "universal",
+      "series": "KLV-KL",
+      "article": "236842",
+      "clamps": [
+        [
+          1,
+          25
+        ],
+        [
+          6,
+          16
+        ]
+      ],
+      "widthMm": 57,
+      "carrierIds": [
+        "eaton-294905"
+      ],
+      "verified": true,
+      "source": "https://www.eaton.com/content/dam/eaton/products/low-voltage-power-distribution-controls-systems/xcomfort-bc/eaton-xcomfort-bc-a-catalog-ca014025de-de-de.pdf",
+      "notes": "Шина без цвета: N или PE задаёт крышка держателя."
+    },
+    {
+      "id": "eaton-236843",
+      "brand": "eaton",
+      "role": "universal",
+      "series": "KLV-KL",
+      "article": "236843",
+      "clamps": [
+        [
+          2,
+          25
+        ],
+        [
+          9,
+          16
+        ]
+      ],
+      "widthMm": 92,
+      "carrierIds": [
+        "eaton-294905"
+      ],
+      "verified": true,
+      "source": "https://www.eaton.com/content/dam/eaton/products/low-voltage-power-distribution-controls-systems/xcomfort-bc/eaton-xcomfort-bc-a-catalog-ca014025de-de-de.pdf",
+      "notes": "Шина без цвета: N или PE задаёт крышка держателя."
+    },
+    {
+      "id": "eaton-236844",
+      "brand": "eaton",
+      "role": "universal",
+      "series": "KLV-KL",
+      "article": "236844",
+      "clamps": [
+        [
+          2,
+          25
+        ],
+        [
+          13,
+          16
+        ]
+      ],
+      "widthMm": 120,
+      "carrierIds": [
+        "eaton-294905"
+      ],
+      "verified": true,
+      "source": "https://www.eaton.com/content/dam/eaton/products/low-voltage-power-distribution-controls-systems/xcomfort-bc/eaton-xcomfort-bc-a-catalog-ca014025de-de-de.pdf",
+      "notes": "Шина без цвета: N или PE задаёт крышка держателя."
+    },
+    {
+      "id": "eaton-236845",
+      "brand": "eaton",
+      "role": "universal",
+      "series": "KLV-KL",
+      "article": "236845",
+      "clamps": [
+        [
+          2,
+          25
+        ],
+        [
+          23,
+          16
+        ]
+      ],
+      "widthMm": 190,
+      "carrierIds": [
+        "eaton-294905"
+      ],
+      "verified": true,
+      "source": "https://www.eaton.com/content/dam/eaton/products/low-voltage-power-distribution-controls-systems/xcomfort-bc/eaton-xcomfort-bc-a-catalog-ca014025de-de-de.pdf",
+      "notes": "Шина без цвета: N или PE задаёт крышка держателя."
+    },
+    {
+      "id": "eaton-bc-a1-n",
+      "brand": "eaton",
+      "role": "N",
+      "clamps": [
+        [
+          2,
+          25
+        ],
+        [
+          11,
+          16
+        ]
+      ],
+      "widthMm": 105,
+      "color": "blue",
+      "carrierIds": [
+        "eaton-294905"
+      ],
+      "fixed": true,
+      "verified": false,
+      "notes": "Штатная шина N корпусов BC-A в 1 ряд(а) (каталог CA014025DE, с. 6). Отдельно не продаётся (ни одна KLV-KL не совпадает); ширина — вывод."
+    },
+    {
+      "id": "eaton-bc-a1-pe",
+      "brand": "eaton",
+      "role": "PE",
+      "clamps": [
+        [
+          2,
+          25
+        ],
+        [
+          11,
+          16
+        ]
+      ],
+      "widthMm": 105,
+      "color": "green",
+      "carrierIds": [
+        "eaton-294905"
+      ],
+      "fixed": true,
+      "verified": false,
+      "notes": "Штатная шина PE корпусов BC-A в 1 ряд(а) (каталог CA014025DE, с. 6). Отдельно не продаётся (ни одна KLV-KL не совпадает); ширина — вывод."
+    },
+    {
+      "id": "eaton-bc-a2-n",
+      "brand": "eaton",
+      "role": "N",
+      "clamps": [
+        [
+          2,
+          25
+        ],
+        [
+          14,
+          16
+        ]
+      ],
+      "widthMm": 125,
+      "color": "blue",
+      "carrierIds": [
+        "eaton-294905"
+      ],
+      "fixed": true,
+      "verified": false,
+      "notes": "Штатная шина N корпусов BC-A в 2 ряд(а) (каталог CA014025DE, с. 6). Отдельно не продаётся (ни одна KLV-KL не совпадает); ширина — вывод."
+    },
+    {
+      "id": "eaton-bc-a2-pe",
+      "brand": "eaton",
+      "role": "PE",
+      "clamps": [
+        [
+          2,
+          25
+        ],
+        [
+          14,
+          16
+        ]
+      ],
+      "widthMm": 125,
+      "color": "green",
+      "carrierIds": [
+        "eaton-294905"
+      ],
+      "fixed": true,
+      "verified": false,
+      "notes": "Штатная шина PE корпусов BC-A в 2 ряд(а) (каталог CA014025DE, с. 6). Отдельно не продаётся (ни одна KLV-KL не совпадает); ширина — вывод."
     }
   ]
 }

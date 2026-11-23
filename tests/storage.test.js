@@ -123,31 +123,89 @@ describe('система заземления в проекте', () => {
   });
 });
 
-describe('клеммники N/PE в составе (addTerminals)', () => {
-  const withTerminals = { ...project, addTerminals: true };
+describe('держатели клемм N/PE в проекте (carriers)', () => {
+  const carriers = [
+    { carrierId: 'hager-vz711', position: 'bottom', included: false, inserts: [{ insertId: 'kn14n', pos: 0 }, { insertId: 'kl', pos: 67.2, role: 'PE' }] },
+    { carrierId: 'plate', position: 'top', included: true, inserts: [{ insertId: 'plate-n', pos: 0, included: true }] },
+  ];
+  const withCarriers = { ...project, carriers };
+  const catalog = {
+    carriersById: indexById([
+      { id: 'hager-vz711', lengthMm: 240, positions: ['top', 'bottom'] },
+      { id: 'plate', lengthMm: 270, positions: ['top'] },
+    ]),
+    insertsById: indexById([
+      { id: 'kn14n', role: 'N', widthMm: 60, carrierIds: ['hager-vz711'] },
+      { id: 'kl', role: 'universal', widthMm: 120 },
+      { id: 'plate-n', role: 'N', widthMm: 130, carrierIds: ['plate'], fixed: true },
+    ]),
+  };
+  const linkData = (p) => JSON.parse(Buffer.from(encodeLink(p), 'base64url').toString());
 
-  test('щит → проект → щит, ссылка и файл сохраняют флаг', () => {
-    const { board } = buildBoard(withTerminals, enclosures, devices);
-    assert.equal(board.addTerminals, true);
-    assert.deepEqual(projectFromBoard(board), { ...placed, addTerminals: true });
-    assert.deepEqual(decodeLink(encodeLink(withTerminals)), withTerminals);
-    assert.deepEqual(projectFromFile(projectToFile(withTerminals, enclosures, devices)), withTerminals);
-    assert.equal(JSON.parse(Buffer.from(encodeLink(withTerminals), 'base64url').toString()).t, 1);
+  test('щит → проект → щит, ссылка и файл сохраняют держатели и клеммы', () => {
+    // Колодка — из комплектации корпуса (иначе «в комплекте корпуса» не сохранится)
+    const encs = indexById([{ ...enclosures.get('hager-va24b'), terminalSetup: { carriers: [carriers[1]], verified: false } }]);
+    const { board, skipped } = buildBoard(withCarriers, encs, devices, catalog);
+    assert.deepEqual(skipped, []);
+    assert.deepEqual(board.carriers, carriers);
+    assert.deepEqual(projectFromBoard(board), { ...placed, carriers });
+    assert.deepEqual(decodeLink(encodeLink(withCarriers)), withCarriers);
+    assert.deepEqual(linkData(withCarriers).n[0], ['hager-vz711', 'bottom', 0, [['kn14n', 0, 0, 0], ['kl', 67.2, 'PE', 0]]], 'краткая запись в ссылке');
+    assert.deepEqual(projectFromFile(projectToFile(withCarriers, enclosures, devices)), withCarriers);
+    const none = { ...project, carriers: [] };
+    assert.deepEqual(decodeLink(encodeLink(none)), none, 'все держатели убраны — пустой список сохраняется');
   });
 
-  test('без флага — поля нет (старые ссылки и файлы открываются, сравнение не меняется)', () => {
-    const { board } = buildBoard(project, enclosures, devices);
+  test('без поля — как с завода; старый флаг addTerminals принимается и не используется', () => {
+    const encs = indexById([{ ...enclosures.get('hager-va24b'), terminalSetup: { carriers: [carriers[1]], verified: false } }]);
+    assert.deepEqual(buildBoard(project, encs, devices, catalog).board.carriers, [carriers[1]]);
+    assert.deepEqual(buildBoard({ ...project, carriers: [] }, encs, devices, catalog).board.carriers, [], 'убранные не возвращаются');
+    const { board } = buildBoard({ ...project, addTerminals: true }, enclosures, devices);
     assert.equal('addTerminals' in board, false);
-    assert.equal('addTerminals' in projectFromBoard(board), false);
-    assert.equal('t' in JSON.parse(Buffer.from(encodeLink(project), 'base64url').toString()), false);
-    assert.equal(sameProject(projectFromBoard(board), placed), true);
+    const old = Buffer.from(JSON.stringify({ v: 1, e: 'hager-va24b', d: [], r: [[], []], t: 1 })).toString('base64url');
+    assert.doesNotThrow(() => decodeLink(old));
+    assert.equal('n' in linkData(project), false);
   });
 
-  test('флаг — только true; иначе ошибка format', () => {
-    failsWith(() => buildBoard({ ...project, addTerminals: false }, enclosures, devices), 'format', 'addTerminals');
-    failsWith(() => buildBoard({ ...project, addTerminals: 'yes' }, enclosures, devices), 'format', 'addTerminals');
-    const code = Buffer.from(JSON.stringify({ v: 1, e: 'hager-va24b', d: [], r: [[], []], t: 2 })).toString('base64url');
-    failsWith(() => decodeLink(code), 'format', 'addTerminals');
+  test('держатели и клеммы не из каталога или не на своём месте — пропускаются', () => {
+    const odd = [
+      { carrierId: 'gone', position: 'top', included: false, inserts: [] },
+      { carrierId: 'plate', position: 'bottom', included: false, inserts: [{ insertId: 'kn14n', pos: 0 }, { insertId: 'nope', pos: 0 }, { insertId: 'kl', pos: 100 }, { insertId: 'kl', pos: 200 }] },
+    ];
+    const { board, skipped } = buildBoard({ ...project, carriers: odd }, enclosures, devices, catalog);
+    assert.deepEqual(board.carriers, [{ carrierId: 'plate', position: 'top', included: false, inserts: [{ insertId: 'kl', pos: 100 }] }]);
+    assert.deepEqual(skipped, ['gone', 'kn14n', 'nope', 'kl']);
+  });
+
+  test('«в комплекте корпуса» — только по комплектации корпуса, а не по флагу в ссылке или файле', () => {
+    const factory = { carrierId: 'plate', position: 'top', included: true, inserts: [{ insertId: 'plate-n', pos: 0, included: true }] };
+    const encs = indexById([{ ...enclosures.get('hager-va24b'), terminalSetup: { carriers: [factory], verified: false } }]);
+    const forged = [
+      { carrierId: 'hager-vz711', position: 'top', included: true, inserts: [{ insertId: 'kn14n', pos: 0, included: true }] },
+      // Заводская колодка переставлена вниз, её шина сдвинута — всё равно из коробки
+      { carrierId: 'plate', position: 'top', included: false, inserts: [{ insertId: 'plate-n', pos: 20 }] },
+    ];
+    const { board } = buildBoard({ ...project, carriers: forged }, encs, devices, catalog);
+    assert.deepEqual(board.carriers, [
+      { carrierId: 'hager-vz711', position: 'top', included: false, inserts: [{ insertId: 'kn14n', pos: 0 }] },
+      { carrierId: 'plate', position: 'top', included: true, inserts: [{ insertId: 'plate-n', pos: 20, included: true }] },
+    ]);
+    // Две одинаковые колодки в проекте, а с завода одна — заводская только первая
+    const twice = buildBoard({ ...project, carriers: [factory, factory] }, encs, devices, catalog).board.carriers;
+    assert.deepEqual(twice.map((c) => [c.included, c.inserts.map((x) => Boolean(x.included))]), [[true, [true]], [false, [false]]]);
+  });
+
+  test('неверный вид — ошибка format', () => {
+    const bad = (c) => failsWith(() => buildBoard({ ...project, carriers: c }, enclosures, devices), 'format', 'carriers');
+    bad('x');
+    bad([{ carrierId: 'a', position: 'left', included: false, inserts: [] }]);
+    bad([{ carrierId: 'a', position: 'top', inserts: [] }]);
+    bad([{ carrierId: 'a', position: 'top', included: false, inserts: [{ insertId: 'b', pos: -1 }] }]);
+    bad([{ carrierId: 'a', position: 'top', included: false, inserts: [{ insertId: 'b', pos: 0, role: 'L' }] }]);
+    bad([{ carrierId: 'a', position: 'top', included: false, inserts: [{ insertId: 'b', pos: 0, x: 1 }] }]);
+    bad(Array.from({ length: LIMITS.carriers + 1 }, () => ({ carrierId: 'a', position: 'top', included: false, inserts: [] })));
+    const code = Buffer.from(JSON.stringify({ v: 1, e: 'hager-va24b', d: [], r: [[], []], n: [['a', 'top', 2, []]] })).toString('base64url');
+    failsWith(() => decodeLink(code), 'format', 'carriers');
   });
 });
 

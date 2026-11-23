@@ -16,7 +16,6 @@ const CUTOUT_GAP = 3; // зазор выреза панели вокруг ус�
 const STRIP_MM = 10;
 const STRIP_GAP = 3;
 // Клеммник N/PE на рисунке: высота (толщина) планки и зазор до рядов
-const BAR_MM = 8;
 const BAR_GAP = 4;
 const COVER_INSET = 10; // отступ лицевой панели от края корпуса
 
@@ -124,107 +123,123 @@ function moduleGrid(row) {
   return `<g class="module-grid" aria-hidden="true">${parts.join('')}</g>`;
 }
 
-// ---------- клеммники N/PE ----------
+// ---------- держатели клемм N/PE ----------
 
-const clampCount = (clamps) => (clamps ? clamps.reduce((sum, [count]) => sum + count, 0) : null);
+/** Высота держателя на рисунке и зазор между держателями на одном месте, мм. */
+export const CARRIER_MM = 10;
+const CARRIER_STACK_GAP = 3;
+const INSERT_INSET = 1.2; // клемма чуть ниже держателя: видно, что она вставлена
+
+const clampTotal = (clamps) => (clamps ?? []).reduce((sum, [count]) => sum + count, 0);
 
 /**
- * Клеммники N/PE корпуса на рисунке: [{ role, kind, clamps, article?, x, y, w, h, vertical }].
- * kind: 'included' — в комплекте корпуса; 'accessory' — добавленный аксессуар (board.addTerminals);
- * 'slot' — в комплекте нет, место под клеммник (рисуется пунктиром).
- * clamps — число клемм или null, если неизвестно. Без места в данных — сверху;
- * сбоку, если там не хватает места, — тоже сверху. Несколько клеммников на одном месте — рядом.
+ * Держатели клемм N/PE на рисунке: на своём месте (над первым рядом или под последним),
+ * в настоящую длину, по центру корпуса; несколько на одном месте — друг над другом (вверху — выше,
+ * внизу — ниже). Возвращает [{ index, carrier, position, included, x, y, w, h, inserts }],
+ * inserts — [{ item, insert, role, x, w, clamps, included }] (role — у универсальной клеммы по крышке).
+ * Держатели, которых нет в каталоге, пропускаются. Без держателей и при emptySlot — место пунктиром
+ * ({ slot: true, x, y, w, h }) над первым рядом.
  */
-export function terminalBars(enclosure, board, layout) {
-  const t = enclosure.terminals;
-  if (!t || !layout.rows.length) return [];
-  const blocks = t.blocks ?? [{ role: 'N+PE' }];
-  let items;
-  if (t.included) items = blocks.map((b) => ({ role: b.role, kind: 'included', clamps: clampCount(b.clamps), position: b.position }));
-  else if (board.addTerminals && t.accessories) {
-    // Держатели (role: holder) на рисунке не показываются — только клеммники
-    items = t.accessories
-      .filter((a) => a.role !== 'holder')
-      .map((a, i) => ({ role: a.role, kind: 'accessory', clamps: clampCount(a.clamps), article: a.article, position: blocks[i]?.position }));
-  } else items = blocks.map((b) => ({ role: b.role, kind: 'slot', clamps: null, position: b.position }));
-
+export function carrierBars(board, layout, carriersById, insertsById, { emptySlot = false } = {}) {
+  if (!layout.rows.length) return [];
   const first = layout.rows[0];
   const last = layout.rows[layout.rows.length - 1];
-  const sideRoom = first.x0 - CUTOUT_GAP - 8 - COVER_INSET; // место между вырезом (и номером ряда) и краем панели
-  const place = (p) => (p === 'left' || p === 'right' ? (sideRoom >= BAR_MM + 2 ? p : 'top') : p ?? 'top');
-  const groups = new Map();
-  for (const item of items) {
-    const p = place(item.position);
-    if (!groups.has(p)) groups.set(p, []);
-    groups.get(p).push(item);
+  const topY = first.y - CUTOUT_GAP - STRIP_GAP - STRIP_MM - BAR_GAP - CARRIER_MM;
+  const bottomY = last.y + FACE_MM + CUTOUT_GAP + BAR_GAP;
+  const placeX = (w) => Math.max(COVER_INSET, (layout.width - w) / 2);
+  const list = board.carriers ?? [];
+  if (!list.length) {
+    if (!emptySlot) return [];
+    const w = first.x1 - first.x0;
+    return [{ slot: true, x: first.x0, y: topY, w, h: CARRIER_MM }];
   }
+  const stack = { top: 0, bottom: 0 };
   const out = [];
-  const gap = 3;
-  for (const [p, list] of groups) {
-    if (p === 'top' || p === 'bottom') {
-      const y = p === 'top' ? first.y - CUTOUT_GAP - STRIP_GAP - STRIP_MM - BAR_GAP - BAR_MM : last.y + FACE_MM + CUTOUT_GAP + BAR_GAP;
-      const w = (first.x1 - first.x0 - gap * (list.length - 1)) / list.length;
-      list.forEach((item, i) => {
-        const { position, ...rest } = item;
-        out.push({ ...rest, x: first.x0 + i * (w + gap), y, w, h: BAR_MM, vertical: false });
-      });
-    } else {
-      const top = first.y - CUTOUT_GAP;
-      const h = (last.y + FACE_MM + CUTOUT_GAP - top - gap * (list.length - 1)) / list.length;
-      const x = p === 'left' ? COVER_INSET + (sideRoom - BAR_MM) / 2 : layout.width - COVER_INSET - (sideRoom + BAR_MM) / 2;
-      list.forEach((item, i) => {
-        const { position, ...rest } = item;
-        out.push({ ...rest, x, y: top + i * (h + gap), w: BAR_MM, h, vertical: true });
-      });
-    }
-  }
+  list.forEach((c, index) => {
+    const carrier = carriersById.get(c.carrierId);
+    if (!carrier) return;
+    const level = stack[c.position]++;
+    const step = CARRIER_MM + CARRIER_STACK_GAP;
+    const y = c.position === 'bottom' ? bottomY + level * step : topY - level * step;
+    const x = placeX(carrier.lengthMm);
+    const inserts = [];
+    c.inserts.forEach((it, item) => {
+      const insert = insertsById.get(it.insertId);
+      if (!insert) return;
+      const role = insert.role === 'universal' ? it.role ?? 'N' : insert.role;
+      inserts.push({ item, insert, role, x: x + it.pos, w: insert.widthMm, clamps: clampTotal(insert.clamps), included: Boolean(it.included) });
+    });
+    out.push({ index, carrier, position: c.position, included: c.included, x, y, w: carrier.lengthMm, h: CARRIER_MM, inserts });
+  });
   return out;
 }
 
-const ROLE_CLASS = { N: 'n', PE: 'pe', 'N+PE': 'npe' };
+const INSERT_CLASS = { N: 'n', PE: 'pe', 'N+PE': 'npe', L: 'l' };
 
-/** Один клеммник: планка (N — синяя, PE — зелёная с жёлтым, N+PE — пополам), подпись и клеммы. */
-function terminalBar(bar, t) {
-  const cls = `terminal role-${ROLE_CLASS[bar.role]} kind-${bar.kind}`;
-  const title =
-    bar.kind === 'slot'
-      ? t('terminals.slotTitle', { role: bar.role })
-      : bar.clamps
-        ? t('terminals.title', { role: bar.role, n: bar.clamps })
-        : t('terminals.titleUnknown', { role: bar.role });
-  const parts = [`<g class="${cls}"><title>${escapeXml(bar.article ? `${title} · ${bar.article}` : title)}</title>`];
-  if (bar.kind !== 'slot' && bar.role === 'N+PE') {
-    // Общий блок: половина синяя (N), половина зелёная (PE)
-    const half = bar.vertical ? { w: bar.w, h: bar.h / 2 } : { w: bar.w / 2, h: bar.h };
-    parts.push(`<rect class="bar-n" x="${n(bar.x)}" y="${n(bar.y)}" width="${n(half.w)}" height="${n(half.h)}" rx="1"/>`);
-    const x2 = bar.vertical ? bar.x : bar.x + half.w;
-    const y2 = bar.vertical ? bar.y + half.h : bar.y;
-    parts.push(`<rect class="bar-pe" x="${n(x2)}" y="${n(y2)}" width="${n(half.w)}" height="${n(half.h)}" rx="1"/>`);
-  } else {
-    parts.push(`<rect class="bar" x="${n(bar.x)}" y="${n(bar.y)}" width="${n(bar.w)}" height="${n(bar.h)}" rx="1"/>`);
+/** Клеммы кружками вдоль клеммы (если помещаются). */
+function clampDots(x, y, w, h, count, skip) {
+  const length = w - skip - 1.5;
+  const step = count ? length / count : 0;
+  if (step < 1.4) return '';
+  const r = Math.min(2, step / 2.6);
+  const parts = [];
+  for (let i = 0; i < count; i++) {
+    parts.push(`<circle class="clamp" cx="${n(x + skip + step * (i + 0.5))}" cy="${n(y + h / 2)}" r="${n(r)}"/>`);
   }
-  const label = bar.kind === 'slot' ? `${bar.role} · ${t('terminals.notIncluded')}` : bar.role;
-  const labelLen = bar.vertical ? 0 : label.length * 3.2 + 3;
-  if (!bar.vertical) {
-    parts.push(`<text class="terminal-label" x="${n(bar.x + 2)}" y="${n(bar.y + bar.h / 2 + 1.8)}">${escapeXml(label)}</text>`);
+  return parts.join('');
+}
+
+/**
+ * Держатель с клеммами. Клеммы — кнопки (data-carrier, data-insert): их можно перетаскивать
+ * внутри держателя, выделять и убирать с клавиатуры. selected — { carrier, item } выделенной клеммы.
+ */
+function carrierBar(bar, t, selected, formatNumber) {
+  if (bar.slot) {
+    return (
+      `<g class="carrier kind-slot"><title>${escapeXml(t('carrier.slotTitle'))}</title>` +
+      `<rect class="carrier-body" x="${n(bar.x)}" y="${n(bar.y)}" width="${n(bar.w)}" height="${n(bar.h)}" rx="1.5"/>` +
+      `<text class="carrier-label" x="${n(bar.x + 2.5)}" y="${n(bar.y + bar.h / 2 + 1.8)}">${escapeXml(t('carrier.slot'))}</text></g>`
+    );
   }
-  // Клеммы — кружками, если их число известно и они помещаются
-  if (bar.kind !== 'slot' && bar.clamps) {
-    const length = (bar.vertical ? bar.h : bar.w) - labelLen - 2;
-    const step = length / bar.clamps;
-    if (step >= 1.6) {
-      const r = Math.min(2.2, step / 2.6);
-      for (let i = 0; i < bar.clamps; i++) {
-        const along = labelLen + 1 + step * (i + 0.5);
-        const cx = bar.vertical ? bar.x + bar.w / 2 : bar.x + along;
-        const cy = bar.vertical ? bar.y + along : bar.y + bar.h / 2;
-        parts.push(`<circle class="clamp" cx="${n(cx)}" cy="${n(cy)}" r="${n(r)}"/>`);
-      }
+  const name = bar.carrier.article ?? t(`carrier.kind.${bar.carrier.kind}`);
+  const parts = [
+    `<g class="carrier kind-${escapeXml(bar.carrier.kind)}" data-carrier-index="${bar.index}">`,
+    `<rect class="carrier-body" x="${n(bar.x)}" y="${n(bar.y)}" width="${n(bar.w)}" height="${n(bar.h)}" rx="1.5"><title>${escapeXml(`${t('carrier.title', { name, length: formatNumber(bar.w) })}`)}</title></rect>`,
+  ];
+  if (!bar.inserts.length) {
+    parts.push(`<text class="carrier-label" x="${n(bar.x + 2.5)}" y="${n(bar.y + bar.h / 2 + 1.8)}">${escapeXml(bar.carrier.kind === 'zone' ? t('carrier.zoneEmpty') : t('carrier.empty'))}</text>`);
+  }
+  for (const ins of bar.inserts) {
+    const cls = `insert role-${INSERT_CLASS[ins.role] ?? 'l'}${ins.insert.fixed ? ' fixed' : ''}${selected?.carrier === bar.index && selected?.item === ins.item ? ' selected' : ''}`;
+    const y = bar.y + INSERT_INSET;
+    const h = bar.h - 2 * INSERT_INSET;
+    const label = t('insert.title', { role: ins.role, n: ins.clamps });
+    const title = ins.insert.article ? `${label} · ${ins.insert.article}` : label;
+    parts.push(
+      `<g class="${cls}" data-carrier="${bar.index}" data-insert="${ins.item}" data-focus="insert-${bar.index}-${ins.item}" tabindex="0" role="button"` +
+        ` aria-pressed="${cls.includes(' selected')}" aria-label="${escapeXml(title)}"><title>${escapeXml(title)}</title>`,
+    );
+    if (ins.role === 'N+PE') {
+      parts.push(`<rect class="ins-n" x="${n(ins.x + 0.2)}" y="${n(y)}" width="${n(ins.w / 2 - 0.2)}" height="${n(h)}" rx="0.8"/>`);
+      parts.push(`<rect class="ins-pe" x="${n(ins.x + ins.w / 2)}" y="${n(y)}" width="${n(ins.w / 2 - 0.2)}" height="${n(h)}" rx="0.8"/>`);
+    } else {
+      parts.push(`<rect class="ins-body" x="${n(ins.x + 0.2)}" y="${n(y)}" width="${n(ins.w - 0.4)}" height="${n(h)}" rx="0.8"/>`);
     }
+    const text = ins.role;
+    const skip = text.length * 3 + 3;
+    parts.push(`<text class="insert-label" x="${n(ins.x + 1.6)}" y="${n(y + h / 2 + 1.7)}">${escapeXml(text)}</text>`);
+    parts.push(clampDots(ins.x, y, ins.w, h, ins.clamps, skip));
+    if (cls.includes(' selected')) {
+      parts.push(`<rect class="insert-outline" x="${n(ins.x - 0.6)}" y="${n(y - 0.6)}" width="${n(ins.w + 1.2)}" height="${n(h + 1.2)}" rx="1.2"/>`);
+    }
+    parts.push('</g>');
   }
   parts.push('</g>');
   return parts.join('');
 }
+
+// Клеммники на DIN-рейку (категория terminal): цвет по назначению
+const ROLE_CLASS = { N: 'n', PE: 'pe', 'N+PE': 'npe' };
 
 // ---------- гребёнки ----------
 
@@ -312,13 +327,14 @@ function deviceFace(device, w) {
 
 /**
  * SVG щита.
- * options: { t, deviceTitle, deviceLabel, title, selectedUid, activeRow, formatNumber, terminals }
- * terminals — клеммники N/PE из terminalBars (необязательно); combs — гребёнки из combBars (необязательно).
+ * options: { t, deviceTitle, deviceLabel, title, selectedUid, activeRow, formatNumber, carriers, selectedInsert, combs }
+ * carriers — держатели клемм N/PE из carrierBars (необязательно); selectedInsert — { carrier, item } выделенной клеммы;
+ * combs — гребёнки из combBars (необязательно).
  * deviceTitle/deviceLabel — функции из format.js (передаются, чтобы модуль не зависел от переводов);
  * formatNumber — число по правилам языка (номер модуля может быть дробным: 7,5).
  */
 export function renderBoardSvg(layout, devices, options) {
-  const { t, deviceTitle, deviceLabel, title, selectedUid = null, activeRow = null, formatNumber = String, terminals = [], combs = [] } = options;
+  const { t, deviceTitle, deviceLabel, title, selectedUid = null, activeRow = null, formatNumber = String, carriers = [], selectedInsert = null, combs = [] } = options;
   const { width, height } = layout;
   const out = [];
   out.push(
@@ -329,7 +345,7 @@ export function renderBoardSvg(layout, devices, options) {
     `<rect class="enc-cover" x="${COVER_INSET}" y="${COVER_INSET}" width="${n(width - 2 * COVER_INSET)}" height="${n(height - 2 * COVER_INSET)}" rx="4"/>`,
   );
 
-  for (const bar of terminals) out.push(terminalBar(bar, t));
+  for (const bar of carriers) out.push(carrierBar(bar, t, selectedInsert, formatNumber));
 
   for (const row of layout.rows) {
     const active = row.index === activeRow;

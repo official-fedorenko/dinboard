@@ -21,76 +21,23 @@
         "height": 250,
         "depth": 108
       },
-      "terminals": {
-        "included": true,
-        "blocks": [
+      "terminalSetup": {
+        "carriers": [
           {
-            "role": "PE",
-            "clamps": [
-              [
-                3,
-                25
-              ],
-              [
-                11,
-                4
-              ]
+            "carrierId": "schneider-r9h13389",
+            "position": "bottom",
+            "included": true,
+            "inserts": [
+              {
+                "insertId": "schneider-lgyt1e14",
+                "pos": 0,
+                "included": true
+              }
             ]
           }
         ],
-        "accessories": [
-          {
-            "article": "LGYT1E14",
-            "role": "PE",
-            "clamps": [
-              [
-                3,
-                25
-              ],
-              [
-                11,
-                4
-              ]
-            ],
-            "verified": true,
-            "source": "https://www.se.com/fr/fr/product/LGYT1E14/"
-          },
-          {
-            "article": "LGYT1E24",
-            "role": "PE",
-            "clamps": [
-              [
-                3,
-                25
-              ],
-              [
-                21,
-                4
-              ]
-            ],
-            "verified": true,
-            "source": "https://www.se.com/fr/fr/product/LGYT1E24/"
-          },
-          {
-            "article": "LGYT1N14",
-            "role": "N",
-            "clamps": [
-              [
-                3,
-                25
-              ],
-              [
-                11,
-                4
-              ]
-            ],
-            "verified": true,
-            "source": "https://www.se.com/fr/fr/product/LGYT1N14/"
-          }
-        ],
-        "verified": true,
-        "source": "https://www.se.com/fr/fr/product/R9H13401/",
-        "notes": "Только клеммник земли, блоков фаза/нейтраль нет. Лист данных se.com; вверху или внизу стоит опора — не указано."
+        "verified": false,
+        "notes": "Состав — «Equipement fournis» на se.com: земля 14/24 выхода (LGYT1E14 / LGYT1E24) и блок нейтрали; артикулы клемм — вывод по составу. Опора внизу — рисунки инструкции PHA6653601-05."
       },
       "verified": true,
       "source": "https://www.se.com/fr/fr/product/download-pdf/R9H13401"
@@ -111,89 +58,28 @@
         "height": 375,
         "depth": 108
       },
-      "terminals": {
-        "included": true,
-        "blocks": [
+      "terminalSetup": {
+        "carriers": [
           {
-            "role": "PE",
-            "clamps": [
-              [
-                3,
-                25
-              ],
-              [
-                21,
-                4
-              ]
-            ]
-          },
-          {
-            "role": "N",
-            "clamps": [
-              [
-                1,
-                35
-              ],
-              [
-                6,
-                16
-              ]
+            "carrierId": "schneider-r9h13389",
+            "position": "bottom",
+            "included": true,
+            "inserts": [
+              {
+                "insertId": "schneider-lgyt1e24",
+                "pos": 0,
+                "included": true
+              },
+              {
+                "insertId": "schneider-r9h13411-n",
+                "pos": 100,
+                "included": true
+              }
             ]
           }
         ],
-        "accessories": [
-          {
-            "article": "LGYT1E14",
-            "role": "PE",
-            "clamps": [
-              [
-                3,
-                25
-              ],
-              [
-                11,
-                4
-              ]
-            ],
-            "verified": true,
-            "source": "https://www.se.com/fr/fr/product/LGYT1E14/"
-          },
-          {
-            "article": "LGYT1E24",
-            "role": "PE",
-            "clamps": [
-              [
-                3,
-                25
-              ],
-              [
-                21,
-                4
-              ]
-            ],
-            "verified": true,
-            "source": "https://www.se.com/fr/fr/product/LGYT1E24/"
-          },
-          {
-            "article": "LGYT1N14",
-            "role": "N",
-            "clamps": [
-              [
-                3,
-                25
-              ],
-              [
-                11,
-                4
-              ]
-            ],
-            "verified": true,
-            "source": "https://www.se.com/fr/fr/product/LGYT1N14/"
-          }
-        ],
-        "verified": true,
-        "source": "https://www.se.com/fr/fr/product/R9H13402/",
-        "notes": "Клеммник земли и 2 блока фаза/нейтраль по 1×35 + 6×16 мм² (показан блок N) на съёмной опоре. Лист данных se.com; вверху или внизу стоит опора — не указано."
+        "verified": false,
+        "notes": "Состав — «Equipement fournis» на se.com: земля 14/24 выхода (LGYT1E14 / LGYT1E24) и блок нейтрали; артикулы клемм — вывод по составу. Опора внизу — рисунки инструкции PHA6653601-05."
       },
       "verified": true,
       "source": "https://www.se.com/fr/fr/product/download-pdf/R9H13402"
@@ -214,89 +100,33 @@
         "height": 500,
         "depth": 108
       },
-      "terminals": {
-        "included": true,
-        "blocks": [
+      "terminalSetup": {
+        "carriers": [
           {
-            "role": "PE",
-            "clamps": [
-              [
-                6,
-                25
-              ],
-              [
-                32,
-                4
-              ]
-            ]
-          },
-          {
-            "role": "N",
-            "clamps": [
-              [
-                1,
-                35
-              ],
-              [
-                6,
-                16
-              ]
+            "carrierId": "schneider-r9h13389",
+            "position": "bottom",
+            "included": true,
+            "inserts": [
+              {
+                "insertId": "schneider-lgyt1e24",
+                "pos": 0,
+                "included": true
+              },
+              {
+                "insertId": "schneider-lgyt1e14",
+                "pos": 97,
+                "included": true
+              },
+              {
+                "insertId": "schneider-r9h13411-n",
+                "pos": 168,
+                "included": true
+              }
             ]
           }
         ],
-        "accessories": [
-          {
-            "article": "LGYT1E14",
-            "role": "PE",
-            "clamps": [
-              [
-                3,
-                25
-              ],
-              [
-                11,
-                4
-              ]
-            ],
-            "verified": true,
-            "source": "https://www.se.com/fr/fr/product/LGYT1E14/"
-          },
-          {
-            "article": "LGYT1E24",
-            "role": "PE",
-            "clamps": [
-              [
-                3,
-                25
-              ],
-              [
-                21,
-                4
-              ]
-            ],
-            "verified": true,
-            "source": "https://www.se.com/fr/fr/product/LGYT1E24/"
-          },
-          {
-            "article": "LGYT1N14",
-            "role": "N",
-            "clamps": [
-              [
-                3,
-                25
-              ],
-              [
-                11,
-                4
-              ]
-            ],
-            "verified": true,
-            "source": "https://www.se.com/fr/fr/product/LGYT1N14/"
-          }
-        ],
-        "verified": true,
-        "source": "https://www.se.com/fr/fr/product/R9H13403/",
-        "notes": "Клеммник земли и 2 блока фаза/нейтраль по 1×35 + 6×16 мм² (показан блок N) на съёмной опоре. Лист данных se.com; вверху или внизу стоит опора — не указано."
+        "verified": false,
+        "notes": "Состав — «Equipement fournis» на se.com: земля 14/24 выхода (LGYT1E14 / LGYT1E24) и блок нейтрали; артикулы клемм — вывод по составу. Опора внизу — рисунки инструкции PHA6653601-05."
       },
       "verified": true,
       "source": "https://www.se.com/fr/fr/product/download-pdf/R9H13403"
@@ -317,89 +147,40 @@
         "height": 625,
         "depth": 108
       },
-      "terminals": {
-        "included": true,
-        "blocks": [
+      "terminalSetup": {
+        "carriers": [
           {
-            "role": "PE",
-            "clamps": [
-              [
-                6,
-                25
-              ],
-              [
-                42,
-                4
-              ]
+            "carrierId": "schneider-r9h13389",
+            "position": "bottom",
+            "included": true,
+            "inserts": [
+              {
+                "insertId": "schneider-lgyt1e24",
+                "pos": 0,
+                "included": true
+              },
+              {
+                "insertId": "schneider-r9h13411-n",
+                "pos": 100,
+                "included": true
+              }
             ]
           },
           {
-            "role": "N",
-            "clamps": [
-              [
-                1,
-                35
-              ],
-              [
-                6,
-                16
-              ]
+            "carrierId": "schneider-r9h13389",
+            "position": "bottom",
+            "included": true,
+            "inserts": [
+              {
+                "insertId": "schneider-lgyt1e24",
+                "pos": 0,
+                "included": true
+              }
             ]
           }
         ],
-        "accessories": [
-          {
-            "article": "LGYT1E14",
-            "role": "PE",
-            "clamps": [
-              [
-                3,
-                25
-              ],
-              [
-                11,
-                4
-              ]
-            ],
-            "verified": true,
-            "source": "https://www.se.com/fr/fr/product/LGYT1E14/"
-          },
-          {
-            "article": "LGYT1E24",
-            "role": "PE",
-            "clamps": [
-              [
-                3,
-                25
-              ],
-              [
-                21,
-                4
-              ]
-            ],
-            "verified": true,
-            "source": "https://www.se.com/fr/fr/product/LGYT1E24/"
-          },
-          {
-            "article": "LGYT1N14",
-            "role": "N",
-            "clamps": [
-              [
-                3,
-                25
-              ],
-              [
-                11,
-                4
-              ]
-            ],
-            "verified": true,
-            "source": "https://www.se.com/fr/fr/product/LGYT1N14/"
-          }
-        ],
-        "verified": true,
-        "source": "https://www.se.com/fr/fr/product/R9H13404/",
-        "notes": "Клеммник земли и 2 блока фаза/нейтраль по 1×35 + 6×16 мм² (показан блок N) на съёмной опоре. Лист данных se.com; вверху или внизу стоит опора — не указано."
+        "verified": false,
+        "notes": "Состав — «Equipement fournis» на se.com: земля 14/24 выхода (LGYT1E14 / LGYT1E24) и блок нейтрали; артикулы клемм — вывод по составу. Опора внизу — рисунки инструкции PHA6653601-05."
       },
       "verified": true,
       "source": "https://www.se.com/fr/fr/product/download-pdf/R9H13404"
@@ -3977,6 +3758,150 @@
       "verified": true,
       "source": "https://www.se.com/ie/en/product/A9X21096/",
       "notes": "Набор 12 крышек зубьев для гребёнок с шагом 9 мм (A9XPC), ширина 180 мм."
+    }
+  ],
+  "terminalCarriers": [
+    {
+      "id": "schneider-r9h13389",
+      "brand": "schneider",
+      "kind": "carrier",
+      "series": "Resi9",
+      "article": "R9H13389",
+      "lengthMm": 200,
+      "positions": [
+        "bottom"
+      ],
+      "enclosureIds": [
+        "schneider-r9h13401",
+        "schneider-r9h13402",
+        "schneider-r9h13403",
+        "schneider-r9h13404"
+      ],
+      "verified": false,
+      "source": "https://www.se.com/fr/fr/product/R9H13389/",
+      "notes": "Опора клеммников внизу шасси (рисунки инструкции PHA6653601-05). Длина 200 мм — вывод (шасси 13 модулей — 222 мм). Снята с продажи."
+    }
+  ],
+  "terminalInserts": [
+    {
+      "id": "schneider-lgyt1e14",
+      "brand": "schneider",
+      "role": "PE",
+      "series": "Resi9",
+      "article": "LGYT1E14",
+      "clamps": [
+        [
+          3,
+          25
+        ],
+        [
+          11,
+          4
+        ]
+      ],
+      "widthMm": 67.2,
+      "color": "green",
+      "carrierIds": [
+        "schneider-r9h13389"
+      ],
+      "verified": true,
+      "source": "https://www.se.com/fr/fr/product/LGYT1E14/"
+    },
+    {
+      "id": "schneider-lgyt1e24",
+      "brand": "schneider",
+      "role": "PE",
+      "series": "Resi9",
+      "article": "LGYT1E24",
+      "clamps": [
+        [
+          3,
+          25
+        ],
+        [
+          21,
+          4
+        ]
+      ],
+      "widthMm": 94.2,
+      "color": "green",
+      "carrierIds": [
+        "schneider-r9h13389"
+      ],
+      "verified": true,
+      "source": "https://www.se.com/fr/fr/product/LGYT1E24/"
+    },
+    {
+      "id": "schneider-lgyt1n14",
+      "brand": "schneider",
+      "role": "N",
+      "series": "Resi9",
+      "article": "LGYT1N14",
+      "clamps": [
+        [
+          3,
+          25
+        ],
+        [
+          11,
+          4
+        ]
+      ],
+      "widthMm": 67.2,
+      "color": "blue",
+      "carrierIds": [
+        "schneider-r9h13389"
+      ],
+      "verified": true,
+      "source": "https://www.se.com/fr/fr/product/LGYT1N14/"
+    },
+    {
+      "id": "schneider-lgyt1n24",
+      "brand": "schneider",
+      "role": "N",
+      "series": "Resi9",
+      "article": "LGYT1N24",
+      "clamps": [
+        [
+          3,
+          25
+        ],
+        [
+          21,
+          4
+        ]
+      ],
+      "widthMm": 94.2,
+      "color": "blue",
+      "carrierIds": [
+        "schneider-r9h13389"
+      ],
+      "verified": true,
+      "source": "https://www.se.com/fr/fr/product/LGYT1N24/"
+    },
+    {
+      "id": "schneider-r9h13411-n",
+      "brand": "schneider",
+      "role": "N",
+      "series": "Resi9",
+      "clamps": [
+        [
+          1,
+          35
+        ],
+        [
+          6,
+          16
+        ]
+      ],
+      "widthMm": 25,
+      "color": "blue",
+      "carrierIds": [
+        "schneider-r9h13389"
+      ],
+      "fixed": true,
+      "verified": false,
+      "notes": "Блок нейтрали из комплекта корпуса (1×35 + 6×16 мм²). В корпусе он стоит на боковой стойке шасси у нижнего угла, на рисунке — на опоре; ширина — вывод."
     }
   ]
 }

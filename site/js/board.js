@@ -3,14 +3,16 @@
 //
 // Щит: { version, enclosureId, rows: [[{ uid, deviceId, pos }, ...], ...], nextUid, earthing }
 // earthing — система заземления (TN-S / TN-C-S / TT) или null, если не указана.
-// addTerminals: true — в состав добавлены клеммники N/PE производителя (если в комплекте корпуса их нет);
-// без поля — не добавлены.
+// carriers — держатели клемм N/PE с клеммами (см. carriers.js): с завода — по комплектации корпуса
+// (terminalSetup), дальше — как расставил пользователь; без поля — держателей нет.
 // combs — гребёнки рядов: [id гребёнки или null для каждого ряда]; без поля — гребёнок нет.
 // combParts — аксессуары гребёнок: { id: количество }; без поля — нет.
 // pos — с какого модуля рейки начинается устройство (0 — левый край), шаг 0.5 модуля.
 // Устройства можно ставить в любое свободное место: между ними остаются пустые места
 // (на схеме — заглушки). Устройства не перекрываются; в массиве ряда они идут слева направо.
 // Ширина устройства и вместимость ряда — в модулях (ширина берётся из каталога).
+
+import { factoryCarriers, markFactory } from './carriers.js';
 
 export const BOARD_VERSION = 1;
 
@@ -36,14 +38,16 @@ export function indexById(list) {
   return new Map(list.map((item) => [item.id, item]));
 }
 
-/** Пустой щит для корпуса. */
+/** Пустой щит для корпуса; держатели клемм N/PE — как с завода. */
 export function createBoard(enclosure) {
+  const carriers = factoryCarriers(enclosure);
   return {
     version: BOARD_VERSION,
     enclosureId: enclosure.id,
     rows: Array.from({ length: enclosure.rows }, () => []),
     nextUid: 1,
     earthing: null,
+    ...(carriers.length ? { carriers } : {}),
   };
 }
 
@@ -240,9 +244,18 @@ export function moveItem(board, enclosure, devices, uid, toRow, toPos) {
  * (тот же ряд и позиция), если ряд есть и рейка достаточно длинная. Остальные — на первое
  * свободное место своего ряда, затем любого ряда.
  * Что не поместилось — в overflow (список { uid, deviceId, pos }), в щит не попадает.
+ * Держатели клемм N/PE остаются, если все они ставятся в новый корпус (carriersById — держатели каталога)
+ * и среди них нет заводских частей другого корпуса (insertsById: fixed — без артикула, не заказать),
+ * иначе — как с завода у нового корпуса. «В комплекте корпуса» — по комплектации нового корпуса (markFactory).
  */
-export function changeEnclosure(board, enclosure, devices) {
-  let next = { ...createBoard(enclosure), nextUid: board.nextUid, earthing: board.earthing ?? null, ...(board.addTerminals ? { addTerminals: true } : {}) };
+export function changeEnclosure(board, enclosure, devices, carriersById = new Map(), insertsById = new Map()) {
+  let next = { ...createBoard(enclosure), nextUid: board.nextUid, earthing: board.earthing ?? null };
+  const fits = (c) => carriersById.get(c.carrierId)?.enclosureIds?.includes(enclosure.id);
+  if (board.carriers?.length && board.carriers.every(fits)) {
+    const kept = markFactory(board.carriers, enclosure);
+    const foreignFixed = kept.some((c) => c.inserts.some((x) => !x.included && insertsById.get(x.insertId)?.fixed));
+    if (!foreignFixed) next = setCarriers(next, kept);
+  }
   // Гребёнки остаются у рядов, которые есть в новом корпусе (подходят ли они — скажут проверки)
   next = withCombs(next, next.rows.map((_, i) => board.combs?.[i] ?? null));
   if (board.combParts) next = { ...next, combParts: { ...board.combParts } };
@@ -273,11 +286,12 @@ export function changeEnclosure(board, enclosure, devices) {
 
 /**
  * Очистка щита: все устройства убираются, а свойства корпуса и проекта остаются —
- * система заземления и добавленные клеммники N/PE (по решению владельца).
+ * система заземления и держатели клемм N/PE (по решению владельца).
  * Гребёнки и их аксессуары снимаются вместе с аппаратами.
  */
 export function clearDevices(board, enclosure) {
-  return setAddTerminals(setEarthing(createBoard(enclosure), board.earthing), Boolean(board.addTerminals));
+  const next = setEarthing(createBoard(enclosure), board.earthing);
+  return board.carriers ? setCarriers(next, board.carriers) : next;
 }
 
 /** Щит с гребёнками рядов list ([id или null]); если ни одной нет — без поля combs. */
@@ -302,10 +316,9 @@ export function setCombPart(board, id, count) {
   return Object.keys(next).length ? { ...rest, combParts: next } : rest;
 }
 
-/** Добавить в состав клеммники N/PE производителя (true) или убрать (false). */
-export function setAddTerminals(board, value) {
-  const { addTerminals, ...rest } = board;
-  return value ? { ...rest, addTerminals: true } : rest;
+/** Держатели клемм N/PE щита (список из carriers.js; пустой список — все убраны). */
+export function setCarriers(board, carriers) {
+  return { ...board, carriers };
 }
 
 /** Система заземления щита (null — не указана). */

@@ -109,6 +109,7 @@ try {
     enclosures,
     devices,
     confirmLink: () => window.confirm(t('project.confirmLink')),
+    catalog: { carriersById: indexById(catalog.terminalCarriers ?? []), insertsById: indexById(catalog.terminalInserts ?? []) },
   });
   // Прежняя версия откладывается до того, как автосохранение её перезапишет
   if (restored.backupText !== null) store.saveBackup(restored.backupText);

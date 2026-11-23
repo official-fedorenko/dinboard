@@ -8,6 +8,7 @@
 
 import { boardStats } from './board.js';
 import { COMB_DEVICE_CATEGORIES } from './catalog.js';
+import { carrierClamps, carrierOptions, clampNeed } from './carriers.js';
 
 /** Рекомендуемый запас свободных мест (доля от вместимости щита). */
 export const SPARE_SHARE = 0.2;
@@ -28,18 +29,6 @@ export function mainApparatus(list) {
   if (!candidates.length) return null;
   const main = candidates.reduce((a, b) => (b.specs.ratedCurrentA > a.specs.ratedCurrentA ? b : a));
   return { rating: main.specs.ratedCurrentA, threePhase: THREE_PHASE.has(main.specs.poles) };
-}
-
-/**
- * Сколько клемм role ('N' или 'PE') у щита: в комплекте корпуса или в добавленных клеммниках-аксессуарах.
- * Общие блоки N+PE не учитываются (как клеммы делятся, неизвестно). null — число неизвестно.
- */
-export function terminalClamps(enclosure, board, role) {
-  const t = enclosure.terminals;
-  if (!t) return null;
-  const parts = t.included ? (t.blocks ?? []) : board.addTerminals ? (t.accessories ?? []) : [];
-  const known = parts.filter((p) => p.role === role && p.clamps);
-  return known.length ? known.reduce((sum, p) => sum + p.clamps.reduce((s2, [count]) => s2 + count, 0), 0) : null;
 }
 
 // Сколько проводников соединяет гребёнка и сколько полюсов у аппарата
@@ -85,8 +74,11 @@ function checkCombs(board, devices, combsById, warn, info) {
   });
 }
 
-/** Все подсказки для щита. Пустой щит — без подсказок. combsById — гребёнки каталога (Map по id). */
-export function checkBoard(board, enclosure, devices, combsById = new Map()) {
+/**
+ * Все подсказки для щита. Пустой щит — без подсказок. combsById — гребёнки каталога (Map по id);
+ * carrierCatalog — { carriersById, insertsById }: держатели и клеммы N/PE (без него клеммы не проверяются).
+ */
+export function checkBoard(board, enclosure, devices, combsById = new Map(), carrierCatalog = null) {
   const list = board.rows.flat().map((item) => devices.get(item.deviceId)).filter(Boolean);
   if (!list.length) return [];
 
@@ -136,14 +128,18 @@ export function checkBoard(board, enclosure, devices, combsById = new Map()) {
   const typeAC = residual.filter((d) => d.specs.rcdType === 'AC');
   if (typeAC.length) info('check.rcdTypeAC', { n: typeAC.length });
 
-  // --- Клеммники N/PE ---
-  const terminals = enclosure.terminals;
-  if (terminals && !terminals.included && !board.addTerminals) info('check.noTerminals');
-  // Каждой отходящей линии (автомат, дифавтомат) нужна клемма N и клемма PE
-  const lines = list.filter((d) => d.category === 'mcb' || d.category === 'rcbo').length;
-  for (const role of ['N', 'PE']) {
-    const clamps = terminalClamps(enclosure, board, role);
-    if (lines && clamps !== null && lines > clamps) info('check.fewClamps', { role, lines, clamps });
+  // --- Клеммы N/PE: по одной N и PE на каждую отходящую линию (автомат, дифавтомат) и на ввод ---
+  if (carrierCatalog) {
+    const carriers = board.carriers ?? [];
+    if (!carriers.length) {
+      if (carrierOptions(enclosure, carrierCatalog.carriersById).length) info('check.noCarriers');
+    } else {
+      const need = clampNeed(board, devices);
+      const have = carrierClamps(carriers, carrierCatalog.insertsById);
+      for (const role of ['N', 'PE']) {
+        if (need.lines && have[role] < need[role]) info('check.fewClamps', { role, need: need[role], lines: need.lines, clamps: have[role] });
+      }
+    }
   }
 
   // --- Гребёнки ---

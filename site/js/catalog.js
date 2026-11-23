@@ -18,15 +18,19 @@ export const MATERIALS = ['plastic', 'metal'];
 export const DOORS = ['transparent', 'opaque', 'none'];
 // Системы заземления, для которых в каталоге указывается применимость УЗИП
 export const EARTHING_SYSTEMS = ['TN-S', 'TN-C-S', 'TT'];
-// Где в корпусе стоит клеммник N/PE (или место под него): над рядами, под рядами, сбоку слева или справа
-export const TERMINAL_POSITIONS = ['top', 'bottom', 'left', 'right'];
-// Назначение клеммника: нейтраль, защитный проводник или общий блок N и PE
+// Назначение клеммника на DIN-рейку (категория terminal): нейтраль, защитный проводник или общий блок N и PE
 export const TERMINAL_ROLES = ['N', 'PE', 'N+PE'];
 // Гребёнка: какие фазы соединяет и чем входит в клемму аппарата
 export const COMB_PHASES = ['1P', '1P+N', '2P', '3P', '3P+N'];
 export const COMB_PIN_TYPES = ['pin', 'fork'];
 // Аксессуары гребёнок: торцевая заглушка, вводная клемма, колпачки на свободные штыри
 export const COMB_PART_KINDS = ['end-cap', 'feed-terminal', 'tooth-cover'];
+// Держатель клемм N/PE: carrier — держатель, в который вставляются клеммы; plate — планка с неподвижными
+// шинами (заводская колодка); zone — штатное место корпуса под одну шину на своей опоре
+export const CARRIER_KINDS = ['carrier', 'plate', 'zone'];
+// Клемма в держателе: N, PE, общий блок N+PE, фазная (L) или универсальная (роль задаёт крышка)
+export const INSERT_ROLES = ['N', 'PE', 'N+PE', 'L', 'universal'];
+export const INSERT_COLORS = ['blue', 'green', 'grey', 'brown', 'brass'];
 // Аппараты, которые соединяет гребёнка: автоматы, дифавтоматы, УЗО, выключатели нагрузки
 export const COMB_DEVICE_CATEGORIES = new Set(['mcb', 'rcbo', 'rcd', 'switch']);
 
@@ -110,41 +114,6 @@ const listOf = (schema) => (v) => {
   return null;
 };
 
-// Блок клеммника в корпусе: назначение, место (нет поля — неизвестно), клеммы (если известны)
-const TERMINAL_BLOCK_FIELDS = {
-  role: [oneOf(TERMINAL_ROLES), true],
-  position: [oneOf(TERMINAL_POSITIONS), false],
-  clamps: [clampGroups, false],
-};
-
-// Клеммник-аксессуар производителя (если в комплекте нет или нужно больше); holder — держатель,
-// на который ставятся клеммники (в состав идёт вместе с ними, на рисунке не показывается)
-const TERMINAL_ACCESSORY_FIELDS = {
-  article: [nonEmptyString, true],
-  role: [oneOf([...TERMINAL_ROLES, 'holder']), true],
-  clamps: [clampGroups, false],
-  verified: [boolean, true],
-  source: [httpsUrl, false],
-  notes: [nonEmptyString, false],
-};
-
-/**
- * Штатные клеммники N/PE корпуса (необязательно). included — идут ли в комплекте;
- * blocks — блоки: при included — те, что в комплекте, иначе — места под клеммники;
- * accessories — клеммники-аксессуары производителя; verified/source — как у позиций каталога.
- * Шины и клеммники на DIN-рейку — не часть корпуса (отдельное оборудование).
- */
-const TERMINALS_FIELDS = {
-  included: [boolean, true],
-  blocks: [listOf(TERMINAL_BLOCK_FIELDS), false],
-  accessories: [listOf(TERMINAL_ACCESSORY_FIELDS), false],
-  verified: [boolean, true],
-  source: [httpsUrl, false],
-  notes: [nonEmptyString, false],
-};
-
-const terminals = (v) => firstProblem(v, TERMINALS_FIELDS, '');
-
 // --- схемы объектов: поле → [проверка, обязательное] ---
 
 const ENCLOSURE_FIELDS = {
@@ -160,7 +129,7 @@ const ENCLOSURE_FIELDS = {
   door: [oneOf(DOORS), true],
   ipRating: [intInRange(20, 68), true],
   dimensionsMm: [dimensions, true],
-  terminals: [terminals, false], // клеммники N/PE (см. TERMINALS_FIELDS)
+  terminalSetup: [(v) => terminalSetup(v), false], // держатели клемм с завода (этап 17), схема ниже
   verified: [boolean, true],
   source: [httpsUrl, false],
   notes: [nonEmptyString, false],
@@ -213,6 +182,69 @@ const COMB_PART_FIELDS = {
   source: [httpsUrl, false],
   notes: [nonEmptyString, false],
 };
+
+const positionList = (v) =>
+  Array.isArray(v) && v.length > 0 && new Set(v).size === v.length && v.every((x) => x === 'top' || x === 'bottom')
+    ? null
+    : 'нужен список из: top, bottom';
+
+/** Держатель клемм N/PE: длина в мм, куда ставится, к каким корпусам (id). */
+const CARRIER_FIELDS = {
+  id: [id, true],
+  brand: [id, true],
+  kind: [oneOf(CARRIER_KINDS), true],
+  series: [nonEmptyString, false],
+  article: [nonEmptyString, false],
+  lengthMm: [positiveNumber, true],
+  positions: [positionList, true],
+  enclosureIds: [stringList, false],
+  verified: [boolean, true],
+  source: [httpsUrl, false],
+  notes: [nonEmptyString, false],
+};
+
+/** Клемма в держателе: роль, клеммы, ширина в мм, в какие держатели (id); fixed — часть планки, отдельно не заказывается. */
+const INSERT_FIELDS = {
+  id: [id, true],
+  brand: [id, true],
+  role: [oneOf(INSERT_ROLES), true],
+  series: [nonEmptyString, false],
+  article: [nonEmptyString, false],
+  clamps: [clampGroups, true],
+  widthMm: [positiveNumber, true],
+  color: [oneOf(INSERT_COLORS), false],
+  carrierIds: [stringList, false],
+  fixed: [boolean, false],
+  verified: [boolean, true],
+  source: [httpsUrl, false],
+  notes: [nonEmptyString, false],
+};
+
+const SETUP_INSERT_FIELDS = {
+  insertId: [id, true],
+  pos: [(v) => (typeof v === 'number' && v >= 0 ? null : 'нужно число ≥ 0 (мм)'), true],
+  role: [oneOf(['N', 'PE']), false],
+  included: [boolean, false],
+};
+const SETUP_CARRIER_FIELDS = {
+  carrierId: [id, true],
+  position: [oneOf(['top', 'bottom']), false],
+  included: [boolean, true],
+  inserts: [(v) => (Array.isArray(v) ? (v.length ? listOf(SETUP_INSERT_FIELDS)(v) : null) : 'нужен список'), false],
+};
+
+/** Что стоит в корпусе с завода: держатели с клеммами (необязательно). */
+const terminalSetup = (v) =>
+  firstProblem(
+    v,
+    {
+      carriers: [(c) => (Array.isArray(c) ? (c.length ? listOf(SETUP_CARRIER_FIELDS)(c) : null) : 'нужен список'), true],
+      verified: [boolean, true],
+      source: [httpsUrl, false],
+      notes: [nonEmptyString, false],
+    },
+    '',
+  );
 
 const DEVICE_FIELDS = {
   id: [id, true],
@@ -385,8 +417,9 @@ export function validateBrandFile(data, name = 'brand') {
   const brandId = isObject(data.brand) ? data.brand.id : undefined;
 
   // combs (гребёнки) — необязательный список
-  for (const listName of ['enclosures', 'devices', 'combs', 'combParts']) {
-    if ((listName === 'combs' || listName === 'combParts') && data[listName] === undefined) continue;
+  const OPTIONAL_LISTS = ['combs', 'combParts', 'terminalCarriers', 'terminalInserts'];
+  for (const listName of ['enclosures', 'devices', ...OPTIONAL_LISTS]) {
+    if (OPTIONAL_LISTS.includes(listName) && data[listName] === undefined) continue;
     if (!Array.isArray(data[listName])) {
       errors.push(`${name}.${listName}: нужен список`);
       continue;
@@ -396,13 +429,15 @@ export function validateBrandFile(data, name = 'brand') {
       if (listName === 'enclosures') checkFields(item, ENCLOSURE_FIELDS, path, errors);
       else if (listName === 'combs') checkFields(item, COMB_FIELDS, path, errors);
       else if (listName === 'combParts') checkFields(item, COMB_PART_FIELDS, path, errors);
+      else if (listName === 'terminalCarriers') checkFields(item, CARRIER_FIELDS, path, errors);
+      else if (listName === 'terminalInserts') checkFields(item, INSERT_FIELDS, path, errors);
       else checkDevice(item, path, errors);
       checkSource(item, path, errors);
       if (isObject(item) && item.brand !== brandId) errors.push(`${path}.brand: должен совпадать с "${brandId}"`);
     });
   }
   for (const key of Object.keys(data)) {
-    if (!['schemaVersion', 'brand', 'enclosures', 'devices', 'combs', 'combParts'].includes(key)) {
+    if (!['schemaVersion', 'brand', 'enclosures', 'devices', 'combs', 'combParts', 'terminalCarriers', 'terminalInserts'].includes(key)) {
       errors.push(`${name}.${key}: неизвестное поле`);
     }
   }
@@ -413,9 +448,52 @@ export function validateBrandFile(data, name = 'brand') {
 export function validateCatalog(catalog) {
   const errors = [];
   const seen = new Map();
-  for (const item of [...catalog.enclosures, ...catalog.devices, ...(catalog.combs ?? []), ...(catalog.combParts ?? [])]) {
+  for (const item of [
+    ...catalog.enclosures,
+    ...catalog.devices,
+    ...(catalog.combs ?? []),
+    ...(catalog.combParts ?? []),
+    ...(catalog.terminalCarriers ?? []),
+    ...(catalog.terminalInserts ?? []),
+  ]) {
     if (seen.has(item.id)) errors.push(`id "${item.id}" повторяется (${seen.get(item.id)} и ${item.brand})`);
     else seen.set(item.id, item.brand);
+  }
+  errors.push(...checkCarrierLinks(catalog));
+  return errors;
+}
+
+/** Ссылки держателей и клемм N/PE: корпуса, держатели и клеммы существуют, заводские клеммы помещаются. */
+function checkCarrierLinks(catalog) {
+  const errors = [];
+  const enclosureIds = new Set(catalog.enclosures.map((e) => e.id));
+  const carriers = new Map((catalog.terminalCarriers ?? []).map((c) => [c.id, c]));
+  const inserts = new Map((catalog.terminalInserts ?? []).map((x) => [x.id, x]));
+  for (const c of carriers.values()) {
+    for (const e of c.enclosureIds ?? []) if (!enclosureIds.has(e)) errors.push(`держатель "${c.id}": нет корпуса "${e}"`);
+  }
+  for (const x of inserts.values()) {
+    for (const c of x.carrierIds ?? []) if (!carriers.has(c)) errors.push(`клемма "${x.id}": нет держателя "${c}"`);
+  }
+  for (const enc of catalog.enclosures) {
+    (enc.terminalSetup?.carriers ?? []).forEach((sc, i) => {
+      const where = `корпус "${enc.id}", держатель ${i + 1}`;
+      const carrier = carriers.get(sc.carrierId);
+      if (!carrier) return errors.push(`${where}: нет держателя "${sc.carrierId}"`);
+      if (carrier.enclosureIds && !carrier.enclosureIds.includes(enc.id)) errors.push(`${where}: "${carrier.id}" не для этого корпуса`);
+      if (!carrier.positions.includes(sc.position ?? 'top')) errors.push(`${where}: место "${sc.position ?? 'top'}" не подходит`);
+      let end = 0;
+      for (const item of [...(sc.inserts ?? [])].sort((a, b) => a.pos - b.pos)) {
+        const insert = inserts.get(item.insertId);
+        if (!insert) {
+          errors.push(`${where}: нет клеммы "${item.insertId}"`);
+          continue;
+        }
+        if (insert.carrierIds && !insert.carrierIds.includes(carrier.id)) errors.push(`${where}: "${insert.id}" не ставится в "${carrier.id}"`);
+        if (item.pos < end - 1e-6 || item.pos + insert.widthMm > carrier.lengthMm + 1e-6) errors.push(`${where}: "${insert.id}" не помещается`);
+        end = item.pos + insert.widthMm;
+      }
+    });
   }
   return errors;
 }
@@ -441,7 +519,7 @@ export async function loadCatalog(baseUrl, fetchJson = defaultFetchJson) {
 
   const files = await Promise.all(index.brands.map((b) => fetchJson(new URL(b.file, baseUrl))));
   const errors = [];
-  const catalog = { brands: [], enclosures: [], devices: [], combs: [], combParts: [] };
+  const catalog = { brands: [], enclosures: [], devices: [], combs: [], combParts: [], terminalCarriers: [], terminalInserts: [] };
 
   files.forEach((data, i) => {
     const entry = index.brands[i];
@@ -458,6 +536,8 @@ export async function loadCatalog(baseUrl, fetchJson = defaultFetchJson) {
     catalog.devices.push(...data.devices);
     catalog.combs.push(...(data.combs ?? []));
     catalog.combParts.push(...(data.combParts ?? []));
+    catalog.terminalCarriers.push(...(data.terminalCarriers ?? []));
+    catalog.terminalInserts.push(...(data.terminalInserts ?? []));
   });
 
   errors.push(...validateCatalog(catalog));
