@@ -32,6 +32,7 @@ import { layoutBoard, hitTest, renderBoardSvg, MODULE_MM } from './render-svg.js
 import { checkBoard } from './checks.js';
 import { specTable, toCsv, exportFileName } from './export.js';
 import { xlsxWorkbook } from './xlsx.js';
+import { filterEnclosures, availableValues, previewSplit } from './enclosure-filter.js';
 import { EARTHING_SYSTEMS } from './catalog.js';
 import {
   projectFromBoard,
@@ -93,6 +94,7 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
     poles: 'all',
     status: initialStatus,
     pickerOpen: !initialBoard, // список корпусов развёрнут; после выбора сворачивается до выбранного
+    moreOpen: false, // окно «Ещё варианты» с остальными подходящими корпусами
   };
 
   let savedBoard = null; // последний сохранённый в браузере щит
@@ -242,11 +244,11 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
   function selectEnclosure(id) {
     const next = enclosures.get(id);
     if (!state.board) {
-      update({ board: createBoard(next), activeRow: 0, selectedUid: null, status: '', pickerOpen: false });
+      update({ board: createBoard(next), activeRow: 0, selectedUid: null, status: '', pickerOpen: false, moreOpen: false });
       return;
     }
     if (state.board.enclosureId === id) {
-      update({ pickerOpen: false });
+      update({ pickerOpen: false, moreOpen: false });
       return;
     }
     const { board, overflow } = changeEnclosure(state.board, next, devices);
@@ -254,6 +256,7 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
     update({
       board,
       pickerOpen: false,
+      moreOpen: false,
       activeRow: Math.min(state.activeRow, board.rows.length - 1),
       selectedUid: findItem(board, state.selectedUid) ? state.selectedUid : null,
       status: overflow.length
@@ -514,12 +517,24 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
 
   // ---------- отрисовка ----------
 
+  /** Группа кнопок-вариантов. options: [key, text, disabled?] — недоступный вариант серый и не нажимается. */
   function chips(label, value, options, onPick) {
     return h(
       'div',
       { class: 'chips', role: 'group', 'aria-label': label },
-      options.map(([key, text]) =>
-        h('button', { type: 'button', class: 'chip', 'aria-pressed': String(value === key), dataset: { focus: `chip-${label}-${key}` }, onClick: () => onPick(key) }, text),
+      options.map(([key, text, disabled = false]) =>
+        h(
+          'button',
+          {
+            type: 'button',
+            class: 'chip',
+            'aria-pressed': String(value === key),
+            disabled,
+            dataset: { focus: `chip-${label}-${key}` },
+            onClick: () => onPick(key),
+          },
+          text,
+        ),
       ),
     );
   }
@@ -566,23 +581,24 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
         ),
       );
     }
-    const list = catalog.enclosures.filter(
-      (e) =>
-        (state.brand === 'all' || e.brand === state.brand) &&
-        (state.mounting === 'all' || e.mounting === state.mounting) &&
-        (state.modulesPerRow === 'all' || e.modulesPerRow === state.modulesPerRow) &&
-        (state.rowsCount === 'all' || e.rows === state.rowsCount),
-    );
+    const filters = { brand: state.brand, mounting: state.mounting, modulesPerRow: state.modulesPerRow, rowsCount: state.rowsCount };
+    const list = filterEnclosures(catalog.enclosures, filters);
+    const { shown, rest } = previewSplit(list);
+    // Вариант фильтра недоступен, если вместе с остальными выбранными фильтрами не найдётся ни одного корпуса
+    const options = (key, values) => {
+      const available = availableValues(catalog.enclosures, filters, key);
+      return [['all', t('filter.all')], ...values.map(([value, text]) => [value, text, !available.has(value)])];
+    };
     return h(
       'section',
       { class: 'panel picker', 'aria-labelledby': 'h-enclosure' },
       heading,
       catalog.brands.length > 1 &&
-        chips(t('filter.brand'), state.brand, [['all', t('filter.all')], ...catalog.brands.map((b) => [b.id, b.name])], (brand) => update({ brand })),
+        chips(t('filter.brand'), state.brand, options('brand', catalog.brands.map((b) => [b.id, b.name])), (brand) => update({ brand })),
       chips(
         t('filter.mounting'),
         state.mounting,
-        [['all', t('filter.all')], ['surface', t('mounting.surface')], ['flush', t('mounting.flush')]],
+        options('mounting', [['surface', t('mounting.surface')], ['flush', t('mounting.flush')]]),
         (mounting) => update({ mounting }),
       ),
       // Подписи над числовыми фильтрами: без них «12 13 18» и «1 2 3 4» непонятны
@@ -591,7 +607,7 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
         chips(
           t('filter.modulesPerRow'),
           state.modulesPerRow,
-          [['all', t('filter.all')], ...modulesPerRowOptions.map((m) => [m, String(m)])],
+          options('modulesPerRow', modulesPerRowOptions.map((m) => [m, String(m)])),
           (modulesPerRow) => update({ modulesPerRow }),
         ),
       rowsOptions.length > 1 && h('p', { class: 'muted filter-label' }, t('filter.rows')),
@@ -599,12 +615,20 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
         chips(
           t('filter.rows'),
           state.rowsCount,
-          [['all', t('filter.all')], ...rowsOptions.map((r) => [r, String(r)])],
+          options('rowsCount', rowsOptions.map((r) => [r, String(r)])),
           (rowsCount) => update({ rowsCount }),
         ),
+      // Пустой список возможен только при пустом каталоге: недоступные варианты фильтров не нажимаются
       list.length
-        ? h('ul', { class: 'enclosure-list' }, list.map((e) => h('li', {}, enclosureCard(e))))
+        ? h('ul', { class: 'enclosure-list' }, shown.map((e) => h('li', {}, enclosureCard(e))))
         : h('p', { class: 'hint' }, t('enclosure.noneFound')),
+      rest.length > 0 &&
+        h(
+          'button',
+          { type: 'button', class: 'action more-button', 'aria-haspopup': 'dialog', dataset: { focus: 'enc-more' }, onClick: () => update({ moreOpen: true }) },
+          t('enclosure.more', { n: rest.length }),
+        ),
+      rest.length > 0 && state.moreOpen && renderMoreDialog(rest),
       current &&
         h(
           'button',
@@ -612,6 +636,49 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
           t('enclosure.keep'),
         ),
     );
+  }
+
+  /**
+   * Окно «Ещё варианты»: остальные подходящие корпуса. Встроенный <dialog> (showModal — в render):
+   * Esc и ✕ закрывают, Tab не выходит из окна, щелчок мимо окна (по подложке) тоже закрывает.
+   */
+  function renderMoreDialog(rest) {
+    const dialog = h(
+      'dialog',
+      { class: 'enclosure-dialog', 'aria-labelledby': 'h-enclosure-more' },
+      h(
+        'div',
+        { class: 'dialog-body' },
+        h(
+          'div',
+          { class: 'dialog-head' },
+          h('h2', { id: 'h-enclosure-more' }, t('enclosure.moreTitle', { n: rest.length })),
+          h(
+            'button',
+            { type: 'button', class: 'tool dialog-close', 'aria-label': t('dialog.close'), title: t('dialog.close'), dataset: { focus: 'enc-more-close' }, onClick: () => dialog.close() },
+            '✕',
+          ),
+        ),
+        h('ul', { class: 'enclosure-list' }, rest.map((e) => h('li', {}, enclosureCard(e)))),
+      ),
+    );
+    // Щелчок по подложке приходит на сам <dialog>. Но и щелчок по пустому месту внутри окна
+    // (на телефоне окно во весь экран, а список короче) — тоже, поэтому закрываем,
+    // только если точка вне прямоугольника окна.
+    dialog.addEventListener('click', (event) => {
+      if (event.target !== dialog) return;
+      const r = dialog.getBoundingClientRect();
+      const inside = event.clientX >= r.left && event.clientX <= r.right && event.clientY >= r.top && event.clientY <= r.bottom;
+      if (!inside) dialog.close();
+    });
+    // Закрытие (Esc, ✕, подложка). Окно, убранное перерисовкой, не трогает состояние.
+    // После закрытия фокус — на кнопку «Ещё варианты» (прежний фокус браузер вернуть не может: кнопку перерисовали).
+    dialog.addEventListener('close', () => {
+      if (!dialog.isConnected || !state.moreOpen) return;
+      update({ moreOpen: false });
+      root.querySelector('[data-focus="enc-more"]')?.focus();
+    });
+    return dialog;
   }
 
   function renderToolbar() {
@@ -899,6 +966,7 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
       // На широком экране CSS раскладывает панели в две колонки.
       h('div', { class: 'layout' }, renderEnclosurePicker(), renderBoard(), renderPalette(), renderSummary()),
     );
+    root.querySelector('dialog.enclosure-dialog')?.showModal();
     // Фокус возвращаем, только если он был внутри конструктора
     if (focusKey) {
       const find = (key) => (key ? root.querySelector(`[data-focus="${CSS.escape(key)}"]`) : null);

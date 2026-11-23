@@ -286,7 +286,73 @@ button:focus-visible {
   color: #fff;
 }
 
+/* Вариант, с которым ничего не найдётся: серый, пунктирная рамка (видно и без цвета) */
+.chip:disabled {
+  border-style: dashed;
+  color: var(--text-muted);
+  opacity: 0.55;
+  cursor: default;
+}
+
 /* ---------- Выбор корпуса ---------- */
+
+.more-button {
+  flex: none;
+  margin-top: 8px;
+}
+
+/* Окно «Ещё варианты»: по центру, список прокручивается внутри; на телефоне — во весь экран */
+.enclosure-dialog {
+  width: min(640px, calc(100% - 2 * var(--gutter)));
+  max-height: min(85vh, 900px);
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--text);
+}
+
+.enclosure-dialog::backdrop {
+  background: rgb(0 0 0 / 0.45);
+}
+
+.dialog-body {
+  padding: 0 var(--gutter) var(--gutter);
+}
+
+.dialog-head {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: var(--gutter) 0 12px;
+  background: var(--surface);
+}
+
+.dialog-head h2 {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.dialog-close {
+  flex: none;
+}
+
+@media (max-width: 480px) {
+  .enclosure-dialog {
+    width: 100%;
+    max-width: none;
+    height: 100%;
+    max-height: none;
+    margin: 0;
+    border: none;
+    border-radius: 0;
+  }
+}
 
 .enclosure-list,
 .device-list {
