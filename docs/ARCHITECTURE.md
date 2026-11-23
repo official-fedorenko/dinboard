@@ -8,12 +8,12 @@
 - `site/js/` — ES-модули приложения: `main.js`, `catalog.js`, `board.js`, `i18n.js`, `format.js`, `dom.js`, `render-svg.js`, `storage.js`, `checks.js`, `export.js`, `xlsx.js`, `ui.js`.
 - `site/data/` — каталог оборудования в JSON: `index.json` (список брендов) и по файлу на бренд (`abb.json`, `eaton.json`, `hager.json`, `legrand.json`, `schneider.json`).
 - `site/i18n/` — файлы переводов `ru.json`, `lt.json`, `en.json` (одинаковый набор ключей, проверяется тестом).
-- `tests/` — тесты `node --test` (файлы `*.test.js`): сервер, `index.html`, workflow публикации, каталог (схема и настоящие данные), модель щита, переводы и подписи (включая сверку ключей кода с `ru.json`), раскладка и SVG-отрисовка щита, `dom.js`, сохранение (ссылка, файл, хранилище), проверки щита, выгрузки (спецификация, CSV, `.xlsx`).
+- `tests/` — тесты `node --test` (файлы `*.test.js`): сервер и файл запуска `start-dinboard.cmd`, `index.html`, workflow публикации, каталог (схема и настоящие данные), модель щита, переводы и подписи (включая сверку ключей кода с `ru.json`), раскладка и SVG-отрисовка щита, `dom.js`, сохранение (ссылка, файл, хранилище), проверки щита, выгрузки (спецификация, CSV, `.xlsx`).
 - `tools/` — скрипты для разработки: `serve.js`, локальный сервер для `site/`.
 - `docs/` — документация проекта.
 - `.github/workflows/` — `pages.yml`: тесты (Node 22 и 26) на каждый push и pull request, публикация `site/` на GitHub Pages только из `main` и только после тестов.
 
-Файлы в корне: `package.json` (без зависимостей, только `"type": "module"`, `engines` и команды `npm start` / `npm test`), `.gitignore`, `.gitattributes` (переводы строк LF во всех текстовых файлах), `AGENTS.md`, `PLAN.md`.
+Файлы в корне: `package.json` (без зависимостей, только `"type": "module"`, `engines` и команды `npm start` / `npm test`), `start-dinboard.cmd` (запуск двойным кликом в Windows: открывает окно с `node toolsserve.js` и сайт в браузере по умолчанию; порт — `PORT` или 8080, сверяется тестом с `serve.js`), `.gitignore`, `.gitattributes` (переводы строк LF во всех текстовых файлах, у `*.cmd` — CRLF), `AGENTS.md`, `PLAN.md`.
 
 ## Как устроено
 Сайт работает без сборки: браузер загружает `site/index.html`, а тот подключает `css/style.css` и `js/main.js` как ES-модуль. Все пути относительные, потому что на GitHub Pages сайт открывается из подпапки (`/<repo>/`).

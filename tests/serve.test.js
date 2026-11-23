@@ -147,3 +147,25 @@ describe('createSiteServer: файл есть, но не открывается'
     assert.equal(await next.text(), 'ok');
   });
 });
+
+describe('start-dinboard.cmd (запуск двойным кликом)', () => {
+  const read = (file) => import('node:fs/promises').then((fs) => fs.readFile(new URL(`../${file}`, import.meta.url), 'utf8'));
+
+  test('запускает tools/serve.js и открывает тот же порт, что у сервера по умолчанию', async () => {
+    const [cmd, serve] = await Promise.all([read('start-dinboard.cmd'), read('tools/serve.js')]);
+    const serverPort = serve.match(/Number\(process\.env\.PORT\) \|\| (\d+)/)?.[1];
+    assert.ok(serverPort, 'порт по умолчанию в serve.js');
+    assert.match(cmd, new RegExp(`^if not defined PORT set PORT=${serverPort}\r$`, 'm'));
+    assert.match(cmd, /^start "Dinboard server" cmd \/k node tools\\serve\.js\r$/m);
+    assert.match(cmd, /^start "" http:\/\/localhost:%PORT%\/\r$/m);
+    assert.match(cmd, /^cd \/d "%~dp0"\r$/m, 'работает из папки проекта, откуда бы ни запускали');
+  });
+
+  test('только ASCII и CRLF — так cmd.exe читает файл надёжно', async () => {
+    const cmd = await read('start-dinboard.cmd');
+    assert.ok(/^[\x20-\x7e\r\n]*$/.test(cmd), 'не ASCII');
+    assert.ok(cmd.endsWith('\r\n'));
+    assert.ok(!/[^\r]\n/.test(cmd), 'строки без \r');
+    assert.match(await read('.gitattributes'), /^\*\.cmd text eol=crlf$/m);
+  });
+});

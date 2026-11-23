@@ -2,3 +2,6 @@
 # Без этого на Windows с core.autocrlf=true файлы получают CRLF, и тесты,
 # которые читают файлы как текст, ведут себя иначе, чем в CI.
 * text=auto eol=lf
+
+# Файлы Windows (cmd) — с CRLF: так их надёжно читает cmd.exe.
+*.cmd text eol=crlf
