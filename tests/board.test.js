@@ -15,6 +15,7 @@ import {
   setAddTerminals,
   clearDevices,
   setRowComb,
+  setCombPart,
   rowGaps,
   canPlace,
   firstFreePos,
@@ -361,3 +362,22 @@ describe('гребёнки рядов', () => {
   });
 });
 
+
+describe('аксессуары гребёнок', () => {
+  test('setCombPart: количество, 0 — убрать, без аксессуаров — без поля; неверное число — ошибка', () => {
+    const board = createBoard(enc(2));
+    const one = setCombPart(board, 'acme-cap', 2);
+    assert.deepEqual(one.combParts, { 'acme-cap': 2 });
+    assert.equal('combParts' in board, false, 'исходный щит не меняется');
+    assert.deepEqual(setCombPart(one, 'acme-feed', 1).combParts, { 'acme-cap': 2, 'acme-feed': 1 });
+    assert.equal('combParts' in setCombPart(one, 'acme-cap', 0), false);
+    rejectsWith(() => setCombPart(board, 'acme-cap', 100), 'bad-count');
+    rejectsWith(() => setCombPart(board, 'acme-cap', 1.5), 'bad-count');
+  });
+
+  test('смена корпуса сохраняет, очистка снимает', () => {
+    const board = setCombPart(createBoard(enc(2)), 'acme-cap', 2);
+    assert.deepEqual(changeEnclosure(board, enc(1), devices).board.combParts, { 'acme-cap': 2 });
+    assert.equal('combParts' in clearDevices(board, enc(2)), false);
+  });
+});

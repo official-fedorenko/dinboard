@@ -235,6 +235,16 @@ describe('validateBrandFile', () => {
     hasError(validateBrandFile(brandFile({ devices: [rcd('3P+N')] })), 'specs.poles: ожидалось одно из: 2P, 4P');
   });
 
+  test('аксессуары гребёнок (combParts) и держатель клеммников', () => {
+    const part = (over = {}) => ({ id: 'acme-cap', brand: 'acme', series: 'K', article: 'CAP', kind: 'end-cap', combSeries: ['K'], verified: false, ...over });
+    assert.deepEqual(validateBrandFile(brandFile({ combParts: [part(), part({ id: 'acme-f', article: 'F', kind: 'feed-terminal', packQty: 4 })] })), []);
+    hasError(validateBrandFile(brandFile({ combParts: [part({ kind: 'clip' })] })), 'combParts[0].kind');
+    hasError(validateBrandFile(brandFile({ combParts: [part({ combSeries: [] })] })), 'combParts[0].combSeries');
+    const holder = { included: false, accessories: [{ article: 'H', role: 'holder', verified: false }], verified: false };
+    assert.deepEqual(validateBrandFile(brandFile({ enclosures: [enclosure({ terminals: holder })] })), []);
+    hasError(validateBrandFile(brandFile({ enclosures: [enclosure({ terminals: { included: true, blocks: [{ role: 'holder' }], verified: false } })] })), 'blocks: [0].role');
+  });
+
   test('версия схемы и не-объекты', () => {
     hasError(validateBrandFile(brandFile({ schemaVersion: 2 })), 'schemaVersion: ожидалось 1');
     assert.deepEqual(validateBrandFile(null, 'x.json'), ['x.json: нужен объект']);

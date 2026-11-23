@@ -6,6 +6,7 @@
 // addTerminals: true — в состав добавлены клеммники N/PE производителя (если в комплекте корпуса их нет);
 // без поля — не добавлены.
 // combs — гребёнки рядов: [id гребёнки или null для каждого ряда]; без поля — гребёнок нет.
+// combParts — аксессуары гребёнок: { id: количество }; без поля — нет.
 // pos — с какого модуля рейки начинается устройство (0 — левый край), шаг 0.5 модуля.
 // Устройства можно ставить в любое свободное место: между ними остаются пустые места
 // (на схеме — заглушки). Устройства не перекрываются; в массиве ряда они идут слева направо.
@@ -244,6 +245,7 @@ export function changeEnclosure(board, enclosure, devices) {
   let next = { ...createBoard(enclosure), nextUid: board.nextUid, earthing: board.earthing ?? null, ...(board.addTerminals ? { addTerminals: true } : {}) };
   // Гребёнки остаются у рядов, которые есть в новом корпусе (подходят ли они — скажут проверки)
   next = withCombs(next, next.rows.map((_, i) => board.combs?.[i] ?? null));
+  if (board.combParts) next = { ...next, combParts: { ...board.combParts } };
   const overflow = [];
   const rest = [];
   board.rows.forEach((items, rowIndex) => {
@@ -272,7 +274,7 @@ export function changeEnclosure(board, enclosure, devices) {
 /**
  * Очистка щита: все устройства убираются, а свойства корпуса и проекта остаются —
  * система заземления и добавленные клеммники N/PE (по решению владельца).
- * Гребёнки снимаются вместе с аппаратами.
+ * Гребёнки и их аксессуары снимаются вместе с аппаратами.
  */
 export function clearDevices(board, enclosure) {
   return setAddTerminals(setEarthing(createBoard(enclosure), board.earthing), Boolean(board.addTerminals));
@@ -288,6 +290,16 @@ function withCombs(board, list) {
 export function setRowComb(board, row, combId) {
   checkRow(board, row);
   return withCombs(board, board.rows.map((_, i) => (i === row ? combId ?? null : board.combs?.[i] ?? null)));
+}
+
+/** Количество аксессуара гребёнки id в составе (0 — убрать); целое от 0 до 99. */
+export function setCombPart(board, id, count) {
+  if (!Number.isInteger(count) || count < 0 || count > 99) throw new BoardError('bad-count', { count });
+  const { combParts, ...rest } = board;
+  const next = { ...(combParts ?? {}) };
+  if (count) next[id] = count;
+  else delete next[id];
+  return Object.keys(next).length ? { ...rest, combParts: next } : rest;
 }
 
 /** Добавить в состав клеммники N/PE производителя (true) или убрать (false). */

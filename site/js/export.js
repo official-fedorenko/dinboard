@@ -32,9 +32,12 @@ export function terminalsSpec(board, enclosure, t) {
     accessories: terminals.accessories.map((a) => ({
       article: a.article,
       verified: a.verified,
-      name: a.clamps
-        ? t('terminals.accessoryName', { role: a.role, clamps: clampsText(a.clamps, t.lang) })
-        : t('terminals.accessoryNameShort', { role: a.role }),
+      name:
+        a.role === 'holder'
+          ? t('terminals.holderName')
+          : a.clamps
+            ? t('terminals.accessoryName', { role: a.role, clamps: clampsText(a.clamps, t.lang) })
+            : t('terminals.accessoryNameShort', { role: a.role }),
     })),
   };
 }
@@ -48,6 +51,19 @@ export function combsSpec(board, combsById) {
   return [...counts].map(([id, count]) => ({ comb: combsById.get(id), count }));
 }
 
+/** Аксессуары гребёнок в составе: [{ part, count }]; неизвестные пропускаются. */
+export function combPartsSpec(board, partsById) {
+  return Object.entries(board.combParts ?? {})
+    .filter(([id]) => partsById.has(id))
+    .map(([id, count]) => ({ part: partsById.get(id), count }));
+}
+
+/** Название аксессуара гребёнки: «Торцевая заглушка гребёнки» (+ «упаковка 10 шт.»). */
+export function combPartName(part, t) {
+  const name = t(`combPart.${part.kind}`);
+  return part.packQty ? `${name} ${t('combPart.pack', { n: part.packQty })}` : name;
+}
+
 /** Название гребёнки: «Гребёнка 1P, вилка, 12 мод.». */
 export function combName(comb, t) {
   return t('comb.name', { phases: comb.phases, pin: t(`comb.pin.${comb.pinType}`), length: num(comb.lengthModules, t.lang) });
@@ -55,11 +71,11 @@ export function combName(comb, t) {
 
 /**
  * Спецификация щита: первой строкой корпус, затем устройства (как в billOfMaterials).
- * Клеммники N/PE: пометка в строке корпуса или клеммники-аксессуары сразу после него; гребёнки — в конце.
+ * Клеммники N/PE: пометка в строке корпуса или клеммники-аксессуары сразу после него; гребёнки и их аксессуары — в конце.
  * Ячейки — строки и числа; `modules` у корпуса — null (пустая ячейка).
  * Возвращает { head: [заголовки], rows: [[ячейки по SPEC_COLUMNS]] }.
  */
-export function specTable(board, enclosure, devices, brandNames, t, combsById = new Map()) {
+export function specTable(board, enclosure, devices, brandNames, t, combsById = new Map(), partsById = new Map()) {
   const note = (item) => (item.verified ? '' : t('device.unverified'));
   const brand = brandNames.get(enclosure.brand) ?? enclosure.brand;
   const terminals = terminalsSpec(board, enclosure, t);
@@ -72,6 +88,7 @@ export function specTable(board, enclosure, devices, brandNames, t, combsById = 
       return [d.article, brandNames.get(d.brand) ?? d.brand, deviceTitle(d, t), d.model ?? '', d.modules, count, note(d)];
     }),
     ...combsSpec(board, combsById).map(({ comb, count }) => [comb.article, brandNames.get(comb.brand) ?? comb.brand, combName(comb, t), comb.model ?? '', null, count, note(comb)]),
+    ...combPartsSpec(board, partsById).map(({ part, count }) => [part.article, brandNames.get(part.brand) ?? part.brand, combPartName(part, t), part.model ?? '', null, count, note(part)]),
   ];
   return { head: SPEC_COLUMNS.map((c) => t(`summary.${c}`)), rows };
 }

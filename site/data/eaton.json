@@ -4027,5 +4027,97 @@
       "source": "https://www.eaton.com/content/dam/eaton/products/electrical-circuit-protection/circuit-breakers/xpole-rccb/eaton-xpole-accessories-ca019015en-en-us.pdf",
       "notes": "Штырь, 1 м без заглушек, шаг 17,8 мм (каталог CA019015EN, с. 148–150; страницу артикула открыть не удалось — сайт перестал отвечать). Режется — вывод из «1 м без заглушек», прямо не написано; длина 56 модулей — расчёт. Для PL6/PF6/PFL6/IS Eaton прямо эту шину не называет: в каталогах серий сказано «совместимы со стандартными шинами P-серии», двойные клеммы (лифт/открытые) сверху и снизу, толщина шины 0,8–2 мм — подходят и вилка, и штырь. Совместимость с нашими сериями — вывод, не текст производителя."
     }
+  ],
+  "combParts": [
+    {
+      "id": "eaton-104905",
+      "brand": "eaton",
+      "series": "Z-GV/Z-SV",
+      "article": "104905",
+      "model": "Z-V-AK/1P",
+      "kind": "end-cap",
+      "combSeries": [
+        "Z-GV",
+        "Z-SV"
+      ],
+      "verified": true,
+      "source": "https://www.eaton.com/content/dam/eaton/products/electrical-circuit-protection/circuit-breakers/xpole-rccb/eaton-xpole-accessories-ca019015en-en-us.pdf",
+      "notes": "Заглушка 1-фазная для Z-GV/Z-SV (сверено по каталогу CA019015EN)."
+    },
+    {
+      "id": "eaton-120805",
+      "brand": "eaton",
+      "series": "Z-GV/Z-SV",
+      "article": "120805",
+      "model": "BB-EC/2+3P",
+      "kind": "end-cap",
+      "combSeries": [
+        "Z-GV",
+        "Z-SV"
+      ],
+      "verified": true,
+      "source": "https://www.eaton.com/content/dam/eaton/products/electrical-circuit-protection/circuit-breakers/xpole-rccb/eaton-xpole-accessories-ca019015en-en-us.pdf",
+      "notes": "Заглушка 2–3-фазная для Z-GV (сверено по каталогу CA019015EN)."
+    },
+    {
+      "id": "eaton-264931",
+      "brand": "eaton",
+      "series": "Z-GV/Z-SV",
+      "article": "264931",
+      "model": "Z-V-AK/4P",
+      "kind": "end-cap",
+      "combSeries": [
+        "Z-GV",
+        "Z-SV"
+      ],
+      "verified": true,
+      "source": "https://www.eaton.com/content/dam/eaton/products/electrical-circuit-protection/circuit-breakers/xpole-rccb/eaton-xpole-accessories-ca019015en-en-us.pdf",
+      "notes": "Заглушка 4-фазная для Z-GV (сверено по каталогу CA019015EN)."
+    },
+    {
+      "id": "eaton-ep-501076",
+      "brand": "eaton",
+      "series": "EVGK/GVK",
+      "article": "EP-501076",
+      "model": "EK-3/10-EVGK-GVK",
+      "kind": "end-cap",
+      "combSeries": [
+        "EVGK",
+        "GVK"
+      ],
+      "verified": true,
+      "source": "https://www.eaton.com/de/de-de/skuPage.EP-501076.html",
+      "notes": "Заглушка 3-фазная 10 мм² для EVGK/GVK."
+    },
+    {
+      "id": "eaton-ep-501078",
+      "brand": "eaton",
+      "series": "EVGK/GVK",
+      "article": "EP-501078",
+      "model": "EK-3N/16-EVGK-GVK",
+      "kind": "end-cap",
+      "combSeries": [
+        "EVGK",
+        "GVK"
+      ],
+      "verified": true,
+      "source": "https://www.eaton.com/de/de-de/skuPage.EP-501078.html",
+      "notes": "Заглушка 3P+N 16 мм² для GVK."
+    },
+    {
+      "id": "eaton-264935",
+      "brand": "eaton",
+      "series": "Z-GV/Z-SV",
+      "article": "264935",
+      "model": "Z-EK/25",
+      "kind": "feed-terminal",
+      "combSeries": [
+        "Z-GV",
+        "Z-SV"
+      ],
+      "verified": true,
+      "source": "https://www.eaton.com/content/dam/eaton/products/electrical-circuit-protection/circuit-breakers/xpole-rccb/eaton-xpole-accessories-ca019015en-en-us.pdf",
+      "notes": "Вводная клемма 6–25 мм² для шин Z-SV/Z-GSV (сверено по каталогу CA019015EN)."
+    }
   ]
 }

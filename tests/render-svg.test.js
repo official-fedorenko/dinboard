@@ -295,3 +295,24 @@ describe('гребёнки на рисунке', () => {
     assert.match(svg, /<g class="comb pin-fork"><title>KDN163A · Гребёнка 1P, 12 мод\.<\/title><rect class="comb-bar"/);
   });
 });
+
+describe('держатель клеммников', () => {
+  test('на рисунке — только клеммники, держатель не показывается', () => {
+    const enc = {
+      ...enclosure,
+      terminals: {
+        included: false,
+        blocks: [{ role: 'N+PE', position: 'top' }, { role: 'N+PE', position: 'bottom' }],
+        accessories: [
+          { article: 'PE1', role: 'PE', verified: false },
+          { article: 'N1', role: 'N', verified: false },
+          { article: 'H1', role: 'holder', verified: false },
+        ],
+        verified: false,
+      },
+    };
+    const board = { ...createBoard(enc), addTerminals: true };
+    const bars = terminalBars(enc, board, layoutBoard(enc, board, devices));
+    assert.deepEqual(bars.map((b) => b.article), ['PE1', 'N1']);
+  });
+});

@@ -25,6 +25,8 @@ export const TERMINAL_ROLES = ['N', 'PE', 'N+PE'];
 // Гребёнка: какие фазы соединяет и чем входит в клемму аппарата
 export const COMB_PHASES = ['1P', '1P+N', '2P', '3P', '3P+N'];
 export const COMB_PIN_TYPES = ['pin', 'fork'];
+// Аксессуары гребёнок: торцевая заглушка, вводная клемма, колпачки на свободные штыри
+export const COMB_PART_KINDS = ['end-cap', 'feed-terminal', 'tooth-cover'];
 // Аппараты, которые соединяет гребёнка: автоматы, дифавтоматы, УЗО, выключатели нагрузки
 export const COMB_DEVICE_CATEGORIES = new Set(['mcb', 'rcbo', 'rcd', 'switch']);
 
@@ -115,10 +117,11 @@ const TERMINAL_BLOCK_FIELDS = {
   clamps: [clampGroups, false],
 };
 
-// Клеммник-аксессуар производителя (если в комплекте нет или нужно больше)
+// Клеммник-аксессуар производителя (если в комплекте нет или нужно больше); holder — держатель,
+// на который ставятся клеммники (в состав идёт вместе с ними, на рисунке не показывается)
 const TERMINAL_ACCESSORY_FIELDS = {
   article: [nonEmptyString, true],
-  role: [oneOf(TERMINAL_ROLES), true],
+  role: [oneOf([...TERMINAL_ROLES, 'holder']), true],
   clamps: [clampGroups, false],
   verified: [boolean, true],
   source: [httpsUrl, false],
@@ -188,6 +191,24 @@ const COMB_FIELDS = {
   crossSectionMm2: [positiveNumber, false],
   ratedCurrentA: [positiveNumber, false],
   deviceSeries: [stringList, false],
+  verified: [boolean, true],
+  source: [httpsUrl, false],
+  notes: [nonEmptyString, false],
+};
+
+/**
+ * Аксессуар гребёнки: заглушка, вводная клемма или колпачки. combSeries — серии гребёнок
+ * (поле series у гребёнок того же бренда), к которым подходит; packQty — штук в упаковке.
+ */
+const COMB_PART_FIELDS = {
+  id: [id, true],
+  brand: [id, true],
+  series: [nonEmptyString, true],
+  article: [nonEmptyString, true],
+  model: [nonEmptyString, false],
+  kind: [oneOf(COMB_PART_KINDS), true],
+  combSeries: [stringList, true],
+  packQty: [intInRange(1, 100), false],
   verified: [boolean, true],
   source: [httpsUrl, false],
   notes: [nonEmptyString, false],
@@ -364,8 +385,8 @@ export function validateBrandFile(data, name = 'brand') {
   const brandId = isObject(data.brand) ? data.brand.id : undefined;
 
   // combs (гребёнки) — необязательный список
-  for (const listName of ['enclosures', 'devices', 'combs']) {
-    if (listName === 'combs' && data.combs === undefined) continue;
+  for (const listName of ['enclosures', 'devices', 'combs', 'combParts']) {
+    if ((listName === 'combs' || listName === 'combParts') && data[listName] === undefined) continue;
     if (!Array.isArray(data[listName])) {
       errors.push(`${name}.${listName}: нужен список`);
       continue;
@@ -374,13 +395,14 @@ export function validateBrandFile(data, name = 'brand') {
       const path = `${name}.${listName}[${i}]`;
       if (listName === 'enclosures') checkFields(item, ENCLOSURE_FIELDS, path, errors);
       else if (listName === 'combs') checkFields(item, COMB_FIELDS, path, errors);
+      else if (listName === 'combParts') checkFields(item, COMB_PART_FIELDS, path, errors);
       else checkDevice(item, path, errors);
       checkSource(item, path, errors);
       if (isObject(item) && item.brand !== brandId) errors.push(`${path}.brand: должен совпадать с "${brandId}"`);
     });
   }
   for (const key of Object.keys(data)) {
-    if (!['schemaVersion', 'brand', 'enclosures', 'devices', 'combs'].includes(key)) {
+    if (!['schemaVersion', 'brand', 'enclosures', 'devices', 'combs', 'combParts'].includes(key)) {
       errors.push(`${name}.${key}: неизвестное поле`);
     }
   }
@@ -391,7 +413,7 @@ export function validateBrandFile(data, name = 'brand') {
 export function validateCatalog(catalog) {
   const errors = [];
   const seen = new Map();
-  for (const item of [...catalog.enclosures, ...catalog.devices, ...(catalog.combs ?? [])]) {
+  for (const item of [...catalog.enclosures, ...catalog.devices, ...(catalog.combs ?? []), ...(catalog.combParts ?? [])]) {
     if (seen.has(item.id)) errors.push(`id "${item.id}" повторяется (${seen.get(item.id)} и ${item.brand})`);
     else seen.set(item.id, item.brand);
   }
@@ -419,7 +441,7 @@ export async function loadCatalog(baseUrl, fetchJson = defaultFetchJson) {
 
   const files = await Promise.all(index.brands.map((b) => fetchJson(new URL(b.file, baseUrl))));
   const errors = [];
-  const catalog = { brands: [], enclosures: [], devices: [], combs: [] };
+  const catalog = { brands: [], enclosures: [], devices: [], combs: [], combParts: [] };
 
   files.forEach((data, i) => {
     const entry = index.brands[i];
@@ -435,6 +457,7 @@ export async function loadCatalog(baseUrl, fetchJson = defaultFetchJson) {
     catalog.enclosures.push(...data.enclosures);
     catalog.devices.push(...data.devices);
     catalog.combs.push(...(data.combs ?? []));
+    catalog.combParts.push(...(data.combParts ?? []));
   });
 
   errors.push(...validateCatalog(catalog));

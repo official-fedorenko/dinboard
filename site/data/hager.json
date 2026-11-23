@@ -3844,5 +3844,35 @@
       "source": "https://hager.com/pl/katalog/produkt/kb463a-szyna-grzeb-kolkowa-4p-12m",
       "notes": "Страница: штырь, 4 полюса, 10 мм², 12 модулей, 210 мм, 63 А. KB463A/KB463C указаны аксессуарами на странице RCBO ADM425C (4P). Прочие серии — вывод (biconnect). Резка и число штырей — вывод."
     }
+  ],
+  "combParts": [
+    {
+      "id": "hager-kzn023",
+      "brand": "hager",
+      "series": "KZN",
+      "article": "KZN023",
+      "kind": "end-cap",
+      "combSeries": [
+        "KDN",
+        "KB"
+      ],
+      "verified": true,
+      "source": "https://hager.com/pl/katalog/produkt/kzn023-zaslepka-do-szyn-zbiorczych-2p-3p",
+      "notes": "Торцевые заглушки для штыревых и вилочных гребёнок 3P 10 мм² / 2P 16 мм² (KDN263x, KDN363x, KB263/363). Изолированные."
+    },
+    {
+      "id": "hager-kzn024",
+      "brand": "hager",
+      "series": "KZN",
+      "article": "KZN024",
+      "kind": "end-cap",
+      "combSeries": [
+        "KDN",
+        "KB"
+      ],
+      "verified": true,
+      "source": "https://hager.com/pl/katalog/produkt/kzn024-oslony-koncowe-szyny-4p-10mm2-3p-16mm2",
+      "notes": "Торцевые заглушки для гребёнок 4P 10 мм² / 3P 16 мм² (KDN463x, KDN380x, KDN451x, KDN450x, KB463x). Для 1P — KZN021."
+    }
   ]
 }

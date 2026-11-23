@@ -735,6 +735,26 @@ button:focus-visible {
   margin-bottom: 8px;
 }
 
+/* Аксессуары гребёнок в окне выбора: количество кнопками − и + */
+.comb-parts-title {
+  margin: 12px 0 6px;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.stepper {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex: none;
+}
+
+.stepper-count {
+  min-width: 2ch;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
 /* Клеммники и распределительные блоки на рейке */
 .dev-terminal-bar {
   fill: var(--cat);

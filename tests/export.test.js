@@ -2,7 +2,7 @@ import { test, describe } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 
-import { specTable, toCsv, csvSeparator, exportFileName, terminalsSpec, clampsText, combsSpec, combName, SPEC_COLUMNS } from '../site/js/export.js';
+import { specTable, toCsv, csvSeparator, exportFileName, terminalsSpec, clampsText, combsSpec, combName, combPartsSpec, combPartName, SPEC_COLUMNS } from '../site/js/export.js';
 import { createBoard, addDevice, indexById } from '../site/js/board.js';
 import { createTranslator } from '../site/js/i18n.js';
 
@@ -153,5 +153,39 @@ describe('гребёнки в спецификации', () => {
     const board = { ...build(['mcb']), combs: ['hager-kb163', null] };
     const rows = specTable(board, enclosure, devices, brandNames, tRu, combsById).rows;
     assert.deepEqual(rows.at(-1), ['KB163', 'Hager', 'Гребёнка 1P, штырь, 57 мод.', '', null, 1, 'не проверено']);
+  });
+});
+
+describe('аксессуары гребёнок и держатели в спецификации', () => {
+  const cap = { id: 'hager-kzn023', brand: 'hager', series: 'KZN', article: 'KZN023', kind: 'end-cap', combSeries: ['KDN'], verified: true, source: 'https://x.example' };
+  const covers = { id: 'hager-c20', brand: 'hager', series: 'X', article: 'C20', kind: 'tooth-cover', combSeries: ['KDN'], packQty: 20, verified: false };
+  const partsById = new Map([cap, covers].map((p) => [p.id, p]));
+
+  test('названия и строки с количеством; неизвестные пропускаются', () => {
+    assert.equal(combPartName(cap, tRu), 'Торцевая заглушка гребёнки');
+    assert.equal(combPartName(covers, tRu), 'Колпачки на свободные штыри гребёнки (упаковка 20 шт.)');
+    const board = { ...build(['mcb']), combParts: { 'hager-kzn023': 2, 'hager-c20': 1, nope: 3 } };
+    assert.deepEqual(combPartsSpec(board, partsById).map(({ part, count }) => [part.article, count]), [['KZN023', 2], ['C20', 1]]);
+    const rows = specTable(board, enclosure, devices, brandNames, tRu, new Map(), partsById).rows;
+    assert.deepEqual(rows.slice(-2), [
+      ['KZN023', 'Hager', 'Торцевая заглушка гребёнки', '', null, 2, ''],
+      ['C20', 'Hager', 'Колпачки на свободные штыри гребёнки (упаковка 20 шт.)', '', null, 1, 'не проверено'],
+    ]);
+  });
+
+  test('держатель клеммников — строкой в составе вместе с клеммниками', () => {
+    const enc = {
+      ...enclosure,
+      terminals: {
+        included: false,
+        accessories: [
+          { article: 'PE1', role: 'PE', verified: false },
+          { article: 'H1', role: 'holder', verified: true, source: 'https://x.example' },
+        ],
+        verified: false,
+      },
+    };
+    const { accessories } = terminalsSpec({ ...build([]), addTerminals: true }, enc, tRu);
+    assert.deepEqual(accessories.map((a) => [a.article, a.name]), [['PE1', 'Клеммник PE'], ['H1', 'Держатель клеммников']]);
   });
 });

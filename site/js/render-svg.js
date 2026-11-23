@@ -142,7 +142,10 @@ export function terminalBars(enclosure, board, layout) {
   let items;
   if (t.included) items = blocks.map((b) => ({ role: b.role, kind: 'included', clamps: clampCount(b.clamps), position: b.position }));
   else if (board.addTerminals && t.accessories) {
-    items = t.accessories.map((a, i) => ({ role: a.role, kind: 'accessory', clamps: clampCount(a.clamps), article: a.article, position: blocks[i]?.position }));
+    // Держатели (role: holder) на рисунке не показываются — только клеммники
+    items = t.accessories
+      .filter((a) => a.role !== 'holder')
+      .map((a, i) => ({ role: a.role, kind: 'accessory', clamps: clampCount(a.clamps), article: a.article, position: blocks[i]?.position }));
   } else items = blocks.map((b) => ({ role: b.role, kind: 'slot', clamps: null, position: b.position }));
 
   const first = layout.rows[0];

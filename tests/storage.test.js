@@ -170,6 +170,24 @@ describe('гребёнки рядов в проекте', () => {
   });
 });
 
+describe('аксессуары гребёнок в проекте', () => {
+  const withParts = { ...project, combParts: { 'hager-kzn023': 2 } };
+
+  test('щит → проект → щит, ссылка и файл сохраняют количество', () => {
+    const { board } = buildBoard(withParts, enclosures, devices);
+    assert.deepEqual(board.combParts, { 'hager-kzn023': 2 });
+    assert.deepEqual(projectFromBoard(board), { ...placed, combParts: { 'hager-kzn023': 2 } });
+    assert.deepEqual(decodeLink(encodeLink(withParts)), withParts);
+    assert.deepEqual(projectFromFile(projectToFile(withParts, enclosures, devices)), withParts);
+  });
+
+  test('неверный вид — ошибка format', () => {
+    for (const combParts of [{}, { 'hager-kzn023': 0 }, { 'hager-kzn023': 100 }, { 'Bad Id': 1 }, ['x'], 'x']) {
+      failsWith(() => buildBoard({ ...project, combParts }, enclosures, devices), 'format', 'combParts');
+    }
+  });
+});
+
 describe('позиции устройств (свободная расстановка)', () => {
   const spaced = {
     enclosureId: 'hager-va24b',

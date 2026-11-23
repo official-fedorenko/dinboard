@@ -3920,5 +3920,63 @@
       "source": "https://www.se.com/ie/en/product/A9XPC748/",
       "notes": "3P+N сбалансированная, 16 отводов через 54 мм, длина 862 мм. 96 зубьев. Комплект поставки на странице не указан."
     }
+  ],
+  "combParts": [
+    {
+      "id": "schneider-a9xpcm04",
+      "brand": "schneider",
+      "series": "Acti9",
+      "article": "A9XPCM04",
+      "kind": "feed-terminal",
+      "combSeries": [
+        "Acti9"
+      ],
+      "packQty": 4,
+      "verified": true,
+      "source": "https://www.se.com/ie/en/product/A9XPCM04/",
+      "notes": "Набор из 4 вводных клемм 100 А (Monoconnect) для гребёнок A9XPH, 2,5…35 мм² (гибкий с наконечником до 25)."
+    },
+    {
+      "id": "schneider-a9xpt920",
+      "brand": "schneider",
+      "series": "Acti9",
+      "article": "A9XPT920",
+      "kind": "tooth-cover",
+      "combSeries": [
+        "Acti9"
+      ],
+      "packQty": 20,
+      "verified": true,
+      "source": "https://www.se.com/ie/en/product/A9XPT920/",
+      "notes": "Набор 20 крышек на свободные зубья гребёнок с шагом 18 мм (A9XPH: 1L, 2L, 3L, N+3L)."
+    },
+    {
+      "id": "schneider-a9xpe410",
+      "brand": "schneider",
+      "series": "Acti9",
+      "article": "A9XPE410",
+      "kind": "end-cap",
+      "combSeries": [
+        "Acti9"
+      ],
+      "packQty": 10,
+      "verified": true,
+      "source": "https://www.se.com/ie/en/product/A9XPE410/",
+      "notes": "Набор 10 торцевых заглушек 4P для резаных гребёнок N+3L (A9XPH4xx)."
+    },
+    {
+      "id": "schneider-a9x21096",
+      "brand": "schneider",
+      "series": "Acti9",
+      "article": "A9X21096",
+      "kind": "tooth-cover",
+      "combSeries": [
+        "Acti9"
+      ],
+      "packQty": 12,
+      "verified": true,
+      "source": "https://www.se.com/ie/en/product/A9X21096/",
+      "notes": "Набор 12 крышек зубьев для гребёнок с шагом 9 мм (A9XPC), ширина 180 мм."
+    }
   ]
 }

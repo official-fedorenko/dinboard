@@ -15,6 +15,7 @@ import {
   setEarthing,
   setAddTerminals,
   setRowComb,
+  setCombPart,
   clearDevices,
   nearestFreePos,
   snapPos,
@@ -34,7 +35,7 @@ import {
 import { h } from './dom.js';
 import { layoutBoard, hitTest, renderBoardSvg, slotRect, terminalBars, combBars, MODULE_MM } from './render-svg.js';
 import { checkBoard } from './checks.js';
-import { specTable, toCsv, exportFileName, terminalsSpec, combsSpec, combName } from './export.js';
+import { specTable, toCsv, exportFileName, terminalsSpec, combsSpec, combName, combPartsSpec, combPartName } from './export.js';
 import { xlsxWorkbook } from './xlsx.js';
 import { filterEnclosures, availableValues, previewSplit, PREVIEW_COUNT } from './enclosure-filter.js';
 import { EARTHING_SYSTEMS, COMB_PHASES, COMB_DEVICE_CATEGORIES } from './catalog.js';
@@ -79,6 +80,7 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
   const fmt = (value) => num(value, t.lang);
   const devices = indexById(catalog.devices);
   const combsById = indexById(catalog.combs ?? []);
+  const partsById = indexById(catalog.combParts ?? []);
   const enclosures = indexById(catalog.enclosures);
   const brandNames = new Map(catalog.brands.map((b) => [b.id, b.name]));
   // Значения фильтров корпусов — только те, что есть в каталоге
@@ -169,7 +171,7 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
 
   // ---------- выгрузки: CSV, Excel, печать ----------
 
-  const spec = () => specTable(state.board, enclosure(), devices, brandNames, t, combsById);
+  const spec = () => specTable(state.board, enclosure(), devices, brandNames, t, combsById, partsById);
   const exported = (name) => t('export.downloaded', { name });
   const projectSaved = (name) => t('project.downloaded', { name });
 
@@ -867,9 +869,54 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
                   }),
                 )
               : h('p', { class: 'hint' }, t('comb.noneForBrand')),
+            renderCombParts(brand, comb),
           ],
         }),
     );
+  }
+
+  /**
+   * Аксессуары гребёнок в окне выбора: заглушки, вводные клеммы, колпачки производителя ряда
+   * (к серии выбранной гребёнки, а без неё — ко всем гребёнкам бренда), количество — кнопками − и +.
+   */
+  function renderCombParts(brand, comb) {
+    const list = (catalog.combParts ?? []).filter((p) => p.brand === brand && (!comb || p.combSeries.includes(comb.series)));
+    if (!list.length) return null;
+    const count = (id) => state.board.combParts?.[id] ?? 0;
+    // На 0 кнопка «−» выключается (на 99 — «+»): фокус — на соседнюю кнопку, а не на ✕ окна
+    const set = (p, n) =>
+      update(
+        { board: setCombPart(state.board, p.id, n), status: t('combPart.set', { name: `${combPartName(p, t)} · ${p.article}`, n }) },
+        n === 0 ? `part-more-${p.id}` : n === 99 ? `part-less-${p.id}` : undefined,
+      );
+    return [
+      h('h3', { class: 'comb-parts-title' }, t('combPart.title')),
+      h(
+        'ul',
+        { class: 'device-list' },
+        list.map((p) => {
+          const name = `${combPartName(p, t)} · ${p.article}`;
+          const n = count(p.id);
+          return h(
+            'li',
+            { class: 'device-row' },
+            h(
+              'span',
+              { class: 'device-text' },
+              h('strong', {}, combPartName(p, t)),
+              h('span', { class: 'muted' }, `${p.article} · ${p.series}`, !p.verified && h('span', { class: 'badge', title: t('device.unverifiedHint') }, t('device.unverified'))),
+            ),
+            h(
+              'span',
+              { class: 'stepper', role: 'group', 'aria-label': name },
+              h('button', { type: 'button', class: 'tool', disabled: n === 0, 'aria-label': t('combPart.less', { name }), dataset: { focus: `part-less-${p.id}` }, onClick: () => set(p, n - 1) }, '−'),
+              h('span', { class: 'stepper-count', 'aria-live': 'polite' }, String(n)),
+              h('button', { type: 'button', class: 'tool', disabled: n >= 99, 'aria-label': t('combPart.more', { name }), dataset: { focus: `part-more-${p.id}` }, onClick: () => set(p, n + 1) }, '+'),
+            ),
+          );
+        }),
+      ),
+    ];
   }
 
   /** Проверки щита: система заземления и подсказки (не мешают сборке). */
@@ -1134,6 +1181,12 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
         `${combName(comb, t)} — ${brandNames.get(comb.brand)}`,
         count,
         !comb.verified && t('device.unverifiedHint'),
+      ]),
+      ...combPartsSpec(state.board, partsById).map(({ part, count }) => [
+        part.article,
+        `${combPartName(part, t)} — ${brandNames.get(part.brand)}`,
+        count,
+        !part.verified && t('device.unverifiedHint'),
       ]),
     ];
     return h(

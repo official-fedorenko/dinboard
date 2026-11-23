@@ -5650,5 +5650,59 @@
       "source": "https://www.legrand.com/ecatalogue/en/catalog/products/supply-busbar-prong-type-4p-max-14-devices-connected-meter-404945",
       "notes": "1000 мм, до 14 аппаратов 4P, подходит для аппаратов с N. 12-модульной штыревой 4P на сайте не нашли (есть вилочная 404919)."
     }
+  ],
+  "combParts": [
+    {
+      "id": "legrand-404904",
+      "brand": "legrand",
+      "series": "HX3",
+      "article": "404904",
+      "kind": "feed-terminal",
+      "combSeries": [
+        "HX3"
+      ],
+      "verified": true,
+      "source": "https://www.legrand.com/ecatalogue/en/catalog/products/entry-terminal-for-fork-type-supply-busbars-entry-terminals-25mm2-fork-cross-section-4mm2-to-25mm2-63a-branch-terminal-ip2x-404904",
+      "notes": "Вводная клемма для вилочных гребёнок, 4–25 мм², IP2X."
+    },
+    {
+      "id": "legrand-404905",
+      "brand": "legrand",
+      "series": "HX3",
+      "article": "404905",
+      "kind": "feed-terminal",
+      "combSeries": [
+        "HX3"
+      ],
+      "verified": true,
+      "source": "https://assets.legrand.com/pim/NP-FT-GT/F04448EN-02.pdf",
+      "notes": "Вводная клемма 4–25 мм² для universal-гребёнок 1P/1P+N (техлист F04448EN-02; также в «You might also need» на странице 404926)."
+    },
+    {
+      "id": "legrand-404906",
+      "brand": "legrand",
+      "series": "HX3",
+      "article": "404906",
+      "kind": "feed-terminal",
+      "combSeries": [
+        "HX3"
+      ],
+      "verified": true,
+      "source": "https://assets.legrand.com/pim/NP-FT-GT/F04448EN-02.pdf",
+      "notes": "Вводная клемма 6–35 мм² для «traditional» (штыревых многополюсных) гребёнок, по техлисту F04448EN-02."
+    },
+    {
+      "id": "legrand-404989",
+      "brand": "legrand",
+      "series": "HX3",
+      "article": "404989",
+      "kind": "end-cap",
+      "combSeries": [
+        "HX3"
+      ],
+      "verified": true,
+      "source": "https://assets.legrand.com/pim/NP-FT-GT/F04448EN-02.pdf",
+      "notes": "Изолирующая заглушка концов гребёнок 1P/1P+N (404926/28/33/37). Для остальных — заглушки 404970–404976 по техлисту."
+    }
   ]
 }
