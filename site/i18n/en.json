@@ -143,5 +143,24 @@
   "check.spdEarthing": "{title}: according to the manufacturer it suits {networks}, but the board earthing system is {earthing}.",
   "check.spdNoEarthing": "Specify the earthing system so the configurator can check the surge protector.",
   "check.rcdTypeAC": "Type AC RCCBs and RCBOs: {n} pcs. Type A is recommended for modern equipment (inverters, chargers, washing machines).",
-  "check.lowSpare": "Little free space: {free} mod. ({percent} %). It is recommended to keep about 20 % for future expansion."
+  "check.lowSpare": "Little free space: {free} mod. ({percent} %). It is recommended to keep about 20 % for future expansion.",
+
+  "terminals.label": "N/PE terminal blocks",
+  "terminals.included": "Supplied with the enclosure: {list}",
+  "terminals.includedUnknown": "Supplied with the enclosure (number of terminals not specified).",
+  "terminals.item": "{role}: {n} terminals",
+  "terminals.notIncludedInfo": "Not supplied with the enclosure.",
+  "terminals.notIncluded": "not supplied",
+  "terminals.add": "Add N/PE terminal blocks to the list",
+  "terminals.remove": "Remove N/PE terminal blocks from the list",
+  "terminals.noAccessories": "No matching manufacturer terminal blocks in the catalogue — choose them separately.",
+  "terminals.unverifiedHint": "Terminal block data is not fully confirmed by an official source — check the manufacturer catalogue.",
+  "terminals.specIncluded": "N/PE terminal blocks included",
+  "terminals.accessoryName": "{role} terminal block, {clamps} mm²",
+  "terminals.accessoryNameShort": "{role} terminal block",
+  "terminals.title": "{role} terminal block, terminals: {n}",
+  "terminals.titleUnknown": "{role} terminal block (number of terminals not specified)",
+  "terminals.slotTitle": "Place for a {role} terminal block: not supplied with the enclosure",
+  "check.noTerminals": "N/PE terminal blocks are not supplied with the enclosure: add them to the list or choose them separately.",
+  "check.fewClamps": "More outgoing circuits ({lines}) than {role} terminals ({clamps}): add a {role} terminal block."
 }

@@ -18,6 +18,10 @@ export const MATERIALS = ['plastic', 'metal'];
 export const DOORS = ['transparent', 'opaque', 'none'];
 // Системы заземления, для которых в каталоге указывается применимость УЗИП
 export const EARTHING_SYSTEMS = ['TN-S', 'TN-C-S', 'TT'];
+// Где в корпусе стоит клеммник N/PE (или место под него): над рядами, под рядами, сбоку слева или справа
+export const TERMINAL_POSITIONS = ['top', 'bottom', 'left', 'right'];
+// Назначение клеммника: нейтраль, защитный проводник или общий блок N и PE
+export const TERMINAL_ROLES = ['N', 'PE', 'N+PE'];
 
 const ID_RE = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 const FILE_RE = /^[a-z0-9-]+\.json$/;
@@ -64,6 +68,75 @@ const dimensions = (v) => {
   return extra.length ? `лишние поля: ${extra.join(', ')}` : null;
 };
 
+// Клеммы: непустой список групп [число клемм, наибольшее сечение мм²], например [[2, 25], [11, 16]]
+const clampGroups = (v) =>
+  Array.isArray(v) &&
+  v.length > 0 &&
+  v.every((g) => Array.isArray(g) && g.length === 2 && Number.isInteger(g[0]) && g[0] >= 1 && g[0] <= 99 && positiveNumber(g[1]) === null)
+    ? null
+    : 'нужен список групп [число клемм, сечение мм²]';
+
+/** Проверяет объект по схеме «поле → [проверка, обязательное]»; возвращает первую ошибку или null. */
+function firstProblem(obj, schema, path) {
+  if (!isObject(obj)) return `${path}нужен объект`;
+  for (const [key, [check, required]] of Object.entries(schema)) {
+    if (!Object.hasOwn(obj, key)) {
+      if (required) return `${path}${key}: обязательное поле`;
+      continue;
+    }
+    const problem = check(obj[key]);
+    if (problem) return `${path}${key}: ${problem}`;
+  }
+  const extra = Object.keys(obj).filter((k) => !Object.hasOwn(schema, k));
+  if (extra.length) return `${path}лишние поля: ${extra.join(', ')}`;
+  if (obj.verified === true && !Object.hasOwn(obj, 'source')) return `${path}source: обязательно при verified: true`;
+  return null;
+}
+
+/** Непустой список объектов, каждый — по схеме schema. */
+const listOf = (schema) => (v) => {
+  if (!Array.isArray(v) || v.length === 0) return 'нужен непустой список';
+  for (const [i, item] of v.entries()) {
+    const problem = firstProblem(item, schema, `[${i}].`);
+    if (problem) return problem;
+  }
+  return null;
+};
+
+// Блок клеммника в корпусе: назначение, место (нет поля — неизвестно), клеммы (если известны)
+const TERMINAL_BLOCK_FIELDS = {
+  role: [oneOf(TERMINAL_ROLES), true],
+  position: [oneOf(TERMINAL_POSITIONS), false],
+  clamps: [clampGroups, false],
+};
+
+// Клеммник-аксессуар производителя (если в комплекте нет или нужно больше)
+const TERMINAL_ACCESSORY_FIELDS = {
+  article: [nonEmptyString, true],
+  role: [oneOf(TERMINAL_ROLES), true],
+  clamps: [clampGroups, false],
+  verified: [boolean, true],
+  source: [httpsUrl, false],
+  notes: [nonEmptyString, false],
+};
+
+/**
+ * Штатные клеммники N/PE корпуса (необязательно). included — идут ли в комплекте;
+ * blocks — блоки: при included — те, что в комплекте, иначе — места под клеммники;
+ * accessories — клеммники-аксессуары производителя; verified/source — как у позиций каталога.
+ * Шины и клеммники на DIN-рейку — не часть корпуса (отдельное оборудование).
+ */
+const TERMINALS_FIELDS = {
+  included: [boolean, true],
+  blocks: [listOf(TERMINAL_BLOCK_FIELDS), false],
+  accessories: [listOf(TERMINAL_ACCESSORY_FIELDS), false],
+  verified: [boolean, true],
+  source: [httpsUrl, false],
+  notes: [nonEmptyString, false],
+};
+
+const terminals = (v) => firstProblem(v, TERMINALS_FIELDS, '');
+
 // --- схемы объектов: поле → [проверка, обязательное] ---
 
 const ENCLOSURE_FIELDS = {
@@ -79,6 +152,7 @@ const ENCLOSURE_FIELDS = {
   door: [oneOf(DOORS), true],
   ipRating: [intInRange(20, 68), true],
   dimensionsMm: [dimensions, true],
+  terminals: [terminals, false], // клеммники N/PE (см. TERMINALS_FIELDS)
   verified: [boolean, true],
   source: [httpsUrl, false],
   notes: [nonEmptyString, false],

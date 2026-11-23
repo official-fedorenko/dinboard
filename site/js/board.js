@@ -3,6 +3,8 @@
 //
 // Щит: { version, enclosureId, rows: [[{ uid, deviceId, pos }, ...], ...], nextUid, earthing }
 // earthing — система заземления (TN-S / TN-C-S / TT) или null, если не указана.
+// addTerminals: true — в состав добавлены клеммники N/PE производителя (если в комплекте корпуса их нет);
+// без поля — не добавлены.
 // pos — с какого модуля рейки начинается устройство (0 — левый край), шаг 0.5 модуля.
 // Устройства можно ставить в любое свободное место: между ними остаются пустые места
 // (на схеме — заглушки). Устройства не перекрываются; в массиве ряда они идут слева направо.
@@ -238,7 +240,7 @@ export function moveItem(board, enclosure, devices, uid, toRow, toPos) {
  * Что не поместилось — в overflow (список { uid, deviceId, pos }), в щит не попадает.
  */
 export function changeEnclosure(board, enclosure, devices) {
-  let next = { ...createBoard(enclosure), nextUid: board.nextUid, earthing: board.earthing ?? null };
+  let next = { ...createBoard(enclosure), nextUid: board.nextUid, earthing: board.earthing ?? null, ...(board.addTerminals ? { addTerminals: true } : {}) };
   const overflow = [];
   const rest = [];
   board.rows.forEach((items, rowIndex) => {
@@ -262,6 +264,12 @@ export function changeEnclosure(board, enclosure, devices) {
     next = { ...next, rows: withItem(next.rows, row, { ...item, pos }) };
   }
   return { board: next, overflow };
+}
+
+/** Добавить в состав клеммники N/PE производителя (true) или убрать (false). */
+export function setAddTerminals(board, value) {
+  const { addTerminals, ...rest } = board;
+  return value ? { ...rest, addTerminals: true } : rest;
 }
 
 /** Система заземления щита (null — не указана). */

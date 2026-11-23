@@ -143,5 +143,24 @@
   "check.spdEarthing": "{title}: pagal gamintojo duomenis tinka {networks}, o skydo įžeminimo sistema — {earthing}.",
   "check.spdNoEarthing": "Nurodykite įžeminimo sistemą — tada konfigūratorius patikrins, ar tinka viršįtampių ribotuvas.",
   "check.rcdTypeAC": "AC tipo nuotėkio relės ir diferenciniai automatiniai jungikliai: {n} vnt. Šiuolaikinei technikai (inverteriams, įkrovikliams, skalbimo mašinoms) rekomenduojamas A tipas.",
-  "check.lowSpare": "Mažai laisvos vietos: {free} mod. ({percent} %). Rekomenduojama palikti apie 20 % plėtrai."
+  "check.lowSpare": "Mažai laisvos vietos: {free} mod. ({percent} %). Rekomenduojama palikti apie 20 % plėtrai.",
+
+  "terminals.label": "N/PE gnybtynai",
+  "terminals.included": "Korpuso komplekte: {list}",
+  "terminals.includedUnknown": "Korpuso komplekte (gnybtų skaičius nenurodytas).",
+  "terminals.item": "{role} — {n} vnt.",
+  "terminals.notIncludedInfo": "Į korpuso komplektą neįeina.",
+  "terminals.notIncluded": "nėra komplekte",
+  "terminals.add": "Pridėti N/PE gnybtynus į sudėtį",
+  "terminals.remove": "Pašalinti N/PE gnybtynus iš sudėties",
+  "terminals.noAccessories": "Tinkami gamintojo gnybtynai kataloge nenurodyti — parinkite atskirai.",
+  "terminals.unverifiedHint": "Duomenys apie gnybtynus ne visiškai patvirtinti oficialiu šaltiniu — sutikrinkite su gamintojo katalogu.",
+  "terminals.specIncluded": "N/PE gnybtynai komplekte",
+  "terminals.accessoryName": "Gnybtynas {role}, {clamps} mm²",
+  "terminals.accessoryNameShort": "Gnybtynas {role}",
+  "terminals.title": "Gnybtynas {role}, gnybtų: {n}",
+  "terminals.titleUnknown": "Gnybtynas {role} (gnybtų skaičius nenurodytas)",
+  "terminals.slotTitle": "Vieta gnybtynui {role}: korpuso komplekte nėra",
+  "check.noTerminals": "N/PE gnybtynai į korpuso komplektą neįeina: pridėkite juos į sudėtį arba parinkite atskirai.",
+  "check.fewClamps": "Išeinančių linijų ({lines}) daugiau nei {role} gnybtų ({clamps}): pridėkite {role} gnybtyną."
 }

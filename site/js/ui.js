@@ -13,6 +13,7 @@ import {
   billOfMaterials,
   indexById,
   setEarthing,
+  setAddTerminals,
   nearestFreePos,
   snapPos,
   dropPreview,
@@ -29,9 +30,9 @@ import {
   num,
 } from './format.js';
 import { h } from './dom.js';
-import { layoutBoard, hitTest, renderBoardSvg, slotRect, MODULE_MM } from './render-svg.js';
+import { layoutBoard, hitTest, renderBoardSvg, slotRect, terminalBars, MODULE_MM } from './render-svg.js';
 import { checkBoard } from './checks.js';
-import { specTable, toCsv, exportFileName } from './export.js';
+import { specTable, toCsv, exportFileName, terminalsSpec } from './export.js';
 import { xlsxWorkbook } from './xlsx.js';
 import { filterEnclosures, availableValues, previewSplit, PREVIEW_COUNT } from './enclosure-filter.js';
 import { EARTHING_SYSTEMS } from './catalog.js';
@@ -761,6 +762,7 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
         selectedUid: state.selectedUid,
         activeRow: state.activeRow,
         formatNumber: fmt,
+        terminals: terminalBars(enc, state.board, layout),
       }),
     );
     const view = h('div', { class: `board-view${state.selectedUid !== null ? ' has-selection' : ''}` }, svg);
@@ -798,7 +800,51 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
         [['none', t('earthing.none')], ...EARTHING_SYSTEMS.map((e) => [e, e])],
         (value) => update({ board: setEarthing(state.board, value === 'none' ? null : value) }),
       ),
+      renderTerminals(enc),
       items.length ? h('ul', { class: 'check-list' }, items) : h('p', { class: 'check-ok' }, t('check.ok')),
+    );
+  }
+
+  /**
+   * Клеммники N/PE корпуса: что в комплекте (и сколько клемм), а если в комплекте нет —
+   * кнопка, добавляющая клеммники производителя в состав и на рисунок.
+   */
+  function renderTerminals(enc) {
+    const terminals = enc.terminals;
+    if (!terminals) return null;
+    const count = (clamps) => clamps.reduce((sum, [c]) => sum + c, 0);
+    let text;
+    if (terminals.included) {
+      const blocks = terminals.blocks ?? [];
+      const list = blocks.map((b) => (b.clamps ? t('terminals.item', { role: b.role, n: count(b.clamps) }) : b.role)).join(', ');
+      text = list ? t('terminals.included', { list }) : t('terminals.includedUnknown');
+    } else {
+      text = t('terminals.notIncludedInfo');
+    }
+    const added = Boolean(state.board.addTerminals);
+    return h(
+      'div',
+      { class: 'terminals-info' },
+      h('p', { class: 'muted checks-label' }, t('terminals.label')),
+      h(
+        'p',
+        { class: 'terminals-text' },
+        text,
+        !terminals.verified && h('span', { class: 'badge', title: t('terminals.unverifiedHint') }, t('device.unverified')),
+      ),
+      !terminals.included &&
+        (terminals.accessories
+          ? h(
+              'button',
+              {
+                type: 'button',
+                class: 'action',
+                dataset: { focus: 'terminals-toggle' },
+                onClick: () => update({ board: setAddTerminals(state.board, !added) }),
+              },
+              added ? t('terminals.remove') : t('terminals.add'),
+            )
+          : h('p', { class: 'muted' }, t('terminals.noAccessories'))),
     );
   }
 
@@ -949,8 +995,11 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
     const enc = enclosure();
     const head = h('h2', { id: 'h-summary' }, t('section.summary'));
     if (!enc) return h('section', { class: 'panel summary', 'aria-labelledby': 'h-summary' }, head, h('p', { class: 'hint' }, t('summary.empty')));
+    const terminals = terminalsSpec(state.board, enc, t);
+    const enclosureName = t('summary.enclosure', { title: `${brandNames.get(enc.brand)} ${enclosureTitle(enc)} (${enclosureDescription(enc, t)})` });
     const rows = [
-      [enc.article, t('summary.enclosure', { title: `${brandNames.get(enc.brand)} ${enclosureTitle(enc)} (${enclosureDescription(enc, t)})` }), 1, !enc.verified && t('enclosure.unverifiedHint')],
+      [enc.article, terminals.suffix ? `${enclosureName}, ${terminals.suffix}` : enclosureName, 1, !enc.verified && t('enclosure.unverifiedHint')],
+      ...terminals.accessories.map((a) => [a.article, `${a.name} — ${brandNames.get(enc.brand)}`, 1, !a.verified && t('device.unverifiedHint')]),
       ...billOfMaterials(state.board).map(({ deviceId, count }) => {
         const d = devices.get(deviceId);
         return [d.article, `${deviceTitle(d, t)} — ${deviceRef(d, brandNames.get(d.brand))}`, count, !d.verified && t('device.unverifiedHint')];

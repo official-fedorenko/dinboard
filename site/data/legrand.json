@@ -21,6 +21,35 @@
         "height": 236,
         "depth": 107
       },
+      "terminals": {
+        "included": false,
+        "blocks": [
+          {
+            "role": "N+PE",
+            "position": "top"
+          },
+          {
+            "role": "N+PE",
+            "position": "bottom"
+          }
+        ],
+        "accessories": [
+          {
+            "article": "134803",
+            "role": "PE",
+            "verified": false,
+            "notes": "Клеммник земли на опоре (1 348 03) для накладных корпусов на 12 мод.; назначение по техлисту, страницу артикула не открывали."
+          },
+          {
+            "article": "134813",
+            "role": "N+PE",
+            "verified": false,
+            "notes": "Клеммник земли и нейтрали на опоре (1 348 13) для накладных корпусов на 12 мод.; страницу артикула не открывали."
+          }
+        ],
+        "verified": false,
+        "notes": "Техлисты Legrand F02563EN / F02564EN: корпус «without terminal block», клеммники ставятся вверху и внизу в отведённых местах (2 клеммника, у больших корпусов 4). Соответствие техлиста артикулу не сверено."
+      },
       "verified": true,
       "source": "https://www.legrand.com/ecatalogue/135111-practibox-s-surface-mounting-cabinet.html"
     },
@@ -39,6 +68,35 @@
         "width": 328,
         "height": 386,
         "depth": 108
+      },
+      "terminals": {
+        "included": false,
+        "blocks": [
+          {
+            "role": "N+PE",
+            "position": "top"
+          },
+          {
+            "role": "N+PE",
+            "position": "bottom"
+          }
+        ],
+        "accessories": [
+          {
+            "article": "134803",
+            "role": "PE",
+            "verified": false,
+            "notes": "Клеммник земли на опоре (1 348 03) для накладных корпусов на 12 мод.; назначение по техлисту, страницу артикула не открывали."
+          },
+          {
+            "article": "134813",
+            "role": "N+PE",
+            "verified": false,
+            "notes": "Клеммник земли и нейтрали на опоре (1 348 13) для накладных корпусов на 12 мод.; страницу артикула не открывали."
+          }
+        ],
+        "verified": false,
+        "notes": "Техлисты Legrand F02563EN / F02564EN: корпус «without terminal block», клеммники ставятся вверху и внизу в отведённых местах (2 клеммника, у больших корпусов 4). Соответствие техлиста артикулу не сверено."
       },
       "verified": true,
       "source": "https://assets.legrand.com/pim/NP-FT-GT/F02563EN_03.pdf"
@@ -59,6 +117,35 @@
         "height": 536,
         "depth": 108
       },
+      "terminals": {
+        "included": false,
+        "blocks": [
+          {
+            "role": "N+PE",
+            "position": "top"
+          },
+          {
+            "role": "N+PE",
+            "position": "bottom"
+          }
+        ],
+        "accessories": [
+          {
+            "article": "134803",
+            "role": "PE",
+            "verified": false,
+            "notes": "Клеммник земли на опоре (1 348 03) для накладных корпусов на 12 мод.; назначение по техлисту, страницу артикула не открывали."
+          },
+          {
+            "article": "134813",
+            "role": "N+PE",
+            "verified": false,
+            "notes": "Клеммник земли и нейтрали на опоре (1 348 13) для накладных корпусов на 12 мод.; страницу артикула не открывали."
+          }
+        ],
+        "verified": false,
+        "notes": "Техлисты Legrand F02563EN / F02564EN: корпус «without terminal block», клеммники ставятся вверху и внизу в отведённых местах (2 клеммника, у больших корпусов 4). Соответствие техлиста артикулу не сверено."
+      },
       "verified": true,
       "source": "https://assets.legrand.com/pim/NP-FT-GT/F02563EN_03.pdf"
     },
@@ -77,6 +164,35 @@
         "width": 328,
         "height": 766,
         "depth": 108
+      },
+      "terminals": {
+        "included": false,
+        "blocks": [
+          {
+            "role": "N+PE",
+            "position": "top"
+          },
+          {
+            "role": "N+PE",
+            "position": "bottom"
+          }
+        ],
+        "accessories": [
+          {
+            "article": "134803",
+            "role": "PE",
+            "verified": false,
+            "notes": "Клеммник земли на опоре (1 348 03) для накладных корпусов на 12 мод.; назначение по техлисту, страницу артикула не открывали."
+          },
+          {
+            "article": "134813",
+            "role": "N+PE",
+            "verified": false,
+            "notes": "Клеммник земли и нейтрали на опоре (1 348 13) для накладных корпусов на 12 мод.; страницу артикула не открывали."
+          }
+        ],
+        "verified": false,
+        "notes": "Техлисты Legrand F02563EN / F02564EN: корпус «without terminal block», клеммники ставятся вверху и внизу в отведённых местах (2 клеммника, у больших корпусов 4). Соответствие техлиста артикулу не сверено."
       },
       "verified": true,
       "source": "https://www.legrand.com/ecatalogue/135114-practibox-s-surface-mounting-cabinet.html"
@@ -97,6 +213,21 @@
         "height": 236,
         "depth": 107
       },
+      "terminals": {
+        "included": false,
+        "blocks": [
+          {
+            "role": "N+PE",
+            "position": "top"
+          },
+          {
+            "role": "N+PE",
+            "position": "bottom"
+          }
+        ],
+        "verified": false,
+        "notes": "Техлисты Legrand F02563EN / F02564EN: корпус «without terminal block», клеммники ставятся вверху и внизу в отведённых местах (2 клеммника, у больших корпусов 4). Соответствие техлиста артикулу не сверено."
+      },
       "verified": true,
       "source": "https://assets.legrand.com/pim/NP-FT-GT/F02563EN_03.pdf"
     },
@@ -115,6 +246,21 @@
         "width": 436,
         "height": 386,
         "depth": 108
+      },
+      "terminals": {
+        "included": false,
+        "blocks": [
+          {
+            "role": "N+PE",
+            "position": "top"
+          },
+          {
+            "role": "N+PE",
+            "position": "bottom"
+          }
+        ],
+        "verified": false,
+        "notes": "Техлисты Legrand F02563EN / F02564EN: корпус «without terminal block», клеммники ставятся вверху и внизу в отведённых местах (2 клеммника, у больших корпусов 4). Соответствие техлиста артикулу не сверено."
       },
       "verified": true,
       "source": "https://assets.legrand.com/pim/NP-FT-GT/F02563EN_03.pdf"
@@ -135,6 +281,21 @@
         "height": 616,
         "depth": 108
       },
+      "terminals": {
+        "included": false,
+        "blocks": [
+          {
+            "role": "N+PE",
+            "position": "top"
+          },
+          {
+            "role": "N+PE",
+            "position": "bottom"
+          }
+        ],
+        "verified": false,
+        "notes": "Техлисты Legrand F02563EN / F02564EN: корпус «without terminal block», клеммники ставятся вверху и внизу в отведённых местах (2 клеммника, у больших корпусов 4). Соответствие техлиста артикулу не сверено."
+      },
       "verified": true,
       "source": "https://www.legrand.com/ecatalogue/137118-practibox-s-surface-mounting-cabinet.html"
     },
@@ -153,6 +314,21 @@
         "width": 436,
         "height": 766,
         "depth": 108
+      },
+      "terminals": {
+        "included": false,
+        "blocks": [
+          {
+            "role": "N+PE",
+            "position": "top"
+          },
+          {
+            "role": "N+PE",
+            "position": "bottom"
+          }
+        ],
+        "verified": false,
+        "notes": "Техлисты Legrand F02563EN / F02564EN: корпус «without terminal block», клеммники ставятся вверху и внизу в отведённых местах (2 клеммника, у больших корпусов 4). Соответствие техлиста артикулу не сверено."
       },
       "verified": true,
       "source": "https://assets.legrand.com/pim/NP-FT-GT/F02563EN_03.pdf"
@@ -173,6 +349,35 @@
         "height": 236,
         "depth": 107
       },
+      "terminals": {
+        "included": false,
+        "blocks": [
+          {
+            "role": "N+PE",
+            "position": "top"
+          },
+          {
+            "role": "N+PE",
+            "position": "bottom"
+          }
+        ],
+        "accessories": [
+          {
+            "article": "134803",
+            "role": "PE",
+            "verified": false,
+            "notes": "Клеммник земли на опоре (1 348 03) для накладных корпусов на 12 мод.; назначение по техлисту, страницу артикула не открывали."
+          },
+          {
+            "article": "134813",
+            "role": "N+PE",
+            "verified": false,
+            "notes": "Клеммник земли и нейтрали на опоре (1 348 13) для накладных корпусов на 12 мод.; страницу артикула не открывали."
+          }
+        ],
+        "verified": false,
+        "notes": "Техлисты Legrand F02563EN / F02564EN: корпус «without terminal block», клеммники ставятся вверху и внизу в отведённых местах (2 клеммника, у больших корпусов 4). Соответствие техлиста артикулу не сверено."
+      },
       "verified": true,
       "source": "https://www.legrand.com/ecatalogue/en/catalog/products/practibox-s-surface-mounting-din-cabinet-1-row-of-12-modules-white-door-135101"
     },
@@ -191,6 +396,35 @@
         "width": 328,
         "height": 386,
         "depth": 108
+      },
+      "terminals": {
+        "included": false,
+        "blocks": [
+          {
+            "role": "N+PE",
+            "position": "top"
+          },
+          {
+            "role": "N+PE",
+            "position": "bottom"
+          }
+        ],
+        "accessories": [
+          {
+            "article": "134803",
+            "role": "PE",
+            "verified": false,
+            "notes": "Клеммник земли на опоре (1 348 03) для накладных корпусов на 12 мод.; назначение по техлисту, страницу артикула не открывали."
+          },
+          {
+            "article": "134813",
+            "role": "N+PE",
+            "verified": false,
+            "notes": "Клеммник земли и нейтрали на опоре (1 348 13) для накладных корпусов на 12 мод.; страницу артикула не открывали."
+          }
+        ],
+        "verified": false,
+        "notes": "Техлисты Legrand F02563EN / F02564EN: корпус «without terminal block», клеммники ставятся вверху и внизу в отведённых местах (2 клеммника, у больших корпусов 4). Соответствие техлиста артикулу не сверено."
       },
       "verified": true,
       "source": "https://assets.legrand.com/pim/NP-FT-GT/F02563EN_03.pdf"
@@ -211,6 +445,35 @@
         "height": 536,
         "depth": 108
       },
+      "terminals": {
+        "included": false,
+        "blocks": [
+          {
+            "role": "N+PE",
+            "position": "top"
+          },
+          {
+            "role": "N+PE",
+            "position": "bottom"
+          }
+        ],
+        "accessories": [
+          {
+            "article": "134803",
+            "role": "PE",
+            "verified": false,
+            "notes": "Клеммник земли на опоре (1 348 03) для накладных корпусов на 12 мод.; назначение по техлисту, страницу артикула не открывали."
+          },
+          {
+            "article": "134813",
+            "role": "N+PE",
+            "verified": false,
+            "notes": "Клеммник земли и нейтрали на опоре (1 348 13) для накладных корпусов на 12 мод.; страницу артикула не открывали."
+          }
+        ],
+        "verified": false,
+        "notes": "Техлисты Legrand F02563EN / F02564EN: корпус «without terminal block», клеммники ставятся вверху и внизу в отведённых местах (2 клеммника, у больших корпусов 4). Соответствие техлиста артикулу не сверено."
+      },
       "verified": true,
       "source": "https://assets.legrand.com/pim/NP-FT-GT/F02563EN_03.pdf"
     },
@@ -229,6 +492,35 @@
         "width": 328,
         "height": 766,
         "depth": 108
+      },
+      "terminals": {
+        "included": false,
+        "blocks": [
+          {
+            "role": "N+PE",
+            "position": "top"
+          },
+          {
+            "role": "N+PE",
+            "position": "bottom"
+          }
+        ],
+        "accessories": [
+          {
+            "article": "134803",
+            "role": "PE",
+            "verified": false,
+            "notes": "Клеммник земли на опоре (1 348 03) для накладных корпусов на 12 мод.; назначение по техлисту, страницу артикула не открывали."
+          },
+          {
+            "article": "134813",
+            "role": "N+PE",
+            "verified": false,
+            "notes": "Клеммник земли и нейтрали на опоре (1 348 13) для накладных корпусов на 12 мод.; страницу артикула не открывали."
+          }
+        ],
+        "verified": false,
+        "notes": "Техлисты Legrand F02563EN / F02564EN: корпус «without terminal block», клеммники ставятся вверху и внизу в отведённых местах (2 клеммника, у больших корпусов 4). Соответствие техлиста артикулу не сверено."
       },
       "verified": true,
       "source": "https://assets.legrand.com/pim/NP-FT-GT/F02563EN_03.pdf"
@@ -249,6 +541,21 @@
         "height": 236,
         "depth": 107
       },
+      "terminals": {
+        "included": false,
+        "blocks": [
+          {
+            "role": "N+PE",
+            "position": "top"
+          },
+          {
+            "role": "N+PE",
+            "position": "bottom"
+          }
+        ],
+        "verified": false,
+        "notes": "Техлисты Legrand F02563EN / F02564EN: корпус «without terminal block», клеммники ставятся вверху и внизу в отведённых местах (2 клеммника, у больших корпусов 4). Соответствие техлиста артикулу не сверено."
+      },
       "verified": true,
       "source": "https://assets.legrand.com/pim/NP-FT-GT/F02563EN_03.pdf"
     },
@@ -267,6 +574,21 @@
         "width": 436,
         "height": 386,
         "depth": 108
+      },
+      "terminals": {
+        "included": false,
+        "blocks": [
+          {
+            "role": "N+PE",
+            "position": "top"
+          },
+          {
+            "role": "N+PE",
+            "position": "bottom"
+          }
+        ],
+        "verified": false,
+        "notes": "Техлисты Legrand F02563EN / F02564EN: корпус «without terminal block», клеммники ставятся вверху и внизу в отведённых местах (2 клеммника, у больших корпусов 4). Соответствие техлиста артикулу не сверено."
       },
       "verified": true,
       "source": "https://assets.legrand.com/pim/NP-FT-GT/F02563EN_03.pdf"
@@ -287,6 +609,21 @@
         "height": 616,
         "depth": 108
       },
+      "terminals": {
+        "included": false,
+        "blocks": [
+          {
+            "role": "N+PE",
+            "position": "top"
+          },
+          {
+            "role": "N+PE",
+            "position": "bottom"
+          }
+        ],
+        "verified": false,
+        "notes": "Техлисты Legrand F02563EN / F02564EN: корпус «without terminal block», клеммники ставятся вверху и внизу в отведённых местах (2 клеммника, у больших корпусов 4). Соответствие техлиста артикулу не сверено."
+      },
       "verified": true,
       "source": "https://assets.legrand.com/pim/NP-FT-GT/F02563EN_03.pdf"
     },
@@ -305,6 +642,21 @@
         "width": 436,
         "height": 766,
         "depth": 108
+      },
+      "terminals": {
+        "included": false,
+        "blocks": [
+          {
+            "role": "N+PE",
+            "position": "top"
+          },
+          {
+            "role": "N+PE",
+            "position": "bottom"
+          }
+        ],
+        "verified": false,
+        "notes": "Техлисты Legrand F02563EN / F02564EN: корпус «without terminal block», клеммники ставятся вверху и внизу в отведённых местах (2 клеммника, у больших корпусов 4). Соответствие техлиста артикулу не сверено."
       },
       "verified": true,
       "source": "https://assets.legrand.com/pim/NP-FT-GT/F02563EN_03.pdf"
@@ -325,6 +677,21 @@
         "height": 235,
         "depth": 104
       },
+      "terminals": {
+        "included": false,
+        "blocks": [
+          {
+            "role": "N+PE",
+            "position": "top"
+          },
+          {
+            "role": "N+PE",
+            "position": "bottom"
+          }
+        ],
+        "verified": false,
+        "notes": "Техлисты Legrand F02563EN / F02564EN: корпус «without terminal block», клеммники ставятся вверху и внизу в отведённых местах (2 клеммника, у больших корпусов 4). Соответствие техлиста артикулу не сверено."
+      },
       "verified": true,
       "source": "https://assets.legrand.com/pim/NP-FT-GT/F02564EN_04.pdf"
     },
@@ -343,6 +710,21 @@
         "width": 328,
         "height": 385,
         "depth": 105
+      },
+      "terminals": {
+        "included": false,
+        "blocks": [
+          {
+            "role": "N+PE",
+            "position": "top"
+          },
+          {
+            "role": "N+PE",
+            "position": "bottom"
+          }
+        ],
+        "verified": false,
+        "notes": "Техлисты Legrand F02563EN / F02564EN: корпус «without terminal block», клеммники ставятся вверху и внизу в отведённых местах (2 клеммника, у больших корпусов 4). Соответствие техлиста артикулу не сверено."
       },
       "verified": true,
       "source": "https://www.legrand.com/ecatalogue/en/catalog/products/practibox-s-flush-mounting-din-cabinet-for-masonry-wall-2-rows-of-12-modules-smoked-door-135012"
@@ -363,6 +745,21 @@
         "height": 535,
         "depth": 105
       },
+      "terminals": {
+        "included": false,
+        "blocks": [
+          {
+            "role": "N+PE",
+            "position": "top"
+          },
+          {
+            "role": "N+PE",
+            "position": "bottom"
+          }
+        ],
+        "verified": false,
+        "notes": "Техлисты Legrand F02563EN / F02564EN: корпус «without terminal block», клеммники ставятся вверху и внизу в отведённых местах (2 клеммника, у больших корпусов 4). Соответствие техлиста артикулу не сверено."
+      },
       "verified": true,
       "source": "https://assets.legrand.com/pim/NP-FT-GT/F02564EN_04.pdf"
     },
@@ -381,6 +778,21 @@
         "width": 328,
         "height": 765,
         "depth": 105
+      },
+      "terminals": {
+        "included": false,
+        "blocks": [
+          {
+            "role": "N+PE",
+            "position": "top"
+          },
+          {
+            "role": "N+PE",
+            "position": "bottom"
+          }
+        ],
+        "verified": false,
+        "notes": "Техлисты Legrand F02563EN / F02564EN: корпус «without terminal block», клеммники ставятся вверху и внизу в отведённых местах (2 клеммника, у больших корпусов 4). Соответствие техлиста артикулу не сверено."
       },
       "verified": true,
       "source": "https://assets.legrand.com/pim/NP-FT-GT/F02564EN_04.pdf"
@@ -401,6 +813,21 @@
         "height": 235,
         "depth": 104
       },
+      "terminals": {
+        "included": false,
+        "blocks": [
+          {
+            "role": "N+PE",
+            "position": "top"
+          },
+          {
+            "role": "N+PE",
+            "position": "bottom"
+          }
+        ],
+        "verified": false,
+        "notes": "Техлисты Legrand F02563EN / F02564EN: корпус «without terminal block», клеммники ставятся вверху и внизу в отведённых местах (2 клеммника, у больших корпусов 4). Соответствие техлиста артикулу не сверено."
+      },
       "verified": true,
       "source": "https://assets.legrand.com/pim/NP-FT-GT/F02564EN_04.pdf"
     },
@@ -419,6 +846,21 @@
         "width": 436,
         "height": 385,
         "depth": 105
+      },
+      "terminals": {
+        "included": false,
+        "blocks": [
+          {
+            "role": "N+PE",
+            "position": "top"
+          },
+          {
+            "role": "N+PE",
+            "position": "bottom"
+          }
+        ],
+        "verified": false,
+        "notes": "Техлисты Legrand F02563EN / F02564EN: корпус «without terminal block», клеммники ставятся вверху и внизу в отведённых местах (2 клеммника, у больших корпусов 4). Соответствие техлиста артикулу не сверено."
       },
       "verified": true,
       "source": "https://www.legrand.com/ecatalogue/en/catalog/products/practibox-s-flush-mounting-din-cabinet-for-masonry-wall-2-rows-of-18-modules-smoked-door-137017"
@@ -439,6 +881,21 @@
         "height": 615,
         "depth": 105
       },
+      "terminals": {
+        "included": false,
+        "blocks": [
+          {
+            "role": "N+PE",
+            "position": "top"
+          },
+          {
+            "role": "N+PE",
+            "position": "bottom"
+          }
+        ],
+        "verified": false,
+        "notes": "Техлисты Legrand F02563EN / F02564EN: корпус «without terminal block», клеммники ставятся вверху и внизу в отведённых местах (2 клеммника, у больших корпусов 4). Соответствие техлиста артикулу не сверено."
+      },
       "verified": true,
       "source": "https://assets.legrand.com/pim/NP-FT-GT/F02564EN_04.pdf"
     },
@@ -457,6 +914,21 @@
         "width": 436,
         "height": 765,
         "depth": 105
+      },
+      "terminals": {
+        "included": false,
+        "blocks": [
+          {
+            "role": "N+PE",
+            "position": "top"
+          },
+          {
+            "role": "N+PE",
+            "position": "bottom"
+          }
+        ],
+        "verified": false,
+        "notes": "Техлисты Legrand F02563EN / F02564EN: корпус «without terminal block», клеммники ставятся вверху и внизу в отведённых местах (2 клеммника, у больших корпусов 4). Соответствие техлиста артикулу не сверено."
       },
       "verified": true,
       "source": "https://assets.legrand.com/pim/NP-FT-GT/F02564EN_04.pdf"

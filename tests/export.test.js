@@ -2,7 +2,7 @@ import { test, describe } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 
-import { specTable, toCsv, csvSeparator, exportFileName, SPEC_COLUMNS } from '../site/js/export.js';
+import { specTable, toCsv, csvSeparator, exportFileName, terminalsSpec, clampsText, SPEC_COLUMNS } from '../site/js/export.js';
 import { createBoard, addDevice, indexById } from '../site/js/board.js';
 import { createTranslator } from '../site/js/i18n.js';
 
@@ -94,5 +94,44 @@ describe('exportFileName', () => {
     const date = new Date('2026-11-23T10:00:00Z');
     assert.equal(exportFileName(enclosure, 'csv', date), 'dinboard-va24b-2026-11-23.csv');
     assert.equal(exportFileName(enclosure, 'xlsx', date), 'dinboard-va24b-2026-11-23.xlsx');
+  });
+});
+
+describe('клеммники N/PE в спецификации', () => {
+  const included = { ...enclosure, terminals: { included: true, blocks: [{ role: 'N' }], verified: false } };
+  const notIncluded = {
+    ...enclosure,
+    terminals: {
+      included: false,
+      accessories: [
+        { article: '1SPE007715F0743', role: 'PE', clamps: [[7, 16], [9, 6]], verified: true, source: 'https://x.example' },
+        { article: 'N5', role: 'N', verified: false },
+      ],
+      verified: false,
+    },
+  };
+
+  test('clampsText', () => {
+    assert.equal(clampsText([[2, 25], [11, 16]], 'ru'), '2×25 + 11×16');
+    assert.equal(clampsText([[5, 1.5]], 'ru'), '5×1,5');
+  });
+
+  test('в комплекте — пометка в строке корпуса; не подтверждено — с «(не проверено)»', () => {
+    const verified = { ...included, terminals: { ...included.terminals, verified: true, source: 'https://x.example' } };
+    assert.match(specTable(build([]), verified, devices, brandNames, tRu).rows[0][2], /, клеммники N\/PE в комплекте$/);
+    // included.terminals.verified: false — в составе и выгрузках видно, что это не подтверждено
+    assert.match(specTable(build([]), included, devices, brandNames, tRu).rows[0][2], /, клеммники N\/PE в комплекте \(не проверено\)$/);
+  });
+
+  test('не в комплекте: без флага — ничего, с флагом — аксессуары сразу после корпуса', () => {
+    assert.equal(specTable(build([]), notIncluded, devices, brandNames, tRu).rows.length, 1);
+    const board = { ...build(['mcb']), addTerminals: true };
+    const rows = specTable(board, notIncluded, devices, brandNames, tRu).rows;
+    assert.deepEqual(rows.slice(1, 3), [
+      ['1SPE007715F0743', 'Hager', 'Клеммник PE, 7×16 + 9×6 мм²', '', null, 1, ''],
+      ['N5', 'Hager', 'Клеммник N', '', null, 1, 'не проверено'],
+    ]);
+    assert.equal(rows[3][0], 'MCN116', 'потом устройства');
+    assert.deepEqual(terminalsSpec(board, enclosure, tRu), { suffix: '', accessories: [] }, 'без данных о клеммниках');
   });
 });

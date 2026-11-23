@@ -12,6 +12,7 @@ import {
   findItem,
   billOfMaterials,
   setEarthing,
+  setAddTerminals,
   rowGaps,
   canPlace,
   firstFreePos,
@@ -308,5 +309,18 @@ describe('система заземления', () => {
     assert.equal(board.earthing, null, 'исходный щит не меняется');
     assert.equal(changeEnclosure(tt, enc(1), devices).board.earthing, 'TT');
     assert.equal(setEarthing(tt, null).earthing, null);
+  });
+});
+
+describe('клеммники N/PE в составе', () => {
+  test('setAddTerminals: флаг только при true, сохраняется при смене корпуса', () => {
+    const board = createBoard(enc(2));
+    assert.equal('addTerminals' in board, false);
+    const on = setAddTerminals(board, true);
+    assert.equal(on.addTerminals, true);
+    assert.equal('addTerminals' in board, false, 'исходный щит не меняется');
+    assert.equal(changeEnclosure(on, enc(1), devices).board.addTerminals, true);
+    assert.equal('addTerminals' in changeEnclosure(board, enc(1), devices).board, false);
+    assert.equal('addTerminals' in setAddTerminals(on, false), false);
   });
 });

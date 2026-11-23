@@ -22,6 +22,40 @@
         "height": 230,
         "depth": 145
       },
+      "terminals": {
+        "included": true,
+        "blocks": [
+          {
+            "role": "N",
+            "clamps": [
+              [
+                2,
+                25
+              ],
+              [
+                11,
+                16
+              ]
+            ]
+          },
+          {
+            "role": "PE",
+            "clamps": [
+              [
+                2,
+                25
+              ],
+              [
+                11,
+                16
+              ]
+            ]
+          }
+        ],
+        "verified": true,
+        "source": "https://www.eaton.com/content/dam/eaton/products/low-voltage-power-distribution-controls-systems/xcomfort-bc/eaton-xcomfort-bc-a-catalog-ca014025de-de-de.pdf",
+        "notes": "Каталог Eaton CA014025DE (2021), с. 2 и 6: клеммы N и PE с держателем в комплекте. Где стоит держатель, в каталоге не указано."
+      },
       "verified": false,
       "source": "https://www.eaton.com.cn/cn/zh-cn/skuPage.101558.html",
       "notes": "Размеры восстановлены: на сайте Eaton подписи высоты и глубины у соседних моделей перепутаны. Проверить по PDF-каталогу серии BC."
@@ -42,6 +76,40 @@
         "width": 260,
         "height": 350,
         "depth": 145
+      },
+      "terminals": {
+        "included": true,
+        "blocks": [
+          {
+            "role": "N",
+            "clamps": [
+              [
+                2,
+                25
+              ],
+              [
+                14,
+                16
+              ]
+            ]
+          },
+          {
+            "role": "PE",
+            "clamps": [
+              [
+                2,
+                25
+              ],
+              [
+                14,
+                16
+              ]
+            ]
+          }
+        ],
+        "verified": true,
+        "source": "https://www.eaton.com/content/dam/eaton/products/low-voltage-power-distribution-controls-systems/xcomfort-bc/eaton-xcomfort-bc-a-catalog-ca014025de-de-de.pdf",
+        "notes": "Каталог Eaton CA014025DE (2021), с. 2 и 6: клеммы N и PE с держателем в комплекте. Где стоит держатель, в каталоге не указано."
       },
       "verified": false,
       "source": "https://www.eaton.com.cn/cn/zh-cn/skuPage.101559.html",
@@ -64,6 +132,40 @@
         "height": 480,
         "depth": 145
       },
+      "terminals": {
+        "included": true,
+        "blocks": [
+          {
+            "role": "N",
+            "clamps": [
+              [
+                2,
+                25
+              ],
+              [
+                23,
+                16
+              ]
+            ]
+          },
+          {
+            "role": "PE",
+            "clamps": [
+              [
+                2,
+                25
+              ],
+              [
+                23,
+                16
+              ]
+            ]
+          }
+        ],
+        "verified": true,
+        "source": "https://www.eaton.com/content/dam/eaton/products/low-voltage-power-distribution-controls-systems/xcomfort-bc/eaton-xcomfort-bc-a-catalog-ca014025de-de-de.pdf",
+        "notes": "Каталог Eaton CA014025DE (2021), с. 2 и 6: клеммы N и PE с держателем в комплекте. Где стоит держатель, в каталоге не указано."
+      },
       "verified": false,
       "source": "https://www.eaton.com.cn/cn/zh-cn/skuPage.101560.html",
       "notes": "Размеры восстановлены: на сайте Eaton подписи высоты и глубины у соседних моделей перепутаны. Проверить по PDF-каталогу серии BC."
@@ -84,6 +186,40 @@
         "width": 260,
         "height": 650,
         "depth": 145
+      },
+      "terminals": {
+        "included": true,
+        "blocks": [
+          {
+            "role": "N",
+            "clamps": [
+              [
+                2,
+                25
+              ],
+              [
+                23,
+                16
+              ]
+            ]
+          },
+          {
+            "role": "PE",
+            "clamps": [
+              [
+                2,
+                25
+              ],
+              [
+                23,
+                16
+              ]
+            ]
+          }
+        ],
+        "verified": true,
+        "source": "https://www.eaton.com/content/dam/eaton/products/low-voltage-power-distribution-controls-systems/xcomfort-bc/eaton-xcomfort-bc-a-catalog-ca014025de-de-de.pdf",
+        "notes": "Каталог Eaton CA014025DE (2021), с. 2 и 6: клеммы N и PE с держателем в комплекте. Где стоит держатель, в каталоге не указано."
       },
       "verified": false,
       "source": "https://www.eaton.com.cn/cn/zh-cn/skuPage.101561.html",
@@ -106,6 +242,40 @@
         "height": 230,
         "depth": 100
       },
+      "terminals": {
+        "included": true,
+        "blocks": [
+          {
+            "role": "N",
+            "clamps": [
+              [
+                2,
+                25
+              ],
+              [
+                11,
+                16
+              ]
+            ]
+          },
+          {
+            "role": "PE",
+            "clamps": [
+              [
+                2,
+                25
+              ],
+              [
+                11,
+                16
+              ]
+            ]
+          }
+        ],
+        "verified": true,
+        "source": "https://www.eaton.com/content/dam/eaton/products/low-voltage-power-distribution-controls-systems/xcomfort-bc/eaton-xcomfort-bc-a-catalog-ca014025de-de-de.pdf",
+        "notes": "Каталог Eaton CA014025DE (2021), с. 2 и 6: клеммы N и PE с держателем в комплекте. Где стоит держатель, в каталоге не указано."
+      },
       "verified": false,
       "source": "https://www.eaton.com.cn/cn/zh-cn/skuPage.101550.html",
       "notes": "Размеры восстановлены: на сайте Eaton подписи высоты и глубины у соседних моделей перепутаны. Проверить по PDF-каталогу серии BC."
@@ -126,6 +296,40 @@
         "width": 260,
         "height": 355,
         "depth": 100
+      },
+      "terminals": {
+        "included": true,
+        "blocks": [
+          {
+            "role": "N",
+            "clamps": [
+              [
+                2,
+                25
+              ],
+              [
+                14,
+                16
+              ]
+            ]
+          },
+          {
+            "role": "PE",
+            "clamps": [
+              [
+                2,
+                25
+              ],
+              [
+                14,
+                16
+              ]
+            ]
+          }
+        ],
+        "verified": true,
+        "source": "https://www.eaton.com/content/dam/eaton/products/low-voltage-power-distribution-controls-systems/xcomfort-bc/eaton-xcomfort-bc-a-catalog-ca014025de-de-de.pdf",
+        "notes": "Каталог Eaton CA014025DE (2021), с. 2 и 6: клеммы N и PE с держателем в комплекте. Где стоит держатель, в каталоге не указано."
       },
       "verified": false,
       "source": "https://www.eaton.com.cn/cn/zh-cn/skuPage.101551.html",
@@ -148,6 +352,40 @@
         "height": 480,
         "depth": 100
       },
+      "terminals": {
+        "included": true,
+        "blocks": [
+          {
+            "role": "N",
+            "clamps": [
+              [
+                2,
+                25
+              ],
+              [
+                23,
+                16
+              ]
+            ]
+          },
+          {
+            "role": "PE",
+            "clamps": [
+              [
+                2,
+                25
+              ],
+              [
+                23,
+                16
+              ]
+            ]
+          }
+        ],
+        "verified": true,
+        "source": "https://www.eaton.com/content/dam/eaton/products/low-voltage-power-distribution-controls-systems/xcomfort-bc/eaton-xcomfort-bc-a-catalog-ca014025de-de-de.pdf",
+        "notes": "Каталог Eaton CA014025DE (2021), с. 2 и 6: клеммы N и PE с держателем в комплекте. Где стоит держатель, в каталоге не указано."
+      },
       "verified": false,
       "source": "https://www.eaton.com.cn/cn/zh-cn/skuPage.101552.html",
       "notes": "Размеры восстановлены: на сайте Eaton подписи высоты и глубины у соседних моделей перепутаны. Проверить по PDF-каталогу серии BC."
@@ -168,6 +406,40 @@
         "width": 260,
         "height": 600,
         "depth": 100
+      },
+      "terminals": {
+        "included": true,
+        "blocks": [
+          {
+            "role": "N",
+            "clamps": [
+              [
+                2,
+                25
+              ],
+              [
+                23,
+                16
+              ]
+            ]
+          },
+          {
+            "role": "PE",
+            "clamps": [
+              [
+                2,
+                25
+              ],
+              [
+                23,
+                16
+              ]
+            ]
+          }
+        ],
+        "verified": true,
+        "source": "https://www.eaton.com/content/dam/eaton/products/low-voltage-power-distribution-controls-systems/xcomfort-bc/eaton-xcomfort-bc-a-catalog-ca014025de-de-de.pdf",
+        "notes": "Каталог Eaton CA014025DE (2021), с. 2 и 6: клеммы N и PE с держателем в комплекте. Где стоит держатель, в каталоге не указано."
       },
       "verified": false,
       "source": "https://www.eaton.com.cn/cn/zh-cn/skuPage.101553.html",

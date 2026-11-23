@@ -1,7 +1,7 @@
 import { test, describe } from 'node:test';
 import assert from 'node:assert/strict';
 
-import { checkBoard, mainApparatus, spdFitsEarthing, SPARE_SHARE } from '../site/js/checks.js';
+import { checkBoard, mainApparatus, spdFitsEarthing, terminalClamps, SPARE_SHARE } from '../site/js/checks.js';
 import { createBoard, addDevice, setEarthing, indexById } from '../site/js/board.js';
 
 const dev = (id, category, modules, specs) => ({ id, category, modules, specs });
@@ -119,5 +119,42 @@ describe('вспомогательные', () => {
     assert.equal(spdFitsEarthing(['TN-S'], 'TT'), false);
     assert.equal(spdFitsEarthing(['TN-S'], 'TN-C-S'), true);
     assert.equal(spdFitsEarthing(['TT'], 'TN-C-S'), false);
+  });
+});
+
+describe('клеммники N/PE', () => {
+  const withTerminals = (terminals) => ({ ...enclosure, terminals });
+  const run = (terminals, ids, extra = {}) => {
+    const enc = withTerminals(terminals);
+    let board = createBoard(enc);
+    for (const id of ids) ({ board } = addDevice(board, enc, devices, id));
+    return checkBoard({ ...board, ...extra }, enc, devices);
+  };
+  const ids = ['sw2-63', 'rcd-63-a', ...Array(5).fill('mcb1-16')];
+
+  test('terminalClamps: N и PE по блокам; общий блок N+PE и неизвестное число — null', () => {
+    const t = { included: true, blocks: [{ role: 'N', clamps: [[2, 25], [11, 16]] }, { role: 'PE', clamps: [[3, 25]] }, { role: 'PE', clamps: [[2, 16]] }], verified: false };
+    const board = createBoard(enclosure);
+    assert.equal(terminalClamps(withTerminals(t), board, 'N'), 13);
+    assert.equal(terminalClamps(withTerminals(t), board, 'PE'), 5);
+    assert.equal(terminalClamps(withTerminals({ included: true, blocks: [{ role: 'N+PE', clamps: [[9, 16]] }], verified: false }), board, 'N'), null);
+    assert.equal(terminalClamps(enclosure, board, 'N'), null);
+    const acc = { included: false, accessories: [{ article: 'X', role: 'PE', clamps: [[7, 16]], verified: false }], verified: false };
+    assert.equal(terminalClamps(withTerminals(acc), board, 'PE'), null, 'аксессуары не добавлены');
+    assert.equal(terminalClamps(withTerminals(acc), { ...board, addTerminals: true }, 'PE'), 7);
+  });
+
+  test('не в комплекте и не добавлены — совет; добавлены — совета нет', () => {
+    const t = { included: false, accessories: [{ article: 'X', role: 'PE', verified: false }], verified: false };
+    assert.ok(run(t, ids).some((c) => c.key === 'check.noTerminals'));
+    assert.ok(!run(t, ids, { addTerminals: true }).some((c) => c.key === 'check.noTerminals'));
+    assert.ok(!run({ included: true, verified: false }, ids).some((c) => c.key === 'check.noTerminals'));
+  });
+
+  test('отходящих линий больше, чем клемм — совет по каждой роли', () => {
+    // 5 автоматов = 5 линий; клемм N — 4, PE — 6
+    const t = { included: true, blocks: [{ role: 'N', clamps: [[4, 16]] }, { role: 'PE', clamps: [[6, 16]] }], verified: false };
+    const few = run(t, ids).filter((c) => c.key === 'check.fewClamps');
+    assert.deepEqual(few, [{ level: 'info', key: 'check.fewClamps', params: { role: 'N', lines: 5, clamps: 4 } }]);
   });
 });

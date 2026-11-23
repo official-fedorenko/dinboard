@@ -123,6 +123,34 @@ describe('система заземления в проекте', () => {
   });
 });
 
+describe('клеммники N/PE в составе (addTerminals)', () => {
+  const withTerminals = { ...project, addTerminals: true };
+
+  test('щит → проект → щит, ссылка и файл сохраняют флаг', () => {
+    const { board } = buildBoard(withTerminals, enclosures, devices);
+    assert.equal(board.addTerminals, true);
+    assert.deepEqual(projectFromBoard(board), { ...placed, addTerminals: true });
+    assert.deepEqual(decodeLink(encodeLink(withTerminals)), withTerminals);
+    assert.deepEqual(projectFromFile(projectToFile(withTerminals, enclosures, devices)), withTerminals);
+    assert.equal(JSON.parse(Buffer.from(encodeLink(withTerminals), 'base64url').toString()).t, 1);
+  });
+
+  test('без флага — поля нет (старые ссылки и файлы открываются, сравнение не меняется)', () => {
+    const { board } = buildBoard(project, enclosures, devices);
+    assert.equal('addTerminals' in board, false);
+    assert.equal('addTerminals' in projectFromBoard(board), false);
+    assert.equal('t' in JSON.parse(Buffer.from(encodeLink(project), 'base64url').toString()), false);
+    assert.equal(sameProject(projectFromBoard(board), placed), true);
+  });
+
+  test('флаг — только true; иначе ошибка format', () => {
+    failsWith(() => buildBoard({ ...project, addTerminals: false }, enclosures, devices), 'format', 'addTerminals');
+    failsWith(() => buildBoard({ ...project, addTerminals: 'yes' }, enclosures, devices), 'format', 'addTerminals');
+    const code = Buffer.from(JSON.stringify({ v: 1, e: 'hager-va24b', d: [], r: [[], []], t: 2 })).toString('base64url');
+    failsWith(() => decodeLink(code), 'format', 'addTerminals');
+  });
+});
+
 describe('позиции устройств (свободная расстановка)', () => {
   const spaced = {
     enclosureId: 'hager-va24b',

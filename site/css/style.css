@@ -31,6 +31,10 @@
   --warn-text: #7a5300;
   --drop-ok: #1f9d55;
   --drop-bad: #d64545;
+  --term-n: #2f74d0;
+  --term-pe: #2f9a5c;
+  --term-pe-edge: #e5c11f;
+  --term-clamp: #d9dde3;
   --cat-mcb: #2f6fde;
   --cat-rcbo: #8a4fd6;
   --cat-rcd: #d1782a;
@@ -66,6 +70,10 @@
     --warn-text: #f3cf74;
     --drop-ok: #3fcf7a;
     --drop-bad: #ff6b6b;
+    --term-n: #3f7fd8;
+    --term-pe: #3a9c60;
+    --term-pe-edge: #e5c11f;
+    --term-clamp: #cfd3d9;
     --cat-mcb: #5b8ff0;
     --cat-rcbo: #a77ee6;
     --cat-rcd: #e39445;
@@ -526,6 +534,53 @@ button:focus-visible {
   stroke-dasharray: 1.5 1.5;
 }
 
+/* Клеммники N/PE корпуса: N — синий, PE — зелёный с жёлтой каймой, общий N+PE — пополам;
+   место без клеммника (в комплекте нет) — пунктиром */
+.terminal {
+  pointer-events: none;
+}
+
+.terminal .bar,
+.terminal .bar-n,
+.terminal .bar-pe {
+  stroke-width: 0.6;
+}
+
+.terminal.role-n .bar,
+.terminal .bar-n {
+  fill: var(--term-n);
+  stroke: var(--term-n);
+}
+
+.terminal.role-pe .bar,
+.terminal .bar-pe {
+  fill: var(--term-pe);
+  stroke: var(--term-pe-edge);
+}
+
+.terminal.kind-slot .bar {
+  fill: none;
+  stroke: var(--enc-edge);
+  stroke-dasharray: 2 1.5;
+}
+
+.terminal .clamp {
+  fill: var(--term-clamp);
+  stroke: rgb(0 0 0 / 0.35);
+  stroke-width: 0.3;
+}
+
+.terminal-label {
+  fill: #fff;
+  font-size: 4.6px;
+  font-weight: 700;
+}
+
+.terminal.kind-slot .terminal-label {
+  fill: var(--enc-text);
+  font-weight: 400;
+}
+
 /* Куда встанет устройство при перетаскивании: зелёный — свободно, красный — занято */
 .drop-slot {
   pointer-events: none;
@@ -710,6 +765,19 @@ button:focus-visible {
 
 .checks-label {
   margin: 0 0 4px;
+}
+
+/* Клеммники N/PE в блоке проверок */
+.terminals-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.terminals-info p {
+  margin: 0;
 }
 
 .check-list {

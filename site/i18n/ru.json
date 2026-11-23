@@ -143,5 +143,24 @@
   "check.spdEarthing": "{title}: по данным производителя подходит для {networks}, а система заземления щита — {earthing}.",
   "check.spdNoEarthing": "Укажите систему заземления — тогда конструктор проверит, подходит ли УЗИП.",
   "check.rcdTypeAC": "УЗО и дифавтоматы типа AC: {n} шт. Для современной техники (инверторы, зарядные устройства, стиральные машины) рекомендуется тип A.",
-  "check.lowSpare": "Мало свободного места: {free} мод. ({percent} %). Рекомендуется оставлять около 20 % под расширение."
+  "check.lowSpare": "Мало свободного места: {free} мод. ({percent} %). Рекомендуется оставлять около 20 % под расширение.",
+
+  "terminals.label": "Клеммники N/PE",
+  "terminals.included": "В комплекте корпуса: {list}",
+  "terminals.includedUnknown": "В комплекте корпуса (число клемм не указано).",
+  "terminals.item": "{role} — {n} шт.",
+  "terminals.notIncludedInfo": "В комплект корпуса не входят.",
+  "terminals.notIncluded": "не в комплекте",
+  "terminals.add": "Добавить клеммники N/PE в состав",
+  "terminals.remove": "Убрать клеммники N/PE из состава",
+  "terminals.noAccessories": "Подходящие клеммники производителя в каталоге не указаны — подберите отдельно.",
+  "terminals.unverifiedHint": "Сведения о клеммниках не подтверждены официальным источником полностью — сверьте с каталогом производителя.",
+  "terminals.specIncluded": "клеммники N/PE в комплекте",
+  "terminals.accessoryName": "Клеммник {role}, {clamps} мм²",
+  "terminals.accessoryNameShort": "Клеммник {role}",
+  "terminals.title": "Клеммник {role}, клемм: {n}",
+  "terminals.titleUnknown": "Клеммник {role} (число клемм не указано)",
+  "terminals.slotTitle": "Место под клеммник {role}: в комплекте корпуса нет",
+  "check.noTerminals": "Клеммники N/PE в комплект корпуса не входят: добавьте их в состав или подберите отдельно.",
+  "check.fewClamps": "Отходящих линий ({lines}) больше, чем клемм {role} ({clamps}): добавьте клеммник {role}."
 }

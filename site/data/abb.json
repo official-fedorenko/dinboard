@@ -22,6 +22,43 @@
         "height": 262,
         "depth": 119
       },
+      "terminals": {
+        "included": false,
+        "accessories": [
+          {
+            "article": "1SPE007715F0743",
+            "role": "PE",
+            "clamps": [
+              [
+                7,
+                16
+              ],
+              [
+                9,
+                6
+              ]
+            ],
+            "verified": true,
+            "source": "https://new.abb.com/products/1SPE007715F0743",
+            "notes": "Клеммник PE для MISTRAL41W/41F, ширина 115 мм."
+          },
+          {
+            "article": "1SPE007715F9701",
+            "role": "N",
+            "clamps": [
+              [
+                5,
+                4
+              ]
+            ],
+            "verified": true,
+            "source": "https://new.abb.com/products/1SPE007715F9701",
+            "notes": "Безвинтовой клеммник N, 1,5–4 мм²."
+          }
+        ],
+        "verified": false,
+        "notes": "Без клеммников — по аналогии с 41P12X21 и 41A12X21 (проверены на new.abb.com). По инструкции MISTRAL41F (1IM5188) клеммники ставятся горизонтально на раме вверху или внизу, вертикально сбоку или на DIN-рейку."
+      },
       "verified": true,
       "source": "https://new.abb.com/products/1SPE007717F0410"
     },
@@ -41,6 +78,43 @@
         "width": 297,
         "height": 262,
         "depth": 119
+      },
+      "terminals": {
+        "included": false,
+        "accessories": [
+          {
+            "article": "1SPE007715F0743",
+            "role": "PE",
+            "clamps": [
+              [
+                7,
+                16
+              ],
+              [
+                9,
+                6
+              ]
+            ],
+            "verified": true,
+            "source": "https://new.abb.com/products/1SPE007715F0743",
+            "notes": "Клеммник PE для MISTRAL41W/41F, ширина 115 мм."
+          },
+          {
+            "article": "1SPE007715F9701",
+            "role": "N",
+            "clamps": [
+              [
+                5,
+                4
+              ]
+            ],
+            "verified": true,
+            "source": "https://new.abb.com/products/1SPE007715F9701",
+            "notes": "Безвинтовой клеммник N, 1,5–4 мм²."
+          }
+        ],
+        "verified": false,
+        "notes": "Без клеммников — по аналогии с 41P12X21 и 41A12X21 (проверены на new.abb.com). По инструкции MISTRAL41F (1IM5188) клеммники ставятся горизонтально на раме вверху или внизу, вертикально сбоку или на DIN-рейку."
       },
       "verified": true,
       "source": "https://new.abb.com/products/1SPE007717F0420"
@@ -62,6 +136,44 @@
         "height": 387,
         "depth": 119
       },
+      "terminals": {
+        "included": false,
+        "accessories": [
+          {
+            "article": "1SPE007715F0743",
+            "role": "PE",
+            "clamps": [
+              [
+                7,
+                16
+              ],
+              [
+                9,
+                6
+              ]
+            ],
+            "verified": true,
+            "source": "https://new.abb.com/products/1SPE007715F0743",
+            "notes": "Клеммник PE для MISTRAL41W/41F, ширина 115 мм."
+          },
+          {
+            "article": "1SPE007715F9701",
+            "role": "N",
+            "clamps": [
+              [
+                5,
+                4
+              ]
+            ],
+            "verified": true,
+            "source": "https://new.abb.com/products/1SPE007715F9701",
+            "notes": "Безвинтовой клеммник N, 1,5–4 мм²."
+          }
+        ],
+        "verified": true,
+        "source": "https://new.abb.com/products/1SPE007717F0510",
+        "notes": "На странице ABB: «Terminal Type: No Terminals». По инструкции MISTRAL41F (1IM5188) клеммники ставятся горизонтально на раме вверху или внизу, вертикально сбоку или на DIN-рейку."
+      },
       "verified": true,
       "source": "https://new.abb.com/products/1SPE007717F0510"
     },
@@ -81,6 +193,43 @@
         "width": 297,
         "height": 387,
         "depth": 119
+      },
+      "terminals": {
+        "included": false,
+        "accessories": [
+          {
+            "article": "1SPE007715F0743",
+            "role": "PE",
+            "clamps": [
+              [
+                7,
+                16
+              ],
+              [
+                9,
+                6
+              ]
+            ],
+            "verified": true,
+            "source": "https://new.abb.com/products/1SPE007715F0743",
+            "notes": "Клеммник PE для MISTRAL41W/41F, ширина 115 мм."
+          },
+          {
+            "article": "1SPE007715F9701",
+            "role": "N",
+            "clamps": [
+              [
+                5,
+                4
+              ]
+            ],
+            "verified": true,
+            "source": "https://new.abb.com/products/1SPE007715F9701",
+            "notes": "Безвинтовой клеммник N, 1,5–4 мм²."
+          }
+        ],
+        "verified": false,
+        "notes": "Без клеммников — по аналогии с 41P12X21 и 41A12X21 (проверены на new.abb.com). По инструкции MISTRAL41F (1IM5188) клеммники ставятся горизонтально на раме вверху или внизу, вертикально сбоку или на DIN-рейку."
       },
       "verified": true,
       "source": "https://new.abb.com/products/1SPE007717F0520"
@@ -102,6 +251,43 @@
         "height": 512,
         "depth": 119
       },
+      "terminals": {
+        "included": false,
+        "accessories": [
+          {
+            "article": "1SPE007715F0743",
+            "role": "PE",
+            "clamps": [
+              [
+                7,
+                16
+              ],
+              [
+                9,
+                6
+              ]
+            ],
+            "verified": true,
+            "source": "https://new.abb.com/products/1SPE007715F0743",
+            "notes": "Клеммник PE для MISTRAL41W/41F, ширина 115 мм."
+          },
+          {
+            "article": "1SPE007715F9701",
+            "role": "N",
+            "clamps": [
+              [
+                5,
+                4
+              ]
+            ],
+            "verified": true,
+            "source": "https://new.abb.com/products/1SPE007715F9701",
+            "notes": "Безвинтовой клеммник N, 1,5–4 мм²."
+          }
+        ],
+        "verified": false,
+        "notes": "Без клеммников — по аналогии с 41P12X21 и 41A12X21 (проверены на new.abb.com). По инструкции MISTRAL41F (1IM5188) клеммники ставятся горизонтально на раме вверху или внизу, вертикально сбоку или на DIN-рейку."
+      },
       "verified": true,
       "source": "https://new.abb.com/products/1SPE007717F0610"
     },
@@ -121,6 +307,43 @@
         "width": 297,
         "height": 512,
         "depth": 119
+      },
+      "terminals": {
+        "included": false,
+        "accessories": [
+          {
+            "article": "1SPE007715F0743",
+            "role": "PE",
+            "clamps": [
+              [
+                7,
+                16
+              ],
+              [
+                9,
+                6
+              ]
+            ],
+            "verified": true,
+            "source": "https://new.abb.com/products/1SPE007715F0743",
+            "notes": "Клеммник PE для MISTRAL41W/41F, ширина 115 мм."
+          },
+          {
+            "article": "1SPE007715F9701",
+            "role": "N",
+            "clamps": [
+              [
+                5,
+                4
+              ]
+            ],
+            "verified": true,
+            "source": "https://new.abb.com/products/1SPE007715F9701",
+            "notes": "Безвинтовой клеммник N, 1,5–4 мм²."
+          }
+        ],
+        "verified": false,
+        "notes": "Без клеммников — по аналогии с 41P12X21 и 41A12X21 (проверены на new.abb.com). По инструкции MISTRAL41F (1IM5188) клеммники ставятся горизонтально на раме вверху или внизу, вертикально сбоку или на DIN-рейку."
       },
       "verified": true,
       "source": "https://new.abb.com/products/1SPE007717F0620"
@@ -142,6 +365,43 @@
         "height": 659,
         "depth": 119
       },
+      "terminals": {
+        "included": false,
+        "accessories": [
+          {
+            "article": "1SPE007715F0743",
+            "role": "PE",
+            "clamps": [
+              [
+                7,
+                16
+              ],
+              [
+                9,
+                6
+              ]
+            ],
+            "verified": true,
+            "source": "https://new.abb.com/products/1SPE007715F0743",
+            "notes": "Клеммник PE для MISTRAL41W/41F, ширина 115 мм."
+          },
+          {
+            "article": "1SPE007715F9701",
+            "role": "N",
+            "clamps": [
+              [
+                5,
+                4
+              ]
+            ],
+            "verified": true,
+            "source": "https://new.abb.com/products/1SPE007715F9701",
+            "notes": "Безвинтовой клеммник N, 1,5–4 мм²."
+          }
+        ],
+        "verified": false,
+        "notes": "Без клеммников — по аналогии с 41P12X21 и 41A12X21 (проверены на new.abb.com). По инструкции MISTRAL41F (1IM5188) клеммники ставятся горизонтально на раме вверху или внизу, вертикально сбоку или на DIN-рейку."
+      },
       "verified": true,
       "source": "https://new.abb.com/products/1SPE007717F0710"
     },
@@ -161,6 +421,43 @@
         "width": 297,
         "height": 659,
         "depth": 119
+      },
+      "terminals": {
+        "included": false,
+        "accessories": [
+          {
+            "article": "1SPE007715F0743",
+            "role": "PE",
+            "clamps": [
+              [
+                7,
+                16
+              ],
+              [
+                9,
+                6
+              ]
+            ],
+            "verified": true,
+            "source": "https://new.abb.com/products/1SPE007715F0743",
+            "notes": "Клеммник PE для MISTRAL41W/41F, ширина 115 мм."
+          },
+          {
+            "article": "1SPE007715F9701",
+            "role": "N",
+            "clamps": [
+              [
+                5,
+                4
+              ]
+            ],
+            "verified": true,
+            "source": "https://new.abb.com/products/1SPE007715F9701",
+            "notes": "Безвинтовой клеммник N, 1,5–4 мм²."
+          }
+        ],
+        "verified": false,
+        "notes": "Без клеммников — по аналогии с 41P12X21 и 41A12X21 (проверены на new.abb.com). По инструкции MISTRAL41F (1IM5188) клеммники ставятся горизонтально на раме вверху или внизу, вертикально сбоку или на DIN-рейку."
       },
       "verified": true,
       "source": "https://new.abb.com/products/1SPE007717F0720"
@@ -182,6 +479,43 @@
         "height": 250,
         "depth": 107
       },
+      "terminals": {
+        "included": false,
+        "accessories": [
+          {
+            "article": "1SPE007715F0743",
+            "role": "PE",
+            "clamps": [
+              [
+                7,
+                16
+              ],
+              [
+                9,
+                6
+              ]
+            ],
+            "verified": true,
+            "source": "https://new.abb.com/products/1SPE007715F0743",
+            "notes": "Клеммник PE для MISTRAL41W/41F, ширина 115 мм."
+          },
+          {
+            "article": "1SPE007715F9701",
+            "role": "N",
+            "clamps": [
+              [
+                5,
+                4
+              ]
+            ],
+            "verified": true,
+            "source": "https://new.abb.com/products/1SPE007715F9701",
+            "notes": "Безвинтовой клеммник N, 1,5–4 мм²."
+          }
+        ],
+        "verified": false,
+        "notes": "Без клеммников — по аналогии с 41P12X21 и 41A12X21 (проверены на new.abb.com). По инструкции MISTRAL41F (1IM5188) клеммники ставятся горизонтально на раме вверху или внизу, вертикально сбоку или на DIN-рейку."
+      },
       "verified": true,
       "source": "https://new.abb.com/products/1SLM004100A1103"
     },
@@ -201,6 +535,43 @@
         "width": 320,
         "height": 250,
         "depth": 107
+      },
+      "terminals": {
+        "included": false,
+        "accessories": [
+          {
+            "article": "1SPE007715F0743",
+            "role": "PE",
+            "clamps": [
+              [
+                7,
+                16
+              ],
+              [
+                9,
+                6
+              ]
+            ],
+            "verified": true,
+            "source": "https://new.abb.com/products/1SPE007715F0743",
+            "notes": "Клеммник PE для MISTRAL41W/41F, ширина 115 мм."
+          },
+          {
+            "article": "1SPE007715F9701",
+            "role": "N",
+            "clamps": [
+              [
+                5,
+                4
+              ]
+            ],
+            "verified": true,
+            "source": "https://new.abb.com/products/1SPE007715F9701",
+            "notes": "Безвинтовой клеммник N, 1,5–4 мм²."
+          }
+        ],
+        "verified": false,
+        "notes": "Без клеммников — по аналогии с 41P12X21 и 41A12X21 (проверены на new.abb.com). По инструкции MISTRAL41F (1IM5188) клеммники ставятся горизонтально на раме вверху или внизу, вертикально сбоку или на DIN-рейку."
       },
       "verified": true,
       "source": "https://new.abb.com/products/1SLM004100A1203"
@@ -222,6 +593,44 @@
         "height": 435,
         "depth": 107
       },
+      "terminals": {
+        "included": false,
+        "accessories": [
+          {
+            "article": "1SPE007715F0743",
+            "role": "PE",
+            "clamps": [
+              [
+                7,
+                16
+              ],
+              [
+                9,
+                6
+              ]
+            ],
+            "verified": true,
+            "source": "https://new.abb.com/products/1SPE007715F0743",
+            "notes": "Клеммник PE для MISTRAL41W/41F, ширина 115 мм."
+          },
+          {
+            "article": "1SPE007715F9701",
+            "role": "N",
+            "clamps": [
+              [
+                5,
+                4
+              ]
+            ],
+            "verified": true,
+            "source": "https://new.abb.com/products/1SPE007715F9701",
+            "notes": "Безвинтовой клеммник N, 1,5–4 мм²."
+          }
+        ],
+        "verified": true,
+        "source": "https://new.abb.com/products/1SLM004100A1105",
+        "notes": "На странице ABB: «Terminal Type: No Terminals». По инструкции MISTRAL41F (1IM5188) клеммники ставятся горизонтально на раме вверху или внизу, вертикально сбоку или на DIN-рейку."
+      },
       "verified": true,
       "source": "https://new.abb.com/products/1SLM004100A1105"
     },
@@ -241,6 +650,43 @@
         "width": 320,
         "height": 435,
         "depth": 107
+      },
+      "terminals": {
+        "included": false,
+        "accessories": [
+          {
+            "article": "1SPE007715F0743",
+            "role": "PE",
+            "clamps": [
+              [
+                7,
+                16
+              ],
+              [
+                9,
+                6
+              ]
+            ],
+            "verified": true,
+            "source": "https://new.abb.com/products/1SPE007715F0743",
+            "notes": "Клеммник PE для MISTRAL41W/41F, ширина 115 мм."
+          },
+          {
+            "article": "1SPE007715F9701",
+            "role": "N",
+            "clamps": [
+              [
+                5,
+                4
+              ]
+            ],
+            "verified": true,
+            "source": "https://new.abb.com/products/1SPE007715F9701",
+            "notes": "Безвинтовой клеммник N, 1,5–4 мм²."
+          }
+        ],
+        "verified": false,
+        "notes": "Без клеммников — по аналогии с 41P12X21 и 41A12X21 (проверены на new.abb.com). По инструкции MISTRAL41F (1IM5188) клеммники ставятся горизонтально на раме вверху или внизу, вертикально сбоку или на DIN-рейку."
       },
       "verified": true,
       "source": "https://new.abb.com/products/1SLM004100A1205"
@@ -262,6 +708,43 @@
         "height": 600,
         "depth": 107
       },
+      "terminals": {
+        "included": false,
+        "accessories": [
+          {
+            "article": "1SPE007715F0743",
+            "role": "PE",
+            "clamps": [
+              [
+                7,
+                16
+              ],
+              [
+                9,
+                6
+              ]
+            ],
+            "verified": true,
+            "source": "https://new.abb.com/products/1SPE007715F0743",
+            "notes": "Клеммник PE для MISTRAL41W/41F, ширина 115 мм."
+          },
+          {
+            "article": "1SPE007715F9701",
+            "role": "N",
+            "clamps": [
+              [
+                5,
+                4
+              ]
+            ],
+            "verified": true,
+            "source": "https://new.abb.com/products/1SPE007715F9701",
+            "notes": "Безвинтовой клеммник N, 1,5–4 мм²."
+          }
+        ],
+        "verified": false,
+        "notes": "Без клеммников — по аналогии с 41P12X21 и 41A12X21 (проверены на new.abb.com). По инструкции MISTRAL41F (1IM5188) клеммники ставятся горизонтально на раме вверху или внизу, вертикально сбоку или на DIN-рейку."
+      },
       "verified": true,
       "source": "https://new.abb.com/products/1SLM004100A1107"
     },
@@ -281,6 +764,43 @@
         "width": 320,
         "height": 600,
         "depth": 107
+      },
+      "terminals": {
+        "included": false,
+        "accessories": [
+          {
+            "article": "1SPE007715F0743",
+            "role": "PE",
+            "clamps": [
+              [
+                7,
+                16
+              ],
+              [
+                9,
+                6
+              ]
+            ],
+            "verified": true,
+            "source": "https://new.abb.com/products/1SPE007715F0743",
+            "notes": "Клеммник PE для MISTRAL41W/41F, ширина 115 мм."
+          },
+          {
+            "article": "1SPE007715F9701",
+            "role": "N",
+            "clamps": [
+              [
+                5,
+                4
+              ]
+            ],
+            "verified": true,
+            "source": "https://new.abb.com/products/1SPE007715F9701",
+            "notes": "Безвинтовой клеммник N, 1,5–4 мм²."
+          }
+        ],
+        "verified": false,
+        "notes": "Без клеммников — по аналогии с 41P12X21 и 41A12X21 (проверены на new.abb.com). По инструкции MISTRAL41F (1IM5188) клеммники ставятся горизонтально на раме вверху или внизу, вертикально сбоку или на DIN-рейку."
       },
       "verified": true,
       "source": "https://new.abb.com/products/1SLM004100A1207"
@@ -302,6 +822,43 @@
         "height": 735,
         "depth": 107
       },
+      "terminals": {
+        "included": false,
+        "accessories": [
+          {
+            "article": "1SPE007715F0743",
+            "role": "PE",
+            "clamps": [
+              [
+                7,
+                16
+              ],
+              [
+                9,
+                6
+              ]
+            ],
+            "verified": true,
+            "source": "https://new.abb.com/products/1SPE007715F0743",
+            "notes": "Клеммник PE для MISTRAL41W/41F, ширина 115 мм."
+          },
+          {
+            "article": "1SPE007715F9701",
+            "role": "N",
+            "clamps": [
+              [
+                5,
+                4
+              ]
+            ],
+            "verified": true,
+            "source": "https://new.abb.com/products/1SPE007715F9701",
+            "notes": "Безвинтовой клеммник N, 1,5–4 мм²."
+          }
+        ],
+        "verified": false,
+        "notes": "Без клеммников — по аналогии с 41P12X21 и 41A12X21 (проверены на new.abb.com). По инструкции MISTRAL41F (1IM5188) клеммники ставятся горизонтально на раме вверху или внизу, вертикально сбоку или на DIN-рейку."
+      },
       "verified": true,
       "source": "https://new.abb.com/products/1SLM004100A1108"
     },
@@ -321,6 +878,43 @@
         "width": 320,
         "height": 735,
         "depth": 107
+      },
+      "terminals": {
+        "included": false,
+        "accessories": [
+          {
+            "article": "1SPE007715F0743",
+            "role": "PE",
+            "clamps": [
+              [
+                7,
+                16
+              ],
+              [
+                9,
+                6
+              ]
+            ],
+            "verified": true,
+            "source": "https://new.abb.com/products/1SPE007715F0743",
+            "notes": "Клеммник PE для MISTRAL41W/41F, ширина 115 мм."
+          },
+          {
+            "article": "1SPE007715F9701",
+            "role": "N",
+            "clamps": [
+              [
+                5,
+                4
+              ]
+            ],
+            "verified": true,
+            "source": "https://new.abb.com/products/1SPE007715F9701",
+            "notes": "Безвинтовой клеммник N, 1,5–4 мм²."
+          }
+        ],
+        "verified": false,
+        "notes": "Без клеммников — по аналогии с 41P12X21 и 41A12X21 (проверены на new.abb.com). По инструкции MISTRAL41F (1IM5188) клеммники ставятся горизонтально на раме вверху или внизу, вертикально сбоку или на DIN-рейку."
       },
       "verified": true,
       "source": "https://new.abb.com/products/1SLM004100A1208"

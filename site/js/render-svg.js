@@ -13,6 +13,9 @@ const CUTOUT_GAP = 3; // зазор выреза панели вокруг ус�
 // Номера кеглем 7.5 мм, как подписи на устройствах: мельче на телефоне не читаются.
 const STRIP_MM = 10;
 const STRIP_GAP = 3;
+// Клеммник N/PE на рисунке: высота (толщина) планки и зазор до рядов
+const BAR_MM = 8;
+const BAR_GAP = 4;
 const COVER_INSET = 10; // отступ лицевой панели от края корпуса
 
 const XML_ESCAPES = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&apos;' };
@@ -119,6 +122,105 @@ function moduleGrid(row) {
   return `<g class="module-grid" aria-hidden="true">${parts.join('')}</g>`;
 }
 
+// ---------- клеммники N/PE ----------
+
+const clampCount = (clamps) => (clamps ? clamps.reduce((sum, [count]) => sum + count, 0) : null);
+
+/**
+ * Клеммники N/PE корпуса на рисунке: [{ role, kind, clamps, article?, x, y, w, h, vertical }].
+ * kind: 'included' — в комплекте корпуса; 'accessory' — добавленный аксессуар (board.addTerminals);
+ * 'slot' — в комплекте нет, место под клеммник (рисуется пунктиром).
+ * clamps — число клемм или null, если неизвестно. Без места в данных — сверху;
+ * сбоку, если там не хватает места, — тоже сверху. Несколько клеммников на одном месте — рядом.
+ */
+export function terminalBars(enclosure, board, layout) {
+  const t = enclosure.terminals;
+  if (!t || !layout.rows.length) return [];
+  const blocks = t.blocks ?? [{ role: 'N+PE' }];
+  let items;
+  if (t.included) items = blocks.map((b) => ({ role: b.role, kind: 'included', clamps: clampCount(b.clamps), position: b.position }));
+  else if (board.addTerminals && t.accessories) {
+    items = t.accessories.map((a, i) => ({ role: a.role, kind: 'accessory', clamps: clampCount(a.clamps), article: a.article, position: blocks[i]?.position }));
+  } else items = blocks.map((b) => ({ role: b.role, kind: 'slot', clamps: null, position: b.position }));
+
+  const first = layout.rows[0];
+  const last = layout.rows[layout.rows.length - 1];
+  const sideRoom = first.x0 - CUTOUT_GAP - 8 - COVER_INSET; // место между вырезом (и номером ряда) и краем панели
+  const place = (p) => (p === 'left' || p === 'right' ? (sideRoom >= BAR_MM + 2 ? p : 'top') : p ?? 'top');
+  const groups = new Map();
+  for (const item of items) {
+    const p = place(item.position);
+    if (!groups.has(p)) groups.set(p, []);
+    groups.get(p).push(item);
+  }
+  const out = [];
+  const gap = 3;
+  for (const [p, list] of groups) {
+    if (p === 'top' || p === 'bottom') {
+      const y = p === 'top' ? first.y - CUTOUT_GAP - STRIP_GAP - STRIP_MM - BAR_GAP - BAR_MM : last.y + FACE_MM + CUTOUT_GAP + BAR_GAP;
+      const w = (first.x1 - first.x0 - gap * (list.length - 1)) / list.length;
+      list.forEach((item, i) => {
+        const { position, ...rest } = item;
+        out.push({ ...rest, x: first.x0 + i * (w + gap), y, w, h: BAR_MM, vertical: false });
+      });
+    } else {
+      const top = first.y - CUTOUT_GAP;
+      const h = (last.y + FACE_MM + CUTOUT_GAP - top - gap * (list.length - 1)) / list.length;
+      const x = p === 'left' ? COVER_INSET + (sideRoom - BAR_MM) / 2 : layout.width - COVER_INSET - (sideRoom + BAR_MM) / 2;
+      list.forEach((item, i) => {
+        const { position, ...rest } = item;
+        out.push({ ...rest, x, y: top + i * (h + gap), w: BAR_MM, h, vertical: true });
+      });
+    }
+  }
+  return out;
+}
+
+const ROLE_CLASS = { N: 'n', PE: 'pe', 'N+PE': 'npe' };
+
+/** Один клеммник: планка (N — синяя, PE — зелёная с жёлтым, N+PE — пополам), подпись и клеммы. */
+function terminalBar(bar, t) {
+  const cls = `terminal role-${ROLE_CLASS[bar.role]} kind-${bar.kind}`;
+  const title =
+    bar.kind === 'slot'
+      ? t('terminals.slotTitle', { role: bar.role })
+      : bar.clamps
+        ? t('terminals.title', { role: bar.role, n: bar.clamps })
+        : t('terminals.titleUnknown', { role: bar.role });
+  const parts = [`<g class="${cls}"><title>${escapeXml(bar.article ? `${title} · ${bar.article}` : title)}</title>`];
+  if (bar.kind !== 'slot' && bar.role === 'N+PE') {
+    // Общий блок: половина синяя (N), половина зелёная (PE)
+    const half = bar.vertical ? { w: bar.w, h: bar.h / 2 } : { w: bar.w / 2, h: bar.h };
+    parts.push(`<rect class="bar-n" x="${n(bar.x)}" y="${n(bar.y)}" width="${n(half.w)}" height="${n(half.h)}" rx="1"/>`);
+    const x2 = bar.vertical ? bar.x : bar.x + half.w;
+    const y2 = bar.vertical ? bar.y + half.h : bar.y;
+    parts.push(`<rect class="bar-pe" x="${n(x2)}" y="${n(y2)}" width="${n(half.w)}" height="${n(half.h)}" rx="1"/>`);
+  } else {
+    parts.push(`<rect class="bar" x="${n(bar.x)}" y="${n(bar.y)}" width="${n(bar.w)}" height="${n(bar.h)}" rx="1"/>`);
+  }
+  const label = bar.kind === 'slot' ? `${bar.role} · ${t('terminals.notIncluded')}` : bar.role;
+  const labelLen = bar.vertical ? 0 : label.length * 3.2 + 3;
+  if (!bar.vertical) {
+    parts.push(`<text class="terminal-label" x="${n(bar.x + 2)}" y="${n(bar.y + bar.h / 2 + 1.8)}">${escapeXml(label)}</text>`);
+  }
+  // Клеммы — кружками, если их число известно и они помещаются
+  if (bar.kind !== 'slot' && bar.clamps) {
+    const length = (bar.vertical ? bar.h : bar.w) - labelLen - 2;
+    const step = length / bar.clamps;
+    if (step >= 1.6) {
+      const r = Math.min(2.2, step / 2.6);
+      for (let i = 0; i < bar.clamps; i++) {
+        const along = labelLen + 1 + step * (i + 0.5);
+        const cx = bar.vertical ? bar.x + bar.w / 2 : bar.x + along;
+        const cy = bar.vertical ? bar.y + along : bar.y + bar.h / 2;
+        parts.push(`<circle class="clamp" cx="${n(cx)}" cy="${n(cy)}" r="${n(r)}"/>`);
+      }
+    }
+  }
+  parts.push('</g>');
+  return parts.join('');
+}
+
 // ---------- устройства ----------
 
 function handle(w, cx) {
@@ -167,12 +269,13 @@ function deviceFace(device, w) {
 
 /**
  * SVG щита.
- * options: { t, deviceTitle, deviceLabel, title, selectedUid, activeRow, formatNumber }
+ * options: { t, deviceTitle, deviceLabel, title, selectedUid, activeRow, formatNumber, terminals }
+ * terminals — клеммники N/PE из terminalBars (необязательно).
  * deviceTitle/deviceLabel — функции из format.js (передаются, чтобы модуль не зависел от переводов);
  * formatNumber — число по правилам языка (номер модуля может быть дробным: 7,5).
  */
 export function renderBoardSvg(layout, devices, options) {
-  const { t, deviceTitle, deviceLabel, title, selectedUid = null, activeRow = null, formatNumber = String } = options;
+  const { t, deviceTitle, deviceLabel, title, selectedUid = null, activeRow = null, formatNumber = String, terminals = [] } = options;
   const { width, height } = layout;
   const out = [];
   out.push(
@@ -182,6 +285,8 @@ export function renderBoardSvg(layout, devices, options) {
   out.push(
     `<rect class="enc-cover" x="${COVER_INSET}" y="${COVER_INSET}" width="${n(width - 2 * COVER_INSET)}" height="${n(height - 2 * COVER_INSET)}" rx="4"/>`,
   );
+
+  for (const bar of terminals) out.push(terminalBar(bar, t));
 
   for (const row of layout.rows) {
     const active = row.index === activeRow;

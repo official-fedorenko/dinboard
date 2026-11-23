@@ -29,6 +29,18 @@ export function mainApparatus(list) {
   return { rating: main.specs.ratedCurrentA, threePhase: THREE_PHASE.has(main.specs.poles) };
 }
 
+/**
+ * Сколько клемм role ('N' или 'PE') у щита: в комплекте корпуса или в добавленных клеммниках-аксессуарах.
+ * Общие блоки N+PE не учитываются (как клеммы делятся, неизвестно). null — число неизвестно.
+ */
+export function terminalClamps(enclosure, board, role) {
+  const t = enclosure.terminals;
+  if (!t) return null;
+  const parts = t.included ? (t.blocks ?? []) : board.addTerminals ? (t.accessories ?? []) : [];
+  const known = parts.filter((p) => p.role === role && p.clamps);
+  return known.length ? known.reduce((sum, p) => sum + p.clamps.reduce((s2, [count]) => s2 + count, 0), 0) : null;
+}
+
 /** Все подсказки для щита. Пустой щит — без подсказок. */
 export function checkBoard(board, enclosure, devices) {
   const list = board.rows.flat().map((item) => devices.get(item.deviceId)).filter(Boolean);
@@ -79,6 +91,16 @@ export function checkBoard(board, enclosure, devices) {
   // --- Тип УЗО ---
   const typeAC = residual.filter((d) => d.specs.rcdType === 'AC');
   if (typeAC.length) info('check.rcdTypeAC', { n: typeAC.length });
+
+  // --- Клеммники N/PE ---
+  const terminals = enclosure.terminals;
+  if (terminals && !terminals.included && !board.addTerminals) info('check.noTerminals');
+  // Каждой отходящей линии (автомат, дифавтомат) нужна клемма N и клемма PE
+  const lines = list.filter((d) => d.category === 'mcb' || d.category === 'rcbo').length;
+  for (const role of ['N', 'PE']) {
+    const clamps = terminalClamps(enclosure, board, role);
+    if (lines && clamps !== null && lines > clamps) info('check.fewClamps', { role, lines, clamps });
+  }
 
   // --- Свободные места ---
   const stats = boardStats(board, enclosure, devices);

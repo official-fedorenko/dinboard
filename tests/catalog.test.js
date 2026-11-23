@@ -197,6 +197,31 @@ describe('validateBrandFile', () => {
     hasError(validateBrandFile(brandFile({ enclosures: [enclosure({ model: 5 })] })), 'enclosures[0].model: нужна непустая строка');
   });
 
+  test('клеммники N/PE корпуса: блоки и аксессуары', () => {
+    const ok = (terminals) => assert.deepEqual(validateBrandFile(brandFile({ enclosures: [enclosure({ terminals })] })), []);
+    const bad = (terminals, fragment) => hasError(validateBrandFile(brandFile({ enclosures: [enclosure({ terminals })] })), fragment);
+    ok({
+      included: true,
+      blocks: [
+        { role: 'N', position: 'top', clamps: [[2, 25], [11, 16]] },
+        { role: 'PE', clamps: [[2, 25], [11, 16]] },
+      ],
+      verified: true,
+      source: 'https://example.com/box',
+    });
+    ok({ included: false, blocks: [{ role: 'N+PE', position: 'bottom' }], accessories: [{ article: 'X1', role: 'PE', verified: false }], verified: false });
+    bad({ blocks: [] , verified: false }, 'terminals: included: обязательное поле');
+    bad({ included: true, verified: false, blocks: [] }, 'blocks: нужен непустой список');
+    bad({ included: true, verified: false, blocks: [{ role: 'L' }] }, 'blocks: [0].role: ожидалось одно из');
+    bad({ included: true, verified: false, blocks: [{ role: 'N', position: 'side' }] }, 'blocks: [0].position: ожидалось одно из');
+    bad({ included: true, verified: false, blocks: [{ role: 'N', clamps: [[0, 16]] }] }, 'clamps: нужен список групп');
+    bad({ included: true, verified: false, blocks: [{ role: 'N', clamps: [[2]] }] }, 'clamps: нужен список групп');
+    bad({ included: true, verified: false, blocks: [{ role: 'N', color: 'blue' }] }, 'лишние поля: color');
+    bad({ included: true, verified: true }, 'terminals: source: обязательно при verified: true');
+    bad({ included: false, verified: false, accessories: [{ article: 'X', role: 'N', verified: true }] }, 'accessories: [0].source: обязательно');
+    bad('есть', 'terminals: нужен объект');
+  });
+
   test('версия схемы и не-объекты', () => {
     hasError(validateBrandFile(brandFile({ schemaVersion: 2 })), 'schemaVersion: ожидалось 1');
     assert.deepEqual(validateBrandFile(null, 'x.json'), ['x.json: нужен объект']);
