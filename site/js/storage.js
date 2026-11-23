@@ -374,7 +374,7 @@ export function projectFileName(enclosure, date = new Date()) {
 /**
  * Обёртка над localStorage: любые ошибки (приватный режим, запрет, переполнение)
  * не ломают конструктор.
- * loadText() → текст сохранения или null; save(project) и saveBackup(text) → true/false.
+ * loadText() → текст сохранения или null; save(project), saveBackup(text), clear() и clearBackup() → true/false.
  */
 export function createLocalStore(storage, enclosures, devices) {
   const write = (key, text) => {
@@ -411,6 +411,15 @@ export function createLocalStore(storage, enclosures, devices) {
     },
     save(project) {
       return write(STORAGE_KEY, projectToFile(project, enclosures, devices));
+    },
+    /** «Начать заново»: убрать сохранённый щит (резервная копия остаётся). */
+    clear() {
+      try {
+        storage.removeItem(STORAGE_KEY);
+        return true;
+      } catch {
+        return false;
+      }
     },
     /** Прежняя версия сохранения — перед тем как её перезапишет урезанный или чужой щит. */
     saveBackup(text) {

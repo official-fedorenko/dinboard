@@ -415,6 +415,21 @@ describe('хранилище браузера', () => {
     assert.equal(createLocalStore(throwing, enclosures, devices).clearBackup(), false);
   });
 
+  test('«Начать заново»: сохранение щита удаляется, резервная копия остаётся', () => {
+    const storage = { ...memory(), removeItem(k) { this.data.delete(k); } };
+    storage.data = new Map();
+    storage.getItem = (k) => storage.data.get(k) ?? null;
+    storage.setItem = (k, v) => storage.data.set(k, String(v));
+    const store = createLocalStore(storage, enclosures, devices);
+    store.save(project);
+    store.saveBackup('прежняя версия');
+    assert.equal(store.clear(), true);
+    assert.equal(store.loadText(), null, 'после перезагрузки — пустой старт');
+    assert.equal(store.loadBackup(), 'прежняя версия');
+    const throwing = { getItem() { throw new Error('x'); }, removeItem() { throw new Error('x'); } };
+    assert.equal(createLocalStore(throwing, enclosures, devices).clear(), false);
+  });
+
   test('недоступное хранилище не ломает работу; испорченный текст возвращается как есть', () => {
     const throwing = { getItem() { throw new Error('denied'); }, setItem() { throw new Error('quota'); } };
     const store = createLocalStore(throwing, enclosures, devices);

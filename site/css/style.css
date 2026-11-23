@@ -1303,3 +1303,10 @@ button:focus-visible {
   background: var(--surface);
   color: var(--text);
 }
+
+/* «Очистить щит» и «Начать заново» — рядом */
+.reset-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}

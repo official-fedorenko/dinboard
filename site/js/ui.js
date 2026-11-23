@@ -405,6 +405,40 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
     update({ board, selectedUid: null, selectedInsert: null, activeRow: 0, status: t('board.cleared') });
   }
 
+  /**
+   * «Начать заново»: всё с нуля — корпус не выбран, фильтры по умолчанию, сохранение в браузере убрано.
+   * Прежний щит откладывается в резервную копию: его можно скачать кнопкой «Скачать прежнюю версию».
+   */
+  function startOver() {
+    if (!window.confirm(t('board.confirmReset'))) return;
+    const text = projectToFile(projectFromBoard(state.board), enclosures, devices);
+    store?.saveBackup(text);
+    backupText = text;
+    store?.clear();
+    savedBoard = null;
+    update(
+      {
+        board: null,
+        selectedUid: null,
+        selectedInsert: null,
+        activeRow: 0,
+        brand: 'all',
+        deviceBrand: null,
+        mounting: 'all',
+        modulesPerRow: 'all',
+        rowsCount: 'all',
+        poles: 'all',
+        pickerOpen: true,
+        moreOpen: false,
+        devicesMoreOpen: false,
+        combOpen: false,
+        carriersOpen: false,
+        status: t('board.resetDone'),
+      },
+      'project-open',
+    );
+  }
+
   // ---------- перетаскивание ----------
   // Из списка оборудования в щит — HTML5 Drag and Drop (мышь).
   // Внутри щита — Pointer Events: работает и мышью, и пальцем.
@@ -1558,7 +1592,13 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
         backupText !== null && button('project.deleteBackup', 'project-backup-delete', deleteBackup),
       ),
       hasBoard && h('p', { class: 'muted' }, store ? t('project.autosaveHint') : t('project.autosaveOff')),
-      hasBoard && h('button', { type: 'button', class: 'link-button', dataset: { focus: 'clear' }, onClick: clearBoard }, t('board.clear')),
+      hasBoard &&
+        h(
+          'div',
+          { class: 'reset-buttons' },
+          h('button', { type: 'button', class: 'link-button', dataset: { focus: 'clear' }, onClick: clearBoard }, t('board.clear')),
+          h('button', { type: 'button', class: 'link-button', dataset: { focus: 'reset' }, onClick: startOver }, t('board.reset')),
+        ),
     );
   }
 

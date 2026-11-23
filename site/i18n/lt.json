@@ -49,6 +49,9 @@
   "board.clear": "Išvalyti skydą",
   "board.confirmClear": "Pašalinti visą įrangą iš skydo?",
   "board.cleared": "Skydas išvalytas.",
+  "board.reset": "Pradėti iš naujo",
+  "board.confirmReset": "Pradėti iš naujo? Korpusas, įranga, gnybtai ir įžeminimo sistema bus pašalinti. Ankstesnį skydą galėsite atsisiųsti mygtuku „Atsisiųsti ankstesnę versiją“.",
+  "board.resetDone": "Pradedame iš naujo: pasirinkite korpusą. Ankstesnis skydas išsaugotas — atsisiųskite jį mygtuku „Atsisiųsti ankstesnę versiją“.",
 
   "item.selected": "Pasirinkta: {title}",
   "item.moveLeft": "Perkelti kairėn",

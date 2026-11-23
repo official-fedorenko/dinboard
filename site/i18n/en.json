@@ -49,6 +49,9 @@
   "board.clear": "Clear board",
   "board.confirmClear": "Remove all devices from the board?",
   "board.cleared": "Board cleared.",
+  "board.reset": "Start over",
+  "board.confirmReset": "Start over? The enclosure, devices, terminals and earthing system will be removed. You can download the previous board with “Download previous version”.",
+  "board.resetDone": "Starting over: choose an enclosure. The previous board is kept — download it with “Download previous version”.",
 
   "item.selected": "Selected: {title}",
   "item.moveLeft": "Move left",
