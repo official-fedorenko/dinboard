@@ -24,6 +24,16 @@
       },
       "terminals": {
         "included": false,
+        "blocks": [
+          {
+            "role": "N+PE",
+            "position": "top"
+          },
+          {
+            "role": "N+PE",
+            "position": "bottom"
+          }
+        ],
         "accessories": [
           {
             "article": "1SPE007715F0743",
@@ -39,25 +49,29 @@
               ]
             ],
             "verified": true,
-            "source": "https://new.abb.com/products/1SPE007715F0743",
-            "notes": "Клеммник PE для MISTRAL41W/41F, ширина 115 мм."
+            "source": "https://vypinace.sk.abb.com/sk/product/detail/32215/32226",
+            "notes": "Клеммник PE (41Z64), ставится на держатель 1SPE007715F0752 для ряда 12 мод."
           },
           {
-            "article": "1SPE007715F9701",
+            "article": "1SPE007715F0733",
             "role": "N",
             "clamps": [
               [
-                5,
-                4
+                7,
+                16
+              ],
+              [
+                9,
+                6
               ]
             ],
             "verified": true,
-            "source": "https://new.abb.com/products/1SPE007715F9701",
-            "notes": "Безвинтовой клеммник N, 1,5–4 мм²."
+            "source": "https://vypinace.sk.abb.com/sk/product/detail/32215/32221",
+            "notes": "Клеммник N, ставится на тот же держатель 1SPE007715F0752."
           }
         ],
         "verified": false,
-        "notes": "Без клеммников — по аналогии с 41P12X21 и 41A12X21 (проверены на new.abb.com). По инструкции MISTRAL41F (1IM5188) клеммники ставятся горизонтально на раме вверху или внизу, вертикально сбоку или на DIN-рейку."
+        "notes": "Без клеммников — по аналогии с 41P12X21 и 41A12X21. Клеммники ставятся на держатель 1SPE007715F0752 (16 позиций, вверху или внизу корпуса) — каталог ABB Mistral (SK16), сайт ABB Словакия."
       },
       "verified": true,
       "source": "https://new.abb.com/products/1SPE007717F0410"
@@ -81,6 +95,16 @@
       },
       "terminals": {
         "included": false,
+        "blocks": [
+          {
+            "role": "N+PE",
+            "position": "top"
+          },
+          {
+            "role": "N+PE",
+            "position": "bottom"
+          }
+        ],
         "accessories": [
           {
             "article": "1SPE007715F0743",
@@ -96,25 +120,29 @@
               ]
             ],
             "verified": true,
-            "source": "https://new.abb.com/products/1SPE007715F0743",
-            "notes": "Клеммник PE для MISTRAL41W/41F, ширина 115 мм."
+            "source": "https://vypinace.sk.abb.com/sk/product/detail/32215/32226",
+            "notes": "Клеммник PE (41Z64), ставится на держатель 1SPE007715F0752 для ряда 12 мод."
           },
           {
-            "article": "1SPE007715F9701",
+            "article": "1SPE007715F0733",
             "role": "N",
             "clamps": [
               [
-                5,
-                4
+                7,
+                16
+              ],
+              [
+                9,
+                6
               ]
             ],
             "verified": true,
-            "source": "https://new.abb.com/products/1SPE007715F9701",
-            "notes": "Безвинтовой клеммник N, 1,5–4 мм²."
+            "source": "https://vypinace.sk.abb.com/sk/product/detail/32215/32221",
+            "notes": "Клеммник N, ставится на тот же держатель 1SPE007715F0752."
           }
         ],
         "verified": false,
-        "notes": "Без клеммников — по аналогии с 41P12X21 и 41A12X21 (проверены на new.abb.com). По инструкции MISTRAL41F (1IM5188) клеммники ставятся горизонтально на раме вверху или внизу, вертикально сбоку или на DIN-рейку."
+        "notes": "Без клеммников — по аналогии с 41P12X21 и 41A12X21. Клеммники ставятся на держатель 1SPE007715F0752 (16 позиций, вверху или внизу корпуса) — каталог ABB Mistral (SK16), сайт ABB Словакия."
       },
       "verified": true,
       "source": "https://new.abb.com/products/1SPE007717F0420"
@@ -138,6 +166,16 @@
       },
       "terminals": {
         "included": false,
+        "blocks": [
+          {
+            "role": "N+PE",
+            "position": "top"
+          },
+          {
+            "role": "N+PE",
+            "position": "bottom"
+          }
+        ],
         "accessories": [
           {
             "article": "1SPE007715F0743",
@@ -153,26 +191,30 @@
               ]
             ],
             "verified": true,
-            "source": "https://new.abb.com/products/1SPE007715F0743",
-            "notes": "Клеммник PE для MISTRAL41W/41F, ширина 115 мм."
+            "source": "https://vypinace.sk.abb.com/sk/product/detail/32215/32226",
+            "notes": "Клеммник PE (41Z64), ставится на держатель 1SPE007715F0752 для ряда 12 мод."
           },
           {
-            "article": "1SPE007715F9701",
+            "article": "1SPE007715F0733",
             "role": "N",
             "clamps": [
               [
-                5,
-                4
+                7,
+                16
+              ],
+              [
+                9,
+                6
               ]
             ],
             "verified": true,
-            "source": "https://new.abb.com/products/1SPE007715F9701",
-            "notes": "Безвинтовой клеммник N, 1,5–4 мм²."
+            "source": "https://vypinace.sk.abb.com/sk/product/detail/32215/32221",
+            "notes": "Клеммник N, ставится на тот же держатель 1SPE007715F0752."
           }
         ],
         "verified": true,
         "source": "https://new.abb.com/products/1SPE007717F0510",
-        "notes": "На странице ABB: «Terminal Type: No Terminals». По инструкции MISTRAL41F (1IM5188) клеммники ставятся горизонтально на раме вверху или внизу, вертикально сбоку или на DIN-рейку."
+        "notes": "На странице ABB: «Terminal Type: No Terminals». Клеммники ставятся на держатель 1SPE007715F0752 (16 позиций, вверху или внизу корпуса) — каталог ABB Mistral (SK16), сайт ABB Словакия."
       },
       "verified": true,
       "source": "https://new.abb.com/products/1SPE007717F0510"
@@ -196,6 +238,16 @@
       },
       "terminals": {
         "included": false,
+        "blocks": [
+          {
+            "role": "N+PE",
+            "position": "top"
+          },
+          {
+            "role": "N+PE",
+            "position": "bottom"
+          }
+        ],
         "accessories": [
           {
             "article": "1SPE007715F0743",
@@ -211,25 +263,29 @@
               ]
             ],
             "verified": true,
-            "source": "https://new.abb.com/products/1SPE007715F0743",
-            "notes": "Клеммник PE для MISTRAL41W/41F, ширина 115 мм."
+            "source": "https://vypinace.sk.abb.com/sk/product/detail/32215/32226",
+            "notes": "Клеммник PE (41Z64), ставится на держатель 1SPE007715F0752 для ряда 12 мод."
           },
           {
-            "article": "1SPE007715F9701",
+            "article": "1SPE007715F0733",
             "role": "N",
             "clamps": [
               [
-                5,
-                4
+                7,
+                16
+              ],
+              [
+                9,
+                6
               ]
             ],
             "verified": true,
-            "source": "https://new.abb.com/products/1SPE007715F9701",
-            "notes": "Безвинтовой клеммник N, 1,5–4 мм²."
+            "source": "https://vypinace.sk.abb.com/sk/product/detail/32215/32221",
+            "notes": "Клеммник N, ставится на тот же держатель 1SPE007715F0752."
           }
         ],
         "verified": false,
-        "notes": "Без клеммников — по аналогии с 41P12X21 и 41A12X21 (проверены на new.abb.com). По инструкции MISTRAL41F (1IM5188) клеммники ставятся горизонтально на раме вверху или внизу, вертикально сбоку или на DIN-рейку."
+        "notes": "Без клеммников — по аналогии с 41P12X21 и 41A12X21. Клеммники ставятся на держатель 1SPE007715F0752 (16 позиций, вверху или внизу корпуса) — каталог ABB Mistral (SK16), сайт ABB Словакия."
       },
       "verified": true,
       "source": "https://new.abb.com/products/1SPE007717F0520"
@@ -253,6 +309,16 @@
       },
       "terminals": {
         "included": false,
+        "blocks": [
+          {
+            "role": "N+PE",
+            "position": "top"
+          },
+          {
+            "role": "N+PE",
+            "position": "bottom"
+          }
+        ],
         "accessories": [
           {
             "article": "1SPE007715F0743",
@@ -268,25 +334,29 @@
               ]
             ],
             "verified": true,
-            "source": "https://new.abb.com/products/1SPE007715F0743",
-            "notes": "Клеммник PE для MISTRAL41W/41F, ширина 115 мм."
+            "source": "https://vypinace.sk.abb.com/sk/product/detail/32215/32226",
+            "notes": "Клеммник PE (41Z64), ставится на держатель 1SPE007715F0752 для ряда 12 мод."
           },
           {
-            "article": "1SPE007715F9701",
+            "article": "1SPE007715F0733",
             "role": "N",
             "clamps": [
               [
-                5,
-                4
+                7,
+                16
+              ],
+              [
+                9,
+                6
               ]
             ],
             "verified": true,
-            "source": "https://new.abb.com/products/1SPE007715F9701",
-            "notes": "Безвинтовой клеммник N, 1,5–4 мм²."
+            "source": "https://vypinace.sk.abb.com/sk/product/detail/32215/32221",
+            "notes": "Клеммник N, ставится на тот же держатель 1SPE007715F0752."
           }
         ],
         "verified": false,
-        "notes": "Без клеммников — по аналогии с 41P12X21 и 41A12X21 (проверены на new.abb.com). По инструкции MISTRAL41F (1IM5188) клеммники ставятся горизонтально на раме вверху или внизу, вертикально сбоку или на DIN-рейку."
+        "notes": "Без клеммников — по аналогии с 41P12X21 и 41A12X21. Клеммники ставятся на держатель 1SPE007715F0752 (16 позиций, вверху или внизу корпуса) — каталог ABB Mistral (SK16), сайт ABB Словакия."
       },
       "verified": true,
       "source": "https://new.abb.com/products/1SPE007717F0610"
@@ -310,6 +380,16 @@
       },
       "terminals": {
         "included": false,
+        "blocks": [
+          {
+            "role": "N+PE",
+            "position": "top"
+          },
+          {
+            "role": "N+PE",
+            "position": "bottom"
+          }
+        ],
         "accessories": [
           {
             "article": "1SPE007715F0743",
@@ -325,25 +405,29 @@
               ]
             ],
             "verified": true,
-            "source": "https://new.abb.com/products/1SPE007715F0743",
-            "notes": "Клеммник PE для MISTRAL41W/41F, ширина 115 мм."
+            "source": "https://vypinace.sk.abb.com/sk/product/detail/32215/32226",
+            "notes": "Клеммник PE (41Z64), ставится на держатель 1SPE007715F0752 для ряда 12 мод."
           },
           {
-            "article": "1SPE007715F9701",
+            "article": "1SPE007715F0733",
             "role": "N",
             "clamps": [
               [
-                5,
-                4
+                7,
+                16
+              ],
+              [
+                9,
+                6
               ]
             ],
             "verified": true,
-            "source": "https://new.abb.com/products/1SPE007715F9701",
-            "notes": "Безвинтовой клеммник N, 1,5–4 мм²."
+            "source": "https://vypinace.sk.abb.com/sk/product/detail/32215/32221",
+            "notes": "Клеммник N, ставится на тот же держатель 1SPE007715F0752."
           }
         ],
         "verified": false,
-        "notes": "Без клеммников — по аналогии с 41P12X21 и 41A12X21 (проверены на new.abb.com). По инструкции MISTRAL41F (1IM5188) клеммники ставятся горизонтально на раме вверху или внизу, вертикально сбоку или на DIN-рейку."
+        "notes": "Без клеммников — по аналогии с 41P12X21 и 41A12X21. Клеммники ставятся на держатель 1SPE007715F0752 (16 позиций, вверху или внизу корпуса) — каталог ABB Mistral (SK16), сайт ABB Словакия."
       },
       "verified": true,
       "source": "https://new.abb.com/products/1SPE007717F0620"
@@ -367,6 +451,16 @@
       },
       "terminals": {
         "included": false,
+        "blocks": [
+          {
+            "role": "N+PE",
+            "position": "top"
+          },
+          {
+            "role": "N+PE",
+            "position": "bottom"
+          }
+        ],
         "accessories": [
           {
             "article": "1SPE007715F0743",
@@ -382,25 +476,29 @@
               ]
             ],
             "verified": true,
-            "source": "https://new.abb.com/products/1SPE007715F0743",
-            "notes": "Клеммник PE для MISTRAL41W/41F, ширина 115 мм."
+            "source": "https://vypinace.sk.abb.com/sk/product/detail/32215/32226",
+            "notes": "Клеммник PE (41Z64), ставится на держатель 1SPE007715F0752 для ряда 12 мод."
           },
           {
-            "article": "1SPE007715F9701",
+            "article": "1SPE007715F0733",
             "role": "N",
             "clamps": [
               [
-                5,
-                4
+                7,
+                16
+              ],
+              [
+                9,
+                6
               ]
             ],
             "verified": true,
-            "source": "https://new.abb.com/products/1SPE007715F9701",
-            "notes": "Безвинтовой клеммник N, 1,5–4 мм²."
+            "source": "https://vypinace.sk.abb.com/sk/product/detail/32215/32221",
+            "notes": "Клеммник N, ставится на тот же держатель 1SPE007715F0752."
           }
         ],
         "verified": false,
-        "notes": "Без клеммников — по аналогии с 41P12X21 и 41A12X21 (проверены на new.abb.com). По инструкции MISTRAL41F (1IM5188) клеммники ставятся горизонтально на раме вверху или внизу, вертикально сбоку или на DIN-рейку."
+        "notes": "Без клеммников — по аналогии с 41P12X21 и 41A12X21. Клеммники ставятся на держатель 1SPE007715F0752 (16 позиций, вверху или внизу корпуса) — каталог ABB Mistral (SK16), сайт ABB Словакия."
       },
       "verified": true,
       "source": "https://new.abb.com/products/1SPE007717F0710"
@@ -424,6 +522,16 @@
       },
       "terminals": {
         "included": false,
+        "blocks": [
+          {
+            "role": "N+PE",
+            "position": "top"
+          },
+          {
+            "role": "N+PE",
+            "position": "bottom"
+          }
+        ],
         "accessories": [
           {
             "article": "1SPE007715F0743",
@@ -439,25 +547,29 @@
               ]
             ],
             "verified": true,
-            "source": "https://new.abb.com/products/1SPE007715F0743",
-            "notes": "Клеммник PE для MISTRAL41W/41F, ширина 115 мм."
+            "source": "https://vypinace.sk.abb.com/sk/product/detail/32215/32226",
+            "notes": "Клеммник PE (41Z64), ставится на держатель 1SPE007715F0752 для ряда 12 мод."
           },
           {
-            "article": "1SPE007715F9701",
+            "article": "1SPE007715F0733",
             "role": "N",
             "clamps": [
               [
-                5,
-                4
+                7,
+                16
+              ],
+              [
+                9,
+                6
               ]
             ],
             "verified": true,
-            "source": "https://new.abb.com/products/1SPE007715F9701",
-            "notes": "Безвинтовой клеммник N, 1,5–4 мм²."
+            "source": "https://vypinace.sk.abb.com/sk/product/detail/32215/32221",
+            "notes": "Клеммник N, ставится на тот же держатель 1SPE007715F0752."
           }
         ],
         "verified": false,
-        "notes": "Без клеммников — по аналогии с 41P12X21 и 41A12X21 (проверены на new.abb.com). По инструкции MISTRAL41F (1IM5188) клеммники ставятся горизонтально на раме вверху или внизу, вертикально сбоку или на DIN-рейку."
+        "notes": "Без клеммников — по аналогии с 41P12X21 и 41A12X21. Клеммники ставятся на держатель 1SPE007715F0752 (16 позиций, вверху или внизу корпуса) — каталог ABB Mistral (SK16), сайт ABB Словакия."
       },
       "verified": true,
       "source": "https://new.abb.com/products/1SPE007717F0720"
@@ -481,6 +593,16 @@
       },
       "terminals": {
         "included": false,
+        "blocks": [
+          {
+            "role": "N+PE",
+            "position": "top"
+          },
+          {
+            "role": "N+PE",
+            "position": "bottom"
+          }
+        ],
         "accessories": [
           {
             "article": "1SPE007715F0743",
@@ -496,25 +618,29 @@
               ]
             ],
             "verified": true,
-            "source": "https://new.abb.com/products/1SPE007715F0743",
-            "notes": "Клеммник PE для MISTRAL41W/41F, ширина 115 мм."
+            "source": "https://vypinace.sk.abb.com/sk/product/detail/32215/32226",
+            "notes": "Клеммник PE (41Z64), ставится на держатель 1SPE007715F0752 для ряда 12 мод."
           },
           {
-            "article": "1SPE007715F9701",
+            "article": "1SPE007715F0733",
             "role": "N",
             "clamps": [
               [
-                5,
-                4
+                7,
+                16
+              ],
+              [
+                9,
+                6
               ]
             ],
             "verified": true,
-            "source": "https://new.abb.com/products/1SPE007715F9701",
-            "notes": "Безвинтовой клеммник N, 1,5–4 мм²."
+            "source": "https://vypinace.sk.abb.com/sk/product/detail/32215/32221",
+            "notes": "Клеммник N, ставится на тот же держатель 1SPE007715F0752."
           }
         ],
         "verified": false,
-        "notes": "Без клеммников — по аналогии с 41P12X21 и 41A12X21 (проверены на new.abb.com). По инструкции MISTRAL41F (1IM5188) клеммники ставятся горизонтально на раме вверху или внизу, вертикально сбоку или на DIN-рейку."
+        "notes": "Без клеммников — по аналогии с 41P12X21 и 41A12X21. Клеммники ставятся на держатель 1SPE007715F0752 (16 позиций, вверху или внизу корпуса) — каталог ABB Mistral (SK16), сайт ABB Словакия."
       },
       "verified": true,
       "source": "https://new.abb.com/products/1SLM004100A1103"
@@ -538,6 +664,16 @@
       },
       "terminals": {
         "included": false,
+        "blocks": [
+          {
+            "role": "N+PE",
+            "position": "top"
+          },
+          {
+            "role": "N+PE",
+            "position": "bottom"
+          }
+        ],
         "accessories": [
           {
             "article": "1SPE007715F0743",
@@ -553,25 +689,29 @@
               ]
             ],
             "verified": true,
-            "source": "https://new.abb.com/products/1SPE007715F0743",
-            "notes": "Клеммник PE для MISTRAL41W/41F, ширина 115 мм."
+            "source": "https://vypinace.sk.abb.com/sk/product/detail/32215/32226",
+            "notes": "Клеммник PE (41Z64), ставится на держатель 1SPE007715F0752 для ряда 12 мод."
           },
           {
-            "article": "1SPE007715F9701",
+            "article": "1SPE007715F0733",
             "role": "N",
             "clamps": [
               [
-                5,
-                4
+                7,
+                16
+              ],
+              [
+                9,
+                6
               ]
             ],
             "verified": true,
-            "source": "https://new.abb.com/products/1SPE007715F9701",
-            "notes": "Безвинтовой клеммник N, 1,5–4 мм²."
+            "source": "https://vypinace.sk.abb.com/sk/product/detail/32215/32221",
+            "notes": "Клеммник N, ставится на тот же держатель 1SPE007715F0752."
           }
         ],
         "verified": false,
-        "notes": "Без клеммников — по аналогии с 41P12X21 и 41A12X21 (проверены на new.abb.com). По инструкции MISTRAL41F (1IM5188) клеммники ставятся горизонтально на раме вверху или внизу, вертикально сбоку или на DIN-рейку."
+        "notes": "Без клеммников — по аналогии с 41P12X21 и 41A12X21. Клеммники ставятся на держатель 1SPE007715F0752 (16 позиций, вверху или внизу корпуса) — каталог ABB Mistral (SK16), сайт ABB Словакия."
       },
       "verified": true,
       "source": "https://new.abb.com/products/1SLM004100A1203"
@@ -595,6 +735,16 @@
       },
       "terminals": {
         "included": false,
+        "blocks": [
+          {
+            "role": "N+PE",
+            "position": "top"
+          },
+          {
+            "role": "N+PE",
+            "position": "bottom"
+          }
+        ],
         "accessories": [
           {
             "article": "1SPE007715F0743",
@@ -610,26 +760,30 @@
               ]
             ],
             "verified": true,
-            "source": "https://new.abb.com/products/1SPE007715F0743",
-            "notes": "Клеммник PE для MISTRAL41W/41F, ширина 115 мм."
+            "source": "https://vypinace.sk.abb.com/sk/product/detail/32215/32226",
+            "notes": "Клеммник PE (41Z64), ставится на держатель 1SPE007715F0752 для ряда 12 мод."
           },
           {
-            "article": "1SPE007715F9701",
+            "article": "1SPE007715F0733",
             "role": "N",
             "clamps": [
               [
-                5,
-                4
+                7,
+                16
+              ],
+              [
+                9,
+                6
               ]
             ],
             "verified": true,
-            "source": "https://new.abb.com/products/1SPE007715F9701",
-            "notes": "Безвинтовой клеммник N, 1,5–4 мм²."
+            "source": "https://vypinace.sk.abb.com/sk/product/detail/32215/32221",
+            "notes": "Клеммник N, ставится на тот же держатель 1SPE007715F0752."
           }
         ],
         "verified": true,
         "source": "https://new.abb.com/products/1SLM004100A1105",
-        "notes": "На странице ABB: «Terminal Type: No Terminals». По инструкции MISTRAL41F (1IM5188) клеммники ставятся горизонтально на раме вверху или внизу, вертикально сбоку или на DIN-рейку."
+        "notes": "На странице ABB: «Terminal Type: No Terminals». Клеммники ставятся на держатель 1SPE007715F0752 (16 позиций, вверху или внизу корпуса) — каталог ABB Mistral (SK16), сайт ABB Словакия."
       },
       "verified": true,
       "source": "https://new.abb.com/products/1SLM004100A1105"
@@ -653,6 +807,16 @@
       },
       "terminals": {
         "included": false,
+        "blocks": [
+          {
+            "role": "N+PE",
+            "position": "top"
+          },
+          {
+            "role": "N+PE",
+            "position": "bottom"
+          }
+        ],
         "accessories": [
           {
             "article": "1SPE007715F0743",
@@ -668,25 +832,29 @@
               ]
             ],
             "verified": true,
-            "source": "https://new.abb.com/products/1SPE007715F0743",
-            "notes": "Клеммник PE для MISTRAL41W/41F, ширина 115 мм."
+            "source": "https://vypinace.sk.abb.com/sk/product/detail/32215/32226",
+            "notes": "Клеммник PE (41Z64), ставится на держатель 1SPE007715F0752 для ряда 12 мод."
           },
           {
-            "article": "1SPE007715F9701",
+            "article": "1SPE007715F0733",
             "role": "N",
             "clamps": [
               [
-                5,
-                4
+                7,
+                16
+              ],
+              [
+                9,
+                6
               ]
             ],
             "verified": true,
-            "source": "https://new.abb.com/products/1SPE007715F9701",
-            "notes": "Безвинтовой клеммник N, 1,5–4 мм²."
+            "source": "https://vypinace.sk.abb.com/sk/product/detail/32215/32221",
+            "notes": "Клеммник N, ставится на тот же держатель 1SPE007715F0752."
           }
         ],
         "verified": false,
-        "notes": "Без клеммников — по аналогии с 41P12X21 и 41A12X21 (проверены на new.abb.com). По инструкции MISTRAL41F (1IM5188) клеммники ставятся горизонтально на раме вверху или внизу, вертикально сбоку или на DIN-рейку."
+        "notes": "Без клеммников — по аналогии с 41P12X21 и 41A12X21. Клеммники ставятся на держатель 1SPE007715F0752 (16 позиций, вверху или внизу корпуса) — каталог ABB Mistral (SK16), сайт ABB Словакия."
       },
       "verified": true,
       "source": "https://new.abb.com/products/1SLM004100A1205"
@@ -710,6 +878,16 @@
       },
       "terminals": {
         "included": false,
+        "blocks": [
+          {
+            "role": "N+PE",
+            "position": "top"
+          },
+          {
+            "role": "N+PE",
+            "position": "bottom"
+          }
+        ],
         "accessories": [
           {
             "article": "1SPE007715F0743",
@@ -725,25 +903,29 @@
               ]
             ],
             "verified": true,
-            "source": "https://new.abb.com/products/1SPE007715F0743",
-            "notes": "Клеммник PE для MISTRAL41W/41F, ширина 115 мм."
+            "source": "https://vypinace.sk.abb.com/sk/product/detail/32215/32226",
+            "notes": "Клеммник PE (41Z64), ставится на держатель 1SPE007715F0752 для ряда 12 мод."
           },
           {
-            "article": "1SPE007715F9701",
+            "article": "1SPE007715F0733",
             "role": "N",
             "clamps": [
               [
-                5,
-                4
+                7,
+                16
+              ],
+              [
+                9,
+                6
               ]
             ],
             "verified": true,
-            "source": "https://new.abb.com/products/1SPE007715F9701",
-            "notes": "Безвинтовой клеммник N, 1,5–4 мм²."
+            "source": "https://vypinace.sk.abb.com/sk/product/detail/32215/32221",
+            "notes": "Клеммник N, ставится на тот же держатель 1SPE007715F0752."
           }
         ],
         "verified": false,
-        "notes": "Без клеммников — по аналогии с 41P12X21 и 41A12X21 (проверены на new.abb.com). По инструкции MISTRAL41F (1IM5188) клеммники ставятся горизонтально на раме вверху или внизу, вертикально сбоку или на DIN-рейку."
+        "notes": "Без клеммников — по аналогии с 41P12X21 и 41A12X21. Клеммники ставятся на держатель 1SPE007715F0752 (16 позиций, вверху или внизу корпуса) — каталог ABB Mistral (SK16), сайт ABB Словакия."
       },
       "verified": true,
       "source": "https://new.abb.com/products/1SLM004100A1107"
@@ -767,6 +949,16 @@
       },
       "terminals": {
         "included": false,
+        "blocks": [
+          {
+            "role": "N+PE",
+            "position": "top"
+          },
+          {
+            "role": "N+PE",
+            "position": "bottom"
+          }
+        ],
         "accessories": [
           {
             "article": "1SPE007715F0743",
@@ -782,25 +974,29 @@
               ]
             ],
             "verified": true,
-            "source": "https://new.abb.com/products/1SPE007715F0743",
-            "notes": "Клеммник PE для MISTRAL41W/41F, ширина 115 мм."
+            "source": "https://vypinace.sk.abb.com/sk/product/detail/32215/32226",
+            "notes": "Клеммник PE (41Z64), ставится на держатель 1SPE007715F0752 для ряда 12 мод."
           },
           {
-            "article": "1SPE007715F9701",
+            "article": "1SPE007715F0733",
             "role": "N",
             "clamps": [
               [
-                5,
-                4
+                7,
+                16
+              ],
+              [
+                9,
+                6
               ]
             ],
             "verified": true,
-            "source": "https://new.abb.com/products/1SPE007715F9701",
-            "notes": "Безвинтовой клеммник N, 1,5–4 мм²."
+            "source": "https://vypinace.sk.abb.com/sk/product/detail/32215/32221",
+            "notes": "Клеммник N, ставится на тот же держатель 1SPE007715F0752."
           }
         ],
         "verified": false,
-        "notes": "Без клеммников — по аналогии с 41P12X21 и 41A12X21 (проверены на new.abb.com). По инструкции MISTRAL41F (1IM5188) клеммники ставятся горизонтально на раме вверху или внизу, вертикально сбоку или на DIN-рейку."
+        "notes": "Без клеммников — по аналогии с 41P12X21 и 41A12X21. Клеммники ставятся на держатель 1SPE007715F0752 (16 позиций, вверху или внизу корпуса) — каталог ABB Mistral (SK16), сайт ABB Словакия."
       },
       "verified": true,
       "source": "https://new.abb.com/products/1SLM004100A1207"
@@ -824,6 +1020,16 @@
       },
       "terminals": {
         "included": false,
+        "blocks": [
+          {
+            "role": "N+PE",
+            "position": "top"
+          },
+          {
+            "role": "N+PE",
+            "position": "bottom"
+          }
+        ],
         "accessories": [
           {
             "article": "1SPE007715F0743",
@@ -839,25 +1045,29 @@
               ]
             ],
             "verified": true,
-            "source": "https://new.abb.com/products/1SPE007715F0743",
-            "notes": "Клеммник PE для MISTRAL41W/41F, ширина 115 мм."
+            "source": "https://vypinace.sk.abb.com/sk/product/detail/32215/32226",
+            "notes": "Клеммник PE (41Z64), ставится на держатель 1SPE007715F0752 для ряда 12 мод."
           },
           {
-            "article": "1SPE007715F9701",
+            "article": "1SPE007715F0733",
             "role": "N",
             "clamps": [
               [
-                5,
-                4
+                7,
+                16
+              ],
+              [
+                9,
+                6
               ]
             ],
             "verified": true,
-            "source": "https://new.abb.com/products/1SPE007715F9701",
-            "notes": "Безвинтовой клеммник N, 1,5–4 мм²."
+            "source": "https://vypinace.sk.abb.com/sk/product/detail/32215/32221",
+            "notes": "Клеммник N, ставится на тот же держатель 1SPE007715F0752."
           }
         ],
         "verified": false,
-        "notes": "Без клеммников — по аналогии с 41P12X21 и 41A12X21 (проверены на new.abb.com). По инструкции MISTRAL41F (1IM5188) клеммники ставятся горизонтально на раме вверху или внизу, вертикально сбоку или на DIN-рейку."
+        "notes": "Без клеммников — по аналогии с 41P12X21 и 41A12X21. Клеммники ставятся на держатель 1SPE007715F0752 (16 позиций, вверху или внизу корпуса) — каталог ABB Mistral (SK16), сайт ABB Словакия."
       },
       "verified": true,
       "source": "https://new.abb.com/products/1SLM004100A1108"
@@ -881,6 +1091,16 @@
       },
       "terminals": {
         "included": false,
+        "blocks": [
+          {
+            "role": "N+PE",
+            "position": "top"
+          },
+          {
+            "role": "N+PE",
+            "position": "bottom"
+          }
+        ],
         "accessories": [
           {
             "article": "1SPE007715F0743",
@@ -896,25 +1116,29 @@
               ]
             ],
             "verified": true,
-            "source": "https://new.abb.com/products/1SPE007715F0743",
-            "notes": "Клеммник PE для MISTRAL41W/41F, ширина 115 мм."
+            "source": "https://vypinace.sk.abb.com/sk/product/detail/32215/32226",
+            "notes": "Клеммник PE (41Z64), ставится на держатель 1SPE007715F0752 для ряда 12 мод."
           },
           {
-            "article": "1SPE007715F9701",
+            "article": "1SPE007715F0733",
             "role": "N",
             "clamps": [
               [
-                5,
-                4
+                7,
+                16
+              ],
+              [
+                9,
+                6
               ]
             ],
             "verified": true,
-            "source": "https://new.abb.com/products/1SPE007715F9701",
-            "notes": "Безвинтовой клеммник N, 1,5–4 мм²."
+            "source": "https://vypinace.sk.abb.com/sk/product/detail/32215/32221",
+            "notes": "Клеммник N, ставится на тот же держатель 1SPE007715F0752."
           }
         ],
         "verified": false,
-        "notes": "Без клеммников — по аналогии с 41P12X21 и 41A12X21 (проверены на new.abb.com). По инструкции MISTRAL41F (1IM5188) клеммники ставятся горизонтально на раме вверху или внизу, вертикально сбоку или на DIN-рейку."
+        "notes": "Без клеммников — по аналогии с 41P12X21 и 41A12X21. Клеммники ставятся на держатель 1SPE007715F0752 (16 позиций, вверху или внизу корпуса) — каталог ABB Mistral (SK16), сайт ABB Словакия."
       },
       "verified": true,
       "source": "https://new.abb.com/products/1SLM004100A1208"
@@ -3198,6 +3422,434 @@
       "verified": false,
       "source": "https://new.abb.com/products/2CSR255180R1205",
       "notes": "На new.abb.com сверены артикул, тип, полюса, ток, кривая B, тип A и 30 мА; отключающая способность 6 кА не сверена (сайт ABB перестал отвечать), взята как у DS201 C в каталоге."
+    }
+  ],
+  "combs": [
+    {
+      "id": "abb-2cdl210001r1012",
+      "brand": "abb",
+      "series": "System pro M compact PS",
+      "article": "2CDL210001R1012",
+      "model": "PS1/12",
+      "phases": "1P",
+      "pinType": "pin",
+      "lengthModules": 12,
+      "pins": 12,
+      "cuttable": false,
+      "crossSectionMm2": 10,
+      "ratedCurrentA": 63,
+      "deviceSeries": [
+        "S200",
+        "S200M",
+        "S200P",
+        "S300",
+        "F200"
+      ],
+      "verified": true,
+      "source": "https://vypinace.sk.abb.com/sk/product/detail/17041/15269",
+      "notes": "Сверено на vypinace.sk.abb.com (1 фаза, 12 модулей, 10 мм², 63 A) и в каталоге 2022 (стр. 4/42: «Pre-assembled busbars (not to be cut)»). Серия PS: шаг штырей 17,6 мм (1 штырь на модуль), торцевая заглушка в комплекте. Допустимый ток при питании с конца: 63 A (10 мм²), 80 A (16 мм²), 120 A (30 мм²); при питании из середины 100/130/160 A. SD200 в таблице совместимости PS не назван."
+    },
+    {
+      "id": "abb-2cdl210001r1060",
+      "brand": "abb",
+      "series": "System pro M compact PS",
+      "article": "2CDL210001R1060",
+      "model": "PS1/60",
+      "phases": "1P",
+      "pinType": "pin",
+      "lengthModules": 60,
+      "pins": 60,
+      "cuttable": true,
+      "crossSectionMm2": 10,
+      "ratedCurrentA": 63,
+      "deviceSeries": [
+        "S200",
+        "S200M",
+        "S200P",
+        "S300",
+        "F200"
+      ],
+      "verified": true,
+      "source": "https://vypinace.sk.abb.com/sk/product/detail/17044/15276",
+      "notes": "Сверено на vypinace.sk.abb.com (1 фаза, 60 модулей, 10 мм², 63 A); в каталоге 2022 (стр. 4/42) — раздел «Busbars suitable for cutting». Серия PS: шаг штырей 17,6 мм (1 штырь на модуль), торцевая заглушка в комплекте. Допустимый ток при питании с конца: 63 A (10 мм²), 80 A (16 мм²), 120 A (30 мм²); при питании из середины 100/130/160 A. SD200 в таблице совместимости PS не назван."
+    },
+    {
+      "id": "abb-2cdl210001r1660",
+      "brand": "abb",
+      "series": "System pro M compact PS",
+      "article": "2CDL210001R1660",
+      "model": "PS1/60/16",
+      "phases": "1P",
+      "pinType": "pin",
+      "lengthModules": 60,
+      "pins": 60,
+      "cuttable": true,
+      "crossSectionMm2": 16,
+      "ratedCurrentA": 80,
+      "deviceSeries": [
+        "S200",
+        "S200M",
+        "S200P",
+        "S300",
+        "F200"
+      ],
+      "verified": true,
+      "source": "https://library.e.abb.com/public/3edf5531106644e1866fa8857e07a6e6/A_ELSB_Cat_2022_04_Accessories%20for%20MCBs%20and%20RCDs.pdf",
+      "notes": "Каталог ABB «Accessories for MCBs, RCDs, AFDDs» 2022 (9AKK107991A8329), стр. 4/42 («Busbars suitable for cutting»). Серия PS: шаг штырей 17,6 мм (1 штырь на модуль), торцевая заглушка в комплекте. Допустимый ток при питании с конца: 63 A (10 мм²), 80 A (16 мм²), 120 A (30 мм²); при питании из середины 100/130/160 A. SD200 в таблице совместимости PS не назван."
+    },
+    {
+      "id": "abb-2cdl210001r1003",
+      "brand": "abb",
+      "series": "System pro M compact PS",
+      "article": "2CDL210001R1003",
+      "model": "PS1/3",
+      "phases": "1P",
+      "pinType": "pin",
+      "lengthModules": 3,
+      "pins": 3,
+      "cuttable": false,
+      "crossSectionMm2": 10,
+      "ratedCurrentA": 63,
+      "deviceSeries": [
+        "S200",
+        "S200M",
+        "S200P",
+        "S300",
+        "F200"
+      ],
+      "verified": true,
+      "source": "https://vypinace.sk.abb.com/sk/product/detail/17042/15270",
+      "notes": "Сверено на vypinace.sk.abb.com. По каталогу 2022 (стр. 4/37) PS1/3–PS1/9 применяются для групп «F202 + S201 + S201…». Серия PS: шаг штырей 17,6 мм (1 штырь на модуль), торцевая заглушка в комплекте. Допустимый ток при питании с конца: 63 A (10 мм²), 80 A (16 мм²), 120 A (30 мм²); при питании из середины 100/130/160 A. SD200 в таблице совместимости PS не назван."
+    },
+    {
+      "id": "abb-2cdl210010r1012",
+      "brand": "abb",
+      "series": "System pro M compact PS",
+      "article": "2CDL210010R1012",
+      "model": "PS1/12A",
+      "phases": "1P",
+      "pinType": "pin",
+      "lengthModules": 12,
+      "pins": 12,
+      "cuttable": false,
+      "crossSectionMm2": 10,
+      "ratedCurrentA": 63,
+      "deviceSeries": [
+        "S200",
+        "DS201",
+        "DS202C"
+      ],
+      "verified": true,
+      "source": "https://library.e.abb.com/public/3edf5531106644e1866fa8857e07a6e6/A_ELSB_Cat_2022_04_Accessories%20for%20MCBs%20and%20RCDs.pdf",
+      "notes": "Исполнение «A» — со съёмными штырями. По схеме подбора (стр. 4/38) — для ряда «S201 S201 DS201 DS202C…» (подключается только фаза). Каталог ABB «Accessories for MCBs, RCDs, AFDDs» 2022 (9AKK107991A8329), стр. 4/42. Серия PS: шаг штырей 17,6 мм (1 штырь на модуль), торцевая заглушка в комплекте. Допустимый ток при питании с конца: 63 A (10 мм²), 80 A (16 мм²), 120 A (30 мм²); при питании из середины 100/130/160 A. SD200 в таблице совместимости PS не назван."
+    },
+    {
+      "id": "abb-2cdl210010r1060",
+      "brand": "abb",
+      "series": "System pro M compact PS",
+      "article": "2CDL210010R1060",
+      "model": "PS1/60A",
+      "phases": "1P",
+      "pinType": "pin",
+      "lengthModules": 60,
+      "pins": 60,
+      "cuttable": true,
+      "crossSectionMm2": 10,
+      "ratedCurrentA": 63,
+      "deviceSeries": [
+        "S200",
+        "DS201",
+        "DS202C"
+      ],
+      "verified": true,
+      "source": "https://library.e.abb.com/public/3edf5531106644e1866fa8857e07a6e6/A_ELSB_Cat_2022_04_Accessories%20for%20MCBs%20and%20RCDs.pdf",
+      "notes": "Со съёмными штырями; для смешанного ряда S201 + DS201 (стр. 4/38). Каталог ABB «Accessories for MCBs, RCDs, AFDDs» 2022 (9AKK107991A8329), стр. 4/42. Серия PS: шаг штырей 17,6 мм (1 штырь на модуль), торцевая заглушка в комплекте. Допустимый ток при питании с конца: 63 A (10 мм²), 80 A (16 мм²), 120 A (30 мм²); при питании из середины 100/130/160 A. SD200 в таблице совместимости PS не назван."
+    },
+    {
+      "id": "abb-2cdl210001r1057",
+      "brand": "abb",
+      "series": "System pro M compact PS",
+      "article": "2CDL210001R1057",
+      "model": "PS1/57N",
+      "phases": "1P",
+      "pinType": "pin",
+      "lengthModules": 57,
+      "pins": 57,
+      "cuttable": true,
+      "crossSectionMm2": 10,
+      "ratedCurrentA": 63,
+      "deviceSeries": [
+        "S200",
+        "F200",
+        "DS201"
+      ],
+      "verified": true,
+      "source": "https://library.e.abb.com/public/3edf5531106644e1866fa8857e07a6e6/A_ELSB_Cat_2022_04_Accessories%20for%20MCBs%20and%20RCDs.pdf",
+      "notes": "Однофазная гребёнка для нейтрали (синяя изоляция), заглушка END 1.1. Режется — допущение по общей инструкции резки PS, отдельно в таблице не сказано. Каталог ABB «Accessories for MCBs, RCDs, AFDDs» 2022 (9AKK107991A8329), стр. 4/43. Серия PS: шаг штырей 17,6 мм (1 штырь на модуль), торцевая заглушка в комплекте. Допустимый ток при питании с конца: 63 A (10 мм²), 80 A (16 мм²), 120 A (30 мм²); при питании из середины 100/130/160 A. SD200 в таблице совместимости PS не назван."
+    },
+    {
+      "id": "abb-2cdl220001r1012",
+      "brand": "abb",
+      "series": "System pro M compact PS",
+      "article": "2CDL220001R1012",
+      "model": "PS2/12",
+      "phases": "2P",
+      "pinType": "pin",
+      "lengthModules": 12,
+      "pins": 12,
+      "crossSectionMm2": 10,
+      "ratedCurrentA": 63,
+      "deviceSeries": [
+        "F200",
+        "S200",
+        "DS201",
+        "DS202C"
+      ],
+      "verified": true,
+      "source": "https://library.e.abb.com/public/3edf5531106644e1866fa8857e07a6e6/A_ELSB_Cat_2022_04_Accessories%20for%20MCBs%20and%20RCDs.pdf",
+      "notes": "По схеме подбора (стр. 4/37–4/38): «F202 + F202…» и «DS201 DS201…» (L+N двухполюсных аппаратов). Режется ли 12-штырьковая — в таблице не сказано (cuttable: null). Каталог ABB «Accessories for MCBs, RCDs, AFDDs» 2022 (9AKK107991A8329), стр. 4/43. Серия PS: шаг штырей 17,6 мм (1 штырь на модуль), торцевая заглушка в комплекте. Допустимый ток при питании с конца: 63 A (10 мм²), 80 A (16 мм²), 120 A (30 мм²); при питании из середины 100/130/160 A. SD200 в таблице совместимости PS не назван."
+    },
+    {
+      "id": "abb-2cdl220001r1058",
+      "brand": "abb",
+      "series": "System pro M compact PS",
+      "article": "2CDL220001R1058",
+      "model": "PS2/58",
+      "phases": "2P",
+      "pinType": "pin",
+      "lengthModules": 58,
+      "pins": 58,
+      "cuttable": true,
+      "crossSectionMm2": 10,
+      "ratedCurrentA": 63,
+      "deviceSeries": [
+        "F200",
+        "S200",
+        "DS201",
+        "DS202C"
+      ],
+      "verified": true,
+      "source": "https://library.e.abb.com/public/3edf5531106644e1866fa8857e07a6e6/A_ELSB_Cat_2022_04_Accessories%20for%20MCBs%20and%20RCDs.pdf",
+      "notes": "Длинная 2-фазная (для F202, DS201 L+N). Резка — по общей инструкции PS (изоляция выступает ~10 мм с каждой стороны, нужны заглушки). Каталог ABB «Accessories for MCBs, RCDs, AFDDs» 2022 (9AKK107991A8329), стр. 4/43. Серия PS: шаг штырей 17,6 мм (1 штырь на модуль), торцевая заглушка в комплекте. Допустимый ток при питании с конца: 63 A (10 мм²), 80 A (16 мм²), 120 A (30 мм²); при питании из середины 100/130/160 A. SD200 в таблице совместимости PS не назван."
+    },
+    {
+      "id": "abb-2cdl230001r1012",
+      "brand": "abb",
+      "series": "System pro M compact PS",
+      "article": "2CDL230001R1012",
+      "model": "PS3/12",
+      "phases": "3P",
+      "pinType": "pin",
+      "lengthModules": 12,
+      "pins": 12,
+      "crossSectionMm2": 10,
+      "ratedCurrentA": 63,
+      "deviceSeries": [
+        "S200",
+        "S200M",
+        "S200P",
+        "S300",
+        "F200"
+      ],
+      "verified": true,
+      "source": "https://vypinace.sk.abb.com/sk/product/detail/17040/15268",
+      "notes": "Сверено на vypinace.sk.abb.com (3 фазы, 12 модулей, 10 мм², 63 A, L1-L2-L3-L1…) и в каталоге 2022 (стр. 4/44). В каталоге есть и неразрезная PS3/12 2CDL231001R1012 (стр. 4/42, «not to be cut»). Серия PS: шаг штырей 17,6 мм (1 штырь на модуль), торцевая заглушка в комплекте. Допустимый ток при питании с конца: 63 A (10 мм²), 80 A (16 мм²), 120 A (30 мм²); при питании из середины 100/130/160 A. SD200 в таблице совместимости PS не назван."
+    },
+    {
+      "id": "abb-2cdl230001r1060",
+      "brand": "abb",
+      "series": "System pro M compact PS",
+      "article": "2CDL230001R1060",
+      "model": "PS3/60",
+      "phases": "3P",
+      "pinType": "pin",
+      "lengthModules": 60,
+      "pins": 60,
+      "cuttable": true,
+      "crossSectionMm2": 10,
+      "ratedCurrentA": 63,
+      "deviceSeries": [
+        "S200",
+        "S200M",
+        "S200P",
+        "S300",
+        "F200"
+      ],
+      "verified": true,
+      "source": "https://vypinace.sk.abb.com/sk/product/detail/17043/15271",
+      "notes": "Сверено на vypinace.sk.abb.com (3 фазы, 60 модулей, 10 мм², 63 A) и в каталоге 2022 (стр. 4/44). Ближайшее к «1 м» у ABB — 60 штырей (≈1056 мм). Серия PS: шаг штырей 17,6 мм (1 штырь на модуль), торцевая заглушка в комплекте. Допустимый ток при питании с конца: 63 A (10 мм²), 80 A (16 мм²), 120 A (30 мм²); при питании из середины 100/130/160 A. SD200 в таблице совместимости PS не назван."
+    },
+    {
+      "id": "abb-2cdl230001r1660",
+      "brand": "abb",
+      "series": "System pro M compact PS",
+      "article": "2CDL230001R1660",
+      "model": "PS3/60/16",
+      "phases": "3P",
+      "pinType": "pin",
+      "lengthModules": 60,
+      "pins": 60,
+      "cuttable": true,
+      "crossSectionMm2": 16,
+      "ratedCurrentA": 80,
+      "deviceSeries": [
+        "S200",
+        "S200M",
+        "S200P",
+        "S300",
+        "F200"
+      ],
+      "verified": true,
+      "source": "https://library.e.abb.com/public/3edf5531106644e1866fa8857e07a6e6/A_ELSB_Cat_2022_04_Accessories%20for%20MCBs%20and%20RCDs.pdf",
+      "notes": "Каталог ABB «Accessories for MCBs, RCDs, AFDDs» 2022 (9AKK107991A8329), стр. 4/44. Серия PS: шаг штырей 17,6 мм (1 штырь на модуль), торцевая заглушка в комплекте. Допустимый ток при питании с конца: 63 A (10 мм²), 80 A (16 мм²), 120 A (30 мм²); при питании из середины 100/130/160 A. SD200 в таблице совместимости PS не назван."
+    },
+    {
+      "id": "abb-2cdl231002r1012",
+      "brand": "abb",
+      "series": "System pro M compact PS",
+      "article": "2CDL231002R1012",
+      "model": "PS3/12FI",
+      "phases": "3P",
+      "pinType": "pin",
+      "lengthModules": 12,
+      "pins": 12,
+      "cuttable": false,
+      "crossSectionMm2": 10,
+      "ratedCurrentA": 63,
+      "deviceSeries": [
+        "F200",
+        "S200"
+      ],
+      "verified": true,
+      "source": "https://vypinace.sk.abb.com/sk/product/detail/17040/15267",
+      "notes": "Сверено на vypinace.sk.abb.com: порядок L1, L2, L3, пропуск (N), L1… — для «F204 + S200 + S200…» (N УЗО не подключается). В каталоге 2022 этот код в разделе неразрезных (стр. 4/42); там же есть PS3/12FI 2CDL230002R1012 (стр. 4/45). Серия PS: шаг штырей 17,6 мм (1 штырь на модуль), торцевая заглушка в комплекте. Допустимый ток при питании с конца: 63 A (10 мм²), 80 A (16 мм²), 120 A (30 мм²); при питании из середины 100/130/160 A. SD200 в таблице совместимости PS не назван."
+    },
+    {
+      "id": "abb-2cdl230002r1057",
+      "brand": "abb",
+      "series": "System pro M compact PS",
+      "article": "2CDL230002R1057",
+      "model": "PS3/57FI",
+      "phases": "3P",
+      "pinType": "pin",
+      "lengthModules": 57,
+      "pins": 57,
+      "cuttable": true,
+      "crossSectionMm2": 10,
+      "ratedCurrentA": 63,
+      "deviceSeries": [
+        "F200",
+        "S200"
+      ],
+      "verified": true,
+      "source": "https://library.e.abb.com/public/3edf5531106644e1866fa8857e07a6e6/A_ELSB_Cat_2022_04_Accessories%20for%20MCBs%20and%20RCDs.pdf",
+      "notes": "3 фазы, N УЗО F204 пропущен (L1-L2-L3-пропуск-L2-L3-L1…). Резка — допущение по общей инструкции PS. Каталог ABB «Accessories for MCBs, RCDs, AFDDs» 2022 (9AKK107991A8329), стр. 4/45. Серия PS: шаг штырей 17,6 мм (1 штырь на модуль), торцевая заглушка в комплекте. Допустимый ток при питании с конца: 63 A (10 мм²), 80 A (16 мм²), 120 A (30 мм²); при питании из середины 100/130/160 A. SD200 в таблице совместимости PS не назван."
+    },
+    {
+      "id": "abb-2cdl240101r1012",
+      "brand": "abb",
+      "series": "System pro M compact PS",
+      "article": "2CDL240101R1012",
+      "model": "PS4/12",
+      "phases": "3P+N",
+      "pinType": "pin",
+      "lengthModules": 12,
+      "pins": 12,
+      "crossSectionMm2": 10,
+      "ratedCurrentA": 63,
+      "deviceSeries": [
+        "F200",
+        "S200"
+      ],
+      "verified": true,
+      "source": "https://library.e.abb.com/public/3edf5531106644e1866fa8857e07a6e6/A_ELSB_Cat_2022_04_Accessories%20for%20MCBs%20and%20RCDs.pdf",
+      "notes": "4-фазная (L1-L2-L3-N), для «F204 + F204…» и S204 (стр. 4/37). Заглушка PS-END 1. Каталог ABB «Accessories for MCBs, RCDs, AFDDs» 2022 (9AKK107991A8329), стр. 4/45. Серия PS: шаг штырей 17,6 мм (1 штырь на модуль), торцевая заглушка в комплекте. Допустимый ток при питании с конца: 63 A (10 мм²), 80 A (16 мм²), 120 A (30 мм²); при питании из середины 100/130/160 A. SD200 в таблице совместимости PS не назван."
+    },
+    {
+      "id": "abb-2cdl240101r1060",
+      "brand": "abb",
+      "series": "System pro M compact PS",
+      "article": "2CDL240101R1060",
+      "model": "PS4/60",
+      "phases": "3P+N",
+      "pinType": "pin",
+      "lengthModules": 60,
+      "pins": 60,
+      "cuttable": true,
+      "crossSectionMm2": 10,
+      "ratedCurrentA": 63,
+      "deviceSeries": [
+        "F200",
+        "S200"
+      ],
+      "verified": true,
+      "source": "https://library.e.abb.com/public/3edf5531106644e1866fa8857e07a6e6/A_ELSB_Cat_2022_04_Accessories%20for%20MCBs%20and%20RCDs.pdf",
+      "notes": "L1-L2-L3-N, 60 штырей. Заглушка PS-END 1. Каталог ABB «Accessories for MCBs, RCDs, AFDDs» 2022 (9AKK107991A8329), стр. 4/45. Серия PS: шаг штырей 17,6 мм (1 штырь на модуль), торцевая заглушка в комплекте. Допустимый ток при питании с конца: 63 A (10 мм²), 80 A (16 мм²), 120 A (30 мм²); при питании из середины 100/130/160 A. SD200 в таблице совместимости PS не назван."
+    },
+    {
+      "id": "abb-2cdl240213r1012",
+      "brand": "abb",
+      "series": "System pro M compact PS",
+      "article": "2CDL240213R1012",
+      "model": "PS4/12NA",
+      "phases": "3P+N",
+      "pinType": "pin",
+      "lengthModules": 12,
+      "pins": 12,
+      "crossSectionMm2": 10,
+      "ratedCurrentA": 63,
+      "deviceSeries": [
+        "DS201",
+        "DS202C",
+        "S200"
+      ],
+      "verified": true,
+      "source": "https://library.e.abb.com/public/3edf5531106644e1866fa8857e07a6e6/A_ELSB_Cat_2022_04_Accessories%20for%20MCBs%20and%20RCDs.pdf",
+      "notes": "«Connection of 1+N or RCBOs»: порядок L1-N-L2-N-L3-N — для ряда DS201 / S201 1P+N (стр. 4/38). Каталог ABB «Accessories for MCBs, RCDs, AFDDs» 2022 (9AKK107991A8329), стр. 4/46. Серия PS: шаг штырей 17,6 мм (1 штырь на модуль), торцевая заглушка в комплекте. Допустимый ток при питании с конца: 63 A (10 мм²), 80 A (16 мм²), 120 A (30 мм²); при питании из середины 100/130/160 A. SD200 в таблице совместимости PS не назван."
+    },
+    {
+      "id": "abb-2cdl240101r1058",
+      "brand": "abb",
+      "series": "System pro M compact PS",
+      "article": "2CDL240101R1058",
+      "model": "PS4/58N",
+      "phases": "3P+N",
+      "pinType": "pin",
+      "lengthModules": 58,
+      "pins": 58,
+      "cuttable": true,
+      "crossSectionMm2": 10,
+      "ratedCurrentA": 63,
+      "deviceSeries": [
+        "DS201",
+        "DS202C",
+        "S200"
+      ],
+      "verified": true,
+      "source": "https://library.e.abb.com/public/3edf5531106644e1866fa8857e07a6e6/A_ELSB_Cat_2022_04_Accessories%20for%20MCBs%20and%20RCDs.pdf",
+      "notes": "L1-N-L2-N-L3-N для дифавтоматов DS201 1P+N, 58 штырей. Каталог ABB «Accessories for MCBs, RCDs, AFDDs» 2022 (9AKK107991A8329), стр. 4/46. Серия PS: шаг штырей 17,6 мм (1 штырь на модуль), торцевая заглушка в комплекте. Допустимый ток при питании с конца: 63 A (10 мм²), 80 A (16 мм²), 120 A (30 мм²); при питании из середины 100/130/160 A. SD200 в таблице совместимости PS не назван."
+    },
+    {
+      "id": "abb-2cdl240110r1058",
+      "brand": "abb",
+      "series": "System pro M compact PS",
+      "article": "2CDL240110R1058",
+      "model": "PS4/58NNA",
+      "phases": "3P+N",
+      "pinType": "pin",
+      "lengthModules": 58,
+      "pins": 58,
+      "cuttable": true,
+      "crossSectionMm2": 10,
+      "ratedCurrentA": 63,
+      "deviceSeries": [
+        "F200",
+        "DS201",
+        "S200"
+      ],
+      "verified": true,
+      "source": "https://library.e.abb.com/public/3edf5531106644e1866fa8857e07a6e6/A_ELSB_Cat_2022_04_Accessories%20for%20MCBs%20and%20RCDs.pdf",
+      "notes": "«Connection of 4-pole RCD with 1+N»: F204 + аппараты 1P+N (L1 L2 L3 N L1 N L2 N…, стр. 4/37, 4/40). Каталог ABB «Accessories for MCBs, RCDs, AFDDs» 2022 (9AKK107991A8329), стр. 4/46. Серия PS: шаг штырей 17,6 мм (1 штырь на модуль), торцевая заглушка в комплекте. Допустимый ток при питании с конца: 63 A (10 мм²), 80 A (16 мм²), 120 A (30 мм²); при питании из середины 100/130/160 A. SD200 в таблице совместимости PS не назван."
     }
   ]
 }

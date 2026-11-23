@@ -3320,6 +3320,712 @@
       },
       "verified": true,
       "source": "https://www.eaton.com/gb/en-gb/skuPage.276289.html"
+    },
+    {
+      "id": "eaton-302501",
+      "brand": "eaton",
+      "series": "xComfort KLV",
+      "article": "302501",
+      "model": "KSK-N-TS-KLV",
+      "category": "terminal",
+      "modules": 3.5,
+      "specs": {
+        "role": "N",
+        "clamps": [
+          [
+            1,
+            25
+          ],
+          [
+            7,
+            4
+          ]
+        ],
+        "ratedCurrentA": 63
+      },
+      "verified": false,
+      "source": "https://www.eaton.com/de/de-de/skuPage.302501.html",
+      "notes": "Штекерная клемма KSK «для DIN-рейки», 1×2,5–25 + 7×0,5–4 мм². Ширина в модулях не указана: 3,5 — оценка по габариту 62,5 мм. Ток 63 А — по одиночной KSK-N (178903). PE-исполнения «на рейку» в каталоге KLV нет, только N. Ширина в модулях пересчитана из мм — не проверено."
+    },
+    {
+      "id": "eaton-302503",
+      "brand": "eaton",
+      "series": "xComfort KLV",
+      "article": "302503",
+      "model": "KSK-2N-TS-KLV",
+      "category": "terminal",
+      "modules": 6,
+      "specs": {
+        "role": "N",
+        "clamps": [
+          [
+            2,
+            25
+          ],
+          [
+            14,
+            4
+          ]
+        ],
+        "ratedCurrentA": 63
+      },
+      "verified": false,
+      "source": "https://www.eaton.com/de/de-de/skuPage.302503.html",
+      "notes": "Двойная штекерная клемма N «для DIN-рейки», 2×2,5–25 + 14×0,5–4 мм². Модули — оценка по габариту 108,1 мм (не указаны производителем). Ток 63 А принят по KSK-N. Ширина в модулях пересчитана из мм — не проверено."
+    },
+    {
+      "id": "eaton-289969",
+      "brand": "eaton",
+      "series": "xEnergy Basic BPZ-KB",
+      "article": "289969",
+      "model": "BPZ-KB-4/80",
+      "category": "distribution",
+      "modules": 1.5,
+      "specs": {
+        "poles": "1P",
+        "ratedCurrentA": 80,
+        "clamps": [
+          [
+            1,
+            16
+          ],
+          [
+            4,
+            6
+          ],
+          [
+            2,
+            16
+          ]
+        ]
+      },
+      "verified": false,
+      "source": "https://www.eaton.com/de/de-de/skuPage.289969.html",
+      "notes": "1-полюсный блок 80 А, «монтаж на DIN-рейку или плату». Вход 1×2,5–16, выходы 4×2,5–6 + 2×2,5–16 мм² (каталог CA015004EN, с. 150). Модули — оценка по ширине 27 мм. Можно ставить как блок N или PE (в каталоге отдельных N/PE-исполнений нет). Ширина в модулях пересчитана из мм — не проверено."
+    },
+    {
+      "id": "eaton-289970",
+      "brand": "eaton",
+      "series": "xEnergy Basic BPZ-KB",
+      "article": "289970",
+      "model": "BPZ-KB-6/160",
+      "category": "distribution",
+      "modules": 2,
+      "specs": {
+        "poles": "1P",
+        "ratedCurrentA": 160,
+        "clamps": [
+          [
+            1,
+            70
+          ],
+          [
+            6,
+            16
+          ]
+        ]
+      },
+      "verified": false,
+      "source": "https://www.eaton.com/de/de-de/skuPage.289970.html",
+      "notes": "1-полюсный блок 160 А, вход 10–70 мм², 6 выходов 2,5–16 мм². Модули — оценка по ширине 35 мм. Ширина в модулях пересчитана из мм — не проверено."
+    },
+    {
+      "id": "eaton-289968",
+      "brand": "eaton",
+      "series": "xEnergy Basic BPZ-KB",
+      "article": "289968",
+      "model": "BPZ-KB-8/125",
+      "category": "distribution",
+      "modules": 6,
+      "specs": {
+        "poles": "3P+N",
+        "ratedCurrentA": 125,
+        "clamps": [
+          [
+            1,
+            35
+          ],
+          [
+            5,
+            6
+          ],
+          [
+            2,
+            16
+          ]
+        ]
+      },
+      "verified": false,
+      "source": "https://www.eaton.com/de/de-de/skuPage.289968.html",
+      "notes": "4-полюсный блок L1/L2/L3/N 125 А, вход 1×6–35 мм² на полюс; выходы: 7 на каждую фазу (5×1,5–6 + 2×16), 10 на N (4×1,5–10 + 6×4–16) — по каталогу CA015004EN, с. 150. clamps — для фазы. Модули — оценка по ширине 98 мм; ориентация на рейке не указана. Ширина в модулях пересчитана из мм — не проверено."
+    },
+    {
+      "id": "eaton-102716",
+      "brand": "eaton",
+      "series": "xEnergy Basic BPZ-KB",
+      "article": "102716",
+      "model": "BPZ-KB-11/160",
+      "category": "distribution",
+      "modules": 9,
+      "specs": {
+        "poles": "3P+N",
+        "ratedCurrentA": 160,
+        "clamps": [
+          [
+            1,
+            35
+          ],
+          [
+            3,
+            25
+          ],
+          [
+            8,
+            16
+          ]
+        ]
+      },
+      "verified": false,
+      "source": "https://www.eaton.com/de/de-de/skuPage.102716.html",
+      "notes": "4-полюсный блок 160 А, 1 вход и 11 выходов на полюс (3×6–25 + 8×2,5–16 мм²). Модули — оценка по ширине 160,4 мм. Для бытового щита крупный, приведён как верхняя граница. Ширина в модулях пересчитана из мм — не проверено."
+    }
+  ],
+  "combs": [
+    {
+      "id": "eaton-215637",
+      "brand": "eaton",
+      "series": "xPole EVG",
+      "article": "215637",
+      "model": "EVG-1PHAS/12MODUL",
+      "phases": "1P",
+      "pinType": "fork",
+      "lengthModules": 12,
+      "pins": 12,
+      "cuttable": false,
+      "crossSectionMm2": 10,
+      "ratedCurrentA": 63,
+      "deviceSeries": [
+        "PLS",
+        "CLS",
+        "PKN",
+        "PFIM",
+        "PFHM",
+        "PFNM"
+      ],
+      "verified": true,
+      "source": "https://www.eaton.com/de/de-de/skuPage.215637.html",
+      "notes": "Блок-шина Euro-Vario, вилка, заглушки не нужны, «Do not cut!!» (каталог CA019015EN). Для PL6/PF6/PFL6/IS Eaton прямо эту шину не называет: в каталогах серий сказано «совместимы со стандартными шинами P-серии», двойные клеммы (лифт/открытые) сверху и снизу, толщина шины 0,8–2 мм — подходят и вилка, и штырь. Совместимость с нашими сериями — вывод, не текст производителя."
+    },
+    {
+      "id": "eaton-215641",
+      "brand": "eaton",
+      "series": "xPole EVG",
+      "article": "215641",
+      "model": "EVG-2PHAS/12MODUL",
+      "phases": "2P",
+      "pinType": "fork",
+      "lengthModules": 12,
+      "pins": 12,
+      "cuttable": false,
+      "crossSectionMm2": 10,
+      "ratedCurrentA": 63,
+      "deviceSeries": [
+        "PLS",
+        "CLS",
+        "PKN",
+        "PFIM",
+        "PFHM",
+        "PFNM"
+      ],
+      "verified": true,
+      "source": "https://www.eaton.com/de/de-de/skuPage.215641.html",
+      "notes": "Блок-шина Euro-Vario, вилка, заглушки не нужны, «Do not cut!!» (каталог CA019015EN). Для PL6/PF6/PFL6/IS Eaton прямо эту шину не называет: в каталогах серий сказано «совместимы со стандартными шинами P-серии», двойные клеммы (лифт/открытые) сверху и снизу, толщина шины 0,8–2 мм — подходят и вилка, и штырь. Совместимость с нашими сериями — вывод, не текст производителя."
+    },
+    {
+      "id": "eaton-215639",
+      "brand": "eaton",
+      "series": "xPole EVG",
+      "article": "215639",
+      "model": "EVG-3PHAS/12MODUL",
+      "phases": "3P",
+      "pinType": "fork",
+      "lengthModules": 12,
+      "pins": 12,
+      "cuttable": false,
+      "crossSectionMm2": 10,
+      "ratedCurrentA": 63,
+      "deviceSeries": [
+        "PLS",
+        "CLS",
+        "PKN",
+        "PFIM",
+        "PFHM",
+        "PFNM"
+      ],
+      "verified": true,
+      "source": "https://www.eaton.com/de/de-de/skuPage.215639.html",
+      "notes": "Блок-шина Euro-Vario, вилка, заглушки не нужны, «Do not cut!!» (каталог CA019015EN). Для PL6/PF6/PFL6/IS Eaton прямо эту шину не называет: в каталогах серий сказано «совместимы со стандартными шинами P-серии», двойные клеммы (лифт/открытые) сверху и снизу, толщина шины 0,8–2 мм — подходят и вилка, и штырь. Совместимость с нашими сериями — вывод, не текст производителя."
+    },
+    {
+      "id": "eaton-215643",
+      "brand": "eaton",
+      "series": "xPole EVG",
+      "article": "215643",
+      "model": "EVG-4PHAS/12MODUL",
+      "phases": "3P+N",
+      "pinType": "fork",
+      "lengthModules": 12,
+      "pins": 12,
+      "cuttable": false,
+      "crossSectionMm2": 10,
+      "ratedCurrentA": 63,
+      "deviceSeries": [
+        "PLS",
+        "CLS",
+        "PKN",
+        "PFIM",
+        "PFHM",
+        "PFNM"
+      ],
+      "verified": true,
+      "source": "https://www.eaton.com/de/de-de/skuPage.215643.html",
+      "notes": "Блок-шина Euro-Vario, вилка, заглушки не нужны, «Do not cut!!» (каталог CA019015EN). Для PL6/PF6/PFL6/IS Eaton прямо эту шину не называет: в каталогах серий сказано «совместимы со стандартными шинами P-серии», двойные клеммы (лифт/открытые) сверху и снизу, толщина шины 0,8–2 мм — подходят и вилка, и штырь. Совместимость с нашими сериями — вывод, не текст производителя."
+    },
+    {
+      "id": "eaton-285383",
+      "brand": "eaton",
+      "series": "xPole EVG",
+      "article": "285383",
+      "model": "EVG-3PHAS/20MODUL",
+      "phases": "3P",
+      "pinType": "fork",
+      "lengthModules": 20,
+      "pins": 20,
+      "cuttable": false,
+      "crossSectionMm2": 10,
+      "ratedCurrentA": 63,
+      "deviceSeries": [
+        "PLS",
+        "CLS",
+        "PKN",
+        "PFIM",
+        "PFHM",
+        "PFNM"
+      ],
+      "verified": true,
+      "source": "https://www.eaton.com/de/de-de/skuPage.285383.html",
+      "notes": "Блок-шина Euro-Vario, вилка, заглушки не нужны, «Do not cut!!» (каталог CA019015EN). Для PL6/PF6/PFL6/IS Eaton прямо эту шину не называет: в каталогах серий сказано «совместимы со стандартными шинами P-серии», двойные клеммы (лифт/открытые) сверху и снизу, толщина шины 0,8–2 мм — подходят и вилка, и штырь. Совместимость с нашими сериями — вывод, не текст производителя."
+    },
+    {
+      "id": "eaton-291472",
+      "brand": "eaton",
+      "series": "xPole EVG",
+      "article": "291472",
+      "model": "EVG-16/3PHAS/12MODUL",
+      "phases": "3P",
+      "pinType": "fork",
+      "lengthModules": 12,
+      "pins": 12,
+      "cuttable": false,
+      "crossSectionMm2": 16,
+      "ratedCurrentA": 80,
+      "deviceSeries": [
+        "PLS",
+        "CLS",
+        "PKN",
+        "PFIM",
+        "PFHM",
+        "PFNM"
+      ],
+      "verified": true,
+      "source": "https://www.eaton.com/de/de-de/skuPage.291472.html",
+      "notes": "Блок-шина Euro-Vario, вилка, заглушки не нужны, «Do not cut!!» (каталог CA019015EN). Для PL6/PF6/PFL6/IS Eaton прямо эту шину не называет: в каталогах серий сказано «совместимы со стандартными шинами P-серии», двойные клеммы (лифт/открытые) сверху и снизу, толщина шины 0,8–2 мм — подходят и вилка, и штырь. Совместимость с нашими сериями — вывод, не текст производителя."
+    },
+    {
+      "id": "eaton-ep-501075",
+      "brand": "eaton",
+      "series": "EVGK",
+      "article": "EP-501075",
+      "model": "EVGK-3PHAS/6MODUL",
+      "phases": "3P",
+      "pinType": "fork",
+      "lengthModules": 6,
+      "pins": 6,
+      "cuttable": true,
+      "crossSectionMm2": 10,
+      "ratedCurrentA": 63,
+      "verified": true,
+      "source": "https://www.eaton.com/de/de-de/skuPage.EP-501075.html",
+      "notes": "Вилка, «kürzbare Version inklusive Endkappen» (режется, заглушки в комплекте). Серии аппаратов Eaton не указывает. Для PL6/PF6/PFL6/IS Eaton прямо эту шину не называет: в каталогах серий сказано «совместимы со стандартными шинами P-серии», двойные клеммы (лифт/открытые) сверху и снизу, толщина шины 0,8–2 мм — подходят и вилка, и штырь. Совместимость с нашими сериями — вывод, не текст производителя."
+    },
+    {
+      "id": "eaton-ep-501069",
+      "brand": "eaton",
+      "series": "EVGK",
+      "article": "EP-501069",
+      "model": "EVGK-3PHAS/12MODUL",
+      "phases": "3P",
+      "pinType": "fork",
+      "lengthModules": 12,
+      "pins": 12,
+      "cuttable": true,
+      "crossSectionMm2": 10,
+      "ratedCurrentA": 63,
+      "verified": true,
+      "source": "https://www.eaton.com/de/de-de/skuPage.EP-501069.html",
+      "notes": "Вилка, «kürzbare Version inklusive Endkappen» (режется, заглушки в комплекте). Серии аппаратов Eaton не указывает. Для PL6/PF6/PFL6/IS Eaton прямо эту шину не называет: в каталогах серий сказано «совместимы со стандартными шинами P-серии», двойные клеммы (лифт/открытые) сверху и снизу, толщина шины 0,8–2 мм — подходят и вилка, и штырь. Совместимость с нашими сериями — вывод, не текст производителя."
+    },
+    {
+      "id": "eaton-ep-501073",
+      "brand": "eaton",
+      "series": "GVK",
+      "article": "EP-501073",
+      "model": "GVK-10/3P-3TE",
+      "phases": "3P",
+      "pinType": "fork",
+      "lengthModules": 57,
+      "pins": 57,
+      "cuttable": true,
+      "crossSectionMm2": 10,
+      "ratedCurrentA": 63,
+      "verified": true,
+      "source": "https://www.eaton.com/de/de-de/skuPage.EP-501073.html",
+      "notes": "1 м (1016 мм), шаг 17,8 мм, режется; заглушки EK-…-EVGK-GVK заказываются отдельно. lengthModules — «Anzahl der modularen Abstände» со страницы. Для PL6/PF6/PFL6/IS Eaton прямо эту шину не называет: в каталогах серий сказано «совместимы со стандартными шинами P-серии», двойные клеммы (лифт/открытые) сверху и снизу, толщина шины 0,8–2 мм — подходят и вилка, и штырь. Совместимость с нашими сериями — вывод, не текст производителя."
+    },
+    {
+      "id": "eaton-ep-501071",
+      "brand": "eaton",
+      "series": "GVK",
+      "article": "EP-501071",
+      "model": "GVK-16/3P-3TE",
+      "phases": "3P",
+      "pinType": "fork",
+      "lengthModules": 57,
+      "pins": 57,
+      "cuttable": true,
+      "crossSectionMm2": 16,
+      "ratedCurrentA": 80,
+      "verified": true,
+      "source": "https://www.eaton.com/de/de-de/skuPage.EP-501071.html",
+      "notes": "1 м (1016 мм), шаг 17,8 мм, режется; заглушки EK-…-EVGK-GVK заказываются отдельно. lengthModules — «Anzahl der modularen Abstände» со страницы. Для PL6/PF6/PFL6/IS Eaton прямо эту шину не называет: в каталогах серий сказано «совместимы со стандартными шинами P-серии», двойные клеммы (лифт/открытые) сверху и снизу, толщина шины 0,8–2 мм — подходят и вилка, и штырь. Совместимость с нашими сериями — вывод, не текст производителя."
+    },
+    {
+      "id": "eaton-ep-501074",
+      "brand": "eaton",
+      "series": "GVK",
+      "article": "EP-501074",
+      "model": "GVK-16/3P+N-4TE",
+      "phases": "3P+N",
+      "pinType": "fork",
+      "lengthModules": 56,
+      "pins": 56,
+      "cuttable": true,
+      "crossSectionMm2": 16,
+      "ratedCurrentA": 80,
+      "verified": true,
+      "source": "https://www.eaton.com/de/de-de/skuPage.EP-501074.html",
+      "notes": "1 м (1016 мм), шаг 17,8 мм, режется; заглушки EK-…-EVGK-GVK заказываются отдельно. lengthModules — «Anzahl der modularen Abstände» со страницы. Для PL6/PF6/PFL6/IS Eaton прямо эту шину не называет: в каталогах серий сказано «совместимы со стандартными шинами P-серии», двойные клеммы (лифт/открытые) сверху и снизу, толщина шины 0,8–2 мм — подходят и вилка, и штырь. Совместимость с нашими сериями — вывод, не текст производителя."
+    },
+    {
+      "id": "eaton-ep-501072",
+      "brand": "eaton",
+      "series": "GVK",
+      "article": "EP-501072",
+      "model": "GVK-16/3P+3N-6TE",
+      "phases": "3P+N",
+      "pinType": "fork",
+      "lengthModules": 54,
+      "pins": 54,
+      "cuttable": true,
+      "crossSectionMm2": 16,
+      "ratedCurrentA": 80,
+      "verified": true,
+      "source": "https://www.eaton.com/de/de-de/skuPage.EP-501072.html",
+      "notes": "Раскладка L1+N – L2+N – L3+N: на 27 аппаратов 1P+N шириной 2 модуля (по типу — для дифавтоматов вроде PFL6; phases взято 3P+N, точнее «3×(1P+N)»). 1 м (1016 мм), шаг 17,8 мм, режется; заглушки EK-…-EVGK-GVK заказываются отдельно. lengthModules — «Anzahl der modularen Abstände» со страницы. Для PL6/PF6/PFL6/IS Eaton прямо эту шину не называет: в каталогах серий сказано «совместимы со стандартными шинами P-серии», двойные клеммы (лифт/открытые) сверху и снизу, толщина шины 0,8–2 мм — подходят и вилка, и штырь. Совместимость с нашими сериями — вывод, не текст производителя."
+    },
+    {
+      "id": "eaton-270339",
+      "brand": "eaton",
+      "series": "Z-GV",
+      "article": "270339",
+      "model": "Z-GV-10/1P-1TE",
+      "phases": "1P",
+      "pinType": "fork",
+      "lengthModules": 57,
+      "pins": 57,
+      "cuttable": true,
+      "crossSectionMm2": 10,
+      "ratedCurrentA": 63,
+      "deviceSeries": [
+        "PXL",
+        "PXK",
+        "PXF",
+        "PLS",
+        "PKN",
+        "PFIM",
+        "PFHM",
+        "Z-SLS/D01"
+      ],
+      "verified": true,
+      "source": "https://www.eaton.com/de/de-de/skuPage.270339.html",
+      "notes": "Вилка. 1 м, режется. Список серий Eaton дан в каталоге для Z-GV-16 (короткие /16). Для PL6/PF6/PFL6/IS Eaton прямо эту шину не называет: в каталогах серий сказано «совместимы со стандартными шинами P-серии», двойные клеммы (лифт/открытые) сверху и снизу, толщина шины 0,8–2 мм — подходят и вилка, и штырь. Совместимость с нашими сериями — вывод, не текст производителя."
+    },
+    {
+      "id": "eaton-271061",
+      "brand": "eaton",
+      "series": "Z-GV",
+      "article": "271061",
+      "model": "Z-GV-16/1P-1TE",
+      "phases": "1P",
+      "pinType": "fork",
+      "lengthModules": 56,
+      "pins": 56,
+      "cuttable": true,
+      "crossSectionMm2": 16,
+      "ratedCurrentA": 80,
+      "deviceSeries": [
+        "PXL",
+        "PXK",
+        "PXF",
+        "PLS",
+        "PKN",
+        "PFIM",
+        "PFHM",
+        "Z-SLS/D01"
+      ],
+      "verified": true,
+      "source": "https://www.eaton.com/de/de-de/skuPage.271061.html",
+      "notes": "Вилка. 1 м, режется, без заглушек. Список серий Eaton дан в каталоге для Z-GV-16 (короткие /16). Для PL6/PF6/PFL6/IS Eaton прямо эту шину не называет: в каталогах серий сказано «совместимы со стандартными шинами P-серии», двойные клеммы (лифт/открытые) сверху и снизу, толщина шины 0,8–2 мм — подходят и вилка, и штырь. Совместимость с нашими сериями — вывод, не текст производителя."
+    },
+    {
+      "id": "eaton-271063",
+      "brand": "eaton",
+      "series": "Z-GV",
+      "article": "271063",
+      "model": "Z-GV-16/1P+N-2TE",
+      "phases": "1P+N",
+      "pinType": "fork",
+      "lengthModules": 56,
+      "pins": 56,
+      "cuttable": true,
+      "crossSectionMm2": 16,
+      "ratedCurrentA": 80,
+      "deviceSeries": [
+        "PXL",
+        "PXK",
+        "PXF",
+        "PLS",
+        "PKN",
+        "PFIM",
+        "PFHM",
+        "Z-SLS/D01"
+      ],
+      "verified": true,
+      "source": "https://www.eaton.com/de/de-de/skuPage.271063.html",
+      "notes": "Вилка. 1 м, режется, без заглушек. Длина в модулях и число штырей — расчёт по 1 м и шагу 17,8 мм; на странице «8 devices» — расходится, не сверено. Список серий Eaton дан в каталоге для Z-GV-16 (короткие /16). Для PL6/PF6/PFL6/IS Eaton прямо эту шину не называет: в каталогах серий сказано «совместимы со стандартными шинами P-серии», двойные клеммы (лифт/открытые) сверху и снизу, толщина шины 0,8–2 мм — подходят и вилка, и штырь. Совместимость с нашими сериями — вывод, не текст производителя."
+    },
+    {
+      "id": "eaton-271075",
+      "brand": "eaton",
+      "series": "Z-GV",
+      "article": "271075",
+      "model": "Z-GV-16/1P+N-2TE/16",
+      "phases": "1P+N",
+      "pinType": "fork",
+      "lengthModules": 16,
+      "pins": 16,
+      "cuttable": false,
+      "crossSectionMm2": 16,
+      "ratedCurrentA": 80,
+      "deviceSeries": [
+        "PXL",
+        "PXK",
+        "PXF",
+        "PLS",
+        "PKN",
+        "PFIM",
+        "PFHM",
+        "Z-SLS/D01"
+      ],
+      "verified": true,
+      "source": "https://www.eaton.com/de/de-de/skuPage.271075.html",
+      "notes": "Вилка. Короткая версия на 8 аппаратов 1P+N по 2 модуля, с заглушками. Список серий Eaton дан в каталоге для Z-GV-16 (короткие /16). Для PL6/PF6/PFL6/IS Eaton прямо эту шину не называет: в каталогах серий сказано «совместимы со стандартными шинами P-серии», двойные клеммы (лифт/открытые) сверху и снизу, толщина шины 0,8–2 мм — подходят и вилка, и штырь. Совместимость с нашими сериями — вывод, не текст производителя."
+    },
+    {
+      "id": "eaton-271078",
+      "brand": "eaton",
+      "series": "Z-GV",
+      "article": "271078",
+      "model": "Z-GV-16/3P+N-4TE/16",
+      "phases": "3P+N",
+      "pinType": "fork",
+      "lengthModules": 16,
+      "pins": 16,
+      "cuttable": false,
+      "crossSectionMm2": 16,
+      "ratedCurrentA": 80,
+      "deviceSeries": [
+        "PXL",
+        "PXK",
+        "PXF",
+        "PLS",
+        "PKN",
+        "PFIM",
+        "PFHM",
+        "Z-SLS/D01"
+      ],
+      "verified": true,
+      "source": "https://www.eaton.com/de/de-de/skuPage.271078.html",
+      "notes": "Вилка. Короткая версия на 4 аппарата по 4 модуля, с заглушками. Список серий Eaton дан в каталоге для Z-GV-16 (короткие /16). Для PL6/PF6/PFL6/IS Eaton прямо эту шину не называет: в каталогах серий сказано «совместимы со стандартными шинами P-серии», двойные клеммы (лифт/открытые) сверху и снизу, толщина шины 0,8–2 мм — подходят и вилка, и штырь. Совместимость с нашими сериями — вывод, не текст производителя."
+    },
+    {
+      "id": "eaton-271064",
+      "brand": "eaton",
+      "series": "Z-GV",
+      "article": "271064",
+      "model": "Z-GV-16/3P-3TE",
+      "phases": "3P",
+      "pinType": "fork",
+      "lengthModules": 57,
+      "pins": 57,
+      "cuttable": true,
+      "crossSectionMm2": 16,
+      "ratedCurrentA": 80,
+      "deviceSeries": [
+        "PXL",
+        "PXK",
+        "PXF",
+        "PLS",
+        "PKN",
+        "PFIM",
+        "PFHM",
+        "Z-SLS/D01"
+      ],
+      "verified": true,
+      "source": "https://www.eaton.com/content/dam/eaton/products/electrical-circuit-protection/circuit-breakers/xpole-rccb/eaton-xpole-accessories-ca019015en-en-us.pdf",
+      "notes": "Вилка. 1 м, без заглушек. Страницы артикула на eaton.com нет — сверено по каталогу CA019015EN; длина в модулях — расчёт. Список серий Eaton дан в каталоге для Z-GV-16 (короткие /16). Для PL6/PF6/PFL6/IS Eaton прямо эту шину не называет: в каталогах серий сказано «совместимы со стандартными шинами P-серии», двойные клеммы (лифт/открытые) сверху и снизу, толщина шины 0,8–2 мм — подходят и вилка, и штырь. Совместимость с нашими сериями — вывод, не текст производителя."
+    },
+    {
+      "id": "eaton-271066",
+      "brand": "eaton",
+      "series": "Z-GV",
+      "article": "271066",
+      "model": "Z-GV-16/3P+N-4TE",
+      "phases": "3P+N",
+      "pinType": "fork",
+      "lengthModules": 56,
+      "pins": 56,
+      "cuttable": true,
+      "crossSectionMm2": 16,
+      "ratedCurrentA": 80,
+      "deviceSeries": [
+        "PXL",
+        "PXK",
+        "PXF",
+        "PLS",
+        "PKN",
+        "PFIM",
+        "PFHM",
+        "Z-SLS/D01"
+      ],
+      "verified": true,
+      "source": "https://www.eaton.com/content/dam/eaton/products/electrical-circuit-protection/circuit-breakers/xpole-rccb/eaton-xpole-accessories-ca019015en-en-us.pdf",
+      "notes": "Вилка. 1 м, без заглушек. Страницы артикула нет — по каталогу CA019015EN; длина — расчёт. Список серий Eaton дан в каталоге для Z-GV-16 (короткие /16). Для PL6/PF6/PFL6/IS Eaton прямо эту шину не называет: в каталогах серий сказано «совместимы со стандартными шинами P-серии», двойные клеммы (лифт/открытые) сверху и снизу, толщина шины 0,8–2 мм — подходят и вилка, и штырь. Совместимость с нашими сериями — вывод, не текст производителя."
+    },
+    {
+      "id": "eaton-263142",
+      "brand": "eaton",
+      "series": "Z-GV",
+      "article": "263142",
+      "model": "Z-GV-16/3P+3N-6TE",
+      "phases": "3P+N",
+      "pinType": "fork",
+      "lengthModules": 54,
+      "pins": 54,
+      "cuttable": true,
+      "crossSectionMm2": 16,
+      "ratedCurrentA": 80,
+      "deviceSeries": [
+        "PXL",
+        "PXK",
+        "PXF",
+        "PLS",
+        "PKN",
+        "PFIM",
+        "PFHM",
+        "Z-SLS/D01"
+      ],
+      "verified": true,
+      "source": "https://www.eaton.com/content/dam/eaton/products/electrical-circuit-protection/circuit-breakers/xpole-rccb/eaton-xpole-accessories-ca019015en-en-us.pdf",
+      "notes": "Вилка. L1+N – L2+N – L3+N для аппаратов 1P+N по 2 модуля, 1 м. Страницы артикула нет — по каталогу CA019015EN; длина — расчёт. Список серий Eaton дан в каталоге для Z-GV-16 (короткие /16). Для PL6/PF6/PFL6/IS Eaton прямо эту шину не называет: в каталогах серий сказано «совместимы со стандартными шинами P-серии», двойные клеммы (лифт/открытые) сверху и снизу, толщина шины 0,8–2 мм — подходят и вилка, и штырь. Совместимость с нашими сериями — вывод, не текст производителя."
+    },
+    {
+      "id": "eaton-264912",
+      "brand": "eaton",
+      "series": "Z-SV",
+      "article": "264912",
+      "model": "Z-SV-16/1P-1TE",
+      "phases": "1P",
+      "pinType": "pin",
+      "lengthModules": 56,
+      "pins": 56,
+      "cuttable": true,
+      "crossSectionMm2": 16,
+      "ratedCurrentA": 63,
+      "verified": true,
+      "source": "https://www.eaton.com/content/dam/eaton/products/electrical-circuit-protection/circuit-breakers/xpole-rccb/eaton-xpole-accessories-ca019015en-en-us.pdf",
+      "notes": "Штырь, 1 м без заглушек, шаг 17,8 мм (каталог CA019015EN, с. 148–150; страницу артикула открыть не удалось — сайт перестал отвечать). Режется — вывод из «1 м без заглушек», прямо не написано; длина 56 модулей — расчёт. Для PL6/PF6/PFL6/IS Eaton прямо эту шину не называет: в каталогах серий сказано «совместимы со стандартными шинами P-серии», двойные клеммы (лифт/открытые) сверху и снизу, толщина шины 0,8–2 мм — подходят и вилка, и штырь. Совместимость с нашими сериями — вывод, не текст производителя."
+    },
+    {
+      "id": "eaton-264923",
+      "brand": "eaton",
+      "series": "Z-SV",
+      "article": "264923",
+      "model": "Z-SV-16/2P-2TE",
+      "phases": "2P",
+      "pinType": "pin",
+      "lengthModules": 56,
+      "pins": 56,
+      "cuttable": true,
+      "crossSectionMm2": 16,
+      "ratedCurrentA": 63,
+      "verified": true,
+      "source": "https://www.eaton.com/content/dam/eaton/products/electrical-circuit-protection/circuit-breakers/xpole-rccb/eaton-xpole-accessories-ca019015en-en-us.pdf",
+      "notes": "Штырь, 1 м без заглушек, шаг 17,8 мм (каталог CA019015EN, с. 148–150; страницу артикула открыть не удалось — сайт перестал отвечать). Режется — вывод из «1 м без заглушек», прямо не написано; длина 56 модулей — расчёт. Для PL6/PF6/PFL6/IS Eaton прямо эту шину не называет: в каталогах серий сказано «совместимы со стандартными шинами P-серии», двойные клеммы (лифт/открытые) сверху и снизу, толщина шины 0,8–2 мм — подходят и вилка, и штырь. Совместимость с нашими сериями — вывод, не текст производителя."
+    },
+    {
+      "id": "eaton-264925",
+      "brand": "eaton",
+      "series": "Z-SV",
+      "article": "264925",
+      "model": "Z-SV-16/3P-3TE",
+      "phases": "3P",
+      "pinType": "pin",
+      "lengthModules": 56,
+      "pins": 56,
+      "cuttable": true,
+      "crossSectionMm2": 16,
+      "ratedCurrentA": 63,
+      "verified": true,
+      "source": "https://www.eaton.com/content/dam/eaton/products/electrical-circuit-protection/circuit-breakers/xpole-rccb/eaton-xpole-accessories-ca019015en-en-us.pdf",
+      "notes": "Штырь, 1 м без заглушек, шаг 17,8 мм (каталог CA019015EN, с. 148–150; страницу артикула открыть не удалось — сайт перестал отвечать). Режется — вывод из «1 м без заглушек», прямо не написано; длина 56 модулей — расчёт. Для PL6/PF6/PFL6/IS Eaton прямо эту шину не называет: в каталогах серий сказано «совместимы со стандартными шинами P-серии», двойные клеммы (лифт/открытые) сверху и снизу, толщина шины 0,8–2 мм — подходят и вилка, и штырь. Совместимость с нашими сериями — вывод, не текст производителя."
+    },
+    {
+      "id": "eaton-264928",
+      "brand": "eaton",
+      "series": "Z-SV",
+      "article": "264928",
+      "model": "Z-SV-16/3P+N-4TE",
+      "phases": "3P+N",
+      "pinType": "pin",
+      "lengthModules": 56,
+      "pins": 56,
+      "cuttable": true,
+      "crossSectionMm2": 16,
+      "ratedCurrentA": 63,
+      "verified": true,
+      "source": "https://www.eaton.com/content/dam/eaton/products/electrical-circuit-protection/circuit-breakers/xpole-rccb/eaton-xpole-accessories-ca019015en-en-us.pdf",
+      "notes": "Штырь, 1 м без заглушек, шаг 17,8 мм (каталог CA019015EN, с. 148–150; страницу артикула открыть не удалось — сайт перестал отвечать). Режется — вывод из «1 м без заглушек», прямо не написано; длина 56 модулей — расчёт. Для PL6/PF6/PFL6/IS Eaton прямо эту шину не называет: в каталогах серий сказано «совместимы со стандартными шинами P-серии», двойные клеммы (лифт/открытые) сверху и снизу, толщина шины 0,8–2 мм — подходят и вилка, и штырь. Совместимость с нашими сериями — вывод, не текст производителя."
     }
   ]
 }

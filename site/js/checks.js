@@ -7,6 +7,7 @@
 // с наибольшим номиналом. Фазность ввода — по полюсам вводного аппарата.
 
 import { boardStats } from './board.js';
+import { COMB_DEVICE_CATEGORIES } from './catalog.js';
 
 /** Рекомендуемый запас свободных мест (доля от вместимости щита). */
 export const SPARE_SHARE = 0.2;
@@ -41,8 +42,51 @@ export function terminalClamps(enclosure, board, role) {
   return known.length ? known.reduce((sum, p) => sum + p.clamps.reduce((s2, [count]) => s2 + count, 0), 0) : null;
 }
 
-/** Все подсказки для щита. Пустой щит — без подсказок. */
-export function checkBoard(board, enclosure, devices) {
+// Сколько проводников соединяет гребёнка и сколько полюсов у аппарата
+const COMB_WAYS = { '1P': 1, '1P+N': 2, '2P': 2, '3P': 3, '3P+N': 4 };
+const DEVICE_WAYS = { '1P': 1, '1P+N': 2, '2P': 2, '3P': 3, '3P+N': 4, '4P': 4 };
+const norm = (s) => String(s).toLowerCase().replace(/[^a-z0-9]/g, '');
+
+/**
+ * Подходит ли серия аппарата к сериям, которые производитель указал у гребёнки.
+ * Написание разное (аппарат «iC60N» — гребёнка «iC60», аппарат «AD» — гребёнка «ADA»),
+ * поэтому серии совпадают, если одна начинается с другой (без регистра, пробелов и знаков).
+ */
+export function seriesMatch(deviceSeries, combSeries) {
+  const d = norm(deviceSeries);
+  return Boolean(d) && combSeries.some((c) => {
+    const x = norm(c);
+    return Boolean(x) && (d.startsWith(x) || x.startsWith(d));
+  });
+}
+
+/**
+ * Гребёнки рядов: другой бренд (предупреждение), серия не из списка производителя, аппарат
+ * с большим числом полюсов, чем соединяет гребёнка (предупреждение), гребёнка короче ряда.
+ */
+function checkCombs(board, devices, combsById, warn, info) {
+  (board.combs ?? []).forEach((id, row) => {
+    const comb = id ? combsById.get(id) : null;
+    if (!comb) return;
+    const items = (board.rows[row] ?? []).filter((item) => COMB_DEVICE_CATEGORIES.has(devices.get(item.deviceId)?.category));
+    if (!items.length) return;
+    const list = items.map((item) => devices.get(item.deviceId));
+    const n = row + 1;
+    if (list.some((d) => d.brand !== comb.brand)) warn('check.combBrand', { row: n, article: comb.article });
+    const series = comb.deviceSeries;
+    const foreign = series ? [...new Set(list.map((d) => d.series).filter((s) => !seriesMatch(s, series)))] : [];
+    if (foreign.length) info('check.combSeries', { row: n, article: comb.article, series: foreign.join(', ') });
+    const ways = COMB_WAYS[comb.phases];
+    const wide = [...new Set(list.map((d) => d.specs.poles).filter((p) => DEVICE_WAYS[p] > ways))];
+    if (wide.length) warn('check.combPhases', { row: n, article: comb.article, phases: comb.phases, poles: wide.join(', ') });
+    const start = Math.min(...items.map((i) => i.pos));
+    const end = Math.max(...items.map((i) => i.pos + devices.get(i.deviceId).modules));
+    if (end - start > comb.lengthModules) info('check.combShort', { row: n, article: comb.article, length: comb.lengthModules, need: end - start });
+  });
+}
+
+/** Все подсказки для щита. Пустой щит — без подсказок. combsById — гребёнки каталога (Map по id). */
+export function checkBoard(board, enclosure, devices, combsById = new Map()) {
   const list = board.rows.flat().map((item) => devices.get(item.deviceId)).filter(Boolean);
   if (!list.length) return [];
 
@@ -101,6 +145,9 @@ export function checkBoard(board, enclosure, devices) {
     const clamps = terminalClamps(enclosure, board, role);
     if (lines && clamps !== null && lines > clamps) info('check.fewClamps', { role, lines, clamps });
   }
+
+  // --- Гребёнки ---
+  checkCombs(board, devices, combsById, warn, info);
 
   // --- Свободные места ---
   const stats = boardStats(board, enclosure, devices);

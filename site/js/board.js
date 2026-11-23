@@ -5,6 +5,7 @@
 // earthing — система заземления (TN-S / TN-C-S / TT) или null, если не указана.
 // addTerminals: true — в состав добавлены клеммники N/PE производителя (если в комплекте корпуса их нет);
 // без поля — не добавлены.
+// combs — гребёнки рядов: [id гребёнки или null для каждого ряда]; без поля — гребёнок нет.
 // pos — с какого модуля рейки начинается устройство (0 — левый край), шаг 0.5 модуля.
 // Устройства можно ставить в любое свободное место: между ними остаются пустые места
 // (на схеме — заглушки). Устройства не перекрываются; в массиве ряда они идут слева направо.
@@ -241,6 +242,8 @@ export function moveItem(board, enclosure, devices, uid, toRow, toPos) {
  */
 export function changeEnclosure(board, enclosure, devices) {
   let next = { ...createBoard(enclosure), nextUid: board.nextUid, earthing: board.earthing ?? null, ...(board.addTerminals ? { addTerminals: true } : {}) };
+  // Гребёнки остаются у рядов, которые есть в новом корпусе (подходят ли они — скажут проверки)
+  next = withCombs(next, next.rows.map((_, i) => board.combs?.[i] ?? null));
   const overflow = [];
   const rest = [];
   board.rows.forEach((items, rowIndex) => {
@@ -269,9 +272,22 @@ export function changeEnclosure(board, enclosure, devices) {
 /**
  * Очистка щита: все устройства убираются, а свойства корпуса и проекта остаются —
  * система заземления и добавленные клеммники N/PE (по решению владельца).
+ * Гребёнки снимаются вместе с аппаратами.
  */
 export function clearDevices(board, enclosure) {
   return setAddTerminals(setEarthing(createBoard(enclosure), board.earthing), Boolean(board.addTerminals));
+}
+
+/** Щит с гребёнками рядов list ([id или null]); если ни одной нет — без поля combs. */
+function withCombs(board, list) {
+  const { combs, ...rest } = board;
+  return list.some(Boolean) ? { ...rest, combs: list } : rest;
+}
+
+/** Гребёнка для ряда row: combId — id гребёнки из каталога, null — снять. */
+export function setRowComb(board, row, combId) {
+  checkRow(board, row);
+  return withCombs(board, board.rows.map((_, i) => (i === row ? combId ?? null : board.combs?.[i] ?? null)));
 }
 
 /** Добавить в состав клеммники N/PE производителя (true) или убрать (false). */

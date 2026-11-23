@@ -14,6 +14,7 @@ import {
   setEarthing,
   setAddTerminals,
   clearDevices,
+  setRowComb,
   rowGaps,
   canPlace,
   firstFreePos,
@@ -339,3 +340,24 @@ describe('очистка щита', () => {
     assert.equal(board.rows[0].length, 1, 'исходный щит не меняется');
   });
 });
+
+describe('гребёнки рядов', () => {
+  test('setRowComb: по ряду, снять — null; без гребёнок — без поля', () => {
+    const e = enc(3);
+    const board = createBoard(e);
+    const one = setRowComb(board, 1, 'acme-comb');
+    assert.deepEqual(one.combs, [null, 'acme-comb', null]);
+    assert.equal('combs' in board, false, 'исходный щит не меняется');
+    assert.deepEqual(setRowComb(one, 0, 'acme-x').combs, ['acme-x', 'acme-comb', null]);
+    assert.equal('combs' in setRowComb(one, 1, null), false);
+    rejectsWith(() => setRowComb(board, 5, 'acme-comb'), 'bad-row');
+  });
+
+  test('смена корпуса оставляет гребёнки существующих рядов; очистка снимает', () => {
+    const board = setRowComb(setRowComb(createBoard(enc(3)), 0, 'a'), 2, 'c');
+    assert.deepEqual(changeEnclosure(board, enc(2), devices).board.combs, ['a', null]);
+    assert.equal('combs' in changeEnclosure(setRowComb(createBoard(enc(3)), 2, 'c'), enc(2), devices).board, false);
+    assert.equal('combs' in clearDevices(board, enc(3)), false);
+  });
+});
+

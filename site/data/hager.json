@@ -25,8 +25,20 @@
         "included": true,
         "blocks": [
           {
-            "role": "N+PE",
-            "position": "top",
+            "role": "N",
+            "clamps": [
+              [
+                1,
+                25
+              ],
+              [
+                12,
+                16
+              ]
+            ]
+          },
+          {
+            "role": "PE",
             "clamps": [
               [
                 1,
@@ -39,9 +51,17 @@
             ]
           }
         ],
-        "verified": true,
-        "source": "https://hager.com/pl/katalog/?artnr=VA12B",
-        "notes": "Винтовые клеммы 10/16 мм² (указано наибольшее сечение); как клеммы делятся между N и PE, не указано. Колодка вверху основания — по рисункам инструкции 6LE007709A."
+        "accessories": [
+          {
+            "article": "VZ461",
+            "role": "N+PE",
+            "verified": true,
+            "source": "https://hager.com/pl/katalog/?artnr=VZ461",
+            "notes": "Держатель QuickConnect с безвинтовыми клеммами N и PE — замена комплектной колодки."
+          }
+        ],
+        "verified": false,
+        "notes": "Число клемм на корпус — страницы Hager (1×25 + n×10/16 мм², указано наибольшее сечение). Деление на две одинаковые шины N и PE — вывод по сменным держателям VZ521–VZ524 («PE/N 2×13…2×25»). Вверху или внизу — не указано («oberer oder unterer Anschlussraum»)."
       },
       "verified": true,
       "source": "https://hager.com/pl/katalog/produkt/va12b-volta-rozdzielnica-n-t-1r-12m-ii-kl-ip30",
@@ -67,8 +87,20 @@
         "included": true,
         "blocks": [
           {
-            "role": "N+PE",
-            "position": "top",
+            "role": "N",
+            "clamps": [
+              [
+                1,
+                25
+              ],
+              [
+                16,
+                16
+              ]
+            ]
+          },
+          {
+            "role": "PE",
             "clamps": [
               [
                 1,
@@ -81,9 +113,17 @@
             ]
           }
         ],
-        "verified": true,
-        "source": "https://hager.com/pl/katalog/?artnr=VA24B",
-        "notes": "Винтовые клеммы 10/16 мм² (указано наибольшее сечение); как клеммы делятся между N и PE, не указано. Колодка вверху основания — по рисункам инструкции 6LE007709A."
+        "accessories": [
+          {
+            "article": "VZ462",
+            "role": "N+PE",
+            "verified": true,
+            "source": "https://hager.com/pl/katalog/?artnr=VZ462",
+            "notes": "Держатель QuickConnect с безвинтовыми клеммами N и PE — замена комплектной колодки."
+          }
+        ],
+        "verified": false,
+        "notes": "Число клемм на корпус — страницы Hager (1×25 + n×10/16 мм², указано наибольшее сечение). Деление на две одинаковые шины N и PE — вывод по сменным держателям VZ521–VZ524 («PE/N 2×13…2×25»). Вверху или внизу — не указано («oberer oder unterer Anschlussraum»)."
       },
       "verified": true,
       "source": "https://hager.com/pl/katalog/?artnr=VA24B",
@@ -109,12 +149,43 @@
         "included": true,
         "blocks": [
           {
+            "role": "N",
+            "clamps": [
+              [
+                1,
+                25
+              ],
+              [
+                21,
+                16
+              ]
+            ]
+          },
+          {
+            "role": "PE",
+            "clamps": [
+              [
+                1,
+                25
+              ],
+              [
+                21,
+                16
+              ]
+            ]
+          }
+        ],
+        "accessories": [
+          {
+            "article": "VZ463",
             "role": "N+PE",
-            "position": "top"
+            "verified": true,
+            "source": "https://hager.com/pl/katalog/?artnr=VZ463",
+            "notes": "Держатель QuickConnect с безвинтовыми клеммами N и PE — замена комплектной колодки."
           }
         ],
         "verified": false,
-        "notes": "Клеммы в комплекте — как у VA12B/VA24B/VU24NE; число клемм для этого корпуса не проверено."
+        "notes": "Число клемм на корпус — страницы Hager (1×25 + n×10/16 мм², указано наибольшее сечение). Деление на две одинаковые шины N и PE — вывод по сменным держателям VZ521–VZ524 («PE/N 2×13…2×25»). Вверху или внизу — не указано («oberer oder unterer Anschlussraum»)."
       },
       "verified": true,
       "source": "https://hager.com/pl/katalog/?artnr=VA36B",
@@ -140,12 +211,43 @@
         "included": true,
         "blocks": [
           {
+            "role": "N",
+            "clamps": [
+              [
+                1,
+                25
+              ],
+              [
+                24,
+                16
+              ]
+            ]
+          },
+          {
+            "role": "PE",
+            "clamps": [
+              [
+                1,
+                25
+              ],
+              [
+                24,
+                16
+              ]
+            ]
+          }
+        ],
+        "accessories": [
+          {
+            "article": "VZ464",
             "role": "N+PE",
-            "position": "top"
+            "verified": true,
+            "source": "https://hager.com/pl/katalog/?artnr=VZ464",
+            "notes": "Держатель QuickConnect с безвинтовыми клеммами N и PE — замена комплектной колодки."
           }
         ],
         "verified": false,
-        "notes": "Клеммы в комплекте — как у VA12B/VA24B/VU24NE; число клемм для этого корпуса не проверено."
+        "notes": "Число клемм на корпус — страницы Hager (1×25 + n×10/16 мм², указано наибольшее сечение). Деление на две одинаковые шины N и PE — вывод по сменным держателям VZ521–VZ524 («PE/N 2×13…2×25»). Вверху или внизу — не указано («oberer oder unterer Anschlussraum»)."
       },
       "verified": true,
       "source": "https://hager.com/pl/katalog/?artnr=VA48B",
@@ -171,12 +273,34 @@
         "included": true,
         "blocks": [
           {
-            "role": "N+PE",
-            "position": "top"
+            "role": "N",
+            "clamps": [
+              [
+                1,
+                25
+              ],
+              [
+                12,
+                16
+              ]
+            ]
+          },
+          {
+            "role": "PE",
+            "clamps": [
+              [
+                1,
+                25
+              ],
+              [
+                12,
+                16
+              ]
+            ]
           }
         ],
         "verified": false,
-        "notes": "Клеммы в комплекте — как у VA12B/VA24B/VU24NE; число клемм для этого корпуса не проверено."
+        "notes": "Число клемм на корпус — страницы Hager (1×25 + n×10/16 мм², указано наибольшее сечение). Деление на две одинаковые шины N и PE — вывод по сменным держателям VZ521–VZ524 («PE/N 2×13…2×25»). Вверху или внизу — не указано («oberer oder unterer Anschlussraum»)."
       },
       "verified": true,
       "source": "https://hager.com/pl/katalog/?artnr=VU12NE",
@@ -202,8 +326,20 @@
         "included": true,
         "blocks": [
           {
-            "role": "N+PE",
-            "position": "top",
+            "role": "N",
+            "clamps": [
+              [
+                1,
+                25
+              ],
+              [
+                16,
+                16
+              ]
+            ]
+          },
+          {
+            "role": "PE",
             "clamps": [
               [
                 1,
@@ -216,9 +352,8 @@
             ]
           }
         ],
-        "verified": true,
-        "source": "https://hager.com/pl/katalog/?artnr=VU24NE",
-        "notes": "Винтовые клеммы 10/16 мм² (указано наибольшее сечение); как клеммы делятся между N и PE, не указано. Колодка вверху основания — по рисункам инструкции 6LE007709A."
+        "verified": false,
+        "notes": "Число клемм на корпус — страницы Hager (1×25 + n×10/16 мм², указано наибольшее сечение). Деление на две одинаковые шины N и PE — вывод по сменным держателям VZ521–VZ524 («PE/N 2×13…2×25»). Вверху или внизу — не указано («oberer oder unterer Anschlussraum»)."
       },
       "verified": true,
       "source": "https://hager.com/pl/katalog/?artnr=VU24NE",
@@ -244,12 +379,34 @@
         "included": true,
         "blocks": [
           {
-            "role": "N+PE",
-            "position": "top"
+            "role": "N",
+            "clamps": [
+              [
+                1,
+                25
+              ],
+              [
+                21,
+                16
+              ]
+            ]
+          },
+          {
+            "role": "PE",
+            "clamps": [
+              [
+                1,
+                25
+              ],
+              [
+                21,
+                16
+              ]
+            ]
           }
         ],
         "verified": false,
-        "notes": "Клеммы в комплекте — как у VA12B/VA24B/VU24NE; число клемм для этого корпуса не проверено."
+        "notes": "Число клемм на корпус — страницы Hager (1×25 + n×10/16 мм², указано наибольшее сечение). Деление на две одинаковые шины N и PE — вывод по сменным держателям VZ521–VZ524 («PE/N 2×13…2×25»). Вверху или внизу — не указано («oberer oder unterer Anschlussraum»)."
       },
       "verified": true,
       "source": "https://hager.com/pl/katalog/?artnr=VU36NE",
@@ -275,12 +432,34 @@
         "included": true,
         "blocks": [
           {
-            "role": "N+PE",
-            "position": "top"
+            "role": "N",
+            "clamps": [
+              [
+                1,
+                25
+              ],
+              [
+                24,
+                16
+              ]
+            ]
+          },
+          {
+            "role": "PE",
+            "clamps": [
+              [
+                1,
+                25
+              ],
+              [
+                24,
+                16
+              ]
+            ]
           }
         ],
         "verified": false,
-        "notes": "Клеммы в комплекте — как у VA12B/VA24B/VU24NE; число клемм для этого корпуса не проверено."
+        "notes": "Число клемм на корпус — страницы Hager (1×25 + n×10/16 мм², указано наибольшее сечение). Деление на две одинаковые шины N и PE — вывод по сменным держателям VZ521–VZ524 («PE/N 2×13…2×25»). Вверху или внизу — не указано («oberer oder unterer Anschlussraum»)."
       },
       "verified": true,
       "source": "https://hager.com/pl/katalog/?artnr=VU48NE",
@@ -2917,6 +3096,753 @@
         "ratedCurrentA": 125
       },
       "source": "https://hager.com/pl/katalog/?artnr=SBN499"
+    },
+    {
+      "id": "hager-kj02d",
+      "brand": "hager",
+      "series": "KJ",
+      "article": "KJ02D",
+      "category": "distribution",
+      "modules": 1.5,
+      "specs": {
+        "poles": "1P",
+        "ratedCurrentA": 125,
+        "clamps": [
+          [
+            1,
+            35
+          ],
+          [
+            7,
+            16
+          ]
+        ]
+      },
+      "verified": true,
+      "source": "https://hager.com/pl/katalog/produkt/kj02d-blok-rozdzielczy-1p-in-125-a",
+      "notes": "Страница: 1P, 125 А, 36 кА, «1x35+1x16/6x16», 1,5 модуля (3 полумодуля), 45 мм. Клеммы: вход 1x35 + 1x16, выход 6x16 (записано как 1×35 и 7×16)."
+    },
+    {
+      "id": "hager-kj125a",
+      "brand": "hager",
+      "series": "KJ",
+      "article": "KJ125A",
+      "category": "distribution",
+      "modules": 7,
+      "specs": {
+        "poles": "1P+N",
+        "ratedCurrentA": 125
+      },
+      "verified": false,
+      "source": "https://hager.com/pl/katalog/produkt/kj125a-blok-rozdzielczy-2-biegunowy-in-125-a",
+      "notes": "Страница: 2 полюса, 125 А, ширина 126 мм. Число модулей на странице не указано: 7 — расчёт по ширине (как у KJ125C 126 мм = 7 мод.). Клеммы не указаны."
+    },
+    {
+      "id": "hager-kj100a",
+      "brand": "hager",
+      "series": "KJ",
+      "article": "KJ100A",
+      "category": "distribution",
+      "modules": 4,
+      "specs": {
+        "poles": "3P+N",
+        "ratedCurrentA": 100
+      },
+      "verified": true,
+      "source": "https://hager.com/pl/katalog/produkt/kj100a-blok-rozdzielczy-4-polowy-in-100-a",
+      "notes": "Страница: 4 полюса, 100 А, 4 модуля, 71 мм. Число и сечения клемм на странице не указаны."
+    },
+    {
+      "id": "hager-kj125c",
+      "brand": "hager",
+      "series": "KJ",
+      "article": "KJ125C",
+      "category": "distribution",
+      "modules": 7,
+      "specs": {
+        "poles": "3P+N",
+        "ratedCurrentA": 125
+      },
+      "verified": true,
+      "source": "https://hager.com/pl/katalog/produkt/kj125c-blok-rozdzielczy-4-polowy-125a",
+      "notes": "Страница: 4 полюса, 125 А, 7 модулей, 126 мм. Клеммы не указаны. Есть также KJ125B (10 мод., 170 мм) и KJ160A (160 А, 9 мод.)."
+    },
+    {
+      "id": "hager-kj02e",
+      "brand": "hager",
+      "series": "KJ",
+      "article": "KJ02E",
+      "category": "distribution",
+      "modules": 5.5,
+      "specs": {
+        "poles": "3P+N",
+        "ratedCurrentA": 125
+      },
+      "verified": true,
+      "source": "https://hager.com/pl/katalog/produkt/kj02e-blok-rozdzielczy-4x125-a-monoblok",
+      "notes": "Страница: монолитный блок 4P, 125 А, 20 кА, 11 полумодулей (= 5,5 мод.), 98 мм. Клеммы не указаны."
+    },
+    {
+      "id": "hager-kn00a",
+      "brand": "hager",
+      "series": "QuickConnect",
+      "article": "KN00A",
+      "category": "terminal",
+      "modules": 6,
+      "specs": {
+        "role": "N+PE"
+      },
+      "verified": false,
+      "source": "https://hager.com/pl/katalog/produkt/kn00a-qc-nosnik-samozaciskow-uniwersalny",
+      "notes": "Носитель (без клемм) для блоков KN.. QuickConnect: «montaż TS35/płyta/płaskownik», 105×35×42 мм. На DIN ставится горизонтально или вертикально (текст на hager.com/at, KN14N). 6 модулей = 105 мм / 17,5 — расчёт, у Hager не указано."
+    },
+    {
+      "id": "hager-kn06n",
+      "brand": "hager",
+      "series": "QuickConnect",
+      "article": "KN06N",
+      "category": "terminal",
+      "modules": 2,
+      "specs": {
+        "role": "N",
+        "clamps": [
+          [
+            1,
+            16
+          ],
+          [
+            5,
+            4
+          ]
+        ],
+        "ratedCurrentA": 63
+      },
+      "verified": false,
+      "source": "https://hager.com/pl/katalog/produkt/kn06n-qc-blok-samozacisk-n-nieb-1x16-5x4mm2",
+      "notes": "Страница: синий, 1x16+5x4 мм², ширина 30 мм, 63 А, пружинные. На DIN-рейку — только через носитель KN00A; в корпусах volta/vector — на носитель VZ711. Модули (2) — расчёт из 30 мм, у Hager не указано."
+    },
+    {
+      "id": "hager-kn06e",
+      "brand": "hager",
+      "series": "QuickConnect",
+      "article": "KN06E",
+      "category": "terminal",
+      "modules": 2,
+      "specs": {
+        "role": "PE",
+        "clamps": [
+          [
+            1,
+            16
+          ],
+          [
+            5,
+            4
+          ]
+        ],
+        "ratedCurrentA": 63
+      },
+      "verified": false,
+      "source": "https://hager.com/pl/katalog/produkt/kn06e-qc-blok-samozacisk-pe-ziel-1x16-5x4mm2",
+      "notes": "Страница: зелёный, 1x16+5x4 мм², 30 мм, 63 А. На DIN через KN00A. Модули — расчёт."
+    },
+    {
+      "id": "hager-kn14n",
+      "brand": "hager",
+      "series": "QuickConnect",
+      "article": "KN14N",
+      "category": "terminal",
+      "modules": 3.5,
+      "specs": {
+        "role": "N",
+        "clamps": [
+          [
+            3,
+            16
+          ],
+          [
+            11,
+            4
+          ]
+        ],
+        "ratedCurrentA": 63
+      },
+      "verified": false,
+      "source": "https://hager.com/pl/katalog/produkt/kn14n-qc-blok-samozacisk-n-nieb-3x16-11x4mm2",
+      "notes": "Страница: синий, 3x16+11x4 мм², 60 мм, 63 А, провод 1,5–25 мм². На DIN через KN00A. Модули (3,5) — расчёт из 60 мм."
+    },
+    {
+      "id": "hager-kn14e",
+      "brand": "hager",
+      "series": "QuickConnect",
+      "article": "KN14E",
+      "category": "terminal",
+      "modules": 3.5,
+      "specs": {
+        "role": "PE",
+        "clamps": [
+          [
+            3,
+            16
+          ],
+          [
+            11,
+            4
+          ]
+        ],
+        "ratedCurrentA": 63
+      },
+      "verified": false,
+      "source": "https://hager.com/pl/katalog/produkt/kn14e-qc-blok-samozacisk-pe-ziel-3x16-11x4mm2",
+      "notes": "Страница (название в каталоге): зелёный, 3x16+11x4 мм², 60 мм. На DIN через KN00A. Модули — расчёт."
+    },
+    {
+      "id": "hager-kn26n",
+      "brand": "hager",
+      "series": "QuickConnect",
+      "article": "KN26N",
+      "category": "terminal",
+      "modules": 6,
+      "specs": {
+        "role": "N",
+        "clamps": [
+          [
+            6,
+            16
+          ],
+          [
+            20,
+            4
+          ]
+        ],
+        "ratedCurrentA": 63
+      },
+      "verified": false,
+      "source": "https://hager.com/pl/katalog/produkt/kn26n-qc-blok-samozacisk-n-nieb-6x16-20x4mm2",
+      "notes": "Название в каталоге: синий, 6x16+20x4 мм², 105 мм. На DIN через KN00A. Модули — расчёт. Промежуточные размеры: KN10 (2x16+8x4, 45 мм), KN18 (4x16+14x4, 75 мм), KN22 (5x16+17x4, 90 мм)."
+    },
+    {
+      "id": "hager-kn26e",
+      "brand": "hager",
+      "series": "QuickConnect",
+      "article": "KN26E",
+      "category": "terminal",
+      "modules": 6,
+      "specs": {
+        "role": "PE",
+        "clamps": [
+          [
+            6,
+            16
+          ],
+          [
+            20,
+            4
+          ]
+        ],
+        "ratedCurrentA": 63
+      },
+      "verified": false,
+      "source": "https://hager.com/pl/katalog/produkt/kn26e-qc-blok-samozacisk-pe-ziel-6x16-20x4mm2",
+      "notes": "Страница: зелёный, 6x16+20x4 мм², 105 мм, 63 А, провод 1,5–25 мм². На DIN через KN00A. Модули — расчёт."
+    },
+    {
+      "id": "hager-km07n",
+      "brand": "hager",
+      "series": "KM",
+      "article": "KM07N",
+      "category": "terminal",
+      "modules": 3,
+      "specs": {
+        "role": "N",
+        "clamps": [
+          [
+            3,
+            16
+          ],
+          [
+            4,
+            10
+          ]
+        ],
+        "ratedCurrentA": 60
+      },
+      "verified": false,
+      "source": "https://hager.com/pl/katalog/produkt/km07n-listwa-przylacz-n-3x16-4x10-mm2",
+      "notes": "Латунная шина на цоколе (винтовая), 3x16+4x10 мм², 60 А, длина 49 мм. На DIN крепится клипсой KZ060 (cz: «klips k uchycení soklu na DIN lištu»). Модули (3) — расчёт из длины 49 мм в предположении, что шина вдоль рейки."
+    },
+    {
+      "id": "hager-km07e",
+      "brand": "hager",
+      "series": "KM",
+      "article": "KM07E",
+      "category": "terminal",
+      "modules": 3,
+      "specs": {
+        "role": "PE",
+        "clamps": [
+          [
+            3,
+            16
+          ],
+          [
+            4,
+            10
+          ]
+        ],
+        "ratedCurrentA": 60
+      },
+      "verified": false,
+      "source": "https://hager.com/pl/katalog/produkt/km07e-listwa-przylacz-pe-3x16-4x10-mm2",
+      "notes": "PE-версия KM07N (3x16+4x10). Крепление на DIN — клипса KZ060. Модули — расчёт, как у KM07N."
+    },
+    {
+      "id": "hager-km13n",
+      "brand": "hager",
+      "series": "KM",
+      "article": "KM13N",
+      "category": "terminal",
+      "modules": 5,
+      "specs": {
+        "role": "N",
+        "clamps": [
+          [
+            6,
+            16
+          ],
+          [
+            7,
+            10
+          ]
+        ],
+        "ratedCurrentA": 60
+      },
+      "verified": false,
+      "source": "https://hager.com/pl/katalog/produkt/km13n-listwa-przylacz-n-6x16-7x10-mm2",
+      "notes": "Страница: 6x16+7x10 мм², 60 А, длина 85 мм; в «Uzupełnij swój system» — KZ060. Модули (5) — расчёт из 85 мм. Есть KM25N/E (1x25+11x16+13x10, 169 мм ≈ 10 мод.)."
+    },
+    {
+      "id": "hager-km13e",
+      "brand": "hager",
+      "series": "KM",
+      "article": "KM13E",
+      "category": "terminal",
+      "modules": 5,
+      "specs": {
+        "role": "PE",
+        "clamps": [
+          [
+            6,
+            16
+          ],
+          [
+            7,
+            10
+          ]
+        ],
+        "ratedCurrentA": 60
+      },
+      "verified": false,
+      "source": "https://hager.com/pl/katalog/produkt/km13e-listwa-przylacz-pe-6x16-7x10-mm2",
+      "notes": "PE-версия KM13N. Крепление KZ060. Модули — расчёт."
+    },
+    {
+      "id": "hager-vz456n",
+      "brand": "hager",
+      "series": "Volta",
+      "article": "VZ456N",
+      "category": "terminal",
+      "modules": 3,
+      "specs": {
+        "role": "N",
+        "ratedCurrentA": 63
+      },
+      "verified": false,
+      "source": "https://hager.com/pl/katalog/produkt/vz456n-volta-zaciski-do-obw-rozn-ts35-10szt",
+      "notes": "Страница: N-клеммы QuickConnect на рейку TS35 для нулей групп за УЗО, 63 А, 30×50×22 мм, набор 10 шт. Число клемм и ширина в модулях не указаны: 3 мод. — грубый расчёт из 50 мм (ориентация неизвестна). Перемычки KN99N."
+    }
+  ],
+  "combs": [
+    {
+      "id": "hager-kdn163a",
+      "brand": "hager",
+      "series": "KDN",
+      "article": "KDN163A",
+      "phases": "1P",
+      "pinType": "fork",
+      "lengthModules": 12,
+      "pins": 12,
+      "cuttable": true,
+      "crossSectionMm2": 10,
+      "ratedCurrentA": 63,
+      "deviceSeries": [
+        "NBN",
+        "NCN",
+        "NDN"
+      ],
+      "verified": true,
+      "source": "https://hager.com/pl/katalog/produkt/kdn163a-szyna-grzeb-widelkowa-1p-10-mm2-12m",
+      "notes": "Страница: 1P, 10 мм², 12 модулей, 210 мм, 63 А, «z widełkami». Совместимость — по списку связанных аппаратов на странице (NBN/NCN/NDN 1P; список усечён, MBN/MCN 1P там не показаны). Число вилок (1 на модуль) и возможность резки на странице не указаны — вывод; торцевые заглушки KZN021."
+    },
+    {
+      "id": "hager-kdn163b",
+      "brand": "hager",
+      "series": "KDN",
+      "article": "KDN163B",
+      "phases": "1P",
+      "pinType": "fork",
+      "lengthModules": 57,
+      "pins": 57,
+      "cuttable": true,
+      "crossSectionMm2": 10,
+      "ratedCurrentA": 63,
+      "deviceSeries": [
+        "NBN",
+        "NCN",
+        "NDN"
+      ],
+      "verified": true,
+      "source": "https://hager.com/pl/katalog/produkt/kdn163b-szyna-grzeb-widelkowa-1p-10-mm2-57m",
+      "notes": "Страница: 1P, 10 мм², 57 модулей, 1000 мм, 63 А. Отрезок 1 м — режется по месту (вывод: на странице явно не сказано). Число вилок = модулям — вывод."
+    },
+    {
+      "id": "hager-kdn263a",
+      "brand": "hager",
+      "series": "KDN",
+      "article": "KDN263A",
+      "phases": "2P",
+      "pinType": "fork",
+      "lengthModules": 12,
+      "pins": 12,
+      "cuttable": true,
+      "crossSectionMm2": 10,
+      "ratedCurrentA": 63,
+      "deviceSeries": [
+        "NBN",
+        "NCN",
+        "NDN",
+        "MCN",
+        "ADA"
+      ],
+      "verified": true,
+      "source": "https://hager.com/pl/katalog/produkt/kdn263a-szyna-grzeb-widelkowa-2p-10-mm2-12m",
+      "notes": "Страница: 2P, 10 мм², 12 модулей, 210 мм, 63 А. В связанных — NBN/NCN/NDN 2P и RCBO ADA9xxD (1P+N, 2 мод.); на странице MCN216 KDN263A указана как аксессуар. Вилок 12 (по одной на модуль, фазы чередуются) — вывод. Заглушки KZN023."
+    },
+    {
+      "id": "hager-kdn263b",
+      "brand": "hager",
+      "series": "KDN",
+      "article": "KDN263B",
+      "phases": "2P",
+      "pinType": "fork",
+      "lengthModules": 56,
+      "pins": 56,
+      "cuttable": true,
+      "crossSectionMm2": 10,
+      "ratedCurrentA": 63,
+      "deviceSeries": [
+        "NBN",
+        "NCN",
+        "NDN",
+        "MCN",
+        "ADA"
+      ],
+      "verified": true,
+      "source": "https://hager.com/pl/katalog/produkt/kdn263b-szyna-grzeb-widelkowa-2p-10-mm2-56m",
+      "notes": "Страница: 2P, 10 мм², 56 модулей, 1000 мм, 63 А. Резка и число вилок — вывод."
+    },
+    {
+      "id": "hager-kdn363a",
+      "brand": "hager",
+      "series": "KDN",
+      "article": "KDN363A",
+      "phases": "3P",
+      "pinType": "fork",
+      "lengthModules": 12,
+      "pins": 12,
+      "cuttable": true,
+      "crossSectionMm2": 10,
+      "ratedCurrentA": 63,
+      "deviceSeries": [
+        "MBN",
+        "MCN",
+        "NBN",
+        "NCN",
+        "NDN"
+      ],
+      "verified": true,
+      "source": "https://hager.com/pl/katalog/produkt/kdn363a-szyna-grzeb-widelkowa-3p-10-mm2-12m",
+      "notes": "Страница: 3P, 10 мм², 12 модулей, 210 мм, 63 А, вилки. В связанных прямо есть MBN363E, MCN350E и NBN/NCN/NDN 3P. Число вилок и резка — вывод. Заглушки KZN023."
+    },
+    {
+      "id": "hager-kdn363b",
+      "brand": "hager",
+      "series": "KDN",
+      "article": "KDN363B",
+      "phases": "3P",
+      "pinType": "fork",
+      "lengthModules": 57,
+      "pins": 57,
+      "cuttable": true,
+      "crossSectionMm2": 10,
+      "ratedCurrentA": 63,
+      "deviceSeries": [
+        "MBN",
+        "MCN",
+        "NBN",
+        "NCN",
+        "NDN"
+      ],
+      "verified": true,
+      "source": "https://hager.com/pl/katalog/produkt/kdn363b-szyna-grzeb-widelkowa-3p-10-mm2-57m",
+      "notes": "Страница: 3P, 10 мм², 57 модулей, 1000 мм, 63 А. В связанных MBN350E, MCN350E, NBN/NCN/NDN. Резка и число вилок — вывод."
+    },
+    {
+      "id": "hager-kdn380a",
+      "brand": "hager",
+      "series": "KDN",
+      "article": "KDN380A",
+      "phases": "3P",
+      "pinType": "fork",
+      "lengthModules": 12,
+      "pins": 12,
+      "cuttable": true,
+      "crossSectionMm2": 16,
+      "ratedCurrentA": 80,
+      "deviceSeries": [
+        "NBN",
+        "NCN",
+        "NDN"
+      ],
+      "verified": true,
+      "source": "https://hager.com/pl/katalog/produkt/kdn380a-szyna-grzeb-widelkowa-3p-16-mm2-12m",
+      "notes": "Страница: 3P, 16 мм², 12 модулей, 210 мм, 80 А. В связанных NBN/NCN/NDN 3P и SPD SPE340. Резка и число вилок — вывод."
+    },
+    {
+      "id": "hager-kdn463a",
+      "brand": "hager",
+      "series": "KDN",
+      "article": "KDN463A",
+      "phases": "3P+N",
+      "pinType": "fork",
+      "lengthModules": 12,
+      "pins": 12,
+      "cuttable": true,
+      "crossSectionMm2": 10,
+      "ratedCurrentA": 63,
+      "deviceSeries": [
+        "NBN",
+        "NCN",
+        "NDN",
+        "MCN",
+        "ADM"
+      ],
+      "verified": true,
+      "source": "https://hager.com/pl/katalog/produkt/kdn463a-szyna-grzeb-widelkowa-4p-10-mm2-12m",
+      "notes": "Страница: 4P, 10 мм², 12 модулей, 210 мм, 63 А. В связанных NBN/NCN/NDN 4P и SPD SPE440; KDN463A указана аксессуаром на странице RCBO ADM425C. 4P трактуем как 3P+N (на странице «4P»). Резка и число вилок — вывод. Заглушки KZN024."
+    },
+    {
+      "id": "hager-kdn463b",
+      "brand": "hager",
+      "series": "KDN",
+      "article": "KDN463B",
+      "phases": "3P+N",
+      "pinType": "fork",
+      "lengthModules": 57,
+      "pins": 57,
+      "cuttable": true,
+      "crossSectionMm2": 10,
+      "ratedCurrentA": 63,
+      "deviceSeries": [
+        "NBN",
+        "NCN",
+        "NDN",
+        "ADM"
+      ],
+      "verified": true,
+      "source": "https://hager.com/pl/katalog/produkt/kdn463b-szyna-grzeb-widelkowa-4p-10-mm2-56m",
+      "notes": "Страница: 4P, 10 мм², 1000 мм, 63 А; в заголовке 56M, в характеристиках «Liczba modułów 57» — взято 57. Резка и число вилок — вывод."
+    },
+    {
+      "id": "hager-kdn363f",
+      "brand": "hager",
+      "series": "KDN",
+      "article": "KDN363F",
+      "phases": "3P+N",
+      "pinType": "fork",
+      "lengthModules": 12,
+      "pins": 12,
+      "cuttable": true,
+      "crossSectionMm2": 10,
+      "ratedCurrentA": 63,
+      "deviceSeries": [
+        "CDA",
+        "CDC",
+        "CFA",
+        "CEA",
+        "CDB",
+        "SPA",
+        "SPE",
+        "NBN",
+        "NCN",
+        "NDN",
+        "MBN",
+        "MCN"
+      ],
+      "verified": true,
+      "source": "https://hager.com/pl/katalog/produkt/kdn363f-szyna-grzeb-widelkowa-4p-3p-10-mm2-12m",
+      "notes": "Название: «4P 10mm2 do RCCB 4P+MCB / SPD 4P+MCB 3P 12M»: участок 4P под УЗО/ОПН 4P, дальше 3P под автоматы. В характеристиках «3P», 63 А, 210 мм. Конкретные серии RCCB/MCB на странице не перечислены (в связанных только SPD SPA/SPE) — серии подставлены по назначению из названия. Точная раскладка вилок не указана."
+    },
+    {
+      "id": "hager-kdn480a",
+      "brand": "hager",
+      "series": "KDN",
+      "article": "KDN480A",
+      "phases": "3P+N",
+      "pinType": "fork",
+      "lengthModules": 12,
+      "pins": 12,
+      "cuttable": true,
+      "crossSectionMm2": 16,
+      "ratedCurrentA": 80,
+      "deviceSeries": [
+        "SPE",
+        "SPA",
+        "CDA",
+        "CDC",
+        "CFA",
+        "CEA",
+        "CDB",
+        "NBN",
+        "NCN",
+        "NDN",
+        "ADM"
+      ],
+      "verified": true,
+      "source": "https://hager.com/pl/katalog/produkt/kdn480a-szyna-grzeb-widelkowa-4p-spd-16-mm2-12m",
+      "notes": "Название: «4P 16mm2 do SPD 4P + RCCB 4P/MCB 4P 12M», 80 А, 210 мм. В связанных SPE440/SPA801 и NBN/NCN/NDN 4P; KDN480A есть в аксессуарах ADM425C. RCCB-серии — по названию, на странице не перечислены. Резка и число вилок — вывод."
+    },
+    {
+      "id": "hager-kdn451d",
+      "brand": "hager",
+      "series": "KDN",
+      "article": "KDN451D",
+      "phases": "1P+N",
+      "pinType": "fork",
+      "lengthModules": 12,
+      "pins": 12,
+      "cuttable": true,
+      "crossSectionMm2": 16,
+      "ratedCurrentA": 80,
+      "deviceSeries": [
+        "ADA",
+        "ADC",
+        "ACA",
+        "ADS",
+        "ADH",
+        "ARC",
+        "CDA",
+        "CDC",
+        "CFA",
+        "CDF"
+      ],
+      "verified": true,
+      "source": "https://hager.com/pl/katalog/produkt/kdn451d-szyna-grzeb-wid-3x-1p-n-16mm2-12m",
+      "notes": "Страница: «3x 1P+N», 16 мм², 12 модулей, 215 мм, 80 А; в названии «2P … do RCCB 2P». Это шина L1N/L2N/L3N под 2-модульные аппараты 1P+N. В связанных — RCBO ADA/ARC/ACA/ADS/ADH (ADA916D/960D/966D указывают её как аксессуар). RCCB 2P (CDA/CDC/CFA/CDF) — по названию, на странице не перечислены. Резка и число вилок — вывод. Заглушки KZN024."
+    },
+    {
+      "id": "hager-kdn450d",
+      "brand": "hager",
+      "series": "KDN",
+      "article": "KDN450D",
+      "phases": "3P+N",
+      "pinType": "fork",
+      "lengthModules": 12,
+      "pins": 12,
+      "cuttable": false,
+      "crossSectionMm2": 16,
+      "ratedCurrentA": 80,
+      "deviceSeries": [
+        "CDA",
+        "CDC",
+        "CFA",
+        "CDB",
+        "ADA",
+        "ADC"
+      ],
+      "verified": true,
+      "source": "https://hager.com/pl/katalog/produkt/kdn450d-szyna-l1l2l3n-l1n-l2n-l3n-l1n-16mm2-80a",
+      "notes": "Название: «L1L2L3N L1N L2N L3N L1N 16mm2 80A 12M» — участок 4P (УЗО 4P) и далее группы 1P+N; 210 мм, 80 А. Аппараты на странице не перечислены — серии по раскладке (вывод). cuttable=false: раскладка фиксированная, резать можно только с конца (вывод)."
+    },
+    {
+      "id": "hager-kdn463bz",
+      "brand": "hager",
+      "series": "KDN",
+      "article": "KDN463BZ",
+      "phases": "1P+N",
+      "pinType": "fork",
+      "lengthModules": 24,
+      "pins": 16,
+      "cuttable": false,
+      "crossSectionMm2": 10,
+      "ratedCurrentA": 63,
+      "deviceSeries": [
+        "ARF"
+      ],
+      "verified": false,
+      "source": "https://hager.com/pl/katalog/produkt/kdn463bz-szyna-l1n-l2n-l3n-przerwa-1m-63a-24m",
+      "notes": "Страница: «L1N L2N L3N przerwa 1M», 24 модуля, 425 мм, 63 А, 10 мм² в характеристиках (12 мм² в названии). Под RCBO с детектором дуги ARF9xxD (3-модульные?). Число вилок 16 — грубый вывод (пары L+N с пропуском 1 модуля), на странице не указано — поэтому verified=false."
+    },
+    {
+      "id": "hager-kb263a",
+      "brand": "hager",
+      "series": "KB",
+      "article": "KB263A",
+      "phases": "2P",
+      "pinType": "pin",
+      "lengthModules": 12,
+      "pins": 12,
+      "cuttable": true,
+      "crossSectionMm2": 10,
+      "ratedCurrentA": 63,
+      "verified": true,
+      "source": "https://hager.com/pl/katalog/produkt/kb263a-szyna-grzeb-kolkowa-2p-12m",
+      "notes": "Страница: kołkowa (штырь), 2P, 10 мм², 12 модулей, 210 мм, 63 А, «ze sworzniem». Совместимые аппараты на странице не перечислены. Нижние клеммы MBN/MCN/NDN/CDx/ADx/SBN на их страницах — «biconnect» (принимают штырь и вилку) — совместимость вывод. Резка и число штырей — вывод."
+    },
+    {
+      "id": "hager-kb363a",
+      "brand": "hager",
+      "series": "KB",
+      "article": "KB363A",
+      "phases": "3P",
+      "pinType": "pin",
+      "lengthModules": 12,
+      "pins": 12,
+      "cuttable": true,
+      "crossSectionMm2": 10,
+      "ratedCurrentA": 63,
+      "verified": true,
+      "source": "https://hager.com/pl/katalog/produkt/kb363a-szyna-grzeb-kolkowa-3p-12m",
+      "notes": "Страница: штырь, 3 полюса, 10 мм², 12 модулей, 210 мм, 63 А. Аппараты не перечислены; совместимость с biconnect-клеммами — вывод. Есть 24M-версия KB363C (420 мм)."
+    },
+    {
+      "id": "hager-kb463a",
+      "brand": "hager",
+      "series": "KB",
+      "article": "KB463A",
+      "phases": "3P+N",
+      "pinType": "pin",
+      "lengthModules": 12,
+      "pins": 12,
+      "cuttable": true,
+      "crossSectionMm2": 10,
+      "ratedCurrentA": 63,
+      "deviceSeries": [
+        "ADM"
+      ],
+      "verified": true,
+      "source": "https://hager.com/pl/katalog/produkt/kb463a-szyna-grzeb-kolkowa-4p-12m",
+      "notes": "Страница: штырь, 4 полюса, 10 мм², 12 модулей, 210 мм, 63 А. KB463A/KB463C указаны аксессуарами на странице RCBO ADM425C (4P). Прочие серии — вывод (biconnect). Резка и число штырей — вывод."
     }
   ]
 }

@@ -23,6 +23,10 @@ export function deviceLabel(device, t) {
       return { main: a, sub: s.poles };
     case 'spd':
       return { main: t('spd.type', { type: s.spdType }), sub: s.poles };
+    case 'terminal':
+      return { main: s.role, sub: s.clamps ? t('terminal.clampsShort', { n: s.clamps.reduce((sum, [c]) => sum + c, 0) }) : '' };
+    case 'distribution':
+      return { main: s.poles, sub: s.ratedCurrentA ? a : '' };
     default:
       return { main: device.article, sub: '' };
   }
@@ -31,12 +35,17 @@ export function deviceLabel(device, t) {
 /** Полное название устройства: «Автомат C16, 1P». */
 export function deviceTitle(device, t) {
   const s = device.specs;
+  // Клеммы и ток — необязательные у клеммников и блоков: «, 2×25 + 7×16 мм²», «, 63 А»
+  const clamps = s.clamps ? `, ${t('unit.clamps', { list: s.clamps.map(([c, mm2]) => `${c}×${num(mm2, t.lang)}`).join(' + ') })}` : '';
+  const current = s.ratedCurrentA ? `, ${t('unit.a', { n: num(s.ratedCurrentA, t.lang) })}` : '';
   const params = {
     poles: s.poles,
     curve: s.curve,
     current: num(s.ratedCurrentA, t.lang),
     sensitivity: s.sensitivityMa,
     type: s.rcdType ?? s.spdType,
+    role: s.role,
+    details: device.category === 'terminal' ? clamps : device.category === 'distribution' ? current + clamps : '',
   };
   return t(`device.${device.category}.title`, params);
 }

@@ -40,6 +40,7 @@
   --cat-rcd: #d1782a;
   --cat-switch: #c23b3b;
   --cat-spd: #2f9a5c;
+  --cat-distribution: #a7812d;
 }
 
 @media screen and (prefers-color-scheme: dark) {
@@ -79,6 +80,7 @@
     --cat-rcd: #e39445;
     --cat-switch: #e06464;
     --cat-spd: #4cbc7a;
+    --cat-distribution: #c79c3d;
   }
 }
 
@@ -700,6 +702,54 @@ button:focus-visible {
 .cat-rcd { --cat: var(--cat-rcd); }
 .cat-switch { --cat: var(--cat-switch); }
 .cat-spd { --cat: var(--cat-spd); }
+.cat-terminal { --cat: var(--term-n); }
+.cat-terminal.term-pe,
+.cat-terminal.term-npe { --cat: var(--term-pe); }
+.cat-distribution { --cat: var(--cat-distribution); }
+
+/* Гребёнка ряда: выбор под кнопками рядов, полоса поверх аппаратов на рисунке */
+.row-comb {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 10px;
+  margin: 0 0 8px;
+}
+
+.comb {
+  pointer-events: none;
+}
+
+.comb-bar {
+  fill: #c27b3a;
+  stroke: #7a4718;
+  stroke-width: 0.4;
+  opacity: 0.92;
+}
+
+.comb.pin-pin .comb-bar {
+  stroke-dasharray: 1.5 1;
+}
+
+.comb-remove {
+  margin-bottom: 8px;
+}
+
+/* Клеммники и распределительные блоки на рейке */
+.dev-terminal-bar {
+  fill: var(--cat);
+  opacity: 0.85;
+}
+
+.dev-brass {
+  fill: #c9a24a;
+}
+
+.dev-screw {
+  fill: var(--term-clamp);
+  stroke: rgb(0 0 0 / 0.4);
+  stroke-width: 0.3;
+}
 
 .toolbar {
   display: flex;
@@ -1048,6 +1098,7 @@ button:focus-visible {
   .palette,
   .hint,
   .row-chips,
+  .row-comb,
   .toolbar,
   .status,
   .project-actions,

@@ -1,14 +1,14 @@
 // Сохранение и загрузка щита: ссылка, файл проекта, хранилище браузера.
 // Модуль без DOM (кроме переданного объекта хранилища): тестируется в Node.
 //
-// Внутренний вид проекта: { enclosureId, rows: [[deviceId, ...], ...], positions?: [[pos, ...], ...], earthing?, addTerminals? } —
+// Внутренний вид проекта: { enclosureId, rows: [[deviceId, ...], ...], positions?: [[pos, ...], ...], earthing?, addTerminals?, combs? } —
 // без uid, они создаются заново при сборке щита. positions — с какого модуля начинается каждое
 // устройство (по форме как rows). Без positions (старые ссылки и файлы) устройства ставятся подряд.
 //
 // Форматы:
 //   ссылка — #b=<base64url(JSON)>, JSON: { v: 1, e: enclosureId, d: [уникальные deviceId], r: [[индекс в d, ...], ...],
-//            p?: [[pos, ...], ...], g?: earthing, t?: 1 (addTerminals) };
-//   файл   — JSON: { app: "dinboard", version: 1, savedAt, enclosure: { id, article }, earthing?, addTerminals?,
+//            p?: [[pos, ...], ...], g?: earthing, t?: 1 (addTerminals), k?: [id гребёнки или null по рядам] };
+//   файл   — JSON: { app: "dinboard", version: 1, savedAt, enclosure: { id, article }, earthing?, addTerminals?, combs?,
 //                    rows: [[{ id, article, pos? }, ...], ...] } (артикулы — для человека, при загрузке не нужны);
 //   хранилище браузера — тот же формат, что у файла.
 // Любые входящие данные проверяются: структура, лимиты, наличие в каталоге, место в рядах.
@@ -56,6 +56,7 @@ export function projectFromBoard(board) {
   };
   if (board.earthing) project.earthing = board.earthing;
   if (board.addTerminals) project.addTerminals = true;
+  if (board.combs) project.combs = board.combs;
   return project;
 }
 
@@ -77,6 +78,12 @@ function checkShape(project) {
   }
   if (project.earthing !== undefined && !EARTHING_SYSTEMS.includes(project.earthing)) throw formatError('earthing');
   if (project.addTerminals !== undefined && project.addTerminals !== true) throw formatError('addTerminals');
+  // Гребёнки: по одной на ряд (id или null), хотя бы одна задана
+  if (project.combs !== undefined) {
+    const { combs, rows } = project;
+    const ok = Array.isArray(combs) && combs.length === rows.length && combs.every((c) => c === null || isId(c)) && combs.some(Boolean);
+    if (!ok) throw formatError('combs');
+  }
   return project;
 }
 
@@ -95,7 +102,8 @@ export function buildBoard(project, enclosures, devices) {
   if (!enclosure) throw new ProjectError('enclosure', { enclosureId: project.enclosureId });
   if (project.rows.length > enclosure.rows) throw new ProjectError('no-space', { reason: 'rows' });
 
-  let board = { ...createBoard(enclosure), earthing: project.earthing ?? null, ...(project.addTerminals ? { addTerminals: true } : {}) };
+  // Гребёнки, которых нет в каталоге, при отрисовке и в составе пропускаются — данные щита их не теряют
+  let board = { ...createBoard(enclosure), earthing: project.earthing ?? null, ...(project.addTerminals ? { addTerminals: true } : {}), ...(project.combs ? { combs: [...project.combs] } : {}) };
   const skipped = [];
   const rest = []; // без позиции или место не подошло — после всех, кто встал на своё место
   project.rows.forEach((row, rowIndex) => {
@@ -172,6 +180,7 @@ export function encodeLink(project) {
   if (project.positions) compact.p = project.positions;
   if (project.earthing) compact.g = project.earthing;
   if (project.addTerminals) compact.t = 1;
+  if (project.combs) compact.k = project.combs;
   return toBase64Url(JSON.stringify(compact));
 }
 
@@ -196,6 +205,7 @@ export function decodeLink(code) {
     ...(data.p === undefined ? {} : { positions: data.p }),
     ...(data.g === undefined ? {} : { earthing: data.g }),
     ...(data.t === undefined ? {} : { addTerminals: data.t === 1 ? true : data.t }),
+    ...(data.k === undefined ? {} : { combs: data.k }),
   });
 }
 
@@ -216,6 +226,7 @@ export function projectToFile(project, enclosures, devices, savedAt = new Date()
     enclosure: { id: project.enclosureId, article: enclosures.get(project.enclosureId)?.article ?? '' },
     ...(project.earthing ? { earthing: project.earthing } : {}),
     ...(project.addTerminals ? { addTerminals: true } : {}),
+    ...(project.combs ? { combs: project.combs } : {}),
     rows: project.rows.map((row, r) =>
       row.map((id, i) => ({ id, article: devices.get(id)?.article ?? '', ...(project.positions ? { pos: project.positions[r][i] } : {}) })),
     ),
@@ -242,6 +253,7 @@ export function projectFromFile(text) {
     ...(withPos ? { positions: data.rows.map((row) => row.map((item) => item.pos)) } : {}),
     ...(data.earthing === undefined ? {} : { earthing: data.earthing }),
     ...(data.addTerminals === undefined ? {} : { addTerminals: data.addTerminals }),
+    ...(data.combs === undefined ? {} : { combs: data.combs }),
   });
 }
 

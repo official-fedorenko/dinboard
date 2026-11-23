@@ -26,7 +26,38 @@
         "blocks": [
           {
             "role": "PE",
-            "position": "top",
+            "clamps": [
+              [
+                3,
+                25
+              ],
+              [
+                11,
+                4
+              ]
+            ]
+          }
+        ],
+        "accessories": [
+          {
+            "article": "LGYT1E14",
+            "role": "PE",
+            "clamps": [
+              [
+                3,
+                25
+              ],
+              [
+                11,
+                4
+              ]
+            ],
+            "verified": true,
+            "source": "https://www.se.com/fr/fr/product/LGYT1E14/"
+          },
+          {
+            "article": "LGYT1E24",
+            "role": "PE",
             "clamps": [
               [
                 3,
@@ -36,25 +67,30 @@
                 21,
                 4
               ]
-            ]
+            ],
+            "verified": true,
+            "source": "https://www.se.com/fr/fr/product/LGYT1E24/"
           },
           {
+            "article": "LGYT1N14",
             "role": "N",
-            "position": "top",
             "clamps": [
               [
-                1,
-                35
+                3,
+                25
               ],
               [
-                6,
-                16
+                11,
+                4
               ]
-            ]
+            ],
+            "verified": true,
+            "source": "https://www.se.com/fr/fr/product/LGYT1N14/"
           }
         ],
-        "verified": false,
-        "notes": "Техлист R9H13402 (на docs.rs-online.com) и FAQ se.com FA405652: клеммник земли на 24 отвода и 2 блока фаза/нейтраль по 7 отводов на съёмной опоре вверху или внизу. Подтверждено только для 2-рядного; блок фазы (L) не показан."
+        "verified": true,
+        "source": "https://www.se.com/fr/fr/product/R9H13401/",
+        "notes": "Только клеммник земли, блоков фаза/нейтраль нет. Лист данных se.com; вверху или внизу стоит опора — не указано."
       },
       "verified": true,
       "source": "https://www.se.com/fr/fr/product/download-pdf/R9H13401"
@@ -80,7 +116,6 @@
         "blocks": [
           {
             "role": "PE",
-            "position": "top",
             "clamps": [
               [
                 3,
@@ -94,7 +129,6 @@
           },
           {
             "role": "N",
-            "position": "top",
             "clamps": [
               [
                 1,
@@ -107,8 +141,59 @@
             ]
           }
         ],
-        "verified": false,
-        "notes": "Техлист R9H13402 (на docs.rs-online.com) и FAQ se.com FA405652: клеммник земли на 24 отвода и 2 блока фаза/нейтраль по 7 отводов на съёмной опоре вверху или внизу. Подтверждено только для 2-рядного; блок фазы (L) не показан."
+        "accessories": [
+          {
+            "article": "LGYT1E14",
+            "role": "PE",
+            "clamps": [
+              [
+                3,
+                25
+              ],
+              [
+                11,
+                4
+              ]
+            ],
+            "verified": true,
+            "source": "https://www.se.com/fr/fr/product/LGYT1E14/"
+          },
+          {
+            "article": "LGYT1E24",
+            "role": "PE",
+            "clamps": [
+              [
+                3,
+                25
+              ],
+              [
+                21,
+                4
+              ]
+            ],
+            "verified": true,
+            "source": "https://www.se.com/fr/fr/product/LGYT1E24/"
+          },
+          {
+            "article": "LGYT1N14",
+            "role": "N",
+            "clamps": [
+              [
+                3,
+                25
+              ],
+              [
+                11,
+                4
+              ]
+            ],
+            "verified": true,
+            "source": "https://www.se.com/fr/fr/product/LGYT1N14/"
+          }
+        ],
+        "verified": true,
+        "source": "https://www.se.com/fr/fr/product/R9H13402/",
+        "notes": "Клеммник земли и 2 блока фаза/нейтраль по 1×35 + 6×16 мм² (показан блок N) на съёмной опоре. Лист данных se.com; вверху или внизу стоит опора — не указано."
       },
       "verified": true,
       "source": "https://www.se.com/fr/fr/product/download-pdf/R9H13402"
@@ -134,21 +219,19 @@
         "blocks": [
           {
             "role": "PE",
-            "position": "top",
             "clamps": [
               [
-                3,
+                6,
                 25
               ],
               [
-                21,
+                32,
                 4
               ]
             ]
           },
           {
             "role": "N",
-            "position": "top",
             "clamps": [
               [
                 1,
@@ -161,8 +244,59 @@
             ]
           }
         ],
-        "verified": false,
-        "notes": "Техлист R9H13402 (на docs.rs-online.com) и FAQ se.com FA405652: клеммник земли на 24 отвода и 2 блока фаза/нейтраль по 7 отводов на съёмной опоре вверху или внизу. Подтверждено только для 2-рядного; блок фазы (L) не показан."
+        "accessories": [
+          {
+            "article": "LGYT1E14",
+            "role": "PE",
+            "clamps": [
+              [
+                3,
+                25
+              ],
+              [
+                11,
+                4
+              ]
+            ],
+            "verified": true,
+            "source": "https://www.se.com/fr/fr/product/LGYT1E14/"
+          },
+          {
+            "article": "LGYT1E24",
+            "role": "PE",
+            "clamps": [
+              [
+                3,
+                25
+              ],
+              [
+                21,
+                4
+              ]
+            ],
+            "verified": true,
+            "source": "https://www.se.com/fr/fr/product/LGYT1E24/"
+          },
+          {
+            "article": "LGYT1N14",
+            "role": "N",
+            "clamps": [
+              [
+                3,
+                25
+              ],
+              [
+                11,
+                4
+              ]
+            ],
+            "verified": true,
+            "source": "https://www.se.com/fr/fr/product/LGYT1N14/"
+          }
+        ],
+        "verified": true,
+        "source": "https://www.se.com/fr/fr/product/R9H13403/",
+        "notes": "Клеммник земли и 2 блока фаза/нейтраль по 1×35 + 6×16 мм² (показан блок N) на съёмной опоре. Лист данных se.com; вверху или внизу стоит опора — не указано."
       },
       "verified": true,
       "source": "https://www.se.com/fr/fr/product/download-pdf/R9H13403"
@@ -188,21 +322,19 @@
         "blocks": [
           {
             "role": "PE",
-            "position": "top",
             "clamps": [
               [
-                3,
+                6,
                 25
               ],
               [
-                21,
+                42,
                 4
               ]
             ]
           },
           {
             "role": "N",
-            "position": "top",
             "clamps": [
               [
                 1,
@@ -215,8 +347,59 @@
             ]
           }
         ],
-        "verified": false,
-        "notes": "Техлист R9H13402 (на docs.rs-online.com) и FAQ se.com FA405652: клеммник земли на 24 отвода и 2 блока фаза/нейтраль по 7 отводов на съёмной опоре вверху или внизу. Подтверждено только для 2-рядного; блок фазы (L) не показан."
+        "accessories": [
+          {
+            "article": "LGYT1E14",
+            "role": "PE",
+            "clamps": [
+              [
+                3,
+                25
+              ],
+              [
+                11,
+                4
+              ]
+            ],
+            "verified": true,
+            "source": "https://www.se.com/fr/fr/product/LGYT1E14/"
+          },
+          {
+            "article": "LGYT1E24",
+            "role": "PE",
+            "clamps": [
+              [
+                3,
+                25
+              ],
+              [
+                21,
+                4
+              ]
+            ],
+            "verified": true,
+            "source": "https://www.se.com/fr/fr/product/LGYT1E24/"
+          },
+          {
+            "article": "LGYT1N14",
+            "role": "N",
+            "clamps": [
+              [
+                3,
+                25
+              ],
+              [
+                11,
+                4
+              ]
+            ],
+            "verified": true,
+            "source": "https://www.se.com/fr/fr/product/LGYT1N14/"
+          }
+        ],
+        "verified": true,
+        "source": "https://www.se.com/fr/fr/product/R9H13404/",
+        "notes": "Клеммник земли и 2 блока фаза/нейтраль по 1×35 + 6×16 мм² (показан блок N) на съёмной опоре. Лист данных se.com; вверху или внизу стоит опора — не указано."
       },
       "verified": true,
       "source": "https://www.se.com/fr/fr/product/download-pdf/R9H13404"
@@ -3032,6 +3215,710 @@
       },
       "verified": true,
       "source": "https://www.se.com/de/de/product/download-pdf/A9S65492"
+    },
+    {
+      "id": "schneider-lgy112510",
+      "brand": "schneider",
+      "series": "Linergy DS",
+      "article": "LGY112510",
+      "category": "distribution",
+      "modules": 1.5,
+      "specs": {
+        "poles": "1P",
+        "ratedCurrentA": 125,
+        "clamps": [
+          [
+            2,
+            35
+          ],
+          [
+            2,
+            25
+          ],
+          [
+            6,
+            16
+          ]
+        ]
+      },
+      "verified": true,
+      "source": "https://www.se.com/fr/fr/product/LGY112510/",
+      "notes": "Однополюсный ступенчатый распределительный блок, 10 отверстий (винт). Ширина 27 мм = 3 шага по 9 мм. Сечения — для жёсткого провода. Можно использовать и как шину N (вывод; отдельной N-версии на 125 А не нашёл)."
+    },
+    {
+      "id": "schneider-lgy116013",
+      "brand": "schneider",
+      "series": "Linergy DS",
+      "article": "LGY116013",
+      "category": "distribution",
+      "modules": 2,
+      "specs": {
+        "poles": "1P",
+        "ratedCurrentA": 160,
+        "clamps": [
+          [
+            2,
+            70
+          ],
+          [
+            3,
+            25
+          ],
+          [
+            8,
+            16
+          ]
+        ]
+      },
+      "verified": true,
+      "source": "https://www.se.com/fr/fr/product/LGY116013/",
+      "notes": "Однополюсный 160 А, 13 отверстий. Ширина 36 мм = 4 шага по 9 мм."
+    },
+    {
+      "id": "schneider-lgy410028",
+      "brand": "schneider",
+      "series": "Linergy DS",
+      "article": "LGY410028",
+      "category": "distribution",
+      "modules": 4,
+      "specs": {
+        "poles": "3P+N",
+        "ratedCurrentA": 100,
+        "clamps": [
+          [
+            2,
+            25
+          ],
+          [
+            5,
+            16
+          ]
+        ]
+      },
+      "verified": true,
+      "source": "https://www.se.com/fr/fr/product/LGY410028/",
+      "notes": "Четырёхполюсный 100 А, 4×7 отверстий; клеммы указаны на каждый полюс. Ширина 71 мм = 8 шагов по 9 мм. Дополнительная шина N — LGYN1007."
+    },
+    {
+      "id": "schneider-lgy412548",
+      "brand": "schneider",
+      "series": "Linergy DS",
+      "article": "LGY412548",
+      "category": "distribution",
+      "modules": 7,
+      "specs": {
+        "poles": "3P+N",
+        "ratedCurrentA": 125,
+        "clamps": [
+          [
+            1,
+            35
+          ],
+          [
+            7,
+            25
+          ],
+          [
+            4,
+            16
+          ]
+        ]
+      },
+      "verified": true,
+      "source": "https://www.se.com/fr/fr/product/LGY412548/",
+      "notes": "Четырёхполюсный 125 А, 4×12 отверстий; клеммы на каждый полюс. Ширина 126 мм = 14 шагов по 9 мм."
+    },
+    {
+      "id": "schneider-lgy412560",
+      "brand": "schneider",
+      "series": "Linergy DS",
+      "article": "LGY412560",
+      "category": "distribution",
+      "modules": 10,
+      "specs": {
+        "poles": "3P+N",
+        "ratedCurrentA": 125,
+        "clamps": [
+          [
+            1,
+            35
+          ],
+          [
+            3,
+            35
+          ],
+          [
+            11,
+            16
+          ]
+        ]
+      },
+      "verified": true,
+      "source": "https://www.se.com/fr/fr/product/LGY412560/",
+      "notes": "Четырёхполюсный 125 А, 4×15 отверстий; клеммы на каждый полюс (1 ввод 35 + 3×35 + 11×16). Ширина 174 мм = 20 шагов по 9 мм."
+    },
+    {
+      "id": "schneider-lgy416048",
+      "brand": "schneider",
+      "series": "Linergy DS",
+      "article": "LGY416048",
+      "category": "distribution",
+      "modules": 9,
+      "specs": {
+        "poles": "3P+N",
+        "ratedCurrentA": 160,
+        "clamps": [
+          [
+            1,
+            70
+          ],
+          [
+            3,
+            35
+          ],
+          [
+            8,
+            25
+          ]
+        ]
+      },
+      "verified": true,
+      "source": "https://www.se.com/fr/fr/product/LGY416048/",
+      "notes": "Четырёхполюсный 160 А, 4×12 отверстий; клеммы на каждый полюс. Ширина 162 мм = 18 шагов по 9 мм."
+    },
+    {
+      "id": "schneider-lgyn1007",
+      "brand": "schneider",
+      "series": "Linergy DS",
+      "article": "LGYN1007",
+      "category": "terminal",
+      "modules": 3.5,
+      "specs": {
+        "role": "N",
+        "clamps": [
+          [
+            2,
+            25
+          ],
+          [
+            5,
+            16
+          ]
+        ],
+        "ratedCurrentA": 100
+      },
+      "verified": true,
+      "source": "https://www.se.com/fr/fr/product/LGYN1007/",
+      "notes": "Шина нейтрали 7 отверстий — модуль расширения для LGY410028, крепится винтами сбоку к блоку («montage direct sur le côté»). На странице: шаг 18 мм — 3,5, ширина 70 мм. Сама на рейку не защёлкивается (вывод по описанию крепления); места на рейке занимает рядом с блоком."
+    },
+    {
+      "id": "schneider-lvs04040",
+      "brand": "schneider",
+      "series": "Linergy DX",
+      "article": "LVS04040",
+      "category": "distribution",
+      "modules": 4,
+      "specs": {
+        "poles": "1P+N",
+        "ratedCurrentA": 63,
+        "clamps": [
+          [
+            1,
+            25
+          ],
+          [
+            12,
+            6
+          ]
+        ]
+      },
+      "verified": true,
+      "source": "https://www.se.com/fr/fr/product/LVS04040/",
+      "notes": "Distribloc 63 А, ввод сверху. Клеммы на каждый полюс: ввод 1×25 (гибкий 16) + 12 пружинных 2,5…6 мм² для фазы и столько же для нейтрали. Поле «полюса» на странице = 4P, но по клеммам это фаза+нейтраль — противоречие на странице. Ширина 72 мм, 4 модуля по 18 мм. Есть вариант с вводом снизу LVS04041."
+    },
+    {
+      "id": "schneider-lvs04031",
+      "brand": "schneider",
+      "series": "Linergy DX",
+      "article": "LVS04031",
+      "category": "distribution",
+      "modules": 2,
+      "specs": {
+        "poles": "1P",
+        "ratedCurrentA": 160,
+        "clamps": [
+          [
+            1,
+            70
+          ],
+          [
+            6,
+            16
+          ]
+        ]
+      },
+      "verified": true,
+      "source": "https://www.se.com/fr/fr/product/LVS04031/",
+      "notes": "Polybloc 1P 160 А: ввод — клемма-клетка 70 мм², отводы 6 пружинных 6…16 мм². Ширина 36 мм = 2 модуля. Замена снятого 04031."
+    },
+    {
+      "id": "schneider-lvs04045",
+      "brand": "schneider",
+      "series": "Linergy DX",
+      "article": "LVS04045",
+      "category": "distribution",
+      "modules": 6,
+      "specs": {
+        "poles": "3P+N",
+        "ratedCurrentA": 125,
+        "clamps": [
+          [
+            1,
+            35
+          ],
+          [
+            1,
+            25
+          ],
+          [
+            2,
+            10
+          ],
+          [
+            3,
+            6
+          ],
+          [
+            7,
+            4
+          ]
+        ]
+      },
+      "verified": true,
+      "source": "https://www.se.com/fr/fr/product/LVS04045/",
+      "notes": "Distribloc 4P 125 А; клеммы на каждый полюс: ввод клетка 35, отводы клетка 1×25 + пружинные 2×10, 3×6, 7×4 мм². Ширина 108 мм = 12 шагов по 9 мм. Рассчитан на питание аппаратов iC120/NG125/INS сборными перемычками; для бытового щита избыточен. Замена снятого 04045."
+    }
+  ],
+  "combs": [
+    {
+      "id": "schneider-a9xph112",
+      "brand": "schneider",
+      "series": "Acti9",
+      "article": "A9XPH112",
+      "phases": "1P",
+      "pinType": "pin",
+      "lengthModules": 12,
+      "pins": 12,
+      "cuttable": true,
+      "ratedCurrentA": 100,
+      "deviceSeries": [
+        "iC60",
+        "iK60",
+        "iID",
+        "iID K",
+        "iSW",
+        "iSW-NA",
+        "C60"
+      ],
+      "verified": true,
+      "source": "https://www.se.com/ie/en/product/A9XPH112/",
+      "notes": "1L, шаг 18 мм, 12 отводов. Тип зуба у SE: «Tooth» (зуб в туннельную клемму) — отнесён к pin. Сечение шины не указано."
+    },
+    {
+      "id": "schneider-a9xph157",
+      "brand": "schneider",
+      "series": "Acti9",
+      "article": "A9XPH157",
+      "phases": "1P",
+      "pinType": "pin",
+      "lengthModules": 57,
+      "pins": 57,
+      "cuttable": true,
+      "ratedCurrentA": 100,
+      "deviceSeries": [
+        "iC60",
+        "iK60",
+        "iID",
+        "iID K",
+        "iSW",
+        "iSW-NA",
+        "C60"
+      ],
+      "verified": true,
+      "source": "https://www.se.com/ie/en/product/A9XPH157/",
+      "notes": "1L, шаг 18 мм, 57 отводов, длина 1000 мм; в комплекте 10 торцевых заглушек. Режется."
+    },
+    {
+      "id": "schneider-a9xph212",
+      "brand": "schneider",
+      "series": "Acti9",
+      "article": "A9XPH212",
+      "phases": "1P+N",
+      "pinType": "pin",
+      "lengthModules": 12,
+      "pins": 12,
+      "cuttable": true,
+      "ratedCurrentA": 100,
+      "deviceSeries": [
+        "iC60",
+        "iK60",
+        "iID",
+        "iID K",
+        "iSW",
+        "iSW-NA",
+        "C60"
+      ],
+      "verified": true,
+      "source": "https://www.se.com/ie/en/product/A9XPH212/",
+      "notes": "1L+N (порядок N L), шаг 18 мм, 6 отводов по 36 мм; подходит для 1P+N и 2P. Число зубьев 12 = 6 отводов × 2 (расчёт)."
+    },
+    {
+      "id": "schneider-a9xph224",
+      "brand": "schneider",
+      "series": "Acti9",
+      "article": "A9XPH224",
+      "phases": "1P+N",
+      "pinType": "pin",
+      "lengthModules": 24,
+      "pins": 24,
+      "cuttable": true,
+      "ratedCurrentA": 100,
+      "deviceSeries": [
+        "iC60",
+        "iK60",
+        "iID",
+        "iID K",
+        "iSW",
+        "iSW-NA",
+        "C60"
+      ],
+      "verified": true,
+      "source": "https://www.se.com/ie/en/product/A9XPH224/",
+      "notes": "1L+N, 12 отводов по 36 мм. Зубьев 24 (расчёт)."
+    },
+    {
+      "id": "schneider-a9xph257",
+      "brand": "schneider",
+      "series": "Acti9",
+      "article": "A9XPH257",
+      "phases": "1P+N",
+      "pinType": "pin",
+      "lengthModules": 57,
+      "pins": 56,
+      "cuttable": true,
+      "ratedCurrentA": 100,
+      "deviceSeries": [
+        "iC60",
+        "iK60",
+        "iID",
+        "iID K",
+        "iSW",
+        "iSW-NA",
+        "C60"
+      ],
+      "verified": true,
+      "source": "https://www.se.com/ie/en/product/A9XPH257/",
+      "notes": "1L+N, 28 отводов, длина 57 модулей (1000 мм); 10 заглушек в комплекте. Зубьев 56 (расчёт 28×2)."
+    },
+    {
+      "id": "schneider-a9xph312",
+      "brand": "schneider",
+      "series": "Acti9",
+      "article": "A9XPH312",
+      "phases": "3P",
+      "pinType": "pin",
+      "lengthModules": 12,
+      "pins": 12,
+      "cuttable": true,
+      "ratedCurrentA": 100,
+      "deviceSeries": [
+        "iC60",
+        "iK60",
+        "iID",
+        "iID K",
+        "iSW",
+        "iSW-NA",
+        "C60"
+      ],
+      "verified": true,
+      "source": "https://www.se.com/ie/en/product/A9XPH312/",
+      "notes": "3L (L1 L2 L3), шаг 18 мм, 4 отвода по 54 мм. Зубьев 12 (расчёт)."
+    },
+    {
+      "id": "schneider-a9xph324",
+      "brand": "schneider",
+      "series": "Acti9",
+      "article": "A9XPH324",
+      "phases": "3P",
+      "pinType": "pin",
+      "lengthModules": 24,
+      "pins": 24,
+      "cuttable": true,
+      "ratedCurrentA": 100,
+      "deviceSeries": [
+        "iC60",
+        "iK60",
+        "iID",
+        "iID K",
+        "iSW",
+        "iSW-NA",
+        "C60"
+      ],
+      "verified": true,
+      "source": "https://www.se.com/ie/en/product/A9XPH324/",
+      "notes": "3L, 8 отводов по 54 мм. Зубьев 24 (расчёт)."
+    },
+    {
+      "id": "schneider-a9xph357",
+      "brand": "schneider",
+      "series": "Acti9",
+      "article": "A9XPH357",
+      "phases": "3P",
+      "pinType": "pin",
+      "lengthModules": 57,
+      "pins": 57,
+      "cuttable": true,
+      "ratedCurrentA": 100,
+      "deviceSeries": [
+        "iC60",
+        "iK60",
+        "iID",
+        "iID K",
+        "iSW",
+        "iSW-NA",
+        "C60"
+      ],
+      "verified": true,
+      "source": "https://www.se.com/ie/en/product/A9XPH357/",
+      "notes": "3L, 19 отводов, длина 57 модулей; 10 заглушек в комплекте. Зубьев 57 (расчёт)."
+    },
+    {
+      "id": "schneider-a9xph412",
+      "brand": "schneider",
+      "series": "Acti9",
+      "article": "A9XPH412",
+      "phases": "3P+N",
+      "pinType": "pin",
+      "lengthModules": 12,
+      "pins": 12,
+      "cuttable": true,
+      "ratedCurrentA": 100,
+      "deviceSeries": [
+        "iC60",
+        "iK60",
+        "iID",
+        "iID K",
+        "iSW",
+        "iSW-NA",
+        "C60"
+      ],
+      "verified": true,
+      "source": "https://www.se.com/ie/en/product/A9XPH412/",
+      "notes": "3L+N (порядок N L1 L2 L3, нейтраль слева — как у iID 4P), 3 отвода по 72 мм; для 3P+N и 4P. Зубьев 12 (расчёт)."
+    },
+    {
+      "id": "schneider-a9xph424",
+      "brand": "schneider",
+      "series": "Acti9",
+      "article": "A9XPH424",
+      "phases": "3P+N",
+      "pinType": "pin",
+      "lengthModules": 24,
+      "pins": 24,
+      "cuttable": true,
+      "ratedCurrentA": 100,
+      "deviceSeries": [
+        "iC60",
+        "iK60",
+        "iID",
+        "iID K",
+        "iSW",
+        "iSW-NA",
+        "C60"
+      ],
+      "verified": true,
+      "source": "https://www.se.com/ie/en/product/A9XPH424/",
+      "notes": "3L+N, 6 отводов по 72 мм. Зубьев 24 (расчёт)."
+    },
+    {
+      "id": "schneider-a9xph457",
+      "brand": "schneider",
+      "series": "Acti9",
+      "article": "A9XPH457",
+      "phases": "3P+N",
+      "pinType": "pin",
+      "lengthModules": 57,
+      "pins": 56,
+      "cuttable": true,
+      "ratedCurrentA": 100,
+      "deviceSeries": [
+        "iC60",
+        "iK60",
+        "iID",
+        "iID K",
+        "iSW",
+        "iSW-NA",
+        "C60"
+      ],
+      "verified": true,
+      "source": "https://www.se.com/ie/en/product/A9XPH457/",
+      "notes": "3L+N, 14 отводов, длина 57 модулей; 10 заглушек в комплекте. Зубьев 56 (расчёт 14×4)."
+    },
+    {
+      "id": "schneider-a9xpc612",
+      "brand": "schneider",
+      "series": "Acti9",
+      "article": "A9XPC612",
+      "phases": "1P+N",
+      "pinType": "pin",
+      "lengthModules": 12,
+      "pins": 24,
+      "cuttable": true,
+      "ratedCurrentA": 80,
+      "deviceSeries": [
+        "iCV40",
+        "iC40",
+        "iID40",
+        "iDPN",
+        "iDPN Vigi",
+        "C40",
+        "Vigi iCG40",
+        "N40"
+      ],
+      "verified": true,
+      "source": "https://www.se.com/ie/en/product/A9XPC612/",
+      "notes": "1L+N с шагом 9 мм между L и N, пары через 18 мм, 12 отводов; зубьев 24 (= 24 шага по 9 мм). Тип «Tooth». В комплекте заглушки и крышки зубьев. Гребёнку A9XPC6xx/7xx Schneider указывает для iCV40N и iCV40H (A9DC/A9DE/A9DF/A9DG 36xx и 46xx). iCV40N шириной 36 мм занимает 2 отвода, лишняя пара закрывается крышками (вывод)."
+    },
+    {
+      "id": "schneider-a9xpc624",
+      "brand": "schneider",
+      "series": "Acti9",
+      "article": "A9XPC624",
+      "phases": "1P+N",
+      "pinType": "pin",
+      "lengthModules": 24,
+      "pins": 48,
+      "cuttable": true,
+      "ratedCurrentA": 80,
+      "deviceSeries": [
+        "iCV40",
+        "iC40",
+        "iID40",
+        "iDPN",
+        "iDPN Vigi",
+        "C40",
+        "Vigi iCG40",
+        "N40"
+      ],
+      "verified": true,
+      "source": "https://www.se.com/ie/en/product/A9XPC624/",
+      "notes": "1L+N, шаг 9 мм L–N, 24 отвода через 18 мм; 48 зубьев. В комплекте заглушки и крышки зубьев."
+    },
+    {
+      "id": "schneider-a9xpc648",
+      "brand": "schneider",
+      "series": "Acti9",
+      "article": "A9XPC648",
+      "phases": "1P+N",
+      "pinType": "pin",
+      "lengthModules": 48,
+      "pins": 96,
+      "cuttable": true,
+      "ratedCurrentA": 80,
+      "deviceSeries": [
+        "iCV40",
+        "iC40",
+        "iID40",
+        "iDPN",
+        "iDPN Vigi",
+        "C40",
+        "Vigi iCG40",
+        "N40",
+        "iCVm40",
+        "iCVr40",
+        "iDDm40"
+      ],
+      "verified": true,
+      "source": "https://www.se.com/ie/en/product/A9XPC648/",
+      "notes": "1L+N, 48 отводов, длина 862 мм; 96 зубьев."
+    },
+    {
+      "id": "schneider-a9xpc712",
+      "brand": "schneider",
+      "series": "Acti9",
+      "article": "A9XPC712",
+      "phases": "3P+N",
+      "pinType": "pin",
+      "lengthModules": 12,
+      "pins": 24,
+      "cuttable": true,
+      "ratedCurrentA": 80,
+      "deviceSeries": [
+        "iCV40",
+        "iC40",
+        "iID40",
+        "iDPN",
+        "iDPN Vigi",
+        "C40",
+        "Vigi iCG40",
+        "N40",
+        "iCVm40",
+        "iCVr40",
+        "iDDm40"
+      ],
+      "verified": true,
+      "source": "https://www.se.com/ie/en/product/A9XPC712/",
+      "notes": "3L+N «N L1 N L2 N L3», 12 отводов через 18 мм: годится для 1P+N аппаратов с чередованием фаз, а также 3P и 3P+N. 24 зуба. В комплекте заглушки и крышки зубьев."
+    },
+    {
+      "id": "schneider-a9xpc724",
+      "brand": "schneider",
+      "series": "Acti9",
+      "article": "A9XPC724",
+      "phases": "3P+N",
+      "pinType": "pin",
+      "lengthModules": 24,
+      "pins": 48,
+      "cuttable": true,
+      "ratedCurrentA": 80,
+      "deviceSeries": [
+        "iCV40",
+        "iC40",
+        "iID40",
+        "iDPN",
+        "iDPN Vigi",
+        "C40",
+        "Vigi iCG40",
+        "N40"
+      ],
+      "verified": true,
+      "source": "https://www.se.com/ie/en/product/A9XPC724/",
+      "notes": "3P+N «сбалансированная», 8 отводов через 54 мм (3P+N, 3P или 3×1P+N). 48 зубьев."
+    },
+    {
+      "id": "schneider-a9xpc748",
+      "brand": "schneider",
+      "series": "Acti9",
+      "article": "A9XPC748",
+      "phases": "3P+N",
+      "pinType": "pin",
+      "lengthModules": 48,
+      "pins": 96,
+      "cuttable": true,
+      "ratedCurrentA": 80,
+      "deviceSeries": [
+        "iCV40",
+        "iC40",
+        "iID40",
+        "iDPN",
+        "iDPN Vigi",
+        "C40",
+        "Vigi iCG40",
+        "N40"
+      ],
+      "verified": true,
+      "source": "https://www.se.com/ie/en/product/A9XPC748/",
+      "notes": "3P+N сбалансированная, 16 отводов через 54 мм, длина 862 мм. 96 зубьев. Комплект поставки на странице не указан."
     }
   ]
 }

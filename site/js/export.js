@@ -39,13 +39,27 @@ export function terminalsSpec(board, enclosure, t) {
   };
 }
 
+/** Гребёнки щита: [{ comb, count }] — по одной на ряд, одинаковые суммируются; неизвестные пропускаются. */
+export function combsSpec(board, combsById) {
+  const counts = new Map();
+  for (const id of board.combs ?? []) {
+    if (id && combsById.has(id)) counts.set(id, (counts.get(id) ?? 0) + 1);
+  }
+  return [...counts].map(([id, count]) => ({ comb: combsById.get(id), count }));
+}
+
+/** Название гребёнки: «Гребёнка 1P, вилка, 12 мод.». */
+export function combName(comb, t) {
+  return t('comb.name', { phases: comb.phases, pin: t(`comb.pin.${comb.pinType}`), length: num(comb.lengthModules, t.lang) });
+}
+
 /**
  * Спецификация щита: первой строкой корпус, затем устройства (как в billOfMaterials).
- * Клеммники N/PE: пометка в строке корпуса или клеммники-аксессуары сразу после него.
+ * Клеммники N/PE: пометка в строке корпуса или клеммники-аксессуары сразу после него; гребёнки — в конце.
  * Ячейки — строки и числа; `modules` у корпуса — null (пустая ячейка).
  * Возвращает { head: [заголовки], rows: [[ячейки по SPEC_COLUMNS]] }.
  */
-export function specTable(board, enclosure, devices, brandNames, t) {
+export function specTable(board, enclosure, devices, brandNames, t, combsById = new Map()) {
   const note = (item) => (item.verified ? '' : t('device.unverified'));
   const brand = brandNames.get(enclosure.brand) ?? enclosure.brand;
   const terminals = terminalsSpec(board, enclosure, t);
@@ -57,6 +71,7 @@ export function specTable(board, enclosure, devices, brandNames, t) {
       const d = devices.get(deviceId);
       return [d.article, brandNames.get(d.brand) ?? d.brand, deviceTitle(d, t), d.model ?? '', d.modules, count, note(d)];
     }),
+    ...combsSpec(board, combsById).map(({ comb, count }) => [comb.article, brandNames.get(comb.brand) ?? comb.brand, combName(comb, t), comb.model ?? '', null, count, note(comb)]),
   ];
   return { head: SPEC_COLUMNS.map((c) => t(`summary.${c}`)), rows };
 }

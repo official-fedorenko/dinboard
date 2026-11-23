@@ -151,6 +151,25 @@ describe('клеммники N/PE в составе (addTerminals)', () => {
   });
 });
 
+describe('гребёнки рядов в проекте', () => {
+  const withCombs = { ...project, combs: ['hager-kdn163a', null] };
+
+  test('щит → проект → щит, ссылка и файл сохраняют гребёнки', () => {
+    const { board } = buildBoard(withCombs, enclosures, devices);
+    assert.deepEqual(board.combs, ['hager-kdn163a', null]);
+    assert.deepEqual(projectFromBoard(board), { ...placed, combs: ['hager-kdn163a', null] });
+    assert.deepEqual(decodeLink(encodeLink(withCombs)), withCombs);
+    assert.deepEqual(projectFromFile(projectToFile(withCombs, enclosures, devices)), withCombs);
+  });
+
+  test('без гребёнок — поля нет; неверный вид — ошибка format', () => {
+    assert.equal('combs' in projectFromBoard(buildBoard(project, enclosures, devices).board), false);
+    for (const combs of [['x'], [null, null], ['bad id', null], 'x']) {
+      failsWith(() => buildBoard({ ...project, combs }, enclosures, devices), 'format', 'combs');
+    }
+  });
+});
+
 describe('позиции устройств (свободная расстановка)', () => {
   const spaced = {
     enclosureId: 'hager-va24b',

@@ -2,7 +2,7 @@ import { test, describe } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 
-import { specTable, toCsv, csvSeparator, exportFileName, terminalsSpec, clampsText, SPEC_COLUMNS } from '../site/js/export.js';
+import { specTable, toCsv, csvSeparator, exportFileName, terminalsSpec, clampsText, combsSpec, combName, SPEC_COLUMNS } from '../site/js/export.js';
 import { createBoard, addDevice, indexById } from '../site/js/board.js';
 import { createTranslator } from '../site/js/i18n.js';
 
@@ -133,5 +133,25 @@ describe('клеммники N/PE в спецификации', () => {
     ]);
     assert.equal(rows[3][0], 'MCN116', 'потом устройства');
     assert.deepEqual(terminalsSpec(board, enclosure, tRu), { suffix: '', accessories: [] }, 'без данных о клеммниках');
+  });
+});
+
+describe('гребёнки в спецификации', () => {
+  const comb = { id: 'hager-kdn163a', brand: 'hager', article: 'KDN163A', phases: '1P', pinType: 'fork', lengthModules: 12, verified: true, source: 'https://x.example' };
+  const other = { ...comb, id: 'hager-kb163', article: 'KB163', pinType: 'pin', lengthModules: 57, verified: false };
+  const combsById = new Map([comb, other].map((c) => [c.id, c]));
+
+  test('combsSpec: одинаковые суммируются, неизвестные пропускаются', () => {
+    const board = { ...build(['mcb']), combs: ['hager-kdn163a', 'hager-kdn163a'] };
+    assert.deepEqual(combsSpec(board, combsById).map(({ comb: c, count }) => [c.article, count]), [['KDN163A', 2]]);
+    assert.deepEqual(combsSpec({ ...board, combs: ['nope', null] }, combsById), []);
+  });
+
+  test('название и строки в конце спецификации', () => {
+    assert.equal(combName(comb, tRu), 'Гребёнка 1P, вилка, 12 мод.');
+    assert.equal(combName(other, tEn), 'Comb busbar 1P, pin, 57 mod.');
+    const board = { ...build(['mcb']), combs: ['hager-kb163', null] };
+    const rows = specTable(board, enclosure, devices, brandNames, tRu, combsById).rows;
+    assert.deepEqual(rows.at(-1), ['KB163', 'Hager', 'Гребёнка 1P, штырь, 57 мод.', '', null, 1, 'не проверено']);
   });
 });

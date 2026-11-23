@@ -12,8 +12,10 @@ import {
   CatalogError,
   DEVICE_CATEGORIES,
   categorySchema,
+  COMB_DEVICE_CATEGORIES,
 } from '../site/js/catalog.js';
 import { SITE_ROOT } from '../tools/serve.js';
+import { seriesMatch } from '../site/js/checks.js';
 
 const enclosure = (over = {}) => ({
   id: 'acme-box-12',
@@ -74,6 +76,9 @@ describe('validateBrandFile', () => {
       }),
       mcb({ id: 'acme-sw', category: 'switch', modules: 2, specs: { poles: '2P', ratedCurrentA: 63 } }),
       mcb({ id: 'acme-spd', category: 'spd', modules: 2, specs: { poles: '1P+N', spdType: '2' } }),
+      mcb({ id: 'acme-n', category: 'terminal', modules: 2, specs: { role: 'N', clamps: [[2, 25], [7, 16]] } }),
+      mcb({ id: 'acme-pe', category: 'terminal', modules: 1.5, specs: { role: 'PE' } }),
+      mcb({ id: 'acme-db', category: 'distribution', modules: 4, specs: { poles: '1P+N', ratedCurrentA: 63, clamps: [[2, 16], [6, 10]] } }),
     ];
     assert.deepEqual(validateBrandFile(brandFile({ devices })), []);
     assert.deepEqual(
@@ -316,6 +321,18 @@ describe('настоящий каталог site/data', () => {
     assert.ok(catalog.brands.length > 0, 'нет брендов');
     assert.ok(catalog.enclosures.length > 0, 'нет корпусов');
     assert.ok(catalog.devices.length > 0, 'нет устройств');
+  });
+
+  test('гребёнки: хотя бы одна из указанных серий есть среди аппаратов бренда (с учётом написания)', async () => {
+    const catalog = await loadCatalog(dataUrl, readJson);
+    const series = (brand) => [...new Set(catalog.devices.filter((d) => d.brand === brand && COMB_DEVICE_CATEGORIES.has(d.category)).map((d) => d.series))];
+    // Гребёнки для аппаратов, которых в каталоге нет (не ошибка написания)
+    const notInCatalog = new Set(['KDN463BZ']); // Hager ARF — устройства защиты от дугового пробоя
+    const lost = catalog.combs
+      .filter((comb) => comb.deviceSeries && series(comb.brand).length && !notInCatalog.has(comb.article))
+      .filter((comb) => !series(comb.brand).some((s) => seriesMatch(s, comb.deviceSeries)))
+      .map((comb) => `${comb.article}: ${comb.deviceSeries.join(', ')}`);
+    assert.deepEqual(lost, []);
   });
 
   test('подтверждённые позиции имеют ссылку на источник', async () => {

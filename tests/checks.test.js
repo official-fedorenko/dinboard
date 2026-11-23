@@ -1,7 +1,7 @@
 import { test, describe } from 'node:test';
 import assert from 'node:assert/strict';
 
-import { checkBoard, mainApparatus, spdFitsEarthing, terminalClamps, SPARE_SHARE } from '../site/js/checks.js';
+import { checkBoard, mainApparatus, spdFitsEarthing, terminalClamps, seriesMatch, SPARE_SHARE } from '../site/js/checks.js';
 import { createBoard, addDevice, setEarthing, indexById } from '../site/js/board.js';
 
 const dev = (id, category, modules, specs) => ({ id, category, modules, specs });
@@ -156,5 +156,58 @@ describe('клеммники N/PE', () => {
     const t = { included: true, blocks: [{ role: 'N', clamps: [[4, 16]] }, { role: 'PE', clamps: [[6, 16]] }], verified: false };
     const few = run(t, ids).filter((c) => c.key === 'check.fewClamps');
     assert.deepEqual(few, [{ level: 'info', key: 'check.fewClamps', params: { role: 'N', lines: 5, clamps: 4 } }]);
+  });
+});
+
+describe('гребёнки', () => {
+  const comb = { id: 'c', brand: 'acme', article: 'K1', phases: '1P', pinType: 'fork', lengthModules: 4, deviceSeries: ['S1'] };
+  const combsById = new Map([[comb.id, comb]]);
+  const devs = indexById([
+    { id: 'a1', brand: 'acme', series: 'S1', category: 'mcb', modules: 1, specs: { poles: '1P', ratedCurrentA: 16, curve: 'C', breakingCapacityKa: 6 } },
+    { id: 'a2', brand: 'acme', series: 'S2', category: 'mcb', modules: 2, specs: { poles: '2P', ratedCurrentA: 16, curve: 'C', breakingCapacityKa: 6 } },
+    { id: 'b1', brand: 'other', series: 'S1', category: 'mcb', modules: 1, specs: { poles: '1P', ratedCurrentA: 16, curve: 'C', breakingCapacityKa: 6 } },
+  ]);
+  const run = (ids) => {
+    let board = createBoard(enclosure);
+    for (const id of ids) ({ board } = addDevice(board, enclosure, devs, id, { row: 0 }));
+    return checkBoard({ ...board, combs: ['c', null, null] }, enclosure, devs, combsById).filter((c) => c.key.startsWith('check.comb'));
+  };
+
+  test('подходящая гребёнка — без замечаний', () => {
+    assert.deepEqual(run(['a1', 'a1', 'a1']), []);
+  });
+
+  test('серия не из списка, полюсов больше, чем соединяет, гребёнка короче', () => {
+    const list = run(['a1', 'a2', 'a1', 'a1']);
+    assert.deepEqual(
+      list.map((c) => [c.level, c.key, c.params]),
+      [
+        ['warning', 'check.combPhases', { row: 1, article: 'K1', phases: '1P', poles: '2P' }],
+        ['info', 'check.combSeries', { row: 1, article: 'K1', series: 'S2' }],
+        ['info', 'check.combShort', { row: 1, article: 'K1', length: 4, need: 5 }],
+      ],
+    );
+  });
+
+  test('аппарат другого производителя — предупреждение', () => {
+    assert.deepEqual(run(['a1', 'b1']).map((c) => c.key), ['check.combBrand']);
+  });
+
+  test('без каталога гребёнок или без гребёнки — проверок нет', () => {
+    let board = createBoard(enclosure);
+    ({ board } = addDevice(board, enclosure, devs, 'a2', { row: 0 }));
+    assert.deepEqual(checkBoard({ ...board, combs: ['c', null, null] }, enclosure, devs).filter((c) => c.key.startsWith('check.comb')), []);
+  });
+});
+
+describe('гребёнки: серии пишутся по-разному в аппаратах и у гребёнок', () => {
+  test('seriesMatch: iC60N ~ iC60, iCV40H ~ iCV40, AD ~ ADA, CD ~ CDA; MBN ≠ NBN', () => {
+    assert.equal(seriesMatch('iC60N', ['iC60']), true);
+    assert.equal(seriesMatch('iCV40H', ['iCV40']), true);
+    assert.equal(seriesMatch('AD', ['ADA', 'ADC']), true);
+    assert.equal(seriesMatch('CD', ['CDA']), true);
+    assert.equal(seriesMatch('S200', ['S200', 'F200']), true);
+    assert.equal(seriesMatch('MBN', ['NBN', 'NCN']), false);
+    assert.equal(seriesMatch('F200', ['S200']), false);
   });
 });

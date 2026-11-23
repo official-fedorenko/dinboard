@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 
-import { layoutBoard, hitTest, renderBoardSvg, escapeXml, slotRect, terminalBars, MODULE_MM, FACE_MM } from '../site/js/render-svg.js';
+import { layoutBoard, hitTest, renderBoardSvg, escapeXml, slotRect, terminalBars, combBars, MODULE_MM, FACE_MM } from '../site/js/render-svg.js';
 import { createBoard, addDevice, indexById } from '../site/js/board.js';
 import { createTranslator } from '../site/js/i18n.js';
 import { deviceTitle, deviceLabel } from '../site/js/format.js';
@@ -263,5 +263,35 @@ describe('клеммники N/PE на рисунке', () => {
     const slot = render(layoutBoard(enclosure, board, devices), { terminals: bars({ included: false, verified: false }) });
     assert.match(slot, /class="terminal role-npe kind-slot"/);
     assert.match(slot, />N\+PE · не в комплекте</);
+  });
+});
+
+describe('гребёнки на рисунке', () => {
+  const comb = { id: 'c1', brand: 'hager', article: 'KDN163A', phases: '1P', pinType: 'fork', lengthModules: 12 };
+  const combsById = new Map([[comb.id, comb]]);
+  const board = { ...sampleBoard(), combs: ['c1', 'missing'] };
+  const layout = layoutBoard(enclosure, board, devices);
+
+  test('combBars: от первого до последнего аппарата ряда; неизвестная гребёнка пропускается', () => {
+    const bars = combBars(layout, board, combsById, devices);
+    assert.equal(bars.length, 1);
+    const row = layout.rows[0];
+    const first = row.items[0];
+    const last = row.items.at(-1);
+    assert.equal(bars[0].row, 0);
+    assert.equal(bars[0].x, first.x + 1);
+    assert.equal(Math.round((bars[0].x + bars[0].w) * 100) / 100, Math.round((last.x + last.w - 1) * 100) / 100);
+    // Над аппаратами, в зазоре выреза: не закрывает подписи на аппаратах
+    assert.ok(bars[0].y >= row.y - 3 && bars[0].y + bars[0].h <= row.y, 'над аппаратами, в зазоре выреза');
+  });
+
+  test('ряд без аппаратов, которые соединяет гребёнка (только УЗИП), — без полосы', () => {
+    const onlySpd = { ...board, combs: [null, 'c1'] };
+    assert.deepEqual(combBars(layout, onlySpd, combsById, devices), []);
+  });
+
+  test('в SVG: полоса с подсказкой — артикул и фазы', () => {
+    const svg = render(layout, { combs: combBars(layout, board, combsById, devices) });
+    assert.match(svg, /<g class="comb pin-fork"><title>KDN163A · Гребёнка 1P, 12 мод\.<\/title><rect class="comb-bar"/);
   });
 });

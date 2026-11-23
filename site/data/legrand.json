@@ -37,18 +37,40 @@
           {
             "article": "134803",
             "role": "PE",
-            "verified": false,
-            "notes": "Клеммник земли на опоре (1 348 03) для накладных корпусов на 12 мод.; назначение по техлисту, страницу артикула не открывали."
+            "clamps": [
+              [
+                12,
+                16
+              ],
+              [
+                12,
+                10
+              ]
+            ],
+            "verified": true,
+            "source": "https://www.legrand.com/ecatalogue/134803-earth-terminal-block-for-12.html",
+            "notes": "Клеммник земли на опоре; совместимость с корпусом — по странице аксессуара Legrand."
           },
           {
             "article": "134813",
             "role": "N+PE",
-            "verified": false,
-            "notes": "Клеммник земли и нейтрали на опоре (1 348 13) для накладных корпусов на 12 мод.; страницу артикула не открывали."
+            "clamps": [
+              [
+                24,
+                16
+              ],
+              [
+                24,
+                10
+              ]
+            ],
+            "verified": true,
+            "source": "https://www.legrand.com/ecatalogue/en/catalog/products/earth-neutral-brass-terminal-blocks-with-isolated-support-24-24-holes-134813",
+            "notes": "Клеммник земли и нейтрали на опоре (клеммы: земля + нейтраль поровну)."
           }
         ],
         "verified": false,
-        "notes": "Техлисты Legrand F02563EN / F02564EN: корпус «without terminal block», клеммники ставятся вверху и внизу в отведённых местах (2 клеммника, у больших корпусов 4). Соответствие техлиста артикулу не сверено."
+        "notes": "Техлисты Legrand F02563/F02564: корпус «without terminal block», места вверху и внизу (2). Соответствие техлиста артикулу корпуса не сверено."
       },
       "verified": true,
       "source": "https://www.legrand.com/ecatalogue/135111-practibox-s-surface-mounting-cabinet.html"
@@ -85,18 +107,40 @@
           {
             "article": "134803",
             "role": "PE",
-            "verified": false,
-            "notes": "Клеммник земли на опоре (1 348 03) для накладных корпусов на 12 мод.; назначение по техлисту, страницу артикула не открывали."
+            "clamps": [
+              [
+                12,
+                16
+              ],
+              [
+                12,
+                10
+              ]
+            ],
+            "verified": true,
+            "source": "https://www.legrand.com/ecatalogue/134803-earth-terminal-block-for-12.html",
+            "notes": "Клеммник земли на опоре; совместимость с корпусом — по странице аксессуара Legrand."
           },
           {
             "article": "134813",
             "role": "N+PE",
-            "verified": false,
-            "notes": "Клеммник земли и нейтрали на опоре (1 348 13) для накладных корпусов на 12 мод.; страницу артикула не открывали."
+            "clamps": [
+              [
+                24,
+                16
+              ],
+              [
+                24,
+                10
+              ]
+            ],
+            "verified": true,
+            "source": "https://www.legrand.com/ecatalogue/en/catalog/products/earth-neutral-brass-terminal-blocks-with-isolated-support-24-24-holes-134813",
+            "notes": "Клеммник земли и нейтрали на опоре (клеммы: земля + нейтраль поровну)."
           }
         ],
         "verified": false,
-        "notes": "Техлисты Legrand F02563EN / F02564EN: корпус «without terminal block», клеммники ставятся вверху и внизу в отведённых местах (2 клеммника, у больших корпусов 4). Соответствие техлиста артикулу не сверено."
+        "notes": "Техлисты Legrand F02563/F02564: корпус «without terminal block», места вверху и внизу (2). Соответствие техлиста артикулу корпуса не сверено."
       },
       "verified": true,
       "source": "https://assets.legrand.com/pim/NP-FT-GT/F02563EN_03.pdf"
@@ -133,18 +177,40 @@
           {
             "article": "134803",
             "role": "PE",
-            "verified": false,
-            "notes": "Клеммник земли на опоре (1 348 03) для накладных корпусов на 12 мод.; назначение по техлисту, страницу артикула не открывали."
+            "clamps": [
+              [
+                12,
+                16
+              ],
+              [
+                12,
+                10
+              ]
+            ],
+            "verified": true,
+            "source": "https://www.legrand.com/ecatalogue/134803-earth-terminal-block-for-12.html",
+            "notes": "Клеммник земли на опоре; совместимость с корпусом — по странице аксессуара Legrand."
           },
           {
             "article": "134813",
             "role": "N+PE",
-            "verified": false,
-            "notes": "Клеммник земли и нейтрали на опоре (1 348 13) для накладных корпусов на 12 мод.; страницу артикула не открывали."
+            "clamps": [
+              [
+                24,
+                16
+              ],
+              [
+                24,
+                10
+              ]
+            ],
+            "verified": true,
+            "source": "https://www.legrand.com/ecatalogue/en/catalog/products/earth-neutral-brass-terminal-blocks-with-isolated-support-24-24-holes-134813",
+            "notes": "Клеммник земли и нейтрали на опоре (клеммы: земля + нейтраль поровну)."
           }
         ],
         "verified": false,
-        "notes": "Техлисты Legrand F02563EN / F02564EN: корпус «without terminal block», клеммники ставятся вверху и внизу в отведённых местах (2 клеммника, у больших корпусов 4). Соответствие техлиста артикулу не сверено."
+        "notes": "Техлисты Legrand F02563/F02564: корпус «without terminal block», места вверху и внизу (2). Соответствие техлиста артикулу корпуса не сверено."
       },
       "verified": true,
       "source": "https://assets.legrand.com/pim/NP-FT-GT/F02563EN_03.pdf"
@@ -174,6 +240,14 @@
           },
           {
             "role": "N+PE",
+            "position": "top"
+          },
+          {
+            "role": "N+PE",
+            "position": "bottom"
+          },
+          {
+            "role": "N+PE",
             "position": "bottom"
           }
         ],
@@ -181,18 +255,40 @@
           {
             "article": "134803",
             "role": "PE",
-            "verified": false,
-            "notes": "Клеммник земли на опоре (1 348 03) для накладных корпусов на 12 мод.; назначение по техлисту, страницу артикула не открывали."
+            "clamps": [
+              [
+                12,
+                16
+              ],
+              [
+                12,
+                10
+              ]
+            ],
+            "verified": true,
+            "source": "https://www.legrand.com/ecatalogue/134803-earth-terminal-block-for-12.html",
+            "notes": "Клеммник земли на опоре; совместимость с корпусом — по странице аксессуара Legrand."
           },
           {
             "article": "134813",
             "role": "N+PE",
-            "verified": false,
-            "notes": "Клеммник земли и нейтрали на опоре (1 348 13) для накладных корпусов на 12 мод.; страницу артикула не открывали."
+            "clamps": [
+              [
+                24,
+                16
+              ],
+              [
+                24,
+                10
+              ]
+            ],
+            "verified": true,
+            "source": "https://www.legrand.com/ecatalogue/en/catalog/products/earth-neutral-brass-terminal-blocks-with-isolated-support-24-24-holes-134813",
+            "notes": "Клеммник земли и нейтрали на опоре (клеммы: земля + нейтраль поровну)."
           }
         ],
         "verified": false,
-        "notes": "Техлисты Legrand F02563EN / F02564EN: корпус «without terminal block», клеммники ставятся вверху и внизу в отведённых местах (2 клеммника, у больших корпусов 4). Соответствие техлиста артикулу не сверено."
+        "notes": "Техлисты Legrand F02563/F02564: корпус «without terminal block», места вверху и внизу (4). Соответствие техлиста артикулу корпуса не сверено."
       },
       "verified": true,
       "source": "https://www.legrand.com/ecatalogue/135114-practibox-s-surface-mounting-cabinet.html"
@@ -225,8 +321,44 @@
             "position": "bottom"
           }
         ],
+        "accessories": [
+          {
+            "article": "134805",
+            "role": "PE",
+            "clamps": [
+              [
+                1,
+                25
+              ],
+              [
+                26,
+                16
+              ]
+            ],
+            "verified": true,
+            "source": "https://www.legrand.com/ecatalogue/en/catalog/products/earth-brass-terminal-blocks-with-isolated-support-27-holes-134805",
+            "notes": "Клеммник земли на опоре; совместимость с корпусом — по странице аксессуара Legrand."
+          },
+          {
+            "article": "134815",
+            "role": "N+PE",
+            "clamps": [
+              [
+                2,
+                25
+              ],
+              [
+                52,
+                16
+              ]
+            ],
+            "verified": true,
+            "source": "https://www.legrand.com/ecatalogue/en/catalog/products/earth-neutral-brass-terminal-blocks-with-isolated-support-27-27-holes-134815",
+            "notes": "Клеммник земли и нейтрали на опоре (клеммы: земля + нейтраль поровну)."
+          }
+        ],
         "verified": false,
-        "notes": "Техлисты Legrand F02563EN / F02564EN: корпус «without terminal block», клеммники ставятся вверху и внизу в отведённых местах (2 клеммника, у больших корпусов 4). Соответствие техлиста артикулу не сверено."
+        "notes": "Техлисты Legrand F02563/F02564: корпус «without terminal block», места вверху и внизу (2). Соответствие техлиста артикулу корпуса не сверено."
       },
       "verified": true,
       "source": "https://assets.legrand.com/pim/NP-FT-GT/F02563EN_03.pdf"
@@ -259,8 +391,44 @@
             "position": "bottom"
           }
         ],
+        "accessories": [
+          {
+            "article": "134805",
+            "role": "PE",
+            "clamps": [
+              [
+                1,
+                25
+              ],
+              [
+                26,
+                16
+              ]
+            ],
+            "verified": true,
+            "source": "https://www.legrand.com/ecatalogue/en/catalog/products/earth-brass-terminal-blocks-with-isolated-support-27-holes-134805",
+            "notes": "Клеммник земли на опоре; совместимость с корпусом — по странице аксессуара Legrand."
+          },
+          {
+            "article": "134815",
+            "role": "N+PE",
+            "clamps": [
+              [
+                2,
+                25
+              ],
+              [
+                52,
+                16
+              ]
+            ],
+            "verified": true,
+            "source": "https://www.legrand.com/ecatalogue/en/catalog/products/earth-neutral-brass-terminal-blocks-with-isolated-support-27-27-holes-134815",
+            "notes": "Клеммник земли и нейтрали на опоре (клеммы: земля + нейтраль поровну)."
+          }
+        ],
         "verified": false,
-        "notes": "Техлисты Legrand F02563EN / F02564EN: корпус «without terminal block», клеммники ставятся вверху и внизу в отведённых местах (2 клеммника, у больших корпусов 4). Соответствие техлиста артикулу не сверено."
+        "notes": "Техлисты Legrand F02563/F02564: корпус «without terminal block», места вверху и внизу (2). Соответствие техлиста артикулу корпуса не сверено."
       },
       "verified": true,
       "source": "https://assets.legrand.com/pim/NP-FT-GT/F02563EN_03.pdf"
@@ -290,11 +458,55 @@
           },
           {
             "role": "N+PE",
+            "position": "top"
+          },
+          {
+            "role": "N+PE",
+            "position": "bottom"
+          },
+          {
+            "role": "N+PE",
             "position": "bottom"
           }
         ],
+        "accessories": [
+          {
+            "article": "134805",
+            "role": "PE",
+            "clamps": [
+              [
+                1,
+                25
+              ],
+              [
+                26,
+                16
+              ]
+            ],
+            "verified": true,
+            "source": "https://www.legrand.com/ecatalogue/en/catalog/products/earth-brass-terminal-blocks-with-isolated-support-27-holes-134805",
+            "notes": "Клеммник земли на опоре; совместимость с корпусом — по странице аксессуара Legrand."
+          },
+          {
+            "article": "134815",
+            "role": "N+PE",
+            "clamps": [
+              [
+                2,
+                25
+              ],
+              [
+                52,
+                16
+              ]
+            ],
+            "verified": true,
+            "source": "https://www.legrand.com/ecatalogue/en/catalog/products/earth-neutral-brass-terminal-blocks-with-isolated-support-27-27-holes-134815",
+            "notes": "Клеммник земли и нейтрали на опоре (клеммы: земля + нейтраль поровну)."
+          }
+        ],
         "verified": false,
-        "notes": "Техлисты Legrand F02563EN / F02564EN: корпус «without terminal block», клеммники ставятся вверху и внизу в отведённых местах (2 клеммника, у больших корпусов 4). Соответствие техлиста артикулу не сверено."
+        "notes": "Техлисты Legrand F02563/F02564: корпус «without terminal block», места вверху и внизу (4). Соответствие техлиста артикулу корпуса не сверено."
       },
       "verified": true,
       "source": "https://www.legrand.com/ecatalogue/137118-practibox-s-surface-mounting-cabinet.html"
@@ -324,11 +536,55 @@
           },
           {
             "role": "N+PE",
+            "position": "top"
+          },
+          {
+            "role": "N+PE",
+            "position": "bottom"
+          },
+          {
+            "role": "N+PE",
             "position": "bottom"
           }
         ],
+        "accessories": [
+          {
+            "article": "134805",
+            "role": "PE",
+            "clamps": [
+              [
+                1,
+                25
+              ],
+              [
+                26,
+                16
+              ]
+            ],
+            "verified": true,
+            "source": "https://www.legrand.com/ecatalogue/en/catalog/products/earth-brass-terminal-blocks-with-isolated-support-27-holes-134805",
+            "notes": "Клеммник земли на опоре; совместимость с корпусом — по странице аксессуара Legrand."
+          },
+          {
+            "article": "134815",
+            "role": "N+PE",
+            "clamps": [
+              [
+                2,
+                25
+              ],
+              [
+                52,
+                16
+              ]
+            ],
+            "verified": true,
+            "source": "https://www.legrand.com/ecatalogue/en/catalog/products/earth-neutral-brass-terminal-blocks-with-isolated-support-27-27-holes-134815",
+            "notes": "Клеммник земли и нейтрали на опоре (клеммы: земля + нейтраль поровну)."
+          }
+        ],
         "verified": false,
-        "notes": "Техлисты Legrand F02563EN / F02564EN: корпус «without terminal block», клеммники ставятся вверху и внизу в отведённых местах (2 клеммника, у больших корпусов 4). Соответствие техлиста артикулу не сверено."
+        "notes": "Техлисты Legrand F02563/F02564: корпус «without terminal block», места вверху и внизу (4). Соответствие техлиста артикулу корпуса не сверено."
       },
       "verified": true,
       "source": "https://assets.legrand.com/pim/NP-FT-GT/F02563EN_03.pdf"
@@ -365,18 +621,40 @@
           {
             "article": "134803",
             "role": "PE",
-            "verified": false,
-            "notes": "Клеммник земли на опоре (1 348 03) для накладных корпусов на 12 мод.; назначение по техлисту, страницу артикула не открывали."
+            "clamps": [
+              [
+                12,
+                16
+              ],
+              [
+                12,
+                10
+              ]
+            ],
+            "verified": true,
+            "source": "https://www.legrand.com/ecatalogue/134803-earth-terminal-block-for-12.html",
+            "notes": "Клеммник земли на опоре; совместимость с корпусом — по странице аксессуара Legrand."
           },
           {
             "article": "134813",
             "role": "N+PE",
-            "verified": false,
-            "notes": "Клеммник земли и нейтрали на опоре (1 348 13) для накладных корпусов на 12 мод.; страницу артикула не открывали."
+            "clamps": [
+              [
+                24,
+                16
+              ],
+              [
+                24,
+                10
+              ]
+            ],
+            "verified": true,
+            "source": "https://www.legrand.com/ecatalogue/en/catalog/products/earth-neutral-brass-terminal-blocks-with-isolated-support-24-24-holes-134813",
+            "notes": "Клеммник земли и нейтрали на опоре (клеммы: земля + нейтраль поровну)."
           }
         ],
         "verified": false,
-        "notes": "Техлисты Legrand F02563EN / F02564EN: корпус «without terminal block», клеммники ставятся вверху и внизу в отведённых местах (2 клеммника, у больших корпусов 4). Соответствие техлиста артикулу не сверено."
+        "notes": "Техлисты Legrand F02563/F02564: корпус «without terminal block», места вверху и внизу (2). Соответствие техлиста артикулу корпуса не сверено."
       },
       "verified": true,
       "source": "https://www.legrand.com/ecatalogue/en/catalog/products/practibox-s-surface-mounting-din-cabinet-1-row-of-12-modules-white-door-135101"
@@ -413,18 +691,40 @@
           {
             "article": "134803",
             "role": "PE",
-            "verified": false,
-            "notes": "Клеммник земли на опоре (1 348 03) для накладных корпусов на 12 мод.; назначение по техлисту, страницу артикула не открывали."
+            "clamps": [
+              [
+                12,
+                16
+              ],
+              [
+                12,
+                10
+              ]
+            ],
+            "verified": true,
+            "source": "https://www.legrand.com/ecatalogue/134803-earth-terminal-block-for-12.html",
+            "notes": "Клеммник земли на опоре; совместимость с корпусом — по странице аксессуара Legrand."
           },
           {
             "article": "134813",
             "role": "N+PE",
-            "verified": false,
-            "notes": "Клеммник земли и нейтрали на опоре (1 348 13) для накладных корпусов на 12 мод.; страницу артикула не открывали."
+            "clamps": [
+              [
+                24,
+                16
+              ],
+              [
+                24,
+                10
+              ]
+            ],
+            "verified": true,
+            "source": "https://www.legrand.com/ecatalogue/en/catalog/products/earth-neutral-brass-terminal-blocks-with-isolated-support-24-24-holes-134813",
+            "notes": "Клеммник земли и нейтрали на опоре (клеммы: земля + нейтраль поровну)."
           }
         ],
         "verified": false,
-        "notes": "Техлисты Legrand F02563EN / F02564EN: корпус «without terminal block», клеммники ставятся вверху и внизу в отведённых местах (2 клеммника, у больших корпусов 4). Соответствие техлиста артикулу не сверено."
+        "notes": "Техлисты Legrand F02563/F02564: корпус «without terminal block», места вверху и внизу (2). Соответствие техлиста артикулу корпуса не сверено."
       },
       "verified": true,
       "source": "https://assets.legrand.com/pim/NP-FT-GT/F02563EN_03.pdf"
@@ -461,18 +761,40 @@
           {
             "article": "134803",
             "role": "PE",
-            "verified": false,
-            "notes": "Клеммник земли на опоре (1 348 03) для накладных корпусов на 12 мод.; назначение по техлисту, страницу артикула не открывали."
+            "clamps": [
+              [
+                12,
+                16
+              ],
+              [
+                12,
+                10
+              ]
+            ],
+            "verified": true,
+            "source": "https://www.legrand.com/ecatalogue/134803-earth-terminal-block-for-12.html",
+            "notes": "Клеммник земли на опоре; совместимость с корпусом — по странице аксессуара Legrand."
           },
           {
             "article": "134813",
             "role": "N+PE",
-            "verified": false,
-            "notes": "Клеммник земли и нейтрали на опоре (1 348 13) для накладных корпусов на 12 мод.; страницу артикула не открывали."
+            "clamps": [
+              [
+                24,
+                16
+              ],
+              [
+                24,
+                10
+              ]
+            ],
+            "verified": true,
+            "source": "https://www.legrand.com/ecatalogue/en/catalog/products/earth-neutral-brass-terminal-blocks-with-isolated-support-24-24-holes-134813",
+            "notes": "Клеммник земли и нейтрали на опоре (клеммы: земля + нейтраль поровну)."
           }
         ],
         "verified": false,
-        "notes": "Техлисты Legrand F02563EN / F02564EN: корпус «without terminal block», клеммники ставятся вверху и внизу в отведённых местах (2 клеммника, у больших корпусов 4). Соответствие техлиста артикулу не сверено."
+        "notes": "Техлисты Legrand F02563/F02564: корпус «without terminal block», места вверху и внизу (2). Соответствие техлиста артикулу корпуса не сверено."
       },
       "verified": true,
       "source": "https://assets.legrand.com/pim/NP-FT-GT/F02563EN_03.pdf"
@@ -502,6 +824,14 @@
           },
           {
             "role": "N+PE",
+            "position": "top"
+          },
+          {
+            "role": "N+PE",
+            "position": "bottom"
+          },
+          {
+            "role": "N+PE",
             "position": "bottom"
           }
         ],
@@ -509,18 +839,40 @@
           {
             "article": "134803",
             "role": "PE",
-            "verified": false,
-            "notes": "Клеммник земли на опоре (1 348 03) для накладных корпусов на 12 мод.; назначение по техлисту, страницу артикула не открывали."
+            "clamps": [
+              [
+                12,
+                16
+              ],
+              [
+                12,
+                10
+              ]
+            ],
+            "verified": true,
+            "source": "https://www.legrand.com/ecatalogue/134803-earth-terminal-block-for-12.html",
+            "notes": "Клеммник земли на опоре; совместимость с корпусом — по странице аксессуара Legrand."
           },
           {
             "article": "134813",
             "role": "N+PE",
-            "verified": false,
-            "notes": "Клеммник земли и нейтрали на опоре (1 348 13) для накладных корпусов на 12 мод.; страницу артикула не открывали."
+            "clamps": [
+              [
+                24,
+                16
+              ],
+              [
+                24,
+                10
+              ]
+            ],
+            "verified": true,
+            "source": "https://www.legrand.com/ecatalogue/en/catalog/products/earth-neutral-brass-terminal-blocks-with-isolated-support-24-24-holes-134813",
+            "notes": "Клеммник земли и нейтрали на опоре (клеммы: земля + нейтраль поровну)."
           }
         ],
         "verified": false,
-        "notes": "Техлисты Legrand F02563EN / F02564EN: корпус «without terminal block», клеммники ставятся вверху и внизу в отведённых местах (2 клеммника, у больших корпусов 4). Соответствие техлиста артикулу не сверено."
+        "notes": "Техлисты Legrand F02563/F02564: корпус «without terminal block», места вверху и внизу (4). Соответствие техлиста артикулу корпуса не сверено."
       },
       "verified": true,
       "source": "https://assets.legrand.com/pim/NP-FT-GT/F02563EN_03.pdf"
@@ -553,8 +905,44 @@
             "position": "bottom"
           }
         ],
+        "accessories": [
+          {
+            "article": "134805",
+            "role": "PE",
+            "clamps": [
+              [
+                1,
+                25
+              ],
+              [
+                26,
+                16
+              ]
+            ],
+            "verified": true,
+            "source": "https://www.legrand.com/ecatalogue/en/catalog/products/earth-brass-terminal-blocks-with-isolated-support-27-holes-134805",
+            "notes": "Клеммник земли на опоре; совместимость с корпусом — по странице аксессуара Legrand."
+          },
+          {
+            "article": "134815",
+            "role": "N+PE",
+            "clamps": [
+              [
+                2,
+                25
+              ],
+              [
+                52,
+                16
+              ]
+            ],
+            "verified": true,
+            "source": "https://www.legrand.com/ecatalogue/en/catalog/products/earth-neutral-brass-terminal-blocks-with-isolated-support-27-27-holes-134815",
+            "notes": "Клеммник земли и нейтрали на опоре (клеммы: земля + нейтраль поровну)."
+          }
+        ],
         "verified": false,
-        "notes": "Техлисты Legrand F02563EN / F02564EN: корпус «without terminal block», клеммники ставятся вверху и внизу в отведённых местах (2 клеммника, у больших корпусов 4). Соответствие техлиста артикулу не сверено."
+        "notes": "Техлисты Legrand F02563/F02564: корпус «without terminal block», места вверху и внизу (2). Соответствие техлиста артикулу корпуса не сверено."
       },
       "verified": true,
       "source": "https://assets.legrand.com/pim/NP-FT-GT/F02563EN_03.pdf"
@@ -587,8 +975,44 @@
             "position": "bottom"
           }
         ],
+        "accessories": [
+          {
+            "article": "134805",
+            "role": "PE",
+            "clamps": [
+              [
+                1,
+                25
+              ],
+              [
+                26,
+                16
+              ]
+            ],
+            "verified": true,
+            "source": "https://www.legrand.com/ecatalogue/en/catalog/products/earth-brass-terminal-blocks-with-isolated-support-27-holes-134805",
+            "notes": "Клеммник земли на опоре; совместимость с корпусом — по странице аксессуара Legrand."
+          },
+          {
+            "article": "134815",
+            "role": "N+PE",
+            "clamps": [
+              [
+                2,
+                25
+              ],
+              [
+                52,
+                16
+              ]
+            ],
+            "verified": true,
+            "source": "https://www.legrand.com/ecatalogue/en/catalog/products/earth-neutral-brass-terminal-blocks-with-isolated-support-27-27-holes-134815",
+            "notes": "Клеммник земли и нейтрали на опоре (клеммы: земля + нейтраль поровну)."
+          }
+        ],
         "verified": false,
-        "notes": "Техлисты Legrand F02563EN / F02564EN: корпус «without terminal block», клеммники ставятся вверху и внизу в отведённых местах (2 клеммника, у больших корпусов 4). Соответствие техлиста артикулу не сверено."
+        "notes": "Техлисты Legrand F02563/F02564: корпус «without terminal block», места вверху и внизу (2). Соответствие техлиста артикулу корпуса не сверено."
       },
       "verified": true,
       "source": "https://assets.legrand.com/pim/NP-FT-GT/F02563EN_03.pdf"
@@ -618,11 +1042,55 @@
           },
           {
             "role": "N+PE",
+            "position": "top"
+          },
+          {
+            "role": "N+PE",
+            "position": "bottom"
+          },
+          {
+            "role": "N+PE",
             "position": "bottom"
           }
         ],
+        "accessories": [
+          {
+            "article": "134805",
+            "role": "PE",
+            "clamps": [
+              [
+                1,
+                25
+              ],
+              [
+                26,
+                16
+              ]
+            ],
+            "verified": true,
+            "source": "https://www.legrand.com/ecatalogue/en/catalog/products/earth-brass-terminal-blocks-with-isolated-support-27-holes-134805",
+            "notes": "Клеммник земли на опоре; совместимость с корпусом — по странице аксессуара Legrand."
+          },
+          {
+            "article": "134815",
+            "role": "N+PE",
+            "clamps": [
+              [
+                2,
+                25
+              ],
+              [
+                52,
+                16
+              ]
+            ],
+            "verified": true,
+            "source": "https://www.legrand.com/ecatalogue/en/catalog/products/earth-neutral-brass-terminal-blocks-with-isolated-support-27-27-holes-134815",
+            "notes": "Клеммник земли и нейтрали на опоре (клеммы: земля + нейтраль поровну)."
+          }
+        ],
         "verified": false,
-        "notes": "Техлисты Legrand F02563EN / F02564EN: корпус «without terminal block», клеммники ставятся вверху и внизу в отведённых местах (2 клеммника, у больших корпусов 4). Соответствие техлиста артикулу не сверено."
+        "notes": "Техлисты Legrand F02563/F02564: корпус «without terminal block», места вверху и внизу (4). Соответствие техлиста артикулу корпуса не сверено."
       },
       "verified": true,
       "source": "https://assets.legrand.com/pim/NP-FT-GT/F02563EN_03.pdf"
@@ -652,11 +1120,55 @@
           },
           {
             "role": "N+PE",
+            "position": "top"
+          },
+          {
+            "role": "N+PE",
+            "position": "bottom"
+          },
+          {
+            "role": "N+PE",
             "position": "bottom"
           }
         ],
+        "accessories": [
+          {
+            "article": "134805",
+            "role": "PE",
+            "clamps": [
+              [
+                1,
+                25
+              ],
+              [
+                26,
+                16
+              ]
+            ],
+            "verified": true,
+            "source": "https://www.legrand.com/ecatalogue/en/catalog/products/earth-brass-terminal-blocks-with-isolated-support-27-holes-134805",
+            "notes": "Клеммник земли на опоре; совместимость с корпусом — по странице аксессуара Legrand."
+          },
+          {
+            "article": "134815",
+            "role": "N+PE",
+            "clamps": [
+              [
+                2,
+                25
+              ],
+              [
+                52,
+                16
+              ]
+            ],
+            "verified": true,
+            "source": "https://www.legrand.com/ecatalogue/en/catalog/products/earth-neutral-brass-terminal-blocks-with-isolated-support-27-27-holes-134815",
+            "notes": "Клеммник земли и нейтрали на опоре (клеммы: земля + нейтраль поровну)."
+          }
+        ],
         "verified": false,
-        "notes": "Техлисты Legrand F02563EN / F02564EN: корпус «without terminal block», клеммники ставятся вверху и внизу в отведённых местах (2 клеммника, у больших корпусов 4). Соответствие техлиста артикулу не сверено."
+        "notes": "Техлисты Legrand F02563/F02564: корпус «without terminal block», места вверху и внизу (4). Соответствие техлиста артикулу корпуса не сверено."
       },
       "verified": true,
       "source": "https://assets.legrand.com/pim/NP-FT-GT/F02563EN_03.pdf"
@@ -689,8 +1201,44 @@
             "position": "bottom"
           }
         ],
+        "accessories": [
+          {
+            "article": "134802",
+            "role": "PE",
+            "clamps": [
+              [
+                12,
+                16
+              ],
+              [
+                12,
+                10
+              ]
+            ],
+            "verified": true,
+            "source": "https://www.legrand.com/ecatalogue/en/catalog/products/earth-brass-terminal-blocks-with-isolated-support-24-holes-134802",
+            "notes": "Клеммник земли на опоре; совместимость с корпусом — по странице аксессуара Legrand."
+          },
+          {
+            "article": "134812",
+            "role": "N+PE",
+            "clamps": [
+              [
+                24,
+                16
+              ],
+              [
+                24,
+                10
+              ]
+            ],
+            "verified": true,
+            "source": "https://www.legrand.com/ecatalogue/en/catalog/products/earth-neutral-brass-terminal-blocks-with-isolated-support-24-24-holes-134812",
+            "notes": "Клеммник земли и нейтрали на опоре (клеммы: земля + нейтраль поровну)."
+          }
+        ],
         "verified": false,
-        "notes": "Техлисты Legrand F02563EN / F02564EN: корпус «without terminal block», клеммники ставятся вверху и внизу в отведённых местах (2 клеммника, у больших корпусов 4). Соответствие техлиста артикулу не сверено."
+        "notes": "Техлисты Legrand F02563/F02564: корпус «without terminal block», места вверху и внизу (2). Соответствие техлиста артикулу корпуса не сверено."
       },
       "verified": true,
       "source": "https://assets.legrand.com/pim/NP-FT-GT/F02564EN_04.pdf"
@@ -723,8 +1271,44 @@
             "position": "bottom"
           }
         ],
+        "accessories": [
+          {
+            "article": "134802",
+            "role": "PE",
+            "clamps": [
+              [
+                12,
+                16
+              ],
+              [
+                12,
+                10
+              ]
+            ],
+            "verified": true,
+            "source": "https://www.legrand.com/ecatalogue/en/catalog/products/earth-brass-terminal-blocks-with-isolated-support-24-holes-134802",
+            "notes": "Клеммник земли на опоре; совместимость с корпусом — по странице аксессуара Legrand."
+          },
+          {
+            "article": "134812",
+            "role": "N+PE",
+            "clamps": [
+              [
+                24,
+                16
+              ],
+              [
+                24,
+                10
+              ]
+            ],
+            "verified": true,
+            "source": "https://www.legrand.com/ecatalogue/en/catalog/products/earth-neutral-brass-terminal-blocks-with-isolated-support-24-24-holes-134812",
+            "notes": "Клеммник земли и нейтрали на опоре (клеммы: земля + нейтраль поровну)."
+          }
+        ],
         "verified": false,
-        "notes": "Техлисты Legrand F02563EN / F02564EN: корпус «without terminal block», клеммники ставятся вверху и внизу в отведённых местах (2 клеммника, у больших корпусов 4). Соответствие техлиста артикулу не сверено."
+        "notes": "Техлисты Legrand F02563/F02564: корпус «without terminal block», места вверху и внизу (2). Соответствие техлиста артикулу корпуса не сверено."
       },
       "verified": true,
       "source": "https://www.legrand.com/ecatalogue/en/catalog/products/practibox-s-flush-mounting-din-cabinet-for-masonry-wall-2-rows-of-12-modules-smoked-door-135012"
@@ -757,8 +1341,44 @@
             "position": "bottom"
           }
         ],
+        "accessories": [
+          {
+            "article": "134802",
+            "role": "PE",
+            "clamps": [
+              [
+                12,
+                16
+              ],
+              [
+                12,
+                10
+              ]
+            ],
+            "verified": true,
+            "source": "https://www.legrand.com/ecatalogue/en/catalog/products/earth-brass-terminal-blocks-with-isolated-support-24-holes-134802",
+            "notes": "Клеммник земли на опоре; совместимость с корпусом — по странице аксессуара Legrand."
+          },
+          {
+            "article": "134812",
+            "role": "N+PE",
+            "clamps": [
+              [
+                24,
+                16
+              ],
+              [
+                24,
+                10
+              ]
+            ],
+            "verified": true,
+            "source": "https://www.legrand.com/ecatalogue/en/catalog/products/earth-neutral-brass-terminal-blocks-with-isolated-support-24-24-holes-134812",
+            "notes": "Клеммник земли и нейтрали на опоре (клеммы: земля + нейтраль поровну)."
+          }
+        ],
         "verified": false,
-        "notes": "Техлисты Legrand F02563EN / F02564EN: корпус «without terminal block», клеммники ставятся вверху и внизу в отведённых местах (2 клеммника, у больших корпусов 4). Соответствие техлиста артикулу не сверено."
+        "notes": "Техлисты Legrand F02563/F02564: корпус «without terminal block», места вверху и внизу (2). Соответствие техлиста артикулу корпуса не сверено."
       },
       "verified": true,
       "source": "https://assets.legrand.com/pim/NP-FT-GT/F02564EN_04.pdf"
@@ -788,11 +1408,55 @@
           },
           {
             "role": "N+PE",
+            "position": "top"
+          },
+          {
+            "role": "N+PE",
+            "position": "bottom"
+          },
+          {
+            "role": "N+PE",
             "position": "bottom"
           }
         ],
+        "accessories": [
+          {
+            "article": "134802",
+            "role": "PE",
+            "clamps": [
+              [
+                12,
+                16
+              ],
+              [
+                12,
+                10
+              ]
+            ],
+            "verified": true,
+            "source": "https://www.legrand.com/ecatalogue/en/catalog/products/earth-brass-terminal-blocks-with-isolated-support-24-holes-134802",
+            "notes": "Клеммник земли на опоре; совместимость с корпусом — по странице аксессуара Legrand."
+          },
+          {
+            "article": "134812",
+            "role": "N+PE",
+            "clamps": [
+              [
+                24,
+                16
+              ],
+              [
+                24,
+                10
+              ]
+            ],
+            "verified": true,
+            "source": "https://www.legrand.com/ecatalogue/en/catalog/products/earth-neutral-brass-terminal-blocks-with-isolated-support-24-24-holes-134812",
+            "notes": "Клеммник земли и нейтрали на опоре (клеммы: земля + нейтраль поровну)."
+          }
+        ],
         "verified": false,
-        "notes": "Техлисты Legrand F02563EN / F02564EN: корпус «without terminal block», клеммники ставятся вверху и внизу в отведённых местах (2 клеммника, у больших корпусов 4). Соответствие техлиста артикулу не сверено."
+        "notes": "Техлисты Legrand F02563/F02564: корпус «without terminal block», места вверху и внизу (4). Соответствие техлиста артикулу корпуса не сверено."
       },
       "verified": true,
       "source": "https://assets.legrand.com/pim/NP-FT-GT/F02564EN_04.pdf"
@@ -825,8 +1489,44 @@
             "position": "bottom"
           }
         ],
+        "accessories": [
+          {
+            "article": "134804",
+            "role": "PE",
+            "clamps": [
+              [
+                1,
+                25
+              ],
+              [
+                12,
+                16
+              ]
+            ],
+            "verified": true,
+            "source": "https://www.legrand.com/ecatalogue/en/catalog/products/earth-brass-terminal-blocks-with-isolated-support-13-holes-134804",
+            "notes": "Клеммник земли на опоре; совместимость с корпусом — по странице аксессуара Legrand."
+          },
+          {
+            "article": "134814",
+            "role": "N+PE",
+            "clamps": [
+              [
+                2,
+                25
+              ],
+              [
+                24,
+                16
+              ]
+            ],
+            "verified": true,
+            "source": "https://www.legrand.com/ecatalogue/en/catalog/products/earth-neutral-brass-terminal-blocks-with-isolated-support-13-13-holes-134814",
+            "notes": "Клеммник земли и нейтрали на опоре (клеммы: земля + нейтраль поровну)."
+          }
+        ],
         "verified": false,
-        "notes": "Техлисты Legrand F02563EN / F02564EN: корпус «without terminal block», клеммники ставятся вверху и внизу в отведённых местах (2 клеммника, у больших корпусов 4). Соответствие техлиста артикулу не сверено."
+        "notes": "Техлисты Legrand F02563/F02564: корпус «without terminal block», места вверху и внизу (2). Соответствие техлиста артикулу корпуса не сверено."
       },
       "verified": true,
       "source": "https://assets.legrand.com/pim/NP-FT-GT/F02564EN_04.pdf"
@@ -859,8 +1559,44 @@
             "position": "bottom"
           }
         ],
+        "accessories": [
+          {
+            "article": "134805",
+            "role": "PE",
+            "clamps": [
+              [
+                1,
+                25
+              ],
+              [
+                26,
+                16
+              ]
+            ],
+            "verified": true,
+            "source": "https://www.legrand.com/ecatalogue/en/catalog/products/earth-brass-terminal-blocks-with-isolated-support-27-holes-134805",
+            "notes": "Клеммник земли на опоре; совместимость с корпусом — по странице аксессуара Legrand."
+          },
+          {
+            "article": "134815",
+            "role": "N+PE",
+            "clamps": [
+              [
+                2,
+                25
+              ],
+              [
+                52,
+                16
+              ]
+            ],
+            "verified": true,
+            "source": "https://www.legrand.com/ecatalogue/en/catalog/products/earth-neutral-brass-terminal-blocks-with-isolated-support-27-27-holes-134815",
+            "notes": "Клеммник земли и нейтрали на опоре (клеммы: земля + нейтраль поровну)."
+          }
+        ],
         "verified": false,
-        "notes": "Техлисты Legrand F02563EN / F02564EN: корпус «without terminal block», клеммники ставятся вверху и внизу в отведённых местах (2 клеммника, у больших корпусов 4). Соответствие техлиста артикулу не сверено."
+        "notes": "Техлисты Legrand F02563/F02564: корпус «without terminal block», места вверху и внизу (2). Соответствие техлиста артикулу корпуса не сверено."
       },
       "verified": true,
       "source": "https://www.legrand.com/ecatalogue/en/catalog/products/practibox-s-flush-mounting-din-cabinet-for-masonry-wall-2-rows-of-18-modules-smoked-door-137017"
@@ -890,11 +1626,55 @@
           },
           {
             "role": "N+PE",
+            "position": "top"
+          },
+          {
+            "role": "N+PE",
+            "position": "bottom"
+          },
+          {
+            "role": "N+PE",
             "position": "bottom"
           }
         ],
+        "accessories": [
+          {
+            "article": "134805",
+            "role": "PE",
+            "clamps": [
+              [
+                1,
+                25
+              ],
+              [
+                26,
+                16
+              ]
+            ],
+            "verified": true,
+            "source": "https://www.legrand.com/ecatalogue/en/catalog/products/earth-brass-terminal-blocks-with-isolated-support-27-holes-134805",
+            "notes": "Клеммник земли на опоре; совместимость с корпусом — по странице аксессуара Legrand."
+          },
+          {
+            "article": "134815",
+            "role": "N+PE",
+            "clamps": [
+              [
+                2,
+                25
+              ],
+              [
+                52,
+                16
+              ]
+            ],
+            "verified": true,
+            "source": "https://www.legrand.com/ecatalogue/en/catalog/products/earth-neutral-brass-terminal-blocks-with-isolated-support-27-27-holes-134815",
+            "notes": "Клеммник земли и нейтрали на опоре (клеммы: земля + нейтраль поровну)."
+          }
+        ],
         "verified": false,
-        "notes": "Техлисты Legrand F02563EN / F02564EN: корпус «without terminal block», клеммники ставятся вверху и внизу в отведённых местах (2 клеммника, у больших корпусов 4). Соответствие техлиста артикулу не сверено."
+        "notes": "Техлисты Legrand F02563/F02564: корпус «without terminal block», места вверху и внизу (4). Соответствие техлиста артикулу корпуса не сверено."
       },
       "verified": true,
       "source": "https://assets.legrand.com/pim/NP-FT-GT/F02564EN_04.pdf"
@@ -924,11 +1704,55 @@
           },
           {
             "role": "N+PE",
+            "position": "top"
+          },
+          {
+            "role": "N+PE",
+            "position": "bottom"
+          },
+          {
+            "role": "N+PE",
             "position": "bottom"
           }
         ],
+        "accessories": [
+          {
+            "article": "134805",
+            "role": "PE",
+            "clamps": [
+              [
+                1,
+                25
+              ],
+              [
+                26,
+                16
+              ]
+            ],
+            "verified": true,
+            "source": "https://www.legrand.com/ecatalogue/en/catalog/products/earth-brass-terminal-blocks-with-isolated-support-27-holes-134805",
+            "notes": "Клеммник земли на опоре; совместимость с корпусом — по странице аксессуара Legrand."
+          },
+          {
+            "article": "134815",
+            "role": "N+PE",
+            "clamps": [
+              [
+                2,
+                25
+              ],
+              [
+                52,
+                16
+              ]
+            ],
+            "verified": true,
+            "source": "https://www.legrand.com/ecatalogue/en/catalog/products/earth-neutral-brass-terminal-blocks-with-isolated-support-27-27-holes-134815",
+            "notes": "Клеммник земли и нейтрали на опоре (клеммы: земля + нейтраль поровну)."
+          }
+        ],
         "verified": false,
-        "notes": "Техлисты Legrand F02563EN / F02564EN: корпус «without terminal block», клеммники ставятся вверху и внизу в отведённых местах (2 клеммника, у больших корпусов 4). Соответствие техлиста артикулу не сверено."
+        "notes": "Техлисты Legrand F02563/F02564: корпус «without terminal block», места вверху и внизу (4). Соответствие техлиста артикулу корпуса не сверено."
       },
       "verified": true,
       "source": "https://assets.legrand.com/pim/NP-FT-GT/F02564EN_04.pdf"
@@ -3998,6 +4822,833 @@
       "verified": true,
       "source": "https://www.legrand.com/ecatalogue/en/catalog/products/isolating-switch-dx3-is-4-pole-125a-406490",
       "notes": "Ширина: 1 модуль на полюс по техпаспорту F01480EN-03."
+    },
+    {
+      "id": "legrand-004830",
+      "brand": "legrand",
+      "series": "Lexic IP2X",
+      "article": "004830",
+      "category": "terminal",
+      "modules": 3,
+      "specs": {
+        "role": "PE",
+        "clamps": [
+          [
+            4,
+            16
+          ]
+        ],
+        "ratedCurrentA": 76
+      },
+      "verified": false,
+      "source": "https://www.legrand.com/ecatalogue/en/catalog/products/ip2x-terminal-block-earth-green-4x15mm2-to-16mm2-terminals-din-rail-mounting-length-47mm-004830",
+      "notes": "Зелёный, 1 вход + 3 выхода 1,5–16 мм². Длина 47 мм; модули Legrand не указывает — 3 мод. рассчитано (47/17,5 = 2,7, округлено вверх до 0,5). Ширина в модулях пересчитана из мм — не проверено."
+    },
+    {
+      "id": "legrand-004832",
+      "brand": "legrand",
+      "series": "Lexic IP2X",
+      "article": "004832",
+      "category": "terminal",
+      "modules": 4.5,
+      "specs": {
+        "role": "PE",
+        "clamps": [
+          [
+            8,
+            16
+          ]
+        ],
+        "ratedCurrentA": 76
+      },
+      "verified": false,
+      "source": "https://www.legrand.com/ecatalogue/en/catalog/products/ip2x-terminal-block-earth-green-8x15mm2-to-16mm2-terminals-75mm-length-din-rail-mounting-1-input-7-outputs-004832",
+      "notes": "Зелёный, 1 вход + 7 выходов 1,5–16 мм². Длина 75 мм; модули рассчитаны (75/17,5 = 4,3 → 4,5). Ширина в модулях пересчитана из мм — не проверено."
+    },
+    {
+      "id": "legrand-004834",
+      "brand": "legrand",
+      "series": "Lexic IP2X",
+      "article": "004834",
+      "category": "terminal",
+      "modules": 6.5,
+      "specs": {
+        "role": "PE",
+        "clamps": [
+          [
+            1,
+            25
+          ],
+          [
+            12,
+            16
+          ]
+        ],
+        "ratedCurrentA": 90
+      },
+      "verified": false,
+      "source": "https://www.legrand.com/ecatalogue/en/catalog/products/ip2x-terminal-block-earth-green-1x6mm2-to-25mm2-input-12x15mm2-to-16mm2-outputs-din-rail-mounting-113mm-004834",
+      "notes": "Зелёный, вход 6–25 мм², 12 выходов 1,5–16 мм². Длина 113 мм; модули рассчитаны (6,46 → 6,5). Ток 90 A в таблице (в описании до 100 A при вводе 25 мм²). Ширина в модулях пересчитана из мм — не проверено."
+    },
+    {
+      "id": "legrand-004835",
+      "brand": "legrand",
+      "series": "Lexic IP2X",
+      "article": "004835",
+      "category": "terminal",
+      "modules": 8.5,
+      "specs": {
+        "role": "PE",
+        "clamps": [
+          [
+            1,
+            25
+          ],
+          [
+            16,
+            16
+          ]
+        ],
+        "ratedCurrentA": 90
+      },
+      "verified": false,
+      "source": "https://www.legrand.com/ecatalogue/en/catalog/products/ip2x-terminal-block-earth-green-1x6mm2-to-25mm2-input-16x15mm2-to-16mm2-outputs-din-rail-mounting-length-141mm-004835",
+      "notes": "Зелёный. Длина 141 мм; модули рассчитаны (8,06 → 8,5). По техлисту F00193EN/02 напрямую на рейку ставятся только 0 048 32/34/42/44, остальные — через опору 0 048 11 (004811). Ширина в модулях пересчитана из мм — не проверено."
+    },
+    {
+      "id": "legrand-004836",
+      "brand": "legrand",
+      "series": "Lexic IP2X",
+      "article": "004836",
+      "category": "terminal",
+      "modules": 10.5,
+      "specs": {
+        "role": "PE",
+        "clamps": [
+          [
+            1,
+            25
+          ],
+          [
+            21,
+            16
+          ]
+        ],
+        "ratedCurrentA": 90
+      },
+      "verified": false,
+      "source": "https://www.legrand.com/ecatalogue/en/catalog/products/ip2x-terminal-block-earth-green-1x6mm2-to-25mm2-input-21x15mm2-to-16mm2-outputs-length-176mm-004836",
+      "notes": "Зелёный. Длина 176 мм; модули рассчитаны (10,06 → 10,5). На рейку — через опору 004811 (F00193EN/02). Ширина в модулях пересчитана из мм — не проверено."
+    },
+    {
+      "id": "legrand-004840",
+      "brand": "legrand",
+      "series": "Lexic IP2X",
+      "article": "004840",
+      "category": "terminal",
+      "modules": 3,
+      "specs": {
+        "role": "N",
+        "clamps": [
+          [
+            4,
+            16
+          ]
+        ],
+        "ratedCurrentA": 76
+      },
+      "verified": false,
+      "source": "https://www.legrand.com/ecatalogue/en/catalog/products/ip2x-terminal-block-neutral-blue-4x15mm2-to-16mm2-terminals-din-rail-mounting-47mm-length-004840",
+      "notes": "Синий, 1 вход + 3 выхода 1,5–16 мм². Длина 47 мм; модули рассчитаны (2,7 → 3). Ширина в модулях пересчитана из мм — не проверено."
+    },
+    {
+      "id": "legrand-004842",
+      "brand": "legrand",
+      "series": "Lexic IP2X",
+      "article": "004842",
+      "category": "terminal",
+      "modules": 4.5,
+      "specs": {
+        "role": "N",
+        "clamps": [
+          [
+            8,
+            16
+          ]
+        ]
+      },
+      "verified": false,
+      "source": "https://assets.legrand.com/pim/NP-FT-GT/F00193EN-02.pdf",
+      "notes": "Есть в техлисте F00193EN/02 (нейтраль, 8 клемм 1,5–16 мм², ставится прямо на рейку). Страницу артикула не открыли (не нашли адрес). Длина 75 мм и модули приняты по аналогии с 004832."
+    },
+    {
+      "id": "legrand-004844",
+      "brand": "legrand",
+      "series": "Lexic IP2X",
+      "article": "004844",
+      "category": "terminal",
+      "modules": 6.5,
+      "specs": {
+        "role": "N",
+        "clamps": [
+          [
+            1,
+            25
+          ],
+          [
+            12,
+            16
+          ]
+        ],
+        "ratedCurrentA": 90
+      },
+      "verified": false,
+      "source": "https://www.legrand.fr/catalogue/peigne-et-accessoires-de-raccordement/bornier-de-neutre-ip2x-12-bornes-cable-15mm2-a-16mm2-1-cable-6mm2-a-25mm2-bleu-113mm",
+      "notes": "Синий, длина 113 мм. Сверено по названию и карточке в категории legrand.fr; модули рассчитаны (6,46 → 6,5). Ток 90 A принят по парному 004834. Ширина в модулях пересчитана из мм — не проверено."
+    },
+    {
+      "id": "legrand-004845",
+      "brand": "legrand",
+      "series": "Lexic IP2X",
+      "article": "004845",
+      "category": "terminal",
+      "modules": 8.5,
+      "specs": {
+        "role": "N",
+        "clamps": [
+          [
+            1,
+            25
+          ],
+          [
+            16,
+            16
+          ]
+        ],
+        "ratedCurrentA": 90
+      },
+      "verified": false,
+      "source": "https://www.legrand.com/ecatalogue/en/catalog/products/ip2x-terminal-block-neutral-blue-1x6mm2-to-25mm2-input-16x15mm2-to-16mm2-outputs-din-rail-mounting-length-141mm-004845",
+      "notes": "Синий, длина 141 мм; модули рассчитаны (8,06 → 8,5). На рейку через опору 004811 или прямо на рейку (на странице — symmetrical/asymmetrical rail). Ширина в модулях пересчитана из мм — не проверено."
+    },
+    {
+      "id": "legrand-004815",
+      "brand": "legrand",
+      "series": "Lexic IP2X",
+      "article": "004815",
+      "category": "terminal",
+      "modules": 4,
+      "specs": {
+        "role": "N",
+        "clamps": [
+          [
+            1,
+            35
+          ],
+          [
+            5,
+            25
+          ]
+        ],
+        "ratedCurrentA": 125
+      },
+      "verified": false,
+      "source": "https://www.legrand.com/ecatalogue/en/catalog/products/ip2x-terminal-block-neutral-blue-1x10mm2-to-35mm2-input-5x6mm2-to-25mm2-outputs-din-rail-mounting-62mm-length-004815",
+      "notes": "Синий, крупного сечения: вход 10–35 мм², 5 выходов 6–25 мм². Длина 62 мм; модули рассчитаны (3,5 → 4). Ширина в модулях пересчитана из мм — не проверено."
+    },
+    {
+      "id": "legrand-004816",
+      "brand": "legrand",
+      "series": "Lexic IP2X",
+      "article": "004816",
+      "category": "distribution",
+      "modules": 4,
+      "specs": {
+        "poles": "1P",
+        "ratedCurrentA": 125,
+        "clamps": [
+          [
+            1,
+            35
+          ],
+          [
+            5,
+            25
+          ]
+        ]
+      },
+      "verified": false,
+      "source": "https://www.legrand.com/ecatalogue/en/our-products/energy-distribution-protection-and-management/switchboards-and-power-cabinets/copper-distribution",
+      "notes": "Фазный (чёрный) клеммник, пара к 004815. Данные из названия в списке категории; страницу артикула не открывали. Модули рассчитаны из длины 62 мм."
+    },
+    {
+      "id": "legrand-400400",
+      "brand": "legrand",
+      "series": "Модульные распределительные блоки (staggered bars)",
+      "article": "400400",
+      "category": "distribution",
+      "modules": 6,
+      "specs": {
+        "poles": "1P+N",
+        "ratedCurrentA": 40,
+        "clamps": [
+          [
+            3,
+            10
+          ],
+          [
+            10,
+            6
+          ]
+        ]
+      },
+      "verified": true,
+      "source": "https://www.legrand.com/ecatalogue/en/catalog/products/modular-distribution-block-with-staggered-bars-40-13-connections-per-busbar-6-modules-400400",
+      "notes": "2P, винтовые клеммы. Клеммы на каждую шину: вход 10 мм² + 2 выхода 10 мм² + 10 выходов 6 мм² (жёсткий провод). Модули по техлисту F03358EN/02."
+    },
+    {
+      "id": "legrand-400401",
+      "brand": "legrand",
+      "series": "Модульные распределительные блоки (staggered bars)",
+      "article": "400401",
+      "category": "distribution",
+      "modules": 4,
+      "specs": {
+        "poles": "1P+N",
+        "ratedCurrentA": 100,
+        "clamps": [
+          [
+            2,
+            25
+          ],
+          [
+            5,
+            10
+          ]
+        ]
+      },
+      "verified": true,
+      "source": "https://www.legrand.com/ecatalogue/en/catalog/products/modular-distribution-block-with-staggered-bars-100-7-connections-per-busbar-4-modules-400401",
+      "notes": "2P. На каждую шину: вход 10–25 мм² + 1 выход 25 мм² + 5 выходов 10 мм²."
+    },
+    {
+      "id": "legrand-400402",
+      "brand": "legrand",
+      "series": "Модульные распределительные блоки (staggered bars)",
+      "article": "400402",
+      "category": "distribution",
+      "modules": 6,
+      "specs": {
+        "poles": "1P+N",
+        "ratedCurrentA": 100,
+        "clamps": [
+          [
+            3,
+            25
+          ],
+          [
+            8,
+            10
+          ]
+        ]
+      },
+      "verified": true,
+      "source": "https://www.legrand.com/ecatalogue/en/catalog/products/modular-distribution-block-with-staggered-bars-100-11-connections-per-busbar-6-modules-400402",
+      "notes": "2P. На каждую шину: вход 25 мм² + 2 выхода 25 мм² + 8 выходов 10 мм²."
+    },
+    {
+      "id": "legrand-400403",
+      "brand": "legrand",
+      "series": "Модульные распределительные блоки (staggered bars)",
+      "article": "400403",
+      "category": "distribution",
+      "modules": 8,
+      "specs": {
+        "poles": "1P+N",
+        "ratedCurrentA": 125,
+        "clamps": [
+          [
+            1,
+            35
+          ],
+          [
+            3,
+            25
+          ],
+          [
+            11,
+            10
+          ]
+        ]
+      },
+      "verified": true,
+      "source": "https://www.legrand.com/ecatalogue/en/catalog/products/modular-distribution-block-with-staggered-bars-125-15-connections-per-busbar-8-modules-400403",
+      "notes": "2P. На каждую шину: вход 10–35 мм² + 3 выхода 25 мм² + 11 выходов 10 мм²."
+    },
+    {
+      "id": "legrand-400404",
+      "brand": "legrand",
+      "series": "Модульные распределительные блоки (staggered bars)",
+      "article": "400404",
+      "category": "distribution",
+      "modules": 6,
+      "specs": {
+        "poles": "3P+N",
+        "ratedCurrentA": 40,
+        "clamps": [
+          [
+            3,
+            10
+          ],
+          [
+            10,
+            6
+          ]
+        ]
+      },
+      "verified": true,
+      "source": "https://www.legrand.com/ecatalogue/en/catalog/products/modular-distribution-block-with-staggered-bars-40-13-connections-per-busbar-6-modules-400404",
+      "notes": "4P. Клеммы на каждую шину (как у 400400)."
+    },
+    {
+      "id": "legrand-400405",
+      "brand": "legrand",
+      "series": "Модульные распределительные блоки (staggered bars)",
+      "article": "400405",
+      "category": "distribution",
+      "modules": 4,
+      "specs": {
+        "poles": "3P+N",
+        "ratedCurrentA": 100,
+        "clamps": [
+          [
+            2,
+            25
+          ],
+          [
+            5,
+            10
+          ]
+        ]
+      },
+      "verified": true,
+      "source": "https://www.legrand.com/ecatalogue/en/catalog/products/modular-distribution-block-with-staggered-bars-100-7-connections-per-busbar-4-modules-400405",
+      "notes": "4P. Клеммы на каждую шину."
+    },
+    {
+      "id": "legrand-400406",
+      "brand": "legrand",
+      "series": "Модульные распределительные блоки (staggered bars)",
+      "article": "400406",
+      "category": "distribution",
+      "modules": 6,
+      "specs": {
+        "poles": "3P+N",
+        "ratedCurrentA": 100,
+        "clamps": [
+          [
+            3,
+            25
+          ],
+          [
+            8,
+            10
+          ]
+        ]
+      },
+      "verified": true,
+      "source": "https://www.legrand.com/ecatalogue/en/catalog/products/modular-distribution-block-with-staggered-bars-100-11-connections-per-busbar-6-modules-400406",
+      "notes": "4P. Клеммы на каждую шину."
+    },
+    {
+      "id": "legrand-400409",
+      "brand": "legrand",
+      "series": "Модульные распределительные блоки (staggered bars)",
+      "article": "400409",
+      "category": "distribution",
+      "modules": 8,
+      "specs": {
+        "poles": "3P+N",
+        "ratedCurrentA": 125,
+        "clamps": [
+          [
+            1,
+            35
+          ],
+          [
+            3,
+            25
+          ],
+          [
+            11,
+            10
+          ]
+        ]
+      },
+      "verified": true,
+      "source": "https://www.legrand.com/ecatalogue/en/catalog/products/modular-distribution-board-with-staggered-bars-4-pole-125-15-connections-per-bar-8-modules-400409",
+      "notes": "4P. Клеммы на каждую шину. Есть ещё 400407/400410/400411 (вынесенный ввод, 8–10 мод.) — не включены."
+    },
+    {
+      "id": "legrand-004871",
+      "brand": "legrand",
+      "series": "Lexic",
+      "article": "004871",
+      "category": "distribution",
+      "modules": 2,
+      "specs": {
+        "poles": "1P",
+        "ratedCurrentA": 125
+      },
+      "verified": true,
+      "source": "https://www.legrand.com/ecatalogue/en/catalog/products/modular-distribution-block-1p-125a-din-rail-main-line-branch-terminal-16-screw-connections-width-2-modules-contact-safe-design-004871",
+      "notes": "Однополюсный блок, 16 винтовых присоединений; разбивка клемм по сечениям на странице не дана. Блоки можно собирать рядом (по одному на полюс), поэтому role L условно."
+    }
+  ],
+  "combs": [
+    {
+      "id": "legrand-404911",
+      "brand": "legrand",
+      "series": "HX3",
+      "article": "404911",
+      "phases": "1P",
+      "pinType": "fork",
+      "lengthModules": 12,
+      "pins": 12,
+      "cuttable": true,
+      "crossSectionMm2": 16,
+      "ratedCurrentA": 63,
+      "deviceSeries": [
+        "DX3",
+        "DX3-IS"
+      ],
+      "verified": true,
+      "source": "https://www.legrand.com/ecatalogue/en/catalog/products/supply-busbar-fork-type-1p-busbar-16mm2-max-12-devices-1-row-63a-400v-horizontal-phase-distribution-insulated-cuttable-214mm-404911",
+      "notes": "214 мм, до 12 аппаратов. Совместимость из страниц аппаратов: DX3 (407432) и DX3-IS (406441) принимают вилочную гребёнку только снизу."
+    },
+    {
+      "id": "legrand-404912",
+      "brand": "legrand",
+      "series": "HX3",
+      "article": "404912",
+      "phases": "1P",
+      "pinType": "fork",
+      "lengthModules": 57,
+      "pins": 57,
+      "cuttable": true,
+      "crossSectionMm2": 16,
+      "ratedCurrentA": 63,
+      "deviceSeries": [
+        "DX3",
+        "DX3-IS"
+      ],
+      "verified": true,
+      "source": "https://www.legrand.com/ecatalogue/en/catalog/products/supply-busbar-fork-type-1p-16mm2-meter-max-57-devices-connected-63a-400v-phase-distribution-insulated-horizontal-busbar-404912",
+      "notes": "Метровая (1000 мм), режется. Вилка — только снизу аппарата."
+    },
+    {
+      "id": "legrand-404913",
+      "brand": "legrand",
+      "series": "HX3",
+      "article": "404913",
+      "phases": "2P",
+      "pinType": "fork",
+      "lengthModules": 12,
+      "pins": 12,
+      "cuttable": true,
+      "crossSectionMm2": 10,
+      "ratedCurrentA": 63,
+      "deviceSeries": [
+        "DX3",
+        "DX3-IS"
+      ],
+      "verified": true,
+      "source": "https://www.legrand.com/ecatalogue/en/catalog/products/supply-busbar-fork-type-2p-busbar-10mm2-to-max-6-devices-connected-1-row-horizontal-phase-distribution-insulated-fork-63a-400v-404913",
+      "notes": "214 мм, до 6 двухполюсных аппаратов. Не для аппаратов с N-проводником (по странице). Число вилок = 6 × 2 (вывод)."
+    },
+    {
+      "id": "legrand-404914",
+      "brand": "legrand",
+      "series": "HX3",
+      "article": "404914",
+      "phases": "2P",
+      "pinType": "fork",
+      "lengthModules": 56,
+      "pins": 56,
+      "cuttable": true,
+      "crossSectionMm2": 16,
+      "ratedCurrentA": 63,
+      "deviceSeries": [
+        "DX3",
+        "DX3-IS"
+      ],
+      "verified": true,
+      "source": "https://www.legrand.com/ecatalogue/en/catalog/products/supply-busbar-fork-type-2p-16mm2-meter-max-28-devices-connected-63a-400v-horizontal-phase-busbar-insulated-cuttable-design-404914",
+      "notes": "1000 мм, до 28 аппаратов 2P. Число вилок = 28 × 2 (вывод)."
+    },
+    {
+      "id": "legrand-404917",
+      "brand": "legrand",
+      "series": "HX3",
+      "article": "404917",
+      "phases": "3P",
+      "pinType": "fork",
+      "lengthModules": 12,
+      "pins": 12,
+      "cuttable": true,
+      "crossSectionMm2": 10,
+      "ratedCurrentA": 63,
+      "deviceSeries": [
+        "DX3",
+        "DX3-IS"
+      ],
+      "verified": true,
+      "source": "https://www.legrand.com/ecatalogue/en/catalog/products/supply-busbar-fork-type-3p-busbar-10mm2-to-max-4-devices-connected-1-row-length-63a-400v-insulated-fork-connection-404917",
+      "notes": "214 мм, до 4 аппаратов 3P. Вилка — только снизу аппарата."
+    },
+    {
+      "id": "legrand-404918",
+      "brand": "legrand",
+      "series": "HX3",
+      "article": "404918",
+      "phases": "3P",
+      "pinType": "fork",
+      "lengthModules": 57,
+      "pins": 57,
+      "cuttable": true,
+      "crossSectionMm2": 16,
+      "ratedCurrentA": 63,
+      "deviceSeries": [
+        "DX3",
+        "DX3-IS"
+      ],
+      "verified": true,
+      "source": "https://www.legrand.com/ecatalogue/en/catalog/products/supply-busbar-fork-type-3p-16mm2-meter-max-19-devices-connected-63a-400v-horizontal-phase-busbar-insulated-cuttable-design-404918",
+      "notes": "1012 мм, до 19 аппаратов 3P."
+    },
+    {
+      "id": "legrand-404919",
+      "brand": "legrand",
+      "series": "HX3",
+      "article": "404919",
+      "phases": "3P+N",
+      "pinType": "fork",
+      "lengthModules": 12,
+      "pins": 12,
+      "cuttable": true,
+      "crossSectionMm2": 10,
+      "ratedCurrentA": 63,
+      "deviceSeries": [
+        "DX3",
+        "DX3-IS",
+        "DX3-ID"
+      ],
+      "verified": true,
+      "source": "https://www.legrand.com/ecatalogue/en/catalog/products/supply-busbar-fork-type-4p-busbar-10mm2-max-3-devices-connected-1-row-horizontal-phase-busbar-63a-400v-insulated-404919",
+      "notes": "214 мм, до 3 аппаратов 4P, подходит для аппаратов с N. DX3-ID: на странице 411506 указано «Busbar and cable», тип гребёнки не уточнён."
+    },
+    {
+      "id": "legrand-404920",
+      "brand": "legrand",
+      "series": "HX3",
+      "article": "404920",
+      "phases": "3P+N",
+      "pinType": "fork",
+      "lengthModules": 56,
+      "pins": 56,
+      "cuttable": true,
+      "crossSectionMm2": 16,
+      "ratedCurrentA": 63,
+      "deviceSeries": [
+        "DX3",
+        "DX3-IS",
+        "DX3-ID"
+      ],
+      "verified": true,
+      "source": "https://www.legrand.com/ecatalogue/en/catalog/products/supply-busbar-fork-type-4p-phase-busbar-16mm2-cross-section-max-14-devices-connected-1000mm-meter-length-404920",
+      "notes": "1000 мм, до 14 аппаратов 4P. DX3-ID — см. замечание к 404919."
+    },
+    {
+      "id": "legrand-404926",
+      "brand": "legrand",
+      "series": "HX3",
+      "article": "404926",
+      "phases": "1P",
+      "pinType": "pin",
+      "lengthModules": 13,
+      "pins": 13,
+      "cuttable": true,
+      "crossSectionMm2": 16,
+      "ratedCurrentA": 63,
+      "deviceSeries": [
+        "DX3",
+        "DX3 RCBO 1P+N"
+      ],
+      "verified": true,
+      "source": "https://www.legrand.com/ecatalogue/en/catalog/products/hx3-supply-busbar-prong-type-1pn-universal-13-devices-220mm-16mm2-63a-400v-horizontal-reversible-phaseneutral-1-row-404926",
+      "notes": "Legrand называет «1P+N universal», но это однополюсная реверсивная гребёнка: синяя сторона — N, чёрная — L, шаг зуба 1 модуль, «для DNX3 и DX3», подходит для аппаратов с N. Для 1P+N в 1 модуль, по-видимому, ставят две (L и N) — прямо не сказано, не сверено."
+    },
+    {
+      "id": "legrand-404928",
+      "brand": "legrand",
+      "series": "HX3",
+      "article": "404928",
+      "phases": "1P",
+      "pinType": "pin",
+      "lengthModules": 18,
+      "pins": 18,
+      "cuttable": true,
+      "crossSectionMm2": 16,
+      "ratedCurrentA": 63,
+      "deviceSeries": [
+        "DX3",
+        "DX3 RCBO 1P+N"
+      ],
+      "verified": true,
+      "source": "https://www.legrand.com/ecatalogue/en/catalog/products/supply-busbar-prong-type-1pn-universal-18-devices-1-row-63a-rated-current-230v-max-voltage-310mm-cuttable-insulated-length-404928",
+      "notes": "Universal 1P+N, 310 мм, до 18 аппаратов, реверсивная L/N (как 404926). 230 В."
+    },
+    {
+      "id": "legrand-404937",
+      "brand": "legrand",
+      "series": "HX3",
+      "article": "404937",
+      "phases": "1P",
+      "pinType": "pin",
+      "lengthModules": 57,
+      "pins": 57,
+      "cuttable": true,
+      "crossSectionMm2": 16,
+      "ratedCurrentA": 63,
+      "deviceSeries": [
+        "DX3",
+        "DX3 RCBO 1P+N"
+      ],
+      "verified": true,
+      "source": "https://www.legrand.com/ecatalogue/en/catalog/products/supply-busbar-prong-type-1pn-universal-1m-max-57-devices-connected-63a-rated-current-400v-max-operating-voltage-404937",
+      "notes": "Universal 1P+N, 1008 мм, до 57 аппаратов, шаг 1 модуль, реверсивная L/N; питание — головным аппаратом, шнуром 404927 или клеммами 405207/404905."
+    },
+    {
+      "id": "legrand-404933",
+      "brand": "legrand",
+      "series": "HX3",
+      "article": "404933",
+      "phases": "1P",
+      "pinType": "pin",
+      "lengthModules": 56,
+      "pins": 37,
+      "cuttable": true,
+      "crossSectionMm2": 16,
+      "ratedCurrentA": 63,
+      "deviceSeries": [
+        "DX3"
+      ],
+      "verified": true,
+      "source": "https://www.legrand.com/ecatalogue/en/catalog/products/supply-busbar-prong-type-1p-auxiliary-phase-busbar-max-37-devices-connected-16mm2-cross-section-980mm-length-cuttable-404933",
+      "notes": "Для аппаратов с допконтактом: шаг зуба 1,5 модуля, 980 мм, до 37 аппаратов, реверсивная L/N."
+    },
+    {
+      "id": "legrand-404938",
+      "brand": "legrand",
+      "series": "HX3",
+      "article": "404938",
+      "phases": "2P",
+      "pinType": "pin",
+      "lengthModules": 12,
+      "pins": 12,
+      "cuttable": true,
+      "crossSectionMm2": 10,
+      "ratedCurrentA": 63,
+      "deviceSeries": [
+        "DX3",
+        "DX3-IS",
+        "DX3-ID"
+      ],
+      "verified": true,
+      "source": "https://www.legrand.com/ecatalogue/en/catalog/products/hx3-supply-busbar-prong-type-2p-10mm2-max-6-devices-1-row-63a-400v-horizontal-phase-busbar-214mm-cuttable-insulated-grey-404938",
+      "notes": "«HX3 traditional» для винтовых клемм, 214 мм, до 6 аппаратов 2P; штырь — сверху или снизу аппарата. DX3-ID — тип гребёнки на странице аппарата не уточнён."
+    },
+    {
+      "id": "legrand-404939",
+      "brand": "legrand",
+      "series": "HX3",
+      "article": "404939",
+      "phases": "2P",
+      "pinType": "pin",
+      "lengthModules": 56,
+      "pins": 56,
+      "cuttable": true,
+      "crossSectionMm2": 16,
+      "ratedCurrentA": 63,
+      "deviceSeries": [
+        "DX3",
+        "DX3-IS",
+        "DX3-ID"
+      ],
+      "verified": true,
+      "source": "https://www.legrand.com/ecatalogue/en/catalog/products/supply-busbar-prong-type-2p-meter-max-28-devices-connected-63a-400v-horizontal-phase-busbar-16mm2-cross-section-1000mm-length-404939",
+      "notes": "1000 мм, до 28 аппаратов 2P."
+    },
+    {
+      "id": "legrand-404942",
+      "brand": "legrand",
+      "series": "HX3",
+      "article": "404942",
+      "phases": "3P",
+      "pinType": "pin",
+      "lengthModules": 12,
+      "pins": 12,
+      "cuttable": true,
+      "crossSectionMm2": 10,
+      "ratedCurrentA": 63,
+      "deviceSeries": [
+        "DX3",
+        "DX3-IS"
+      ],
+      "verified": true,
+      "source": "https://www.legrand.com/ecatalogue/en/catalog/products/supply-busbar-prong-type-3p-max-4-devices-connected-1-row-404942",
+      "notes": "214 мм, до 4 аппаратов 3P."
+    },
+    {
+      "id": "legrand-404943",
+      "brand": "legrand",
+      "series": "HX3",
+      "article": "404943",
+      "phases": "3P",
+      "pinType": "pin",
+      "lengthModules": 56,
+      "pins": 57,
+      "cuttable": true,
+      "crossSectionMm2": 16,
+      "ratedCurrentA": 63,
+      "deviceSeries": [
+        "DX3",
+        "DX3-IS"
+      ],
+      "verified": true,
+      "source": "https://www.legrand.com/ecatalogue/en/catalog/products/supply-busbar-prong-type-3p-max-19-devices-connected-meter-404943",
+      "notes": "1000 мм (56 модульных шагов), до 19 аппаратов 3P; число штырей = 19 × 3 (вывод)."
+    },
+    {
+      "id": "legrand-404945",
+      "brand": "legrand",
+      "series": "HX3",
+      "article": "404945",
+      "phases": "3P+N",
+      "pinType": "pin",
+      "lengthModules": 56,
+      "pins": 56,
+      "cuttable": true,
+      "crossSectionMm2": 16,
+      "ratedCurrentA": 63,
+      "deviceSeries": [
+        "DX3",
+        "DX3-IS",
+        "DX3-ID"
+      ],
+      "verified": true,
+      "source": "https://www.legrand.com/ecatalogue/en/catalog/products/supply-busbar-prong-type-4p-max-14-devices-connected-meter-404945",
+      "notes": "1000 мм, до 14 аппаратов 4P, подходит для аппаратов с N. 12-модульной штыревой 4P на сайте не нашли (есть вилочная 404919)."
     }
   ]
 }

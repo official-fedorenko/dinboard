@@ -22,6 +22,11 @@ export const EARTHING_SYSTEMS = ['TN-S', 'TN-C-S', 'TT'];
 export const TERMINAL_POSITIONS = ['top', 'bottom', 'left', 'right'];
 // Назначение клеммника: нейтраль, защитный проводник или общий блок N и PE
 export const TERMINAL_ROLES = ['N', 'PE', 'N+PE'];
+// Гребёнка: какие фазы соединяет и чем входит в клемму аппарата
+export const COMB_PHASES = ['1P', '1P+N', '2P', '3P', '3P+N'];
+export const COMB_PIN_TYPES = ['pin', 'fork'];
+// Аппараты, которые соединяет гребёнка: автоматы, дифавтоматы, УЗО, выключатели нагрузки
+export const COMB_DEVICE_CATEGORIES = new Set(['mcb', 'rcbo', 'rcd', 'switch']);
 
 const ID_RE = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 const FILE_RE = /^[a-z0-9-]+\.json$/;
@@ -158,6 +163,36 @@ const ENCLOSURE_FIELDS = {
   notes: [nonEmptyString, false],
 };
 
+/** Непустой список непустых строк без повторов (например, серии аппаратов). */
+const stringList = (v) =>
+  Array.isArray(v) && v.length > 0 && v.every((x) => nonEmptyString(x) === null) && new Set(v).size === v.length
+    ? null
+    : 'нужен непустой список строк без повторов';
+
+/**
+ * Гребенчатая шина: соединяет аппараты ряда поверх клемм, рейку не занимает.
+ * phases — что соединяет; pinType — штырь или вилка; lengthModules — длина в модулях;
+ * deviceSeries — серии аппаратов, к которым подходит (как указал производитель).
+ */
+const COMB_FIELDS = {
+  id: [id, true],
+  brand: [id, true],
+  series: [nonEmptyString, true],
+  article: [nonEmptyString, true],
+  model: [nonEmptyString, false],
+  phases: [oneOf(COMB_PHASES), true],
+  pinType: [oneOf(COMB_PIN_TYPES), true],
+  lengthModules: [positiveNumber, true],
+  pins: [intInRange(1, 120), false],
+  cuttable: [boolean, false],
+  crossSectionMm2: [positiveNumber, false],
+  ratedCurrentA: [positiveNumber, false],
+  deviceSeries: [stringList, false],
+  verified: [boolean, true],
+  source: [httpsUrl, false],
+  notes: [nonEmptyString, false],
+};
+
 const DEVICE_FIELDS = {
   id: [id, true],
   brand: [id, true],
@@ -213,6 +248,18 @@ export const DEVICE_CATEGORIES = {
   switch: {
     poles: oneOf(POLES),
     ratedCurrentA: positiveNumber,
+  },
+  // Клеммник (шина) N / PE на DIN-рейку: назначение и клеммы
+  terminal: {
+    role: oneOf(TERMINAL_ROLES),
+    clamps: optional(clampGroups),
+    ratedCurrentA: optional(positiveNumber),
+  },
+  // Распределительный блок (кросс-модуль): полюса 1P (фаза), 1P+N, 3P, 3P+N; ток и клеммы — если указаны
+  distribution: {
+    poles: oneOf(['1P', '1P+N', '3P', '3P+N']),
+    ratedCurrentA: optional(positiveNumber),
+    clamps: optional(clampGroups),
   },
   // УЗИП
   spd: {
@@ -316,7 +363,9 @@ export function validateBrandFile(data, name = 'brand') {
   checkFields(data.brand, { id: [id, true], name: [nonEmptyString, true] }, `${name}.brand`, errors);
   const brandId = isObject(data.brand) ? data.brand.id : undefined;
 
-  for (const listName of ['enclosures', 'devices']) {
+  // combs (гребёнки) — необязательный список
+  for (const listName of ['enclosures', 'devices', 'combs']) {
+    if (listName === 'combs' && data.combs === undefined) continue;
     if (!Array.isArray(data[listName])) {
       errors.push(`${name}.${listName}: нужен список`);
       continue;
@@ -324,13 +373,14 @@ export function validateBrandFile(data, name = 'brand') {
     data[listName].forEach((item, i) => {
       const path = `${name}.${listName}[${i}]`;
       if (listName === 'enclosures') checkFields(item, ENCLOSURE_FIELDS, path, errors);
+      else if (listName === 'combs') checkFields(item, COMB_FIELDS, path, errors);
       else checkDevice(item, path, errors);
       checkSource(item, path, errors);
       if (isObject(item) && item.brand !== brandId) errors.push(`${path}.brand: должен совпадать с "${brandId}"`);
     });
   }
   for (const key of Object.keys(data)) {
-    if (!['schemaVersion', 'brand', 'enclosures', 'devices'].includes(key)) {
+    if (!['schemaVersion', 'brand', 'enclosures', 'devices', 'combs'].includes(key)) {
       errors.push(`${name}.${key}: неизвестное поле`);
     }
   }
@@ -341,7 +391,7 @@ export function validateBrandFile(data, name = 'brand') {
 export function validateCatalog(catalog) {
   const errors = [];
   const seen = new Map();
-  for (const item of [...catalog.enclosures, ...catalog.devices]) {
+  for (const item of [...catalog.enclosures, ...catalog.devices, ...(catalog.combs ?? [])]) {
     if (seen.has(item.id)) errors.push(`id "${item.id}" повторяется (${seen.get(item.id)} и ${item.brand})`);
     else seen.set(item.id, item.brand);
   }
@@ -369,7 +419,7 @@ export async function loadCatalog(baseUrl, fetchJson = defaultFetchJson) {
 
   const files = await Promise.all(index.brands.map((b) => fetchJson(new URL(b.file, baseUrl))));
   const errors = [];
-  const catalog = { brands: [], enclosures: [], devices: [] };
+  const catalog = { brands: [], enclosures: [], devices: [], combs: [] };
 
   files.forEach((data, i) => {
     const entry = index.brands[i];
@@ -384,6 +434,7 @@ export async function loadCatalog(baseUrl, fetchJson = defaultFetchJson) {
     catalog.brands.push({ id: data.brand.id, name: data.brand.name });
     catalog.enclosures.push(...data.enclosures);
     catalog.devices.push(...data.devices);
+    catalog.combs.push(...(data.combs ?? []));
   });
 
   errors.push(...validateCatalog(catalog));

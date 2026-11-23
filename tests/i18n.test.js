@@ -6,7 +6,7 @@ import { join } from 'node:path';
 import { SPEC_COLUMNS } from '../site/js/export.js';
 import { createTranslator, loadMessages, LANGUAGES, placeholders, pickLanguage, formatNumber } from '../site/js/i18n.js';
 import { deviceLabel, deviceTitle, deviceRef, enclosureDescription, enclosureSize, enclosureTitle, num } from '../site/js/format.js';
-import { DEVICE_CATEGORIES, MOUNTINGS, DOORS } from '../site/js/catalog.js';
+import { DEVICE_CATEGORIES, MOUNTINGS, DOORS, COMB_PIN_TYPES } from '../site/js/catalog.js';
 import { PROJECT_ERROR_CODES } from '../site/js/storage.js';
 import { SITE_ROOT } from '../tools/serve.js';
 
@@ -55,6 +55,7 @@ describe('ключи переводов', () => {
     ...LANGUAGES.map((lang) => `language.${lang}`),
     ...['warning', 'info'].map((level) => `check.level.${level}`),
     ...SPEC_COLUMNS.map((c) => `summary.${c}`),
+    ...COMB_PIN_TYPES.map((p) => `comb.pin.${p}`),
   ];
 
   async function staticKeys() {

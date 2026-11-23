@@ -5,6 +5,8 @@
 // Единица координат — миллиметр. Размер корпуса берётся из dimensionsMm,
 // ширина модуля — 17.5 мм, через лицевую панель видна передняя часть устройств (45 мм).
 
+import { COMB_DEVICE_CATEGORIES } from './catalog.js';
+
 export const MODULE_MM = 17.5;
 export const FACE_MM = 45;
 const ROW_PITCH_MM = 125; // шаг рядов у типовых модульных щитов
@@ -221,6 +223,29 @@ function terminalBar(bar, t) {
   return parts.join('');
 }
 
+// ---------- гребёнки ----------
+
+/**
+ * Гребёнки рядов на рисунке: [{ row, comb, x, w, y, h }] — полоса над аппаратами (в зазоре выреза,
+ * чтобы не закрывать подписи) от первого до последнего аппарата ряда, которые соединяет гребёнка
+ * (COMB_DEVICE_CATEGORIES). Гребёнки, которых нет
+ * в каталоге (combsById), и ряды без таких аппаратов пропускаются.
+ */
+export function combBars(layout, board, combsById, devices) {
+  const out = [];
+  (board.combs ?? []).forEach((id, row) => {
+    const comb = id ? combsById.get(id) : null;
+    const r = layout.rows[row];
+    if (!comb || !r) return;
+    const items = r.items.filter((item) => COMB_DEVICE_CATEGORIES.has(devices.get(item.deviceId)?.category));
+    if (!items.length) return;
+    const x = Math.min(...items.map((i) => i.x));
+    const x2 = Math.max(...items.map((i) => i.x + i.w));
+    out.push({ row, comb, x: x + 1, w: x2 - x - 2, y: r.y - CUTOUT_GAP + 0.4, h: CUTOUT_GAP - 0.6 });
+  });
+  return out;
+}
+
 // ---------- устройства ----------
 
 function handle(w, cx) {
@@ -254,6 +279,21 @@ function deviceFace(device, w) {
       if (modules > 1) parts.push(testButton(w - MODULE_MM / 2));
       break;
     }
+    case 'terminal': {
+      // Клеммник: ряд винтовых клемм (по числу клемм, если оно известно, иначе по две на модуль)
+      const count = device.specs.clamps ? device.specs.clamps.reduce((sum, [c]) => sum + c, 0) : Math.max(1, Math.round(modules * 2));
+      const step = (w - 2) / count;
+      const r = Math.min(2.4, step / 2.4);
+      parts.push(`<rect class="dev-terminal-bar" x="1" y="18" width="${n(w - 2)}" height="12" rx="1"/>`);
+      for (let i = 0; i < count; i++) parts.push(`<circle class="dev-screw" cx="${n(1 + step * (i + 0.5))}" cy="24" r="${n(r)}"/>`);
+      break;
+    }
+    case 'distribution': {
+      // Распределительный блок: латунная шина и винты по модулям
+      parts.push(`<rect class="dev-brass" x="2" y="17" width="${n(w - 4)}" height="14" rx="1"/>`);
+      for (let i = 0; i < Math.max(1, Math.round(modules)); i++) parts.push(`<circle class="dev-screw" cx="${n(i * MODULE_MM + MODULE_MM / 2)}" cy="24" r="2.4"/>`);
+      break;
+    }
     case 'spd': {
       // Окошки индикаторов на каждом модуле
       for (let i = 0; i < Math.round(modules); i++) {
@@ -270,12 +310,12 @@ function deviceFace(device, w) {
 /**
  * SVG щита.
  * options: { t, deviceTitle, deviceLabel, title, selectedUid, activeRow, formatNumber, terminals }
- * terminals — клеммники N/PE из terminalBars (необязательно).
+ * terminals — клеммники N/PE из terminalBars (необязательно); combs — гребёнки из combBars (необязательно).
  * deviceTitle/deviceLabel — функции из format.js (передаются, чтобы модуль не зависел от переводов);
  * formatNumber — число по правилам языка (номер модуля может быть дробным: 7,5).
  */
 export function renderBoardSvg(layout, devices, options) {
-  const { t, deviceTitle, deviceLabel, title, selectedUid = null, activeRow = null, formatNumber = String, terminals = [] } = options;
+  const { t, deviceTitle, deviceLabel, title, selectedUid = null, activeRow = null, formatNumber = String, terminals = [], combs = [] } = options;
   const { width, height } = layout;
   const out = [];
   out.push(
@@ -317,7 +357,7 @@ export function renderBoardSvg(layout, devices, options) {
       const mainSize = fitFont(label.main, item.w, 8);
       const subSize = fitFont(label.sub, item.w, 5);
       out.push(
-        `<g class="dev cat-${escapeXml(device.category)}${selected ? ' selected' : ''}" transform="translate(${n(item.x)} ${n(row.y)})"` +
+        `<g class="dev cat-${escapeXml(device.category)}${device.category === 'terminal' ? ` term-${ROLE_CLASS[device.specs.role]}` : ''}${selected ? ' selected' : ''}" transform="translate(${n(item.x)} ${n(row.y)})"` +
           ` data-uid="${item.uid}" data-focus="item-${item.uid}" tabindex="0" role="button" aria-pressed="${selected}" aria-label="${escapeXml(aria)}">` +
           `<title>${escapeXml(`${name} · ${device.article}`)}</title>` +
           deviceFace(device, item.w) +
@@ -327,6 +367,13 @@ export function renderBoardSvg(layout, devices, options) {
           `</g>`,
       );
     });
+  }
+  // Гребёнки — поверх аппаратов
+  for (const bar of combs) {
+    out.push(
+      `<g class="comb pin-${escapeXml(bar.comb.pinType)}"><title>${escapeXml(`${bar.comb.article} · ${t('comb.title', { phases: bar.comb.phases, length: formatNumber(bar.comb.lengthModules) })}`)}</title>` +
+        `<rect class="comb-bar" x="${n(bar.x)}" y="${n(bar.y)}" width="${n(bar.w)}" height="${n(bar.h)}" rx="0.8"/></g>`,
+    );
   }
   out.push('</svg>');
   return out.join('');

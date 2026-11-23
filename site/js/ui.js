@@ -14,6 +14,7 @@ import {
   indexById,
   setEarthing,
   setAddTerminals,
+  setRowComb,
   clearDevices,
   nearestFreePos,
   snapPos,
@@ -31,12 +32,12 @@ import {
   num,
 } from './format.js';
 import { h } from './dom.js';
-import { layoutBoard, hitTest, renderBoardSvg, slotRect, terminalBars, MODULE_MM } from './render-svg.js';
+import { layoutBoard, hitTest, renderBoardSvg, slotRect, terminalBars, combBars, MODULE_MM } from './render-svg.js';
 import { checkBoard } from './checks.js';
-import { specTable, toCsv, exportFileName, terminalsSpec } from './export.js';
+import { specTable, toCsv, exportFileName, terminalsSpec, combsSpec, combName } from './export.js';
 import { xlsxWorkbook } from './xlsx.js';
 import { filterEnclosures, availableValues, previewSplit, PREVIEW_COUNT } from './enclosure-filter.js';
-import { EARTHING_SYSTEMS } from './catalog.js';
+import { EARTHING_SYSTEMS, COMB_PHASES, COMB_DEVICE_CATEGORIES } from './catalog.js';
 import {
   projectFromBoard,
   buildBoard,
@@ -51,7 +52,7 @@ import {
   LIMITS,
 } from './storage.js';
 
-export const CATEGORY_ORDER = ['mcb', 'rcbo', 'rcd', 'switch', 'spd'];
+export const CATEGORY_ORDER = ['mcb', 'rcbo', 'rcd', 'switch', 'spd', 'terminal', 'distribution'];
 const POLE_ORDER = ['1P', '1P+N', '2P', '3P', '3P+N', '4P'];
 const DND_TYPE = 'application/x-dinboard';
 
@@ -62,7 +63,7 @@ function compareDevices(a, b) {
   return (
     a.series.localeCompare(b.series) ||
     POLE_ORDER.indexOf(sa.poles) - POLE_ORDER.indexOf(sb.poles) ||
-    String(sa.curve ?? sa.rcdType ?? sa.spdType).localeCompare(String(sb.curve ?? sb.rcdType ?? sb.spdType)) ||
+    String(sa.curve ?? sa.rcdType ?? sa.spdType ?? sa.role).localeCompare(String(sb.curve ?? sb.rcdType ?? sb.spdType ?? sb.role)) ||
     (sa.ratedCurrentA ?? 0) - (sb.ratedCurrentA ?? 0) ||
     a.article.localeCompare(b.article)
   );
@@ -77,6 +78,7 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
   let t = initialT; // меняется при переключении языка
   const fmt = (value) => num(value, t.lang);
   const devices = indexById(catalog.devices);
+  const combsById = indexById(catalog.combs ?? []);
   const enclosures = indexById(catalog.enclosures);
   const brandNames = new Map(catalog.brands.map((b) => [b.id, b.name]));
   // Значения фильтров корпусов — только те, что есть в каталоге
@@ -99,6 +101,7 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
     pickerOpen: !initialBoard, // список корпусов развёрнут; после выбора сворачивается до выбранного
     moreOpen: false, // окно «Ещё варианты» с остальными подходящими корпусами
     devicesMoreOpen: false, // окно «Ещё варианты» с остальным оборудованием по фильтрам
+    combOpen: false, // окно выбора гребёнки для выделенного ряда
   };
 
   let savedBoard = null; // последний сохранённый в браузере щит
@@ -166,7 +169,7 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
 
   // ---------- выгрузки: CSV, Excel, печать ----------
 
-  const spec = () => specTable(state.board, enclosure(), devices, brandNames, t);
+  const spec = () => specTable(state.board, enclosure(), devices, brandNames, t, combsById);
   const exported = (name) => t('export.downloaded', { name });
   const projectSaved = (name) => t('project.downloaded', { name });
 
@@ -785,6 +788,7 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
         activeRow: state.activeRow,
         formatNumber: fmt,
         terminals: terminalBars(enc, state.board, layout),
+        combs: combBars(layout, state.board, combsById, devices),
       }),
     );
     const view = h('div', { class: `board-view${state.selectedUid !== null ? ' has-selection' : ''}` }, svg);
@@ -792,9 +796,85 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
     return view;
   }
 
+  /**
+   * Гребёнка выделенного ряда: что выбрано и кнопка выбора. В окне — гребёнки производителя
+   * аппаратов ряда (иначе — производителя корпуса) и «Без гребёнки».
+   */
+  function renderRowComb(enc) {
+    const row = state.activeRow;
+    const id = state.board.combs?.[row] ?? null;
+    const comb = id ? combsById.get(id) : null;
+    const inRow = (state.board.rows[row] ?? []).map((item) => devices.get(item.deviceId)).filter((d) => d && COMB_DEVICE_CATEGORIES.has(d.category));
+    const brand = inRow[0]?.brand ?? enc.brand;
+    const options = catalog.combs
+      ? catalog.combs
+          .filter((c) => c.brand === brand)
+          .sort((a, b) => COMB_PHASES.indexOf(a.phases) - COMB_PHASES.indexOf(b.phases) || a.pinType.localeCompare(b.pinType) || a.lengthModules - b.lengthModules || a.article.localeCompare(b.article))
+      : [];
+    const pick = (combId) =>
+      update(
+        {
+          board: setRowComb(state.board, row, combId),
+          combOpen: false,
+          status: combId ? t('comb.set', { row: row + 1, name: combName(combsById.get(combId), t) }) : t('comb.removed', { row: row + 1 }),
+        },
+        'comb-pick',
+      );
+    return h(
+      'div',
+      { class: 'row-comb' },
+      h('span', { class: 'muted' }, t('comb.rowLabel', { n: row + 1 })),
+      h('strong', {}, comb ? `${combName(comb, t)} · ${comb.article}` : id ? id : t('comb.none')),
+      h(
+        'button',
+        { type: 'button', class: 'action', 'aria-haspopup': 'dialog', dataset: { focus: 'comb-pick' }, onClick: () => update({ combOpen: true, status: '' }) },
+        t('comb.choose'),
+      ),
+      state.combOpen &&
+        moreDialog({
+          titleId: 'h-comb',
+          title: t('comb.dialogTitle', { n: row + 1 }),
+          stateKey: 'combOpen',
+          focusKey: 'comb-pick',
+          content: [
+            id && h('button', { type: 'button', class: 'action comb-remove', dataset: { focus: 'comb-remove' }, onClick: () => pick(null) }, t('comb.remove')),
+            options.length
+              ? h(
+                  'ul',
+                  { class: 'device-list' },
+                  options.map((c) => {
+                    const name = combName(c, t);
+                    return h(
+                      'li',
+                      { class: 'device-row' },
+                      h(
+                        'span',
+                        { class: 'device-text' },
+                        h('strong', {}, name),
+                        h(
+                          'span',
+                          { class: 'muted' },
+                          `${c.article} · ${c.deviceSeries ? t('comb.series', { list: c.deviceSeries.join(', ') }) : t('comb.seriesUnknown')}`,
+                          !c.verified && h('span', { class: 'badge', title: t('device.unverifiedHint') }, t('device.unverified')),
+                        ),
+                      ),
+                      h(
+                        'button',
+                        { type: 'button', class: 'action', 'aria-pressed': String(c.id === id), 'aria-label': t('comb.pickTitle', { name: `${name} · ${c.article}` }), dataset: { focus: `comb-${c.id}` }, onClick: () => pick(c.id) },
+                        t('comb.pick'),
+                      ),
+                    );
+                  }),
+                )
+              : h('p', { class: 'hint' }, t('comb.noneForBrand')),
+          ],
+        }),
+    );
+  }
+
   /** Проверки щита: система заземления и подсказки (не мешают сборке). */
   function renderChecks(enc) {
-    const list = checkBoard(state.board, enc, devices);
+    const list = checkBoard(state.board, enc, devices, combsById);
     const items = list.map((check) => {
       const params = { ...check.params };
       if (typeof params.free === 'number') params.free = fmt(params.free);
@@ -941,6 +1021,7 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
           ),
         ),
       ),
+      renderRowComb(enc),
       renderBoardView(enc),
       renderToolbar(),
       status,
@@ -1048,6 +1129,12 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
         const d = devices.get(deviceId);
         return [d.article, `${deviceTitle(d, t)} — ${deviceRef(d, brandNames.get(d.brand))}`, count, !d.verified && t('device.unverifiedHint')];
       }),
+      ...combsSpec(state.board, combsById).map(({ comb, count }) => [
+        comb.article,
+        `${combName(comb, t)} — ${brandNames.get(comb.brand)}`,
+        count,
+        !comb.verified && t('device.unverifiedHint'),
+      ]),
     ];
     return h(
       'section',
