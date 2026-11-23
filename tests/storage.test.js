@@ -178,6 +178,38 @@ describe('держатели клемм N/PE в проекте (carriers)', () =
     assert.deepEqual(skipped, ['gone', 'kn14n', 'nope', 'kl']);
   });
 
+  test('старый щит: заводская шина больше не встаёт на своё место (каталог обновился) — держатели как с завода, свои остаются', () => {
+    const plate = (pos) => ({ carrierId: 'plate', position: 'top', included: true, inserts: [{ insertId: 'plate-n', pos, included: true }] });
+    // Сейчас с завода — две колодки по одной шине; раньше — одна колодка с двумя шинами (вторая теперь не помещается)
+    const encs = indexById([{ ...enclosures.get('hager-va24b'), terminalSetup: { carriers: [plate(0), plate(0)], verified: false } }]);
+    const mine = { carrierId: 'hager-vz711', position: 'bottom', included: false, inserts: [{ insertId: 'kn14n', pos: 0 }] };
+    const old = { carrierId: 'plate', position: 'top', included: true, inserts: [{ insertId: 'plate-n', pos: 0, included: true }, { insertId: 'plate-n', pos: 100, included: true }] };
+    const { board, skipped, carriersReset } = buildBoard({ ...project, carriers: [old, mine] }, encs, devices, catalog);
+    assert.equal(carriersReset, true);
+    assert.deepEqual(skipped, [], 'заводская шина — не «устройство не из каталога»');
+    assert.deepEqual(board.carriers, [plate(0), plate(0), mine]);
+    // Своя клемма не встала — заводские не трогаются, флага нет
+    const own = buildBoard({ ...project, carriers: [plate(0), plate(0), { ...mine, inserts: [{ insertId: 'kn14n', pos: 200 }] }] }, encs, devices, catalog);
+    assert.equal(own.carriersReset, false);
+    assert.deepEqual(own.skipped, ['kn14n']);
+  });
+
+  test('старый щит: свои клеммы на бывшем заводском держателе возвращаются, а что не встало — в пропущенных', () => {
+    const qc = (inserts) => ({ carrierId: 'hager-vz711', position: 'top', included: true, inserts });
+    const encs = indexById([{ ...enclosures.get('hager-va24b'), terminalSetup: { carriers: [qc([{ insertId: 'kn14n', pos: 0, included: true }])], verified: false } }]);
+    // Заводская KN14N на 200 не встаёт (240 мм); свои: KN14N на 100 и ещё одна на 120 (после пересборки на 120 не встанет — на первое свободное)
+    const old = qc([{ insertId: 'kn14n', pos: 100 }, { insertId: 'kn14n', pos: 160 }, { insertId: 'kn14n', pos: 200, included: true }]);
+    const { board, skipped, carriersReset } = buildBoard({ ...project, carriers: [old] }, encs, devices, catalog);
+    assert.equal(carriersReset, true);
+    assert.deepEqual(board.carriers[0].inserts, [{ insertId: 'kn14n', pos: 0, included: true }, { insertId: 'kn14n', pos: 100 }, { insertId: 'kn14n', pos: 160 }]);
+    assert.deepEqual(skipped, []);
+    // Своей клемме места нет — она в пропущенных (общее сообщение)
+    const full = qc([{ insertId: 'kn14n', pos: 0 }, { insertId: 'kn14n', pos: 60 }, { insertId: 'kn14n', pos: 120 }, { insertId: 'kn14n', pos: 180 }, { insertId: 'kn14n', pos: 300, included: true }]);
+    const crowded = buildBoard({ ...project, carriers: [full] }, encs, devices, catalog);
+    assert.equal(crowded.board.carriers[0].inserts.length, 4, 'заводская на 0 и три своих');
+    assert.deepEqual(crowded.skipped, ['kn14n']);
+  });
+
   test('«в комплекте корпуса» — только по комплектации корпуса, а не по флагу в ссылке или файле', () => {
     const factory = { carrierId: 'plate', position: 'top', included: true, inserts: [{ insertId: 'plate-n', pos: 0, included: true }] };
     const encs = indexById([{ ...enclosures.get('hager-va24b'), terminalSetup: { carriers: [factory], verified: false } }]);
@@ -514,6 +546,19 @@ describe('restoreProject: восстановление при открытии �
     // Без флага или уже с держателями (сохранён после этапа 17) — без подсказки
     assert.deepEqual(keys(run({ localText: fileText(old) })), []);
     assert.equal(buildBoard({ ...old, addTerminals: true, carriers: [] }, enclosures, devices).oldTerminals, false);
+  });
+
+  test('старый щит, у которого заводские шины поставлены заново, — сообщение об этом', () => {
+    const plate = (pos) => ({ carrierId: 'plate', position: 'top', included: true, inserts: [{ insertId: 'plate-n', pos, included: true }] });
+    const encs = indexById([{ ...enclosures.get('hager-va24b'), terminalSetup: { carriers: [plate(0), plate(0)], verified: false } }]);
+    const catalog = {
+      carriersById: indexById([{ id: 'plate', lengthMm: 270, positions: ['top'] }]),
+      insertsById: indexById([{ id: 'plate-n', role: 'N', widthMm: 130, carrierIds: ['plate'], fixed: true }]),
+    };
+    const old = { enclosureId: 'hager-va24b', rows: [['hager-mcn116'], []], carriers: [{ ...plate(0), inserts: [...plate(0).inserts, { insertId: 'plate-n', pos: 100, included: true }] }] };
+    const r = restoreProject({ hash: '', localText: fileText(old), enclosures: encs, devices, confirmLink: () => false, catalog });
+    assert.deepEqual(r.notices.map((n) => n.key), ['project.carriersReset']);
+    assert.equal(r.board.carriers.length, 2);
   });
 
   test('старая ссылка (без позиций) на тот же щит, что сохранён (с позициями подряд), — без вопроса и копии', () => {

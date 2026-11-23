@@ -17,7 +17,7 @@
 // Любые входящие данные проверяются: структура, лимиты, наличие в каталоге, место в рядах.
 
 import { createBoard, addDevice, setCarriers, BoardError, POS_STEP } from './board.js';
-import { canPlaceInsert, markFactory, CARRIER_POSITIONS } from './carriers.js';
+import { canPlaceInsert, addInsert, markFactory, factoryCarriers, CARRIER_POSITIONS } from './carriers.js';
 import { EARTHING_SYSTEMS } from './catalog.js';
 
 export const PROJECT_VERSION = 1;
@@ -129,14 +129,21 @@ function validCarriers(list) {
  * Держатели проекта по каталогу: держатели и клеммы, которых нет в каталоге или которые не подходят
  * (не тот держатель, не помещаются, заняли чужое место), пропускаются — их id в skipped.
  * «В комплекте корпуса» (included) берётся не из проекта, а из комплектации корпуса (markFactory).
+ * Если не встала заводская деталь (в проекте included: каталог обновился, например у шины изменилась ширина),
+ * держатели, бывшие заводскими, ставятся как с завода (factoryCarriers), свои держатели остаются, свои клеммы
+ * с бывших заводских держателей возвращаются на заводской держатель того же типа (не встали — в skipped); такие
+ * заводские детали в skipped не попадают, а factoryReset = true (для сообщения).
+ * Возвращает { carriers, skipped, factoryReset }.
  */
 export function restoreCarriers(list, carriersById, insertsById, enclosure = {}) {
   const skipped = [];
   const carriers = [];
+  let factoryLost = false;
   for (const c of list) {
     const carrier = carriersById.get(c.carrierId);
     if (!carrier) {
-      skipped.push(c.carrierId);
+      if (c.included) factoryLost = true;
+      else skipped.push(c.carrierId);
       continue;
     }
     const next = { carrierId: c.carrierId, position: carrier.positions.includes(c.position) ? c.position : carrier.positions[0], included: false, inserts: [] };
@@ -147,14 +154,43 @@ export function restoreCarriers(list, carriersById, insertsById, enclosure = {})
         (!insert.carrierIds || insert.carrierIds.includes(c.carrierId)) &&
         canPlaceInsert(next, carriersById, insertsById, x.pos, insert.widthMm);
       if (!fits) {
-        skipped.push(x.insertId);
+        if (x.included) factoryLost = true;
+        else skipped.push(x.insertId);
         continue;
       }
       next.inserts = [...next.inserts, { ...x }].sort((a, b) => a.pos - b.pos);
     }
-    carriers.push(next);
+    carriers.push({ ...next, wasFactory: Boolean(c.included) });
   }
-  return { carriers: markFactory(carriers, enclosure), skipped };
+  const factory = factoryCarriers(enclosure);
+  if (factoryLost && factory.length) {
+    const own = carriers.filter((c) => !c.wasFactory).map(({ wasFactory, ...c }) => c);
+    let next = [...factory, ...own];
+    // Свои клеммы (к заказу) с бывших заводских держателей — обратно на заводской держатель того же типа:
+    // на прежнее место, иначе на первое свободное; не встали — в skipped (общее сообщение о пропущенных)
+    const used = new Set();
+    for (const old of carriers.filter((c) => c.wasFactory)) {
+      const index = next.findIndex((c, i) => i < factory.length && !used.has(i) && c.carrierId === old.carrierId);
+      if (index >= 0) used.add(index);
+      for (const x of old.inserts.filter((item) => !item.included)) {
+        if (index < 0) {
+          skipped.push(x.insertId);
+          continue;
+        }
+        try {
+          next = addInsert(next, index, x.insertId, carriersById, insertsById, { pos: x.pos, role: x.role });
+        } catch {
+          try {
+            next = addInsert(next, index, x.insertId, carriersById, insertsById, { role: x.role });
+          } catch {
+            skipped.push(x.insertId);
+          }
+        }
+      }
+    }
+    return { carriers: markFactory(next, enclosure), skipped, factoryReset: true };
+  }
+  return { carriers: markFactory(carriers.map(({ wasFactory, ...c }) => c), enclosure), skipped, factoryReset: false };
 }
 
 /**
@@ -166,7 +202,8 @@ export function restoreCarriers(list, carriersById, insertsById, enclosure = {})
  * Лишние ряды или нехватка места — ProjectError('no-space').
  * catalog — { carriersById, insertsById } для держателей клемм N/PE: без него держатели проекта не сверяются
  * с каталогом; без держателей в проекте — как с завода.
- * Возвращает { board, skipped, oldTerminals }: oldTerminals — щит этапа 15 с добавленными клеммниками
+ * Возвращает { board, skipped, oldTerminals, carriersReset }: carriersReset — заводские держатели поставлены заново
+ * (заводская шина не встала на своё место: каталог обновился, см. restoreCarriers); oldTerminals — щит этапа 15 с добавленными клеммниками
  * (addTerminals) и без держателей: клеммники больше не добавляются, клеммы нужно подобрать заново.
  */
 export function buildBoard(project, enclosures, devices, catalog = null) {
@@ -178,11 +215,13 @@ export function buildBoard(project, enclosures, devices, catalog = null) {
   // Гребёнки, которых нет в каталоге, при отрисовке и в составе пропускаются — данные щита их не теряют
   let board = { ...createBoard(enclosure), earthing: project.earthing ?? null, ...(project.combs ? { combs: [...project.combs] } : {}), ...(project.combParts ? { combParts: { ...project.combParts } } : {}) };
   const skipped = [];
+  let carriersReset = false;
   if (project.carriers) {
     if (catalog) {
       const restored = restoreCarriers(project.carriers, catalog.carriersById, catalog.insertsById, enclosure);
       board = setCarriers(board, restored.carriers);
       skipped.push(...restored.skipped);
+      carriersReset = restored.factoryReset;
     } else board = setCarriers(board, project.carriers);
   }
   const rest = []; // без позиции или место не подошло — после всех, кто встал на своё место
@@ -213,7 +252,7 @@ export function buildBoard(project, enclosures, devices, catalog = null) {
       throw err;
     }
   }
-  return { board, skipped, oldTerminals: Boolean(project.addTerminals && !project.carriers) };
+  return { board, skipped, oldTerminals: Boolean(project.addTerminals && !project.carriers), carriersReset };
 }
 
 // ---------- ссылка ----------
@@ -473,8 +512,8 @@ export function restoreProject({ hash, localText, enclosures, devices, confirmLi
     if (localBroken) return { board: null, notices: [{ key: 'project.localLost' }], backupText: localText };
     if (!local) return { board: null, notices: [], backupText: null };
     try {
-      const { board, skipped, oldTerminals } = buildBoard(local, enclosures, devices, catalog);
-      const old = oldTerminals ? [{ key: 'project.oldTerminals' }] : [];
+      const { board, skipped, oldTerminals, carriersReset } = buildBoard(local, enclosures, devices, catalog);
+      const old = [...(oldTerminals ? [{ key: 'project.oldTerminals' }] : []), ...(carriersReset ? [{ key: 'project.carriersReset' }] : [])];
       if (skipped.length) {
         return { board, notices: [{ key: 'project.localSkipped', params: { n: skipped.length } }, ...old], backupText: localText };
       }
@@ -518,7 +557,7 @@ export function restoreProject({ hash, localText, enclosures, devices, confirmLi
     // на тот же щит, что сохранён, — не замена
     const replacesLocal = !localBroken && !isEmptyProject(local) && !sameProject(asPlaced(local), asPlaced(fromLink));
     if (replacesLocal && !confirmLink()) return fromLocal();
-    const { board, skipped, oldTerminals } = buildBoard(fromLink, enclosures, devices, catalog);
+    const { board, skipped, oldTerminals, carriersReset } = buildBoard(fromLink, enclosures, devices, catalog);
     // Свой щит заменяется или в нём есть устройства не из каталога — при перезаписи они пропадут
     const keepLocal = replacesLocal || (!localBroken && !isEmptyProject(local) && localTrimmed());
     const notices = [];
@@ -526,6 +565,7 @@ export function restoreProject({ hash, localText, enclosures, devices, confirmLi
     if (keepLocal) notices.push({ key: 'project.linkOpenedBackup' });
     else if (!skipped.length) notices.push({ key: 'project.linkOpened' });
     if (oldTerminals) notices.push({ key: 'project.oldTerminals' });
+    if (carriersReset) notices.push({ key: 'project.carriersReset' });
     // Свой щит (или испорченное сохранение) будет перезаписан — откладываем его копию
     return { board, notices, backupText: keepLocal || localBroken ? localText : null };
   } catch (err) {

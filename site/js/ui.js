@@ -254,7 +254,7 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
       try {
         if (file.size > LIMITS.textLength) throw new ProjectError('format', { reason: 'size' });
         const project = projectFromFile(await file.text());
-        const { board, skipped, oldTerminals } = buildBoard(project, enclosures, devices, carrierCatalog);
+        const { board, skipped, oldTerminals, carriersReset } = buildBoard(project, enclosures, devices, carrierCatalog);
         const current = state.board ? projectFromBoard(state.board) : null;
         if (!isEmptyProject(current) && !sameProject(current, projectFromBoard(board)) && !window.confirm(t('project.confirmReplace'))) {
           return;
@@ -265,7 +265,7 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
           selectedInsert: null,
           activeRow: 0,
           pickerOpen: false,
-          status: [skipped.length ? t('project.loadedSkipped', { n: skipped.length }) : t('project.loaded'), oldTerminals && t('project.oldTerminals')]
+          status: [skipped.length ? t('project.loadedSkipped', { n: skipped.length }) : t('project.loaded'), oldTerminals && t('project.oldTerminals'), carriersReset && t('project.carriersReset')]
             .filter(Boolean)
             .join(' '),
         });

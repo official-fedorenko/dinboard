@@ -115,6 +115,7 @@
   "project.backupDeleted": "Ankstesnė versija ištrinta.",
   "project.downloaded": "Projekto failas išsaugotas: {name}.",
   "project.loaded": "Projektas atidarytas.",
+  "project.carriersReset": "Šio korpuso N/PE gnybtų komplektacija kataloge atnaujinta: gamyklinės šynos sustatytos iš naujo, kaip iš gamyklos; jūsų laikikliai ir gnybtai išsaugoti, jei jiems rado vietos.",
   "project.oldTerminals": "Skydas išsaugotas prieš atsirandant gnybtų laikikliams: tada pridėti N/PE gnybtynai neperkelti — parinkite gnybtus iš naujo („Parinkti pagal linijų skaičių“ arba langas „N/PE gnybtai“).",
   "project.loadedSkipped": "Projektas atidarytas. Prietaisų, kurių nėra kataloge, praleista: {n} vnt.",
   "project.confirmLinkUnsaved": "Naršyklė neišsaugo skydų (pvz., privačiame režime), todėl dabartinis skydas dings. Norėdami jį išsaugoti, spauskite „Atšaukti“ ir „Atsisiųsti projekto failą“. Atidaryti skydą iš nuorodos?",

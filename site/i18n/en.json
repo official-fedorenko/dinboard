@@ -115,6 +115,7 @@
   "project.backupDeleted": "Previous version deleted.",
   "project.downloaded": "Project file saved: {name}.",
   "project.loaded": "Project opened.",
+  "project.carriersReset": "The N/PE terminal setup of this enclosure was updated in the catalogue: the factory bars are placed again as supplied; your carriers and terminals are kept where there is room.",
   "project.oldTerminals": "This board was saved before terminal carriers existed: the N/PE terminal blocks added then were not carried over — choose terminals again (“Fit to the number of circuits” or the “N/PE terminals” window).",
   "project.loadedSkipped": "Project opened. Devices not in the catalogue were skipped: {n} pcs.",
   "project.confirmLinkUnsaved": "The browser does not save boards (for example, in private mode), so the current board will be lost. To keep it, press “Cancel” and “Download project file”. Open the board from the link?",
