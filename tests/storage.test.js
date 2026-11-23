@@ -7,6 +7,7 @@ import {
   encodeLink,
   decodeLink,
   linkCodeFromHash,
+  watchLinkHash,
   projectToFile,
   projectFromFile,
   projectFileName,
@@ -348,6 +349,46 @@ describe('ссылка', () => {
     assert.equal(linkCodeFromHash('#b=abc'), 'abc');
     assert.equal(linkCodeFromHash('#other'), null);
     assert.equal(linkCodeFromHash(''), null);
+  });
+
+  test('ссылка, вставленная в уже открытую вкладку, открывает щит (перезагрузка, как при входе)', () => {
+    const listeners = {};
+    let reloads = 0;
+    const win = {
+      location: { hash: '', reload: () => (reloads += 1) },
+      addEventListener: (type, fn) => (listeners[type] = fn),
+    };
+    watchLinkHash(win);
+    win.location.hash = '#other';
+    listeners.hashchange();
+    assert.equal(reloads, 0, 'не ссылка на щит — ничего');
+    win.location.hash = '#b=abc';
+    listeners.hashchange();
+    assert.equal(reloads, 1, 'ссылка на щит — перезагрузка: щит откроется с тем же вопросом о замене');
+  });
+
+  test('браузер не сохранил свой щит — перед перезагрузкой вопрос; отказ — щит остаётся, ссылка убирается из адреса', () => {
+    const listeners = {};
+    let reloads = 0;
+    let asked = 0;
+    let answer = false;
+    let replaced = null;
+    let unsaved = true;
+    const win = {
+      location: { hash: '', pathname: '/dinboard/', search: '', reload: () => (reloads += 1) },
+      history: { replaceState: (_, __, url) => (replaced = url) },
+      addEventListener: (type, fn) => (listeners[type] = fn),
+    };
+    watchLinkHash(win, { unsaved: () => unsaved, confirm: () => ((asked += 1), answer) });
+    win.location.hash = '#b=abc';
+    listeners.hashchange();
+    assert.deepEqual([asked, reloads, replaced], [1, 0, '/dinboard/'], 'отказ: без перезагрузки, адрес без ссылки');
+    answer = true;
+    listeners.hashchange();
+    assert.deepEqual([asked, reloads], [2, 1], 'согласие — перезагрузка');
+    unsaved = false;
+    listeners.hashchange();
+    assert.deepEqual([asked, reloads], [2, 2], 'щит сохранён — без вопроса');
   });
 });
 

@@ -160,10 +160,12 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
   }
 
   /** Сохраняет щит в браузере после каждого изменения. Если браузер не даёт — предупреждает один раз. */
+  let lastSaveOk = true; // последнее автосохранение удалось (иначе щит есть только на странице)
   function autosave() {
     if (!store || !state.board || state.board === savedBoard) return;
     savedBoard = state.board;
-    if (!store.save(projectFromBoard(state.board)) && !autosaveWarned) {
+    lastSaveOk = store.save(projectFromBoard(state.board));
+    if (!lastSaveOk && !autosaveWarned) {
       autosaveWarned = true;
       state.status = t('project.autosaveOff');
     }
@@ -1858,5 +1860,10 @@ export function mountApp(root, { catalog, t: initialT, store = null, initialBoar
     update({ status: text });
   }
 
-  return { state, render, setTranslator, setStatus };
+  /** Есть ли на странице щит с оборудованием, которого нет в сохранении браузера (сохранить не удалось). */
+  function hasUnsavedBoard() {
+    return Boolean(state.board) && !isEmptyProject(projectFromBoard(state.board)) && (!store || !lastSaveOk);
+  }
+
+  return { state, render, setTranslator, setStatus, hasUnsavedBoard };
 }

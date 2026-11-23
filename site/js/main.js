@@ -4,7 +4,7 @@
 import { loadCatalog } from './catalog.js';
 import { loadMessages, createTranslator, pickLanguage, LANGUAGES, DEFAULT_LANGUAGE, LANGUAGE_STORAGE_KEY } from './i18n.js';
 import { indexById } from './board.js';
-import { createLocalStore, restoreProject } from './storage.js';
+import { createLocalStore, restoreProject, watchLinkHash } from './storage.js';
 import { mountApp } from './ui.js';
 import { h } from './dom.js';
 
@@ -123,6 +123,10 @@ try {
     // Копия, отложенная сейчас или раньше: её можно скачать, пока пользователь её не удалит
     backupText: restored.backupText ?? store.loadBackup(),
   });
+
+  // Ссылка на щит, вставленная в эту же вкладку, — открывается так же, как при входе;
+  // если свой щит браузер не сохранил (приватный режим), сначала спрашиваем
+  watchLinkHash(window, { unsaved: () => app.hasUnsavedBoard(), confirm: () => window.confirm(t('project.confirmLinkUnsaved')) });
 
   const switchLanguage = async (next) => {
     if (next === lang) return;

@@ -317,6 +317,24 @@ export function linkCodeFromHash(hash) {
   return typeof hash === 'string' && hash.startsWith(LINK_PREFIX) ? hash.slice(LINK_PREFIX.length) : null;
 }
 
+/**
+ * Ссылку на щит, вставленную в адресную строку уже открытой вкладки, браузер не загружает заново
+ * (меняется только часть после #). Тогда страница перезагружается и открывает щит, как при входе
+ * (restoreProject: тот же вопрос о замене своего щита). win — window (в тестах — заглушка).
+ * Свой щит при этом берётся из сохранения в браузере. Если сохранить его не удалось (unsaved() — например,
+ * приватный режим), он пропал бы без вопроса: тогда сначала confirm(); отказ — щит остаётся, ссылка убирается из адреса.
+ */
+export function watchLinkHash(win, { unsaved = () => false, confirm = () => true } = {}) {
+  win.addEventListener('hashchange', () => {
+    if (linkCodeFromHash(win.location.hash) === null) return;
+    if (unsaved() && !confirm()) {
+      win.history.replaceState(null, '', win.location.pathname + win.location.search);
+      return;
+    }
+    win.location.reload();
+  });
+}
+
 // ---------- файл проекта ----------
 
 /** Текст файла проекта. enclosures/devices — Map по id (для артикулов). */

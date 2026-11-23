@@ -117,6 +117,7 @@
   "project.loaded": "Projektas atidarytas.",
   "project.oldTerminals": "Skydas išsaugotas prieš atsirandant gnybtų laikikliams: tada pridėti N/PE gnybtynai neperkelti — parinkite gnybtus iš naujo („Parinkti pagal linijų skaičių“ arba langas „N/PE gnybtai“).",
   "project.loadedSkipped": "Projektas atidarytas. Prietaisų, kurių nėra kataloge, praleista: {n} vnt.",
+  "project.confirmLinkUnsaved": "Naršyklė neišsaugo skydų (pvz., privačiame režime), todėl dabartinis skydas dings. Norėdami jį išsaugoti, spauskite „Atšaukti“ ir „Atsisiųsti projekto failą“. Atidaryti skydą iš nuorodos?",
   "project.confirmLink": "Atidaryti skydą iš nuorodos? Šioje naršyklėje išsaugotas skydas bus pakeistas.",
   "project.confirmReplace": "Atidaryti projektą iš failo? Dabartinis skydas bus pakeistas.",
   "project.error.format": "Nepavyko perskaityti projekto: failas arba nuoroda sugadinti.",

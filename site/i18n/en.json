@@ -117,6 +117,7 @@
   "project.loaded": "Project opened.",
   "project.oldTerminals": "This board was saved before terminal carriers existed: the N/PE terminal blocks added then were not carried over — choose terminals again (“Fit to the number of circuits” or the “N/PE terminals” window).",
   "project.loadedSkipped": "Project opened. Devices not in the catalogue were skipped: {n} pcs.",
+  "project.confirmLinkUnsaved": "The browser does not save boards (for example, in private mode), so the current board will be lost. To keep it, press “Cancel” and “Download project file”. Open the board from the link?",
   "project.confirmLink": "Open the board from the link? The board saved in this browser will be replaced.",
   "project.confirmReplace": "Open the project from the file? The current board will be replaced.",
   "project.error.format": "Could not read the project: the file or link is damaged.",
